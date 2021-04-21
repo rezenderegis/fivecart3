@@ -1,7 +1,7 @@
 <?php
 defined ('BASEPATH') OR exit ('Not allowed!');
 
-class Home extends CI_Controller {
+class Sistema extends CI_Controller {
 
     
     public function __construct () {
@@ -11,20 +11,13 @@ class Home extends CI_Controller {
 
         if (!$this->ion_auth->logged_in()) {
             $this->session->set_flashdata('info', 'Sua sessão expirou');
+
             redirect ('login');
+
         }
 
     }
 
-    public function index() {
-        $this->load->view('layout/header');
-
-        $this->load->view('home/index');
-        $this->load->view('layout/footer');
-
-
-
-    }
 
 
 }

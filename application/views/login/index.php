@@ -19,7 +19,36 @@
 
                             
                             <div class="col-lg-12">
+
+<?php if ($message = $this->session->flashdata('info')): ?>
+    <div class "row">
+    <div class ="col-md-12">
+
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+  <strong><?php echo $message;?></strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+</div>
+<?php endif; ?>  
+
+<?php if ($message = $this->session->flashdata('error')): ?>
+    <div class "row">
+    <div class ="col-md-12">
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong><?php echo $message;?></strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+</div>
+<?php endif; ?>  
                                 <div class="p-5">
+                                    
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Seja bem vindo!</h1>
                                     </div>
@@ -34,19 +63,8 @@
                                                  placeholder="Digite sua senha">
                                         </div>
                                       
-    <?php if ($message = $this->session->flashdata('error')): ?>
-    <div class "row">
-    <div class ="col-md-12">
+  
 
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong><?php echo $message;?></strong> 
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-</div>
-</div>
-<?php endif; ?>  
                                         <button type="submit"  class="btn btn-primary btn-user btn-block">
                                             Entrar
 </button>

@@ -9,6 +9,11 @@ class Encarte extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
 
+        if (!$this->ion_auth->logged_in()) {
+            $this->session->set_flashdata('info', 'Sua sessão expirou');
+            redirect ('login');
+        }
+
     }
 
     public function index() {
