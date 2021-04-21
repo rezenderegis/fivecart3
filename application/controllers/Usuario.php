@@ -167,7 +167,7 @@ class Usuario extends CI_Controller  {
 
     }
     public function edit($user_id = null) {
-
+       
         if ($this->session->userdata('user_id') != $user_id && !$this->ion_auth->is_admin() ) {
             $this->session->set_flashdata('error', 'Usuário não encontrado');
             redirect('home');
@@ -195,7 +195,7 @@ $this->form_validation->set_rules('password','Senha', 'trim|min_length[5]|max_le
 $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
 
 if ($this->form_validation->run()) {
-
+    
     $data = elements(
 
             array('first_name', 'last_name','email','username','password','active'

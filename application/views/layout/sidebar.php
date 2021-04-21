@@ -56,9 +56,12 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Encartes</h6>
             <a class="collapse-item" href="<?=base_url('encarte'); ?>">Encartes</a>
+            <a class="collapse-item" href="<?=base_url('product'); ?>">Produtos</a>
           
         </div>
+        
     </div>
+    
 </li>
 
 <!-- Divider -->
