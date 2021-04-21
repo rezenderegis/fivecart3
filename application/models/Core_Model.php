@@ -5,7 +5,6 @@ defined('BASEPATH') OR exit ('Not allowed');
 class Core_Model extends CI_Model {
 
     public function get_all($table = NULL, $condition = NULL) {
-
         if ($table) {
 
             if (is_array($condition)) {
