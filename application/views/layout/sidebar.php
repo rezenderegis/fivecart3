@@ -17,6 +17,7 @@
     Interface
 </div>
 
+<?php if ($this->ion_auth->is_admin()): ?>
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -34,6 +35,7 @@
     </div>
 </li>
 
+<?php endif; ?>
 <!-- Divider -->
 <hr class="sidebar-divider">
 

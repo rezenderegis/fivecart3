@@ -25,8 +25,11 @@
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                        <a title="Cadastrar Novo Usuário" href="<?php echo base_url('usuario')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
-
+                        <?php if ($this->ion_auth->is_admin()) {?>
+                        <a title="Voltar" href="<?php echo base_url('usuario')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                          <?php } else { ?>
+                            <a title="Voltar" href="<?php echo base_url('Home')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                            <?php } ?>
 
                         </div>
 
@@ -49,7 +52,8 @@
 
     <div class="col-md-4">
       <label >Login</label>
-    <input type="text" class="form-control" name="email" placeholder="E-mail" value="<?php echo $usuario->email;?>">
+      <?php if ($usuario->email != NULL) {$disabled = "TRUE"; }?>
+    <input type="text" class="form-control" name="email" disabled = "<?php echo $disabled;?>" placeholder="E-mail" value="<?php echo $usuario->email;?>">
     <?php echo form_error('email', '<small class = "form-text text-danger">','</small>');?>
   
   </div>
@@ -74,6 +78,7 @@
     <?php echo form_error('confirm_password', '<small class = "form-text text-danger">','</small>');?>
     </div>
 
+    <?php if ($this->ion_auth->is_admin()) {?>
     <div class="col-md-4">
       <label >Ativo</label>
       <select class="form-control" name="active">
@@ -89,6 +94,7 @@
           <option value="1" <?php echo ($perfil->id == 1) ? 'selected' : ''?>>Administrador</option>
           </select>
     </div>
+    <?php } ?>
 
     <input type="hidden" name="usuario_id" value="<?php echo $usuario->id; ?>"
 </div>

@@ -18,6 +18,12 @@ class Usuario extends CI_Controller  {
 
     public function delete($user_id = NULL) {
 
+
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {
+
         if (!$user_id || !$this->ion_auth->user($user_id)->row()) {
             $this->session->set_flashdata('error', 'Usuário não encontrado');
             redirect ('/usuario');
@@ -35,10 +41,16 @@ class Usuario extends CI_Controller  {
             $this->session->set_flashdata('error', 'Erro ao deletar o usuário');
             redirect ('/usuario');
         }
+    }
 
 }
     
     public function add() {
+
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {
 
         $data = array (
             'titulo' => 'Cadastrar Usuário',
@@ -92,12 +104,16 @@ class Usuario extends CI_Controller  {
         }
        
       
-
+    }
 
     }
     
     public function index () {
 
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {
         $data = array (
             'titulo' => 'Usuários Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
@@ -113,7 +129,7 @@ class Usuario extends CI_Controller  {
         $this->load->view('users/index');
         $this->load->view('layout/footer');
 
-
+    }
     }
 
 
@@ -152,6 +168,11 @@ class Usuario extends CI_Controller  {
     }
     public function edit($user_id = null) {
 
+        if ($this->session->userdata('user_id') != $user_id && !$this->ion_auth->is_admin() ) {
+            $this->session->set_flashdata('error', 'Usuário não encontrado');
+            redirect('home');
+        } {
+
         if (!$user_id || !$this->ion_auth->user($user_id)->row()) {
             
             $this->session->set_flashdata('error', 'Usuário não encontrado');
@@ -165,28 +186,6 @@ class Usuario extends CI_Controller  {
             'usuario' => $this->ion_auth->user($user_id)->row(),
             'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
         );
-
-
-/*
-       echo '<pre>';
-        print_r($data);
-        exit();*/
-  
-
-/**
- [first_name] => Admin
-    [last_name] => istrator
-    [email] => admin@admin.com
-    [username] => administrator
-    [password] => $2y$08$200Z6ZZbp3RAEXoaWcMA6uJOFicwNZaqk4oDhqTUiFXFe63MG.Daa
-    [confirm_password] => $2y$08$200Z6ZZbp3RAEXoaWcMA6uJOFicwNZaqk4oDhqTUiFXFe63MG.Daa
-    [active] => 1
-    [perfil] => 1
-    [usuario_id] => 1 
-
-
-*/
-
 
 $this->form_validation->set_rules('first_name','', 'trim|required');
 $this->form_validation->set_rules('last_name','', 'trim|required');
@@ -239,7 +238,13 @@ if ($this->form_validation->run()) {
         $this->session->set_flashdata('eror', 'Erro ao salvar os dados');
     }
  
+    if ($this->ion_auth->is_admin()) {
+        
     redirect ('usuario');
+    } else {
+        redirect('home');
+
+    }
 
 } else {
 
@@ -259,6 +264,7 @@ if ($this->form_validation->run()) {
 
 
         }
+    }
     }
 
 
