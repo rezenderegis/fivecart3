@@ -132,6 +132,52 @@ class Encarte extends CI_Controller {
  }
          }
      }
+
+
+
+
+    public function add() {
+
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {
+
+        $data = array (
+            'titulo' => 'Cadastrar Lista',
+        );
+
+        $this->form_validation->set_rules('description','', 'trim|required');
+
+        if ($this->form_validation->run()) {
+                 $data = array (
+                     'description' => $this->input->post('description'),
+                     'id_user' => $this->ion_auth->user()->row()->id,
+                     'date' => sysdate,
+                     
+
+                 );
+               
+                 $data = html_escape($data);
+
+                $this->core_model->insert('publish', $data);
+   
+                redirect ('encarte/productList');
+              
+        } else {
+            $data = array (
+                'titulo' => 'Cadastrar Produto',
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('encarte/add');
+            $this->load->view('layout/footer');
+        }
+       
+      
+    }
+
+    }
    
 
 
