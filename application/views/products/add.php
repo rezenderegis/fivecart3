@@ -31,40 +31,39 @@
 
                         <div class="card-body">
                             
-<form method="POST" name="form_edit">
+<form method="POST" name="form_add">
   <div class="form-group">
       <div class="col-md-4">
       <label >Nome do Produto</label>
-    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="<?php echo $product->name;?>">
+    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="">
     <?php echo form_error('name', '<small class = "form-text text-danger">','</small>');?>
   </div>
   
     <div class="col-md-4">
       <label >Descrição do Produto</label>
-    <input type="text" class="form-control" name="description" placeholder="Descrição do Produto" value="<?php echo $product->description;?>">
+    <input type="text" class="form-control" name="description" placeholder="Descrição do Produto" value="">
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
 
   </div>
   
     <div class="col-md-4">
       <label >Código de Barras</label>
-    <input type="text" class="form-control" name="barcode" placeholder="Código de Barras" value="<?php echo $product->bar_code;?>">
+    <input type="text" class="form-control" name="barcode" placeholder="Código de Barras" value="">
     <?php echo form_error('barcode', '<small class = "form-text text-danger">','</small>');?>
   
   </div>
   <div class="col-md-4">
       <label >Categoria</label>
-    <input type="text" class="form-control" name="id_cathegory" placeholder="Categoria" value="<?php echo $product->id_cathegory;?>">
+    <input type="text" class="form-control" name="id_cathegory" placeholder="Categoria" value="">
     <?php echo form_error('id_cathegory', '<small class = "form-text text-danger">','</small>');?>
   
   </div>
     <div class="col-md-4">
       <label >Situação</label>
-    <input type="text" class="form-control" name="status" placeholder="Situação" value="<?php echo $product->status;?>">
+    <input type="text" class="form-control" name="status" placeholder="Situação" value="">
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
 
-    <input type="hidden" name="product_id" value="<?php echo $product->id; ?>"
 </div>
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>

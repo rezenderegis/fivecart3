@@ -95,15 +95,57 @@ if ($this->form_validation->run()) {
     $this->load->view('/layout/header', $data);
     $this->load->view('/products/edit');
     $this->load->view('/layout/footer');
-
 }
-
-
-
         }
     }
     
+    public function add() {
 
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {
+
+        $data = array (
+            'titulo' => 'Cadastrar Produto',
+        );
+
+        $this->form_validation->set_rules('name','', 'trim|required');
+        $this->form_validation->set_rules('description','', 'trim|required');
+        $this->form_validation->set_rules('id_cathegory','', 'trim|required');
+
+        if ($this->form_validation->run()) {
+                 $data = array (
+                     'name' => $this->input->post('name'),
+                     'description' => $this->input->post('description'),
+                     'id_owner' => $this->ion_auth->user()->row()->id,
+                     'id_cathegory' => $this->input->post('id_cathegory'),
+                     'image_link' => 1,
+                     'bar_code' => $this->input->post('bar_code'),
+                     'status' => $this->input->post('status'),
+
+                 );
+               
+                 $data = html_escape($data);
+
+                $this->core_model->insert('products', $data);
+   
+                redirect ('product');
+              
+        } else {
+            $data = array (
+                'titulo' => 'Cadastrar Produto',
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('products/add');
+            $this->load->view('layout/footer');
+        }
+       
+      
+    }
+
+    }
 
 
 
