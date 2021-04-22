@@ -26,7 +26,7 @@ class Encarte extends CI_Controller {
 
     }
 
-    public function publish() {
+    public function productList() {
 
         $data = array (
             'titulo' => 'Encartes Cadastrados',
@@ -39,7 +39,7 @@ class Encarte extends CI_Controller {
 
         );
         $this->load->view('layout/header', $data);
-        $this->load->view('encarte/index');
+        $this->load->view('encarte/productList');
         $this->load->view('layout/footer');
 
     
@@ -55,6 +55,31 @@ class Encarte extends CI_Controller {
         $this->load->view('layout/footer');
     }
 
+
+
+    public function productPublish($idProductList = NULL) {
+       
+        $data = array (
+            'titulo' => 'Produtos Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js'),    
+           // 'productPublish' => $this->core_model->get_all('product_publish'), 
+            'productPublish' => $this->core_model->get_all('product_publish', array('id' => $idProductList)),
+
+        );
+   
+
+
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('encarte/productPublish');
+        $this->load->view('layout/footer');
+
+    
+    }
    
 
 

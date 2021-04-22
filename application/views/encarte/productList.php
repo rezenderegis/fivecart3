@@ -75,18 +75,18 @@
                                             <td><?=$pub->date ?></td>
                                             <td><?=$pub->id_user ?></td>
                   
-                                            <td class="text-center pr-4"><?php echo ($product->status) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
                                             <td class="text-right">
-                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
-                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product->id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> 
+                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$pub->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
+                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $pub->id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> 
+                                                <a title="Produtos" href="<?php echo base_url('/encarte/productPublish/'.$pub->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
 
                                             </td>
-
+                                            
                                         </tr>
 
 
 <!-- Logout Modal-->
-<div class="modal fade" id="user-<?php echo $product->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="user-<?php echo $pub->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -99,7 +99,7 @@
                 <div class="modal-body">Para excluir o registro cliquem em Sim</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuario/delete/'.$product->id);?>">Sim</a>
+                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuario/delete/'.$pub->id);?>">Sim</a>
                 </div>
             </div>
         </div>
