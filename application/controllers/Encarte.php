@@ -71,15 +71,67 @@ class Encarte extends CI_Controller {
 
         );
    
-
-
-
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/productPublish');
         $this->load->view('layout/footer');
 
-    
     }
+
+
+   
+    public function edit($publish_id = null) {
+ 
+         if (!$publish_id || !$this->core_model->getById('product_publish', array('id' => $publish_id))) {
+             
+             $this->session->set_flashdata('error', 'Lista não encontrada');
+             redirect('products');
+ 
+         } else {
+ /*
+         $data = array (
+ 
+             'titulo' => 'Editar Usuário',
+             'usuario' => $this->ion_auth->user($user_id)->row(),
+             'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
+         );*/
+ 
+ $this->form_validation->set_rules('description','', 'trim|required');
+
+ if ($this->form_validation->run()) {
+
+     $data = elements(
+ 
+             array('description',
+         
+         ), $this->input->post()
+ 
+     );
+ 
+     $data = html_escape($data);
+ 
+     $this->core_model->update('publish', $data, array('id' => $publish_id));
+    
+     redirect ('encarte/productList');
+ 
+ 
+ } else {
+ 
+     $data = array (
+ 
+         'titulo' => 'Atualizar Lista',
+         'scripts' => array(
+             'vendor/mask/jquery.mask.min.js',
+             'vendor/mask/app.js',
+         ),
+         'publish' => $this->core_model->getById('publish', array('id' => $publish_id)),
+         
+     );
+     $this->load->view('/layout/header', $data);
+     $this->load->view('/encarte/edit');
+     $this->load->view('/layout/footer');
+ }
+         }
+     }
    
 
 
