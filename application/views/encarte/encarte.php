@@ -82,7 +82,7 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Home</h1>
 
-<form action="<?php echo base_url('/encarte/new'); ?>">
+<form method="POST" action="<?php echo base_url('/encarte/new/'.$publishId); ?>">
                     <?php
   
 
@@ -134,7 +134,6 @@ foreach ($cards as $card) {
     <label for="formGroupExampleInput2">Texto Direita</label>
     <input type="text" class="form-control col-md-4" id="formGroupExampleInput2" placeholder="Another input" name="text_right">
 </div>
-
 
 <button type="submit" class="btn btn-primary">Submit</button>
 

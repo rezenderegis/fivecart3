@@ -93,7 +93,6 @@ div.desc {
 
 </style>
 
-
    <?php $this->load->view('layout/sidebar'); ?>
 <?php
 $cards = array("Barra_Superior_Azul_Claro", "Barra_Superior_Azul_Escuro", "Barra_Superior_Azul_Vermelho");
@@ -120,86 +119,19 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
 
 </div>
 
-    <div class="grid-container">
+<div class="grid-container">
+
+<?php foreach ($productPublish as $product) { ?>
 <div class="gallery">
 <div class="container_picture">
-    <img src="<?= base_url() . "images/Products/ketchup-tradicional-320g-hemmer-s-fundo.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
-
-  </div>
-    <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-
-  
+    <img src="<?= base_url() . "images/Products/".$product['image_link']; ?>" alt="Snow" width="100" height="130">
+    <div class="textocentro"> R$ <?=$product['price']?> </div>
 </div>
-
-<div class="gallery">
-<div class="container_picture">
-
-    <img src="<?= base_url() . "images/Products/molho-barbecue-com-mel-330g-hemmer-s-fundo.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
-
-  </div>
-    <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
+    <div class="desc"><?=$product['name']?></div>
 </div>
+<?php }?>
 
-<div class="gallery">
-      <div class="container_picture">
-        <img src="<?= base_url() . "images/Products/ketchup-tradicional-1kg-hemmer.jpg"; ?>" alt="Snow" width="100" height="130">
-        <div class="textocentro"> R$10,00 </div>
-      </div>
-    <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-</div>
-<div class="gallery">
-<div class="container_picture">
-    <img src="<?= base_url() . "images/Products/ketchup-tradicional-320g-hemmer-s-fundo.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
 
-</div>
-  <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-</div>
-
-<div class="gallery">
-<div class="container_picture">
-    <img src="<?= base_url() . "images/Products/molho-barbecue-com-mel-330g-hemmer-s-fundo.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
-
-  </div>
-    <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-</div>
-
-<div class="gallery">
-  <div class="container_picture">
-    <img src="<?= base_url() . "images/Products/ketchup-tradicional-1kg-hemmer.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
-
-  </div>
-  <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-</div>
-
-<div class="gallery">
-<div class="container_picture">
-    <img src="<?= base_url() . "images/Products/ketchup-tradicional-1kg-hemmer.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
-  </div>
-    <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-</div>
-
-<div class="gallery">
-<div class="container_picture">
-    <img src="<?= base_url() . "images/Products/ketchup-tradicional-1kg-hemmer.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
-
-  </div>
-    <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-</div>
-
-<div class="gallery">
-<div class="container_picture">
-    <img src="<?= base_url() . "images/Products/ketchup-tradicional-1kg-hemmer.jpg"; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$10,00 </div>
-  </div>
-    <div class="desc">KETCHUP SACHÊ HEMMER 7G</div>
-</div>
 </div>
 
     <img src="<?= base_url() . "images/".$_REQUEST['footer_picture'].".jpg"; ?>" width="455" height="96">

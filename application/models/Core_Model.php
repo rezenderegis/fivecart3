@@ -110,7 +110,7 @@ class Core_Model extends CI_Model {
 
 
     public function getProductPublish($idPublish) {
-        $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price from product_publish pp inner join publish p on p.id = pp.id_publish
+        $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price,prod.image_link from product_publish pp inner join publish p on p.id = pp.id_publish
 inner join product_customer pc on pc.id = pp.id_product_customer
 inner join products prod on prod.id = pc.id_product
 where p.id = ".$idPublish;

@@ -16,9 +16,14 @@ class Encarte extends CI_Controller {
 
     }
 
-    public function index() {
-        $this->load->view('layout/header');
+    public function index($publish) {
 
+        $data = array (
+
+            'titulo' => 'Gerar Encarte',
+            'publishId' => $publish,
+        );
+        $this->load->view('layout/header', $data);
         $this->load->view('encarte/encarte');
         $this->load->view('layout/footer');
 
@@ -45,12 +50,15 @@ class Encarte extends CI_Controller {
     
     }
 
-    public function new() {
-       // print_r($_REQUEST);
-        //print_r($_SESSION);
-        //die();
-        $this->load->view('layout/header');
+    public function new($publishId) {
 
+        $data = array (
+
+            'titulo' => 'Gerar Encarte',
+            'productPublish' => $this->core_model->getProductPublish($publishId),
+            
+        );
+        $this->load->view('/layout/header', $data);
         $this->load->view('encarte/selectProduct');
         $this->load->view('layout/footer');
     }
