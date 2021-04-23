@@ -57,7 +57,7 @@
 <br>
 <select class="form-control form-control-lg" name="product">
 <?php foreach ($products as $product) {?>
-<option value="<?php echo $product->id?>"><?php echo $product->name?></option>
+<option value="<?php echo $product['id'];?>"><?php echo $product['name'];?></option>
 <?php }?>
 </select>
 <br>
@@ -82,16 +82,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php //print_r($productPublish); die();?>
                                         <?php foreach ($productPublish as $productPub) : ?>
                                         <tr>
-                                            <td><?=$productPub->id?></td>
-                                            <td><?=$productPub->id_product_customer ?></td>
-                                            <td><?=$productPub->product_price ?></td>
+                                            <td><?=$productPub['id']?></td>
+                                            <td><?=$productPub['name'] ?></td>
+                                            <td><?=$productPub['price']?></td>
                   
                                             <td class="text-right">
-                                                <a title="Editar" href="<?php echo base_url('/encarte/edit/'.$productPub->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
-                                           <!--     <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub->id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> -->
-                                                <a title="Produtos" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub->id; ?>" class="fas "><i class="fas fa-box-open"></i></a> 
+                                                <a title="Editar" href="<?php echo base_url('/encarte/edit/'.$productPub['id']); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
+                                           <!--     <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> -->
+                                                <a title="Produtos" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id']; ?>" class="fas "><i class="fas fa-box-open"></i></a> 
 
                                             </td>
                                             

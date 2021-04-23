@@ -35,7 +35,7 @@ class Encarte extends CI_Controller {
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
-            'publish' => $this->core_model->get_all('publish'), 
+            'publish' => $this->core_model->get_all('publish', array('id_user' => $this->ion_auth->user()->row()->id)), 
 
         );
         $this->load->view('layout/header', $data);
@@ -66,14 +66,14 @@ class Encarte extends CI_Controller {
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
-           // 'productPublish' => $this->core_model->get_all('product_publish'), 
-            'productPublish' => $this->core_model->get_all('product_publish', array('id_publish' => $idProductList)),
-            'products' => $this->core_model->get_all('products'),
+          //  'productPublish' => $this->core_model->get_all('product_publish', array('id_publish' => $idProductList)),
+            'products' => $this->core_model->getUserProducts($idProductList,$this->ion_auth->user()->row()->id),
             'idProductList' => $idProductList,
+            'productPublish' => $this->core_model->getProductPublish($idProductList),
 
 
         );
-   
+        
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/productPublish');
         $this->load->view('layout/footer');
@@ -158,7 +158,6 @@ class Encarte extends CI_Controller {
                      'id_user' => $this->ion_auth->user()->row()->id,
                      'date' => sysdate,
                      
-
                  );
                
                  $data = html_escape($data);
@@ -184,10 +183,10 @@ class Encarte extends CI_Controller {
 
     public function addProduct ($idProductList) {
        //echo $idProductList; die();
-// $this->input->post("product")
+ //print_r($this->input->post("product"));die();
 $date = date('Y-m-d H:i:s');
         $data = array (
-            'id_product_customer' => 2,
+            'id_product_customer' => $this->input->post("product"),
             'id_publish' => $idProductList,
             'product_price' => 2,
             'date' => $date,
