@@ -182,18 +182,20 @@ class Encarte extends CI_Controller {
     }
 
     public function addProduct ($idProductList) {
-       //echo $idProductList; die();
- //print_r($this->input->post("product"));die();
+
+ $product_customer = $this->core_model->getById('product_customer', array('id' => $this->input->post("product")));
+
 $date = date('Y-m-d H:i:s');
         $data = array (
             'id_product_customer' => $this->input->post("product"),
             'id_publish' => $idProductList,
-            'product_price' => 2,
+            'product_price' => $product_customer->price,
             'date' => $date,
 
             
         );
-      
+      //print_r($this->input->post());
+      //die();
      
        $this->core_model->insert('product_publish', $data);
 
