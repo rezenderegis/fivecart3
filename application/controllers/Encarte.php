@@ -67,7 +67,10 @@ class Encarte extends CI_Controller {
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
            // 'productPublish' => $this->core_model->get_all('product_publish'), 
-            'productPublish' => $this->core_model->get_all('product_publish', array('id' => $idProductList)),
+            'productPublish' => $this->core_model->get_all('product_publish', array('id_publish' => $idProductList)),
+            'products' => $this->core_model->get_all('products'),
+            'idProductList' => $idProductList,
+
 
         );
    
@@ -176,6 +179,27 @@ class Encarte extends CI_Controller {
        
       
     }
+
+    }
+
+    public function addProduct ($idProductList) {
+       //echo $idProductList; die();
+// $this->input->post("product")
+$date = date('Y-m-d H:i:s');
+        $data = array (
+            'id_product_customer' => 2,
+            'id_publish' => $idProductList,
+            'product_price' => 2,
+            'date' => $date,
+
+            
+        );
+      
+     
+       $this->core_model->insert('product_publish', $data);
+
+       redirect ('encarte/productPublish/'.$idProductList);
+
 
     }
    

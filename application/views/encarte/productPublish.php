@@ -49,8 +49,23 @@
 
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-                        <div class="card-header py-3">
 
+
+
+<div class="card-header py-3">
+<form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/addProduct/'.$idProductList);?>">
+<br>
+<select class="form-control form-control-lg" name="product">
+<?php foreach ($products as $product) {?>
+<option value="<?php echo $product->id?>"><?php echo $product->name?></option>
+<?php }?>
+</select>
+<br>
+  <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+
+</form>
+
+        
                         <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
 
 
