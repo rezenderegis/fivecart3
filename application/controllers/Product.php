@@ -69,16 +69,26 @@ if ($this->form_validation->run()) {
 
     $data = elements(
 
-            array('name', 'description','id_owner','id_cathegory','image_link','bar_code', 'status',price
+            array('name', 'description','id_owner','id_cathegory','image_link','bar_code', 'status',
         
         ), $this->input->post()
 
     );
 
+    $price = elements(
+
+        array('price',
+    
+    ), $this->input->post()
+
+);
+
     $data = html_escape($data);
+    $price = html_escape($price);
 
     $this->core_model->update('products', $data, array('id' => $product_id));
-   
+    $this->core_model->update('product_customer', $price, array('id' => $product_id, 'id_user' => $this->ion_auth->user()->row()->id));
+
     redirect ('product');
 
 
@@ -92,8 +102,10 @@ if ($this->form_validation->run()) {
             'vendor/mask/app.js',
         ),
         'product' => $this->core_model->getById('products', array('id' => $product_id)),
+        'product_price' => $this->core_model->getById('product_customer', array('id_product' => $product_id, 'id_user'  => $this->ion_auth->user()->row()->id))
         
     );
+   
     $this->load->view('/layout/header', $data);
     $this->load->view('/products/edit');
     $this->load->view('/layout/footer');
