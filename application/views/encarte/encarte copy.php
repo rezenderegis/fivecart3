@@ -10,6 +10,9 @@ li {
 input[type="checkbox"][id^="cb"] {
   display: none;
 }
+input[type="checkbox"][id^="rd"] {
+  display: none;
+}
 
 label {
   border: 1px solid #fff;
@@ -61,11 +64,12 @@ label img {
   z-index: -1;
 }
 
-
 </style>
-
    <?php $this->load->view('layout/sidebar'); ?>
-
+<?php
+$cards = array("Barra_Superior_Azul_Claro", "Barra_Superior_Azul_Escuro", "Barra_Superior_Azul_Vermelho");
+$cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro", "Barra_Inferior_Vermelho");
+?>
      
             <!-- Main Content -->
             <div id="content">
@@ -78,19 +82,20 @@ label img {
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Home</h1>
 
-
+<form method="POST" action="<?php echo base_url('/encarte/new/'.$publishId); ?>">
                     <?php
- $cards = array("Barra_Superior_Azul_Claro", "Barra_Superior_Azul_Escuro", "Barra_Superior_Azul_Vermelho");
- $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro", "Barra_Inferior_Vermelho");
-        
+  
 
 ?>
 <ul>
+    
 <?php
-foreach ($cards as $card) {
+$i = 0;
+foreach ($tempates as $template) {
+    $i++;
     ?>
-    <li><input type="checkbox" id="cb1" />
-    <label for="cb1"><img src="<?= base_url() . "images/$card.jpg"; ?>" /></label>
+    <li><input type="checkbox" id=<?php echo "cb".$i; ?> name="cabecalho" value="<?php echo $card; ?>"/>
+    <label for=<?php echo "cb".$i; ?>><img src="<?= base_url() . "images/$card.jpg"; ?>" /></label>
   </li>
 <?php
 }
@@ -105,27 +110,39 @@ foreach ($cards as $card) {
 
     <div class="container-fluid">
 
+
+    <ul>
 <?php
-
-    shuffle($cards);
-foreach ($cardsInferior as $card) {
+$i = 0;
+foreach ($cards as $card) {
+    $i++;
     ?>
-    <img src="<?= base_url() . "images/$card.jpg"; ?>" width="421" height="96">
-
+    <li><input type="checkbox" id=<?php echo "rd".$i; ?> name="footer_picture" value="<?php echo $card; ?>"/>
+    <label for=<?php echo "rd".$i; ?>><img src="<?= base_url() . "images/$card.jpg"; ?>" /></label>
+  </li>
 <?php
 }
 ?>
+</ul>
+
+
+<div class="form-group">
+    <label for="formGroupExampleInput">Texto Esquerda</label>
+    <input type="text" class="form-control col-md-4" id="formGroupExampleInput" placeholder="Example input" name="text_left">
+  </div>
+  <div class="form-group">
+    <label for="formGroupExampleInput2">Texto Direita</label>
+    <input type="text" class="form-control col-md-4" id="formGroupExampleInput2" placeholder="Another input" name="text_right">
+</div>
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
 </div>
                
-                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
 
 
 
- <ul>
-  <li><input type="checkbox" id="cb1" />
-    <label for="cb1"><img src="http://lorempixel.com/100/100" /></label>
-  </li>
-</ul>
