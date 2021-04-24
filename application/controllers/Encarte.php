@@ -58,8 +58,10 @@ class Encarte extends CI_Controller {
 
             'titulo' => 'Gerar Encarte',
             'productPublish' => $this->core_model->getProductPublish($publishId),
+            'template' => $this->core_model->getById('template', array('id' => $this->input->post("template"))),
             
         );
+        
         $this->load->view('/layout/header', $data);
         $this->load->view('encarte/selectProduct');
         $this->load->view('layout/footer');

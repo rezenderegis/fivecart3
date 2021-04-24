@@ -61,13 +61,15 @@ class Product extends CI_Controller  {
 $this->form_validation->set_rules('name','', 'trim|required');
 $this->form_validation->set_rules('description','', 'trim|required');
 $this->form_validation->set_rules('id_cathegory','', 'trim|required');
+$this->form_validation->set_rules('price','', 'trim|required');
+
 //$this->form_validation->set_rules('image_link','', 'trim|required');
 
 if ($this->form_validation->run()) {
 
     $data = elements(
 
-            array('name', 'description','id_owner','id_cathegory','image_link','bar_code', 'status'
+            array('name', 'description','id_owner','id_cathegory','image_link','bar_code', 'status',price
         
         ), $this->input->post()
 

@@ -114,8 +114,7 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
 <form action="<?php echo base_url('/encarte/new'); ?>">
 
 <div class="container_text_button">
-
-  <img src="<?= base_url() . "images/customers/taNoEncarte.jpg"; ?>" width="455" height="200">  
+  <img src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
   <div class="text_button_right"><?php echo $_REQUEST['text_right'];?></div>
   <div class="text_button_left"><?php echo $_REQUEST['text_left'];?></div>
 
@@ -135,7 +134,7 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
 
 
 </div>
-    <img src="<?= base_url() . "images/customers/Barra_inferior_sm.jpg"; ?>" width="455" height="50">
+    <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
     
 
 
