@@ -17,7 +17,16 @@ input[type="checkbox"][id^="rd"] {
 label {
   border: 1px solid #fff;
   padding: 10px;
-  height: 150px;
+  height: 400px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+}
+.label_texto {
+  border: 1px solid #fff;
+  padding: 10px;
+  height: 10px;
   display: block;
   position: relative;
   margin: 10px;
@@ -44,8 +53,8 @@ label:before {
 }
 
 .imagem {
-  height: 150px;
-  width: 410px;
+  height: 400px;
+  width: 210px;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
 }
@@ -108,10 +117,8 @@ foreach ($templates as $template) {
     ?>
     <ul>
     <li><input type="checkbox" id=<?php echo "cb".$template->id; ?> name="template" value="<?php echo $template->id; ?>"/>
-    <label  for=<?php echo "cb".$template->id; ?>><img class="imagem" src="<?= base_url() . "images/templates/$template->header_image"; ?> "  width="455" height="200" /></label>
-    <img src="<?= base_url() . "images/Centro.jpg"; ?>" width="422" height="423">
-    <label  for=<?php echo "cb".$template->id; ?>><img class="imagem_footer" src="<?= base_url() . "images/templates/$template->footer_image"; ?> "  width="455" height="100"/></label>
-  
+    <label  for=<?php echo "cb".$template->id; ?>><img class="imagem" src="<?= base_url() . "images/templates/$template->complete_image"; ?> "  width="455" height="300" /></label>
+   
   </li>
   </ul>
 <?php
@@ -127,18 +134,16 @@ foreach ($templates as $template) {
 
 
 
-
 <div class="form-group">
-    <label for="formGroupExampleInput">Texto Esquerda</label>
-    <input type="text" class="form-control col-md-4" id="formGroupExampleInput" placeholder="Example input" name="text_left">
+    <label class="label_texto" for="formGroupExampleInput">Texto Esquerda</label>
+    <input type="text" class="form-control col-md-4" id="formGroupExampleInput" placeholder="Texto Esquerda" name="text_left">
   </div>
   <div class="form-group">
-    <label for="formGroupExampleInput2">Texto Direita</label>
-    <input type="text" class="form-control col-md-4" id="formGroupExampleInput2" placeholder="Another input" name="text_right">
+    <label class="label_texto" for="formGroupExampleInput2">Texto Direita</label>
+    <input type="text" class="form-control col-md-4" id="formGroupExampleInput2" placeholder="Texto Direita" name="text_right">
 </div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
-
 </form>
 
 </div>
