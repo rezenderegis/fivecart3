@@ -76,6 +76,7 @@ label:before {
 }
 
 </style>
+
    <?php $this->load->view('layout/sidebar'); ?>
 <?php
 $cards = array("Barra_Superior_Azul_Claro", "Barra_Superior_Azul_Escuro", "Barra_Superior_Azul_Vermelho");
@@ -93,7 +94,7 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Home</h1>
 
-<form method="POST" action="<?php echo base_url('/encarte/new/'.$publishId); ?>">
+<form name="templateSelect" method="POST" action="<?php echo base_url('/encarte/new/'.$publishId); ?>"  >
                     <?php
   
 
