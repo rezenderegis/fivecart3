@@ -62,7 +62,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nome</th>
-                                            <th>Descrição</th>
                                             <th>Código Barras</th>
                                             <th>Situação</th>
                                             <th class="text-right no-sort">Ação</th>
@@ -73,9 +72,7 @@
                                         <tr>
                                             <td><?=$product->id?></td>
                                             <td><?=$product->name ?></td>
-                                            <td><?=$product->description ?></td>
                                             <td><?=$product->bar_code ?></td>
-                  
                                             <td class="text-center pr-4"><?php echo ($product->status) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
                                             <td class="text-right">
                                                 <a title="Editar" href="<?php echo base_url('/product/edit/'.$product->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 

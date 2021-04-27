@@ -91,9 +91,7 @@
                                             <td><?=$productPub['price']?></td>
                   
                                             <td class="text-right">
-                                                <a title="Editar" href="<?php echo base_url('/encarte/edit/'.$productPub['id']); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
-                                           <!--     <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> -->
-                                                <a title="Produtos" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id']; ?>" class="fas "><i class="fas fa-box-open"></i></a> 
+                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
 
                                             </td>
                                             
@@ -101,8 +99,8 @@
 
 
 <!-- Logout Modal-->
-<!--
-<div class="modal fade" id="user-<?php echo $productPub->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+<div class="modal fade" id="user-<?php echo $productPub['id_product_publish']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -115,12 +113,12 @@
                 <div class="modal-body">Para excluir o registro cliquem em Sim</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuario/delete/'.$productPub->id);?>">Sim</a>
+                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('encarte/deleteProduct/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']);?>">Sim</a>
                 </div>
             </div>
         </div>
     </div>
-                                        -->
+                                        
 
 
 

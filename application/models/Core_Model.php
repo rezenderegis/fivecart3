@@ -62,7 +62,7 @@ class Core_Model extends CI_Model {
 
         if ($table && is_array($data) && is_array($condition))  {
             $this->db->update($table, $data, $condition);
-            
+
             if ($table && is_array($data) && is_array($condition)) {
                 $this->session->set_flashdata('Success', 'Data update with success!');
             } else {
@@ -110,10 +110,10 @@ class Core_Model extends CI_Model {
 
 
     public function getProductPublish($idPublish) {
-        $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price,prod.image_link from product_publish pp inner join publish p on p.id = pp.id_publish
+        $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price,prod.image_link, pp.id_publish, pp.id as id_product_publish from product_publish pp inner join publish p on p.id = pp.id_publish
 inner join product_customer pc on pc.id = pp.id_product_customer
 inner join products prod on prod.id = pc.id_product
-where p.id = ".$idPublish;
+where pp.status =  1 and p.id = ".$idPublish; 
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 

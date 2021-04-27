@@ -61,7 +61,7 @@ class Encarte extends CI_Controller {
             'template' => $this->core_model->getById('template', array('id' => $this->input->post("template"))),
             
         );
-        
+      
         $this->load->view('/layout/header', $data);
         $this->load->view('encarte/selectProduct');
         $this->load->view('layout/footer');
@@ -212,6 +212,24 @@ $date = date('Y-m-d H:i:s');
        $this->core_model->insert('product_publish', $data);
 
        redirect ('encarte/productPublish/'.$idProductList);
+
+
+    }
+
+    public function deleteProduct($idProductPublish,$idPublish) {
+
+        if ($idProductPublish != NULL) {
+
+            $data = array(
+ 
+               'status' => 0,
+            
+            );
+
+            $this->core_model->update('product_publish', $data, array('id' => $idProductPublish));
+            redirect ('encarte/productPublish/'.$idPublish);
+
+        } 
 
 
     }
