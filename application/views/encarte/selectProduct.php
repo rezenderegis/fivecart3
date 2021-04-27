@@ -30,14 +30,16 @@ div.gallery img {
 
 div.desc {
   padding: 10px;
-  text-align: left;
+  text-align: center;
   width: 150px;
+  
 
 }
 
 /* Bottom right text */
 .text-block {
   position: absolute;
+  text-align: center;
   bottom: 5px;
   right: 5px;
   background-color: black;
@@ -62,6 +64,13 @@ div.desc {
 
    position: relative;
    text-align: center;
+   align: right;
+
+   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+
 }
 
 .container_text_button{

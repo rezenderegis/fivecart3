@@ -125,7 +125,7 @@ where pp.status =  1 and p.id = ".$idPublish;
         and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
         inner join product_customer pc on pc.id = pp.id_product_customer
         inner join products prod on prod.id = pc.id_product
-        where p.id = ".$idPublish.")";
+        where pp.status = 1 and p.id = ".$idPublish.")";
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
