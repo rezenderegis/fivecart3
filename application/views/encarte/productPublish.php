@@ -86,11 +86,12 @@
                                     <?php //print_r($productPublish); die();?>
                                         <?php foreach ($productPublish as $productPub) : ?>
                                         <tr>
-                                            <td><?=$productPub['id']?></td>
+                                            <td><?=$productPub['id_product_publish']?></td>
                                             <td><?=$productPub['name'] ?></td>
                                             <td><?=$productPub['price']?></td>
                   
                                             <td class="text-right">
+                                            <a title="Editar" href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a> 
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
 
                                             </td>

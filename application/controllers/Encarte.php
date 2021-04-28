@@ -244,9 +244,58 @@ $date = date('Y-m-d H:i:s');
 
         } 
 
+      
+
 
     }
    
+    public function editProductPublish($idProductPublish = NULL, $productPublish = null) {
+        $this->form_validation->set_rules('price','', 'trim|required');
 
+        if ($this->form_validation->run()) {
+            echo "run";die();
+
+            $data = elements(
+        
+                    array('price',
+                
+                ), $this->input->post()
+        
+            );
+        
+            $data = html_escape($data);
+        
+            $this->core_model->update('product_publish', $data, array('id' => $idProductPublish));
+           
+            redirect ('encarte/productPublish/'.$productPublish);
+        
+        
+        } else {
+            //echo "else";die();
+
+            $data = array (
+        
+                'titulo' => 'Atualizar Lista',
+                'scripts' => array(
+                    'vendor/mask/jquery.mask.min.js',
+                    'vendor/mask/app.js',
+                ),
+                'productPublish' => $this->core_model->getUniqueProductPublish('product_publish', array('id' => $idProductPublish)),
+                
+            );
+           echo "product_publis". $idProductPublish;die();
+          //  print_r( $this->core_model->getById('product_publish', array('id' => $idProductPublish)));
+           // die();
+            $this->load->view('/layout/header', $data);
+            $this->load->view('/encarte/productPublishEdit');
+            $this->load->view('/layout/footer');
+        }
+
+
+
+
+
+
+    }
 
 }
