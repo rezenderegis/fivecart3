@@ -83,7 +83,7 @@ class Encarte extends CI_Controller {
 
 
     public function productPublish($idProductList = NULL) {
-       
+        
         $data = array (
             'titulo' => 'Produtos Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
@@ -96,9 +96,8 @@ class Encarte extends CI_Controller {
             'idProductList' => $idProductList,
             'productPublish' => $this->core_model->getProductPublish($idProductList),
 
-
         );
-        
+
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/productPublish');
         $this->load->view('layout/footer');
@@ -108,12 +107,11 @@ class Encarte extends CI_Controller {
 
    
     public function edit($publish_id = null) {
- 
-         if (!$publish_id || !$this->core_model->getById('product_publish', array('id' => $publish_id))) {
-             
+
+        if (!$publish_id || !$this->core_model->getById('publish', array('id' => $publish_id, 'id_user' => $this->ion_auth->user()->row()->id))) {
              $this->session->set_flashdata('error', 'Lista não encontrada');
-             redirect('products');
- 
+             redirect ('encarte/productList');
+
          } else {
  /*
          $data = array (
@@ -250,14 +248,14 @@ $date = date('Y-m-d H:i:s');
     }
    
     public function editProductPublish($idProductPublish = NULL, $productPublish = null) {
-        $this->form_validation->set_rules('price','', 'trim|required');
+        $this->form_validation->set_rules('product_price','', 'trim|required');
 
         if ($this->form_validation->run()) {
-            echo "run";die();
+          
 
             $data = elements(
         
-                    array('price',
+                    array('product_price',
                 
                 ), $this->input->post()
         
@@ -267,12 +265,11 @@ $date = date('Y-m-d H:i:s');
         
             $this->core_model->update('product_publish', $data, array('id' => $idProductPublish));
            
-            redirect ('encarte/productPublish/'.$productPublish);
+            redirect ('encarte/productPublish/'.$this->input->post("product_publish_id"));
         
         
         } else {
             //echo "else";die();
-
             $data = array (
         
                 'titulo' => 'Atualizar Lista',
@@ -280,12 +277,10 @@ $date = date('Y-m-d H:i:s');
                     'vendor/mask/jquery.mask.min.js',
                     'vendor/mask/app.js',
                 ),
-                'productPublish' => $this->core_model->getUniqueProductPublish('product_publish', array('id' => $idProductPublish)),
+                'productPublish' => $this->core_model->getUniqueProductPublish($idProductPublish),
                 
             );
-           echo "product_publis". $idProductPublish;die();
-          //  print_r( $this->core_model->getById('product_publish', array('id' => $idProductPublish)));
-           // die();
+         
             $this->load->view('/layout/header', $data);
             $this->load->view('/encarte/productPublishEdit');
             $this->load->view('/layout/footer');

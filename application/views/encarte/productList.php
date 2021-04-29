@@ -62,7 +62,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Descrição</th>
-                                            <th>Data</th>
                                             <th class="text-right no-sort">Ação</th>
                                         </tr>
                                     </thead>
@@ -71,7 +70,6 @@
                                         <tr>
                                             <td><?=$pub->id?></td>
                                             <td><?=$pub->description ?></td>
-                                            <td><?=$pub->date ?></td>
                   
                                             <td class="text-right">
                                                 <a title="Editar" href="<?php echo base_url('/encarte/edit/'.$pub->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a> 

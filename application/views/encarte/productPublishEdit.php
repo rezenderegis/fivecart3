@@ -19,7 +19,6 @@
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav>
-
                    
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
@@ -30,7 +29,6 @@
                         </div>
 
                         <div class="card-body">
-                   <?php print_r( $productPublish); die()?>         
 <form method="POST" name="form_edit">
   <div class="form-group">
       <div class="col-md-4">
@@ -41,10 +39,10 @@
   
     <div class="col-md-4">
       <label >Preço</label>
-    <input type="text" class="form-control" name="price" placeholder="Situação" value="<?php echo $productPublish->product_price;?>">
+    <input type="text" class="form-control" name="product_price" placeholder="Situação" value="<?php echo $productPublish->price;?>">
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
-    <input type="hidden" name="product_id" value="<?php echo $product->id; ?>"
+    <input type="hidden" name="product_publish_id" value="<?php echo $productPublish->id_publish; ?>"
 </div>
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
