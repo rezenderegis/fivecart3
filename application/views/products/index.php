@@ -75,9 +75,10 @@
                                             <td><?=$product->bar_code ?></td>
                                             <td class="text-center pr-4"><?php echo ($product->status) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
                                             <td class="text-right">
-                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a> 
+                                                <?php if ($product->id_owner == $this->ion_auth->user()->row()->id) {?>
+                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product->id); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product->id; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
-
+                                                <?php }?>
                                             </td>
 
                                         </tr>

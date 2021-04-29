@@ -44,12 +44,17 @@ class Product extends CI_Controller  {
             redirect('home');
         } {*/
 
-        if (!$product_id || !$this->core_model->getById('products', array('id' => $product_id))) {
-            
-            $this->session->set_flashdata('error', 'Produto não encontrado');
-            redirect('products');
+        $idProduct = $this->core_model->getById('products', array('id' => $product_id));
+        $idUserProduct = $idProduct->id_owner;
 
-        } else {
+        if ($product_id && !$this->core_model->getById('products', array('id' => $product_id))) {
+            $this->session->set_flashdata('error', 'Produto não encontrado');
+            redirect('product');
+
+        } else if ($idUserProduct != $this->ion_auth->user()->row()->id) {
+            $this->session->set_flashdata('error', 'Você não pode editar esse produto!');
+            redirect('product');
+        }else {
 /*
         $data = array (
 
