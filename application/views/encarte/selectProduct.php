@@ -3,6 +3,13 @@
 
 
 
+  #salvar {
+  top: 0;
+  right: 0;
+  height: 20px;
+  padding: 10px 10px;
+}
+
 .grid-container {
   display: grid;
   width: 300px;
@@ -77,6 +84,10 @@ div.desc {
   position: relative;
 }
 
+.tudo {
+  position: relative;
+}
+
 .text_button_right {
   position: absolute;
   bottom: 20px;
@@ -103,14 +114,21 @@ div.desc {
 
 </style>
 
+
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+	</script>
+	
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js">
+	</script>
+
+
+
    <?php $this->load->view('layout/sidebar'); ?>
-<?php
-$cards = array("Barra_Superior_Azul_Claro", "Barra_Superior_Azul_Escuro", "Barra_Superior_Azul_Vermelho");
-$cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro", "Barra_Inferior_Vermelho");
-?>
-     
+
             <!-- Main Content -->
-            <div id="content">
+            <div class="tudo">
 
                <?php $this->load->view('layout/navbar');?>
 
@@ -120,17 +138,16 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Validar</h1>
 
-<form action="<?php echo base_url('/encarte/new'); ?>">
+
+<div id="encarte"  style="background-color: #FFFFFF; 
+                 width: 452px; height: 930px;">
 
 <div class="container_text_button">
   <img src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
   <div class="text_button_right"><?php echo $_REQUEST['text_right'];?></div>
   <div class="text_button_left"><?php echo $_REQUEST['text_left'];?></div>
-
 </div>
-
 <div class="grid-container">
-
 <?php foreach ($productPublish as $product) { ?>
 <div class="gallery">
 <div class="container_picture">
@@ -140,53 +157,59 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
     <div class="desc"><?=$product['name']?></div>
 </div>
 <?php }?>
-
-
 </div>
     <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
-    
-
-
-
-
-
-<!-- -->
-    <!--
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="421" height="96">  
-    <br/>
-    <div>
-    <br/>
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <br/><br/>
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <br/><br/>
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    <img src="<?= base_url() . "images/Barra_Superior_Azul_Claro.jpg"; ?>" width="100" height="120">
-    
+<div>
 </div>
-    <br/>
-    <img src="<?= base_url() . "images/Barra_Inferior_Azul_Claro.jpg"; ?>" width="421" height="96">
-    <br/>
-    <br/>
-
-<button type="submit" class="btn btn-primary">Submit</button>
-
-<img src="<?= base_url() . "images/Centro.jpg"; ?>" width="422" height="423">
-
-</form>
-
 </div>
+</div>
+
+
+<input id="btn-Preview-Image" type="button"
+                value="Preview" /> 
+          
+    <a id="btn-Convert-Html2Image" href="#">
+        Download
+    </a>
+  
+    <br/>
+      
+    <h3>Preview :</h3>
+      
+    <div id="previewImage"></div>
+      
+    <script>
+        $(document).ready(function() {
+          
+            // Global variable
+            var element = $("#encarte"); 
+          
+            // Global variable
+            var getCanvas; 
+  
+            $("#btn-Preview-Image").on('click', function() {
+                html2canvas(element, {
+                 
+                    onrendered: function(canvas) {
+                        $("#previewImage").append(canvas);
+                        getCanvas = canvas;
+                    }
+                });
+            });
+  
+            $("#btn-Convert-Html2Image").on('click', function() {
+                var imgageData = 
+                    getCanvas.toDataURL("image/png");
               
-
-
-
-
-            </div>
-
--->
-
+                // Now browser starts downloading 
+                // it instead of just showing it
+                var newData = imgageData.replace(
+                /^data:image\/png/, "data:application/octet-stream");
+              
+                $("#btn-Convert-Html2Image").attr(
+                "download", "GeeksForGeeks.png").attr(
+                "href", newData);
+            });
+        });
+    </script>
+    </center>

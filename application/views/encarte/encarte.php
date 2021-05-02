@@ -108,7 +108,6 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
   
 
 ?>
-
     
 <?php
 $i = 0;

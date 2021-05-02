@@ -22,7 +22,8 @@ class Encarte extends CI_Controller {
 
             'titulo' => 'Gerar Encarte',
             'publishId' => $publish,
-            'templates' => $this->core_model->get_all('template', array('id_user' => $this->ion_auth->user()->row()->id)), 
+           // 'templates' => $this->core_model->get_all('template', array('id_user' => $this->ion_auth->user()->row()->id)), 
+             'templates' => $this->core_model->get_all('template'), 
 
         );
         $this->load->view('layout/header', $data);
