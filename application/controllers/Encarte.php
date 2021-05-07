@@ -68,9 +68,9 @@ class Encarte extends CI_Controller {
             
         );
       
-        $this->load->view('/layout/header', $data);
-        $this->load->view('encarte/selectProduct');
-        $this->load->view('layout/footer');
+       // $this->load->view('/layout/header', $data);
+        $this->load->view('encarte/selectProduct',$data);
+     //   $this->load->view('layout/footer');
     } else {
         $this->load->view('/layout/header');
         $this->load->view('layout/mensagem');
@@ -292,6 +292,18 @@ $date = date('Y-m-d H:i:s');
 
 
 
+    }
+
+
+    public function saveImage($image = null) {
+
+            $image = $_POST["image"];
+            $image = explode(";", $image)[1];
+            $image = explode(",", $image)[1];
+            $image = base64_decode($image);
+
+            file_put_contents("upload/filename.jpg", $image);
+            echo $image;
     }
 
 }
