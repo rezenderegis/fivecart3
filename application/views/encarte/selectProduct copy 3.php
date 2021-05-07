@@ -5,6 +5,7 @@
 
 
 
+
 #salvar {
 top: 0;
 right: 0;
@@ -123,7 +124,6 @@ align: center;
 }
 
 </style>
-<script src="<?php echo base_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -131,19 +131,19 @@ align: center;
 
 
 
-<div id="content">
-</div>
 
-<button style=" background-color: #008CBA; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;" id="download-page-as-image" onClick="setUpDownloadPageAsImage();">Fazer Download do Encarte</button>
+   <?php $this->load->view('layout/sidebar'); ?>
 
-<br/><br/>
+            <!-- Main Content -->
+            <div class="tudo">
+
+               <?php $this->load->view('layout/navbar');?>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Validar</h1>
 
 <div id="encarte"  style="background-color: #FFFFFF; 
                  width: 452px; height: 1010px;">
@@ -172,6 +172,11 @@ align: center;
 
 
 
+
+<div id="content">
+</div>
+
+<button id="download-page-as-image" onClick="setUpDownloadPageAsImage();">Fazer Download do Encarte</button>
 <script>
 
 
