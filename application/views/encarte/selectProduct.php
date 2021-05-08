@@ -27,6 +27,9 @@ border: 0px solid #ccc;
 float: left;
 width: 150px;
 margin-bottom: -1;
+display: inline-block;
+  align-self: flex-end;
+
 }
 
 div.gallery:hover {
@@ -43,13 +46,16 @@ width: 100px;
 margin-left: -70px;
 
 align: center;
-height: 200px;
+/** Altura da foto*/
+height: auto;
 }
 
 div.desc {
 padding: 0px;
 text-align: center;
 width: 150px;
+
+margin-bottom: 0;
 
 }
 
@@ -146,7 +152,7 @@ align: center;
 <br/><br/>
 
 <div id="encarte"  style="background-color: #FFFFFF; 
-                 width: 452px; height: 1010px;">
+                 width: 452px; height: 1048px;">
 
 <div class="container_text_button">
   <img src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
@@ -179,6 +185,7 @@ align: center;
 setUpDownloadPageAsImage();
 
 function setUpDownloadPageAsImage() {
+  
   window.scrollTo(0,0);
   html2canvas(document.getElementById("encarte")).then(function (canvas){
     
