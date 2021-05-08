@@ -179,8 +179,7 @@ class Encarte extends CI_Controller {
         if ($this->form_validation->run()) {
                  $data = array (
                      'description' => $this->input->post('description'),
-                     'id_user' => $this->ion_auth->user()->row()->id,
-                     'date' => sysdate,
+                     'id_user' => $this->ion_auth->user()->row()->id
                      
                  );
                

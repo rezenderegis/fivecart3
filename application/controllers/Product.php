@@ -25,7 +25,7 @@ class Product extends CI_Controller  {
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
-            'products' => $this->core_model->get_all('products'), 
+            'products' => $this->core_model->getAllProducts(), 
 
         );
 
@@ -36,6 +36,63 @@ class Product extends CI_Controller  {
     }
 
 
+
+    public function editPrice($product_id = null) {
+
+ 
+         $idProduct = $this->core_model->getById('products', array('id' => $product_id));
+         $idUserProduct = $idProduct->id_owner;
+ 
+         if ($product_id && !$this->core_model->getById('products', array('id' => $product_id))) {
+             $this->session->set_flashdata('error', 'Produto não encontrado');
+             redirect('product');
+ 
+         }
+     
+         else {
+ 
+ 
+ $this->form_validation->set_rules('price','', 'trim|required');
+ 
+ 
+ if ($this->form_validation->run()) {
+
+ 
+     $price = elements(
+ 
+         array('price',
+     
+     ), $this->input->post()
+ 
+ );
+ 
+     $price = html_escape($price);
+
+     $this->core_model->update('product_customer', $price, array('id_product' => $product_id, 'id_user' => $this->ion_auth->user()->row()->id));
+ 
+     redirect ('product');
+ 
+ 
+ } else {
+ 
+     $data = array (
+ 
+         'titulo' => 'Atualizar Produto',
+         'scripts' => array(
+             'vendor/mask/jquery.mask.min.js',
+             'vendor/mask/app.js',
+         ),
+         'product' => $this->core_model->getById('products', array('id' => $product_id)),
+         'product_price' => $this->core_model->getById('product_customer', array('id_product' => $product_id, 'id_user'  => $this->ion_auth->user()->row()->id))
+         
+     );
+    
+     $this->load->view('/layout/header', $data);
+     $this->load->view('/products/editPrice');
+     $this->load->view('/layout/footer');
+ }
+         }
+     }
 
     public function edit($product_id = null) {
 
@@ -51,10 +108,12 @@ class Product extends CI_Controller  {
             $this->session->set_flashdata('error', 'Produto não encontrado');
             redirect('product');
 
-        } else if ($idUserProduct != $this->ion_auth->user()->row()->id) {
+        }
+       /*  else if ($idUserProduct != $this->ion_auth->user()->row()->id) {
             $this->session->set_flashdata('error', 'Você não pode editar esse produto!');
             redirect('product');
-        }else {
+        }*/
+        else {
 /*
         $data = array (
 
@@ -74,7 +133,7 @@ if ($this->form_validation->run()) {
 
     $data = elements(
 
-            array('name', 'description','id_owner','id_cathegory','image_link','bar_code', 'status',
+            array('name', 'description','id_cathegory','image_link','bar_code', 'status'
         
         ), $this->input->post()
 
@@ -92,7 +151,7 @@ if ($this->form_validation->run()) {
     $price = html_escape($price);
 
     $this->core_model->update('products', $data, array('id' => $product_id));
-    $this->core_model->update('product_customer', $price, array('id' => $product_id, 'id_user' => $this->ion_auth->user()->row()->id));
+    $this->core_model->update('product_customer', $price, array('id_product' => $product_id, 'id_user' => $this->ion_auth->user()->row()->id));
 
     redirect ('product');
 
@@ -132,6 +191,7 @@ if ($this->form_validation->run()) {
         $this->form_validation->set_rules('name','', 'trim|required');
         $this->form_validation->set_rules('description','', 'trim|required');
         $this->form_validation->set_rules('id_cathegory','', 'trim|required');
+        $this->form_validation->set_rules('price','', 'trim|required');
 
         if ($this->form_validation->run()) {
                  $data = array (
@@ -147,8 +207,12 @@ if ($this->form_validation->run()) {
                
                  $data = html_escape($data);
 
-                $this->core_model->insert('products', $data);
-   
+                $idProduct = $this->core_model->insert('products', $data);
+                 
+                $data_product_customer = array('id_user' => $this->ion_auth->user()->row()->id, 
+                                                'id_product' => $idProduct,
+                                                'price' => $this->input->post('price')); 
+                $this->core_model->insert('product_customer', $data_product_customer);
                 redirect ('product');
               
         } else {

@@ -56,13 +56,15 @@ class Core_Model extends CI_Model {
 
         }
 
+        return $this->db->insert_id();
+
     }
 
     public function update ($table = NULL, $data = NULL, $condition = NULL,$get_last_id = NULL) {
 
         if ($table && is_array($data) && is_array($condition))  {
             $this->db->update($table, $data, $condition);
-
+        
             if ($table && is_array($data) && is_array($condition)) {
                 $this->session->set_flashdata('Success', 'Data update with success!');
             } else {
@@ -142,6 +144,16 @@ where pp.status =  1 and pp.id = ".$idProduct;
     return $query->result_array ();
 
     }
+
+
+    public function getAllProducts() {
+        $sql = " SELECT P.ID,P.NAME, PC.PRICE AS PRICE,P.ID_OWNER,P.BAR_CODE,P.STATUS,P.ID_CATHEGORY,P.IMAGE_LINK,P.DESCRIPTION FROM PRODUCT_CUSTOMER PC INNER JOIN PRODUCTS P ON PC.ID_PRODUCT = P.ID
+        AND PC.ID_USER = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+
+    }
+   
 
 
 }

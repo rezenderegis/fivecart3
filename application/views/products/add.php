@@ -63,7 +63,11 @@
     <input type="text" class="form-control" name="status" placeholder="Situação" value="">
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
-
+    <div class="col-md-4">
+      <label >Preço</label>
+    <input type="text" class="form-control" name="price" placeholder="Preço" value="">
+    <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
+    </div>
 </div>
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>

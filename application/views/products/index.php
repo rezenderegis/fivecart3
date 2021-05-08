@@ -62,6 +62,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Nome</th>
+                                            <th>Preço</th>
+
                                             <th>Código Barras</th>
                                             <th>Situação</th>
                                             <th class="text-right no-sort">Ação</th>
@@ -69,15 +71,25 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach ($products as $product) : ?>
+
                                         <tr>
-                                            <td><?=$product->id?></td>
-                                            <td><?=$product->name ?></td>
-                                            <td><?=$product->bar_code ?></td>
-                                            <td class="text-center pr-4"><?php echo ($product->status) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
+                                            <td><?=$product['ID']?></td>
+                                            <td><?=$product['NAME'] ?></td>
+                                            <td><?=$product['PRICE'] ?></td>
+
+                                            <td><?=$product['BAR_CODE'] ?></td>
+                                            <td class="text-center pr-4"><?php echo ($product['STATUS']) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
                                             <td class="text-right">
-                                                <?php if ($product->id_owner == $this->ion_auth->user()->row()->id) {?>
-                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product->id); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
-                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product->id; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
+
+                                            <?php if ($product['ID_OWNER'] != $this->ion_auth->user()->row()->id) {?>
+                                                <a title="Editar" href="<?php echo base_url('/product/editPrice/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
+
+                                                <?php } else {?>
+                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
+                                               <?php }?>
+                                                <?php if ($product['ID_OWNER'] == $this->ion_auth->user()->row()->id) {?>
+
+                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product['ID']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
                                                 <?php }?>
                                             </td>
 
@@ -85,7 +97,7 @@
 
 
 <!-- Logout Modal-->
-<div class="modal fade" id="user-<?php echo $product->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="user-<?php echo $product['ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
