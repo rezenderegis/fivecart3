@@ -63,6 +63,8 @@ class Core_Model extends CI_Model {
     public function update ($table = NULL, $data = NULL, $condition = NULL,$get_last_id = NULL) {
 
         if ($table && is_array($data) && is_array($condition))  {
+           
+
             $this->db->update($table, $data, $condition);
         
             if ($table && is_array($data) && is_array($condition)) {

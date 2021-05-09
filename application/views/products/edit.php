@@ -71,7 +71,7 @@
     <input type="text" class="form-control" name="price" placeholder="Situação" value="<?php echo $product_price->price;?>">
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
-    <input type="hidden" name="product_id" value="<?php echo $product->id; ?>"
+   
 </div>
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>

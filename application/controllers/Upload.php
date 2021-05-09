@@ -17,23 +17,28 @@ public function __construct()
 
     }
 
-    public function index()
+    public function index($idProduct=0)
     {
-            $this->load->view('upload/upload', array('error' => ' ' ));
+
+
+         $this->load->view('/layout/header');
+            $this->load->view('products/upload', array('error' => ' ', 'idProduct' => $idProduct ));
+            $this->load->view('/layout/footer');
+
     }
 
-    public function do_upload()
+    public function do_upload($idProduct=0)
+ 
     {
        
-            $config['upload_path']          = base_url() . 'images/';
+            $config['upload_path']          = './images/';
             $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 100;
-            $config['max_width']            = 1024;
-            $config['max_height']           = 768;
+            //$config['max_size']             = 100;
+          //  $config['max_width']            = 1024;
+         //   $config['max_height']           = 768;
 
             $this->load->library('upload', $config);
-            //    print_r($this->upload->do_upload('userfile'));
-           //     die();
+          //   print_r($config); die();
             if ( ! $this->upload->do_upload('userfile'))
             {
                     $error = array('error' => $this->upload->display_errors());
@@ -43,8 +48,21 @@ public function __construct()
             else
             {
                     $data = array('upload_data' => $this->upload->data());
+                    $uploadData = $data['upload_data'];
+                    
+                    $data = array (
+                        'image_link' => $uploadData['file_name']);
+                      //  echo "produto". $idProduct; die();
+                    //    print_r($data); die();
+                    $this->core_model->update('products', $data, array('id' => $this->input->post('productId')));
 
-                    $this->load->view('upload_success', $data);
+                  // echo  $data['file_name'];
+                 //  echo "<br/>";
+                
+
+
+
+                    $this->load->view('upload/upload_success', $data);
             }
     }
 }

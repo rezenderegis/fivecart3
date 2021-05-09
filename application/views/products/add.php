@@ -1,5 +1,4 @@
 
-
    <?php $this->load->view('layout/sidebar'); ?>
 
      
@@ -69,6 +68,7 @@
     <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
     </div>
 </div>
+
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 </form>

@@ -91,6 +91,8 @@
 
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product['ID']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
                                                 <?php }?>
+                                                <a title="Foto" href="<?php echo base_url('/upload/index/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
+
                                             </td>
 
                                         </tr>
