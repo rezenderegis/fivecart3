@@ -17,12 +17,14 @@ public function __construct()
 
     }
 
-    public function index($idProduct=0)
+    public function index($idProduct=0,$nameImage='')
     {
 
-
-         $this->load->view('/layout/header');
-            $this->load->view('products/upload', array('error' => ' ', 'idProduct' => $idProduct ));
+            $productData = $this->core_model->getById('products', array('id' => $idProduct));
+             //   print_r($productData); die();
+            $this->load->view('/layout/header');
+            $this->load->view('products/upload', array('error' => ' ', 'idProduct' => $idProduct,
+             'nameImage' => $nameImage, 'productIdFromUpload' => '', 'productData' => $productData));
             $this->load->view('/layout/footer');
 
     }
@@ -31,7 +33,7 @@ public function __construct()
  
     {
        
-            $config['upload_path']          = './images/';
+            $config['upload_path']          = './images/Products';
             $config['allowed_types']        = 'gif|jpg|png';
             //$config['max_size']             = 100;
           //  $config['max_width']            = 1024;
@@ -47,6 +49,7 @@ public function __construct()
             }
             else
             {
+                   
                     $data = array('upload_data' => $this->upload->data());
                     $uploadData = $data['upload_data'];
                     
@@ -55,14 +58,22 @@ public function __construct()
                       //  echo "produto". $idProduct; die();
                     //    print_r($data); die();
                     $this->core_model->update('products', $data, array('id' => $this->input->post('productId')));
+                    $productData = $this->core_model->getById('products', array('id' => $idProduct));
 
                   // echo  $data['file_name'];
-                 //  echo "<br/>";
-                
+                   //echo "<br/>";
+                   $fileName = $uploadData['file_name'];
 
+                 $dataProductId = array (
+                        'productIdFromUpload' => $fileName,
+                        'idProduct' => '', 'nameImage' => '', 'productData' => $productData);
 
+                        $productId = $this->input->post('productId');
 
-                    $this->load->view('upload/upload_success', $data);
+                        $this->load->view('/layout/header');
+                        $this->load->view('products/upload', $dataProductId);
+                        $this->load->view('/layout/footer');
+
             }
     }
 }

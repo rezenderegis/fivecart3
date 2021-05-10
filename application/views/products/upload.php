@@ -1,7 +1,6 @@
 
    <?php $this->load->view('layout/sidebar'); ?>
 
-     
             <!-- Main Content -->
             <div id="content">
 
@@ -9,8 +8,6 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-      
 
                    
  <!-- DataTales Example -->
@@ -40,6 +37,19 @@
            
                             </div>
                         </div>
+
+     <?php 
+    // if ($productIdFromUpload) { ?>
+     <div class="container_picture">
+
+    <img src="<?= base_url() . "images/Products/".$productData->image_link; ?>" alt="Snow" width="400" height="600">
+</div>
+     
+     <?php 
+  //   }
+
+     ?>
+
                     </div>
 
 
@@ -50,4 +60,7 @@
                 <!-- /.container-fluid -->
 
             </div>
+
+
+
             <!-- End of Main Content -->
