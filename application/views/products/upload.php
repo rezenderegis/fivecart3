@@ -39,13 +39,19 @@
                         </div>
 
      <?php 
+     echo $error; 
+     if ($error == '0') {
+    echo "IMAGE". $productData->image_link;
     // if ($productIdFromUpload) { ?>
      <div class="container_picture">
 
-    <img src="<?= base_url() . "images/Products/".$productData->image_link; ?>" alt="Snow" width="400" height="600">
+    <img src="<?= base_url() . "images/Products/".$productData->image_link; ?>" alt="Snow" width="200" height="250">
 </div>
      
      <?php 
+     } else {
+       echo $error;
+     }
   //   }
 
      ?>

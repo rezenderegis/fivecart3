@@ -23,7 +23,7 @@ public function __construct()
             $productData = $this->core_model->getById('products', array('id' => $idProduct));
              //   print_r($productData); die();
             $this->load->view('/layout/header');
-            $this->load->view('products/upload', array('error' => ' ', 'idProduct' => $idProduct,
+            $this->load->view('products/upload', array('error' => '0', 'idProduct' => $idProduct,
              'nameImage' => $nameImage, 'productIdFromUpload' => '', 'productData' => $productData));
             $this->load->view('/layout/footer');
 
@@ -34,8 +34,8 @@ public function __construct()
     {
        
             $config['upload_path']          = './images/Products';
-            $config['allowed_types']        = 'gif|jpg|png';
-            //$config['max_size']             = 100;
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 5120;
           //  $config['max_width']            = 1024;
          //   $config['max_height']           = 768;
 
@@ -43,16 +43,23 @@ public function __construct()
           //   print_r($config); die();
             if ( ! $this->upload->do_upload('userfile'))
             {
-                    $error = array('error' => $this->upload->display_errors());
+                    $error = array('error' => $this->upload->display_errors(),
+                    'productIdFromUpload' => '',
+                    'idProduct' => '', 'nameImage' => '', 'productData' => ''
+                
+                );
+                $this->load->view('/layout/header');
 
-                    $this->load->view('upload/upload', $error);
+                    $this->load->view('products/upload', $error);
+                    $this->load->view('/layout/footer');
+
             }
             else
             {
                    
                     $data = array('upload_data' => $this->upload->data());
                     $uploadData = $data['upload_data'];
-                    
+                  //      print_r($uploadData); die();
                     $data = array (
                         'image_link' => $uploadData['file_name']);
                       //  echo "produto". $idProduct; die();
@@ -66,7 +73,7 @@ public function __construct()
 
                  $dataProductId = array (
                         'productIdFromUpload' => $fileName,
-                        'idProduct' => '', 'nameImage' => '', 'productData' => $productData);
+                        'idProduct' => $this->input->post('productId'), 'nameImage' => '', 'productData' => $productData, 'error' => '0');
 
                         $productId = $this->input->post('productId');
 
