@@ -19,7 +19,7 @@ public function __construct()
 
     public function index($idProduct=0,$nameImage='')
     {
-
+       
             $productData = $this->core_model->getById('products', array('id' => $idProduct));
              //   print_r($productData); die();
             $this->load->view('/layout/header');
@@ -32,7 +32,7 @@ public function __construct()
     public function do_upload($idProduct=0)
  
     {
-       
+        
             $config['upload_path']          = './images/Products';
             $config['allowed_types']        = 'gif|jpg|png|jpeg';
             $config['max_size']             = 5120;
@@ -56,6 +56,7 @@ public function __construct()
             }
             else
             {
+                
                    
                     $data = array('upload_data' => $this->upload->data());
                     $uploadData = $data['upload_data'];
@@ -73,15 +74,16 @@ public function __construct()
 
                  $dataProductId = array (
                         'productIdFromUpload' => $fileName,
-                        'idProduct' => $this->input->post('productId'), 'nameImage' => '', 'productData' => $productData, 'error' => '0');
+                        'idProduct' => $idProduct, 'nameImage' => '', 'productData' => $productData, 'error' => '0');
 
                         $productId = $this->input->post('productId');
-
+                      
                         $this->load->view('/layout/header');
                         $this->load->view('products/upload', $dataProductId);
-                        $this->load->view('/layout/footer');
-
+                        $this->load->view('/layout/footer'); 
+                        
             }
+            
     }
 }
 ?>

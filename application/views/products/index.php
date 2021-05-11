@@ -74,12 +74,16 @@
 
                                         <tr>
                                             <td><?=$product['ID']?></td>
-                                            <td><?=$product['NAME'] ?></td>
+
+
+                                            <td> <a  href="<?php echo base_url('/upload/index/'.$product['ID']); ?>"> <?=$product['NAME'] ?></a> 
+</td>
                                             <td><?=$product['PRICE'] ?></td>
 
                                             <td><?=$product['BAR_CODE'] ?></td>
                                             <td class="text-center pr-4"><?php echo ($product['STATUS']) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
                                             <td class="text-right">
+                                            <a title="Imagem" href=" <?php echo base_url('/upload/index/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-images"></i></a> 
 
                                             <?php if ($product['ID_OWNER'] != $this->ion_auth->user()->row()->id) {?>
                                                 <a title="Editar" href="<?php echo base_url('/product/editPrice/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
@@ -91,7 +95,6 @@
 
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product['ID']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
                                                 <?php }?>
-                                                <a title="Foto" href="<?php echo base_url('/upload/index/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
 
                                             </td>
 
@@ -112,7 +115,10 @@
                 <div class="modal-body">Para excluir o registro cliquem em Sim</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuario/delete/'.$product->id);?>">Sim</a>
+                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuario/delete/'.$product['ID']);?>">Sim</a>
+                
+                
+                
                 </div>
             </div>
         </div>
