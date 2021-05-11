@@ -1,6 +1,4 @@
-
-   <?php $this->load->view('layout/sidebar'); ?>
-
+<?php $this->load->view('layout/sidebar'); ?>
             <!-- Main Content -->
             <div id="content">
 
@@ -9,7 +7,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                   
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -21,40 +18,53 @@
                         <div class="card-body">
   <?php echo form_open_multipart('upload/do_upload/'.$idProduct);?>
   <div class="form-group">
-      <div class="col-md-4">
-      <label >Arquivo</label>
-    <input type="file" class="form-control" name="userfile" size="20">
-    <?php echo form_error('name', '<small class = "form-text text-danger">','</small>');?>
-  </div>
-  
+  <div class="alert alert-info" role="alert">
+Regras para upload de arquivo
+  <ul>
+  <li> o arquivo deve ter no máximo 5M</li>
+  <li> o arquivo deve ter estar no formato .PNG</li>
+
+</ul>
 </div>
-<?php echo $idProduct; ?>
+      <div class="col-md-6">
+      <label >Arquivo</label>
+
+<div class="input-group">
+
+<input type="file" class="form-control" id="userfile" name="userfile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+
 <input type="hidden" name="productId" value="<?php echo $idProduct; ?>">
+<button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Button</button>
+</div> 
 
-
-  <button type="submit" class="btn btn-primary btn-sm">Upload</button>
 </form>
            
-                            </div>
-                        </div>
-
+<br/>
      <?php 
-     echo $error; 
-     if ($error == '0') {
-    echo "IMAGE". $productData->image_link;
+     
+     if ($error == '0') { ?>
+      <div class="alert alert-secondary" role="alert">
+     <b> Imagem:</b> <?=$productData->image_link;?>
+    </div>
+    <?php
     // if ($productIdFromUpload) { ?>
-     <div class="container_picture">
 
-    <img src="<?= base_url() . "images/Products/".$productData->image_link; ?>" alt="Snow" width="200" height="250">
-</div>
+    <img class="img-fluid img-thumbnail" src="<?= base_url() . "images/Products/".$productData->image_link; ?>" alt="Snow" width="200" height="250">
      
      <?php 
-     } else {
-       echo $error;
+     } else { ?>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Erro!</strong> <?=$error ?>
+  </div>
+<?php 
      }
   //   }
 
      ?>
+                            </div>
+
+                        </div>
+
 
                     </div>
 

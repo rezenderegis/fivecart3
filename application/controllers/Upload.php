@@ -34,8 +34,8 @@ public function __construct()
     {
         
             $config['upload_path']          = './images/Products';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg';
-            $config['max_size']             = 5120;
+            $config['allowed_types']        = 'gif|jpg|png';
+          //  $config['max_size']             = 5120;
           //  $config['max_width']            = 1024;
          //   $config['max_height']           = 768;
 
@@ -45,7 +45,7 @@ public function __construct()
             {
                     $error = array('error' => $this->upload->display_errors(),
                     'productIdFromUpload' => '',
-                    'idProduct' => '', 'nameImage' => '', 'productData' => ''
+                    'idProduct' => $idProduct, 'nameImage' => '', 'productData' => ''
                 
                 );
                 $this->load->view('/layout/header');
