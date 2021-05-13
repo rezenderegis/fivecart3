@@ -106,7 +106,6 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
 <form name="templateSelect" method="POST" action="<?php echo base_url('/encarte/new/'.$publishId); ?>"  >
                     <?php
   
-
 ?>
     
 <?php
@@ -130,17 +129,6 @@ foreach ($templates as $template) {
     </div>
 
     <div class="container-fluid">
-
-
-
-<div class="form-group">
-    <label class="label_texto" for="formGroupExampleInput">Texto Esquerda</label>
-    <input type="text" class="form-control col-md-4" id="formGroupExampleInput" placeholder="Texto Esquerda" name="text_left">
-  </div>
-  <div class="form-group">
-    <label class="label_texto" for="formGroupExampleInput2">Texto Direita</label>
-    <input type="text" class="form-control col-md-4" id="formGroupExampleInput2" placeholder="Texto Direita" name="text_right">
-</div>
 
 <button type="submit" class="btn btn-primary">Submit</button>
 </form>

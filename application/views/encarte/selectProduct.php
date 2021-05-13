@@ -156,8 +156,8 @@ align: center;
 
 <div class="container_text_button">
   <img src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
-  <div class="text_button_right"><?php echo $_REQUEST['text_right'];?></div>
-  <div class="text_button_left"><?php echo $_REQUEST['text_left'];?></div>
+  <div class="text_button_right"><?php echo $template->header_text;?></div>
+  <div class="text_button_left"><?php echo $template->footer_text_contact;?></div>
 </div>
 <div class="grid-container">
 <?php foreach ($productPublish as $product) { ?>

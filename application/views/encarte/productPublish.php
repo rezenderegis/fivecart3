@@ -66,9 +66,13 @@
 
 </form>
 
-        
+                        <?php
+                        echo $publish->id_template;
+                        if ($publish->id_template != '') { ?>
+                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a>
+                            <?php } else { ?>
                         <a title="Gerar Encarte" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Gerar Encarte</a>
-
+                               <?php }?>     
 
                         </div>
                         <div class="card-body">
