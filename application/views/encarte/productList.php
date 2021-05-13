@@ -51,7 +51,7 @@
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                        <a title="Criar Nova Lista" href="<?php echo base_url('encarte/add');?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Nova Lista</a>
+                        <a title="Criar Nova Lista" href="<?php echo base_url('encarte/add');?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
 
 
                         </div>

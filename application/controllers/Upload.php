@@ -21,7 +21,6 @@ public function __construct()
     {
        
             $productData = $this->core_model->getById('products', array('id' => $idProduct));
-             //   print_r($productData); die();
             $this->load->view('/layout/header');
             $this->load->view('products/upload', array('error' => '0', 'idProduct' => $idProduct,
              'nameImage' => $nameImage, 'productIdFromUpload' => '', 'productData' => $productData));
@@ -32,22 +31,28 @@ public function __construct()
     public function do_upload($idProduct=0)
  
     {
-        
-            $config['upload_path']          = './images/Products';
-            $config['allowed_types']        = 'gif|jpg|png';
+
+          $config['upload_path']          = './images/Products/';
+
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+
           //  $config['max_size']             = 5120;
           //  $config['max_width']            = 1024;
          //   $config['max_height']           = 768;
-
             $this->load->library('upload', $config);
-          //   print_r($config); die();
+        //     print_r($config); die();
             if ( ! $this->upload->do_upload('userfile'))
             {
+              print_r($this->upload->do_upload('userfile')); 
+
                     $error = array('error' => $this->upload->display_errors(),
                     'productIdFromUpload' => '',
                     'idProduct' => $idProduct, 'nameImage' => '', 'productData' => ''
                 
                 );
+                print_r($config); 
+
+                die();
                 $this->load->view('/layout/header');
 
                     $this->load->view('products/upload', $error);

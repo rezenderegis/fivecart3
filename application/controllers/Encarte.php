@@ -29,9 +29,20 @@ class Encarte extends CI_Controller {
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/encarte');
         $this->load->view('layout/footer');
+    }
 
-     
 
+    public function allCarts() {
+
+        $data = array (
+
+            'titulo' => 'Todos os Encartes',
+             'templates' => $this->core_model->get_all('template'), 
+
+        );
+        $this->load->view('layout/header', $data);
+        $this->load->view('encarte/allCarts1');
+        $this->load->view('layout/footer');
     }
 
     public function productList() {

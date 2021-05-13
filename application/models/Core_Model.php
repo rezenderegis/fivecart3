@@ -147,12 +147,12 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
-
     public function getAllProducts() {
-        $sql = " SELECT P.ID,P.NAME, PC.PRICE AS PRICE,P.ID_OWNER,P.BAR_CODE,P.STATUS,P.ID_CATHEGORY,P.IMAGE_LINK,P.DESCRIPTION FROM PRODUCT_CUSTOMER PC INNER JOIN PRODUCTS P ON PC.ID_PRODUCT = P.ID
-        AND PC.ID_USER = ".$this->ion_auth->user()->row()->id;
+        $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
+        and pc.id_user = ".$this->ion_auth->user()->row()->id;
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
+
 
     }
    

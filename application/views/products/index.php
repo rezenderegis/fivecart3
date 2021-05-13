@@ -73,36 +73,36 @@
                                         <?php foreach ($products as $product) : ?>
 
                                         <tr>
-                                            <td><?=$product['ID']?></td>
+                                            <td><?=$product['id']?></td>
 
 
-                                            <td> <a  href="<?php echo base_url('/upload/index/'.$product['ID']); ?>"> <?=$product['NAME'] ?></a> 
+                                            <td> <a  href="<?php echo base_url('/upload/index/'.$product['id']); ?>"> <?=$product['name'] ?></a> 
 </td>
-                                            <td><?=$product['PRICE'] ?></td>
+                                            <td><?=$product['price'] ?></td>
 
-                                            <td><?=$product['BAR_CODE'] ?></td>
-                                            <td class="text-center pr-4"><?php echo ($product['STATUS']) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
+                                            <td><?=$product['bar_code'] ?></td>
+                                            <td class="text-center pr-4"><?php echo ($product['name']) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
                                             <td class="text-right">
-                                            <a title="Imagem" href=" <?php echo base_url('/upload/index/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-images"></i></a> 
+                                            <a title="Imagem" href=" <?php echo base_url('/upload/index/'.$product['id']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-images"></i></a> 
 
-                                            <?php if ($product['ID_OWNER'] != $this->ion_auth->user()->row()->id) {?>
-                                                <a title="Editar" href="<?php echo base_url('/product/editPrice/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
+                                            <?php if ($product['id_owner'] != $this->ion_auth->user()->row()->id) {?>
+                                                <a title="Editar" href="<?php echo base_url('/product/editPrice/'.$product['id']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
 
                                                 <?php } else {?>
-                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product['ID']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
+                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product['id']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-edit"></i> </a> 
                                                <?php }?>
-                                                <?php if ($product['ID_OWNER'] == $this->ion_auth->user()->row()->id) {?>
+                                                <?php if ($product['id_owner'] == $this->ion_auth->user()->row()->id) {?>
 
-                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product['ID']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
+                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $product['id']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
                                                 <?php }?>
 
                                             </td>
 
                                         </tr>
 
-
+<?php //print_r($product); die();?>
 <!-- Logout Modal-->
-<div class="modal fade" id="user-<?php echo $product['ID']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="user-<?php echo $product['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
