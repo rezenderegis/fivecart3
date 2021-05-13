@@ -31,7 +31,10 @@ public function __construct()
     public function do_upload($idProduct=0)
  
     {
+      date_default_timezone_set('America/Sao_Paulo');
 
+         
+     
           $config['upload_path']          = './images/Products/';
 
             $config['allowed_types']        = 'gif|jpg|png|jpeg';
@@ -39,20 +42,25 @@ public function __construct()
           //  $config['max_size']             = 5120;
           //  $config['max_width']            = 1024;
          //   $config['max_height']           = 768;
+         $config['detect_mime']           = true;
+         $config['mod_mime_fix']           = true;
+
+         $config['remove_spaces']           = true;
+
+         $config['file_name']           = $this->ion_auth->user()->row()->id.'_'.date('Ymd-H-i-s');
+
             $this->load->library('upload', $config);
         //     print_r($config); die();
             if ( ! $this->upload->do_upload('userfile'))
             {
-              print_r($this->upload->do_upload('userfile')); 
+            //  print_r($this->upload->do_upload('userfile')); 
 
                     $error = array('error' => $this->upload->display_errors(),
                     'productIdFromUpload' => '',
                     'idProduct' => $idProduct, 'nameImage' => '', 'productData' => ''
                 
                 );
-                print_r($config); 
-
-                die();
+       
                 $this->load->view('/layout/header');
 
                     $this->load->view('products/upload', $error);
@@ -65,11 +73,11 @@ public function __construct()
                    
                     $data = array('upload_data' => $this->upload->data());
                     $uploadData = $data['upload_data'];
-                  //      print_r($uploadData); die();
+                    
+                       // print_r($uploadData); die();
                     $data = array (
-                        'image_link' => $uploadData['file_name']);
-                      //  echo "produto". $idProduct; die();
-                    //    print_r($data); die();
+                        'image_link' => $uploadData['file_name'], 'image_name_origin' => $uploadData['client_name']);
+ 
                     $this->core_model->update('products', $data, array('id' => $this->input->post('productId')));
                     $productData = $this->core_model->getById('products', array('id' => $idProduct));
 

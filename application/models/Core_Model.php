@@ -147,6 +147,18 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
+    public function getProducts($idUser) {
+        $sql = "select p.name,pc.id,pc.price  from product_customer pc inner join products p on p.id = pc.id_product
+        where pc.id_user = ".$idUser."
+        and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
+        inner join product_customer pc on pc.id = pp.id_product_customer
+        inner join products prod on prod.id = pc.id_product
+        where pp.status = 1)";
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+
+    }
+
     public function getAllProducts() {
         $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
         and pc.id_user = ".$this->ion_auth->user()->row()->id;
