@@ -54,7 +54,7 @@
 
 <div class="card-header py-3">
 <form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/addProduct/'.$idProductList);?>">
-<br>
+
 <select class="form-control form-control-lg" name="product">
 <?php foreach ($products as $product) {?>
 <option value="<?php echo $product['id'];?>"><?php echo $product['name'];?></option>
@@ -67,9 +67,18 @@
 </form>
 
                         <?php
-                        echo $publish->id_template;
                         if ($publish->id_template != '') { ?>
-                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a>
+                        
+                        <table align="right">
+                            <tr>
+                           <td>
+                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a> 
+                        </td>
+                        <td>
+                            <a title="Alterar Template" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Alterar Template</a>
+                        </td>
+                        </tr>
+                        </table>
                             <?php } else { ?>
                         <a title="Gerar Encarte" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Gerar Encarte</a>
                                <?php }?>     

@@ -27,7 +27,7 @@ class Encarte extends CI_Controller {
 
         );
         $this->load->view('layout/header', $data);
-        $this->load->view('encarte/encarte');
+        $this->load->view('encarte/allCartsSelect');
         $this->load->view('layout/footer');
     }
 
@@ -81,21 +81,18 @@ class Encarte extends CI_Controller {
     
     }
 
-    public function new($publishId) {
+    public function new($publishId, $var) {
 
-
-        $this->form_validation->set_rules('template','', 'required');
-
-        if ($this->form_validation->run()) {
+        if ($var != '') {
 
         $data = array (
 
             'titulo' => 'Gerar Encarte',
             'productPublish' => $this->core_model->getProductPublish($publishId),
-            'template' => $this->core_model->getById('template', array('id' => $this->input->post("template"))),
+            'template' => $this->core_model->getById('template', array('id' => $var)),
             
         );
-      $dataPublish = array ('id_template' => $this->input->post("template"));
+      $dataPublish = array ('id_template' => $var);
        // $this->load->view('/layout/header', $data);
         $this->load->view('encarte/selectProduct',$data);
         $this->core_model->update('publish', $dataPublish, array('id' => $publishId));

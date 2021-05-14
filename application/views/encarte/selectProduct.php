@@ -181,9 +181,6 @@ align: center;
 <script>
 
 
-
-setUpDownloadPageAsImage();
-
 function setUpDownloadPageAsImage() {
   
   window.scrollTo(0,0);
