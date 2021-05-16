@@ -148,11 +148,32 @@ bottom: 10;
 left: 10px;
 color: yellow;
 text: bold;
-width: 500px;
 padding-left: 20px;
 padding-right: 20px;
 align: left;
 }
+
+
+.iconDetails {
+ margin-left:2%;
+float:left; 
+height:30px;
+width:30px; 
+} 
+
+.container2 {
+  font-size: 15px;
+  color: white;
+position: absolute;
+bottom: 5;
+left: 10px;
+    height:auto;
+    padding:1%;
+    float:left;
+}
+h4{margin:0;width:400px;}
+.left {float:left;width:45px;}
+.right {float:left;margin:0 0 0 5px;width:215px;}
 
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
@@ -203,7 +224,20 @@ align: left;
 <div class="container_text_button">
 
     <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
-    <div class="footer_text"><?php echo $template->footer_text;?></div>
+   <!-- <div class="footer_text"><?php echo $template->footer_text;?></div>-->
+
+    <div class='container2'>
+        <div class="left">
+            <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' class='iconDetails'>
+        </div>  
+    <div   class="right" >
+    <h4><?php echo $template->footer_text;?></h4>
+    <div style="font-size:.7em;width:400px;float:left;"><?php echo $template->footer_text2;?></div>
+    </div>
+</div>
+
+
+
 </div>
 </div>
 </div>
