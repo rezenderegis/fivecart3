@@ -140,6 +140,20 @@ align: center;
   position: absolute;
 }
 
+
+.footer_text {
+font-size: 20px;
+position: absolute;
+bottom: 10;
+left: 10px;
+color: yellow;
+text: bold;
+width: 500px;
+padding-left: 20px;
+padding-right: 20px;
+align: left;
+}
+
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 
@@ -166,14 +180,14 @@ align: center;
 <br/><br/>
 
 <div id="encarte"  style="background-color: #FFFFFF; 
-                 width: 452px; height: 1048px;">
+                 width: 452px; height: 1070px;">
 
 <div class="container_text_button">
 <img class = "logo" src="<?= base_url() . "images/logos/logo_supermercado_vitoria.png"; ?>" width="173" height="87">  
 
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
-  <div class="text_button_right"><?php echo $template->header_text;?></div>
-  <div class="text_button_left"><?php echo $template->footer_text_contact;?></div>
+  <div class="text_button_right"><?php echo $template->header_text_right;?></div>
+  <div class="text_button_left"><?php echo $template->header_left_text;?></div>
 </div>
 <div class="grid-container">
 <?php foreach ($productPublish as $product) { ?>
@@ -186,8 +200,10 @@ align: center;
 </div>
 <?php }?>
 </div>
+<div class="container_text_button">
+
     <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
-<div>
+    <div class="footer_text"><?php echo $template->footer_text;?></div>
 </div>
 </div>
 </div>
