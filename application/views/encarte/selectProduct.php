@@ -105,30 +105,44 @@ position: relative;
 }
 
 .text_button_right {
+  
 position: absolute;
-bottom: 20px;
-left: 280px;
+font-size: 12px;
+bottom: 8px;
+left: 270px;
 color: white;
 text: bold;
 width: 200px;
-padding-left: 20px;
-padding-right: 20px;
-align: center;
+padding-left: 35px;
+padding-right: 10px;
+align: right;
 }
 
 .text_button_left {
+font-family: "Sofia", sans-serif;
+font-size: 40px;
 position: absolute;
-bottom: 20px;
+bottom: 70px;
 left: 10px;
 color: yellow;
 text: bold;
-width: 200px;
+width: 150px;
 padding-left: 20px;
 padding-right: 20px;
 align: center;
 }
 
+.logo {
+  border-radius: 4px;
+  padding: 100px;
+  bottom: -99px;
+  width: 200px;
+  position: absolute;
+}
+
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
 <script src="<?php echo base_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
 
@@ -155,7 +169,9 @@ align: center;
                  width: 452px; height: 1048px;">
 
 <div class="container_text_button">
-  <img src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
+<img class = "logo" src="<?= base_url() . "images/logos/logo_supermercado_vitoria.png"; ?>" width="173" height="87">  
+
+  <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
   <div class="text_button_right"><?php echo $template->header_text;?></div>
   <div class="text_button_left"><?php echo $template->footer_text_contact;?></div>
 </div>

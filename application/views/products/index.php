@@ -57,7 +57,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered dataTable"  width="100%" cellspacing="0">
+                                <table class="table table-based dataTable"  width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -75,7 +75,7 @@
                                         <tr>
                                             <td><?=$product['id']?></td>
 
-
+                                          
                                             <td> <a  href="<?php echo base_url('/upload/index/'.$product['id']); ?>"> <?=$product['name'] ?></a> 
 </td>
                                             <td><?=$product['price'] ?></td>
