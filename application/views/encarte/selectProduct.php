@@ -18,6 +18,8 @@ width: 300px;
 grid-template-columns: auto auto auto	;
 padding: 0px;
 
+
+
 }
 
 div.gallery {
@@ -109,7 +111,7 @@ position: relative;
 position: absolute;
 font-size: 12px;
 bottom: 8px;
-left: 270px;
+left: 260px;
 color: white;
 text: bold;
 width: 200px;
@@ -126,8 +128,8 @@ bottom: 70px;
 left: 10px;
 color: yellow;
 text: bold;
-width: 150px;
-padding-left: 20px;
+width: 300px;
+padding-left: 0px;
 padding-right: 20px;
 align: center;
 }
@@ -177,6 +179,7 @@ h4{margin:0;width:400px;}
 
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica">
 
 <script src="<?php echo base_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
