@@ -207,7 +207,7 @@ h4{margin:0;width:400px;}
                  width: 452px; height: 1070px;">
 
 <div class="container_text_button">
-<img class = "logo" src="<?= base_url() . "images/logos/logo_supermercado_vitoria.png"; ?>" width="173" height="87">  
+<img class = "logo" src="<?= base_url() . "images/logos/maritimus_foods.png"; ?>" width="173" height="87">  
 
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
   <div class="text_button_right"><?php echo $template->header_text_right;?></div>
