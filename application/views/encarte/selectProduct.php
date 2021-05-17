@@ -121,6 +121,7 @@ align: right;
 }
 
 .text_button_left {
+line-height: 125%;
 font-family: "Sofia", sans-serif;
 font-size: 40px;
 position: absolute;
