@@ -211,8 +211,8 @@ h4{margin:0;width:400px;}
 <br/><br/>
 
 <div id="encarte"  style="background-color: #FFFFFF; 
-                 width: 452px; height: 1025px;">
-
+                 ">
+<!-- style="background-color: #FFFFFF;  width: 452px; height: 1025px;" -->
 <div class="container_text_button">
 
   <?php if ($template->has_logo == 0) { ?>
