@@ -53,7 +53,9 @@ height: auto;
 }
 
 div.desc {
-padding: 0px;
+font-family: "Helvetica", sans-serif;
+padding: 4px;
+font-size: 13px;
 text-align: center;
 width: 150px;
 
@@ -74,11 +76,14 @@ padding-right: 20px;
 }
 
 .textocentro {
+font-family: "Helvetica", sans-serif;
 position: absolute;
+font-size: 13px;
+padding-top: 2px;
 bottom: 0px;
 right: 20px;
-background-color: yellow;
-color: red;
+background-color: <?=$template->main_color;?>;
+color: #FFFFFF;
 padding-left: 20px;
 padding-right: 20px;
 
@@ -107,11 +112,11 @@ position: relative;
 }
 
 .text_button_right {
-  
+font-family: "Helvetica", sans-serif;
 position: absolute;
 font-size: 12px;
 bottom: 8px;
-left: 260px;
+left: 250px;
 color: white;
 text: bold;
 width: 200px;
@@ -136,7 +141,7 @@ align: center;
 }
 
 .logo {
-  border-radius: 4px;
+  border-radius: 0px;
   padding: 100px;
   bottom: -99px;
   width: 200px;
@@ -165,6 +170,7 @@ width:30px;
 } 
 
 .container2 {
+  font-family: "Helvetica", sans-serif;
   font-size: 15px;
   color: white;
 position: absolute;
@@ -205,14 +211,23 @@ h4{margin:0;width:400px;}
 <br/><br/>
 
 <div id="encarte"  style="background-color: #FFFFFF; 
-                 width: 452px; height: 1070px;">
+                 width: 452px; height: 1025px;">
 
 <div class="container_text_button">
-<img class = "logo" src="<?= base_url() . "images/logos/maritimus_foods.png"; ?>" width="173" height="87">  
+
+  <?php if ($template->has_logo == 0) { ?>
+<img class = "logo" src="<?= base_url() . "images/logos/maritimus_foods.png"; ?>">  
+<?php } ?>
 
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
+  <?php if ($template->header_text_right != '') { ?>
   <div class="text_button_right"><?php echo $template->header_text_right;?></div>
+  <?php } ?>
+  
+  <?php if ($template->header_left_text != '') { ?>
   <div class="text_button_left"><?php echo $template->header_left_text;?></div>
+  <?php } ?>
+
 </div>
 <div class="grid-container">
 <?php foreach ($productPublish as $product) { ?>
@@ -228,7 +243,8 @@ h4{margin:0;width:400px;}
 <div class="container_text_button">
 
     <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
-   <!-- <div class="footer_text"><?php echo $template->footer_text;?></div>-->
+
+    <?php if ($template->has_footer_text == 0) { ?>
 
     <div class='container2'>
         <div class="left">
@@ -236,10 +252,10 @@ h4{margin:0;width:400px;}
         </div>  
     <div   class="right" >
     <h4><?php echo $template->footer_text;?></h4>
-    <div style="font-size:.7em;width:400px;float:left;"><?php echo $template->footer_text2;?></div>
+    <div style="font-size:.7em;width:400px;float:left; padding-top:5px; "><?php echo $template->footer_text2;?></div>
     </div>
 </div>
-
+<?php } ?>
 
 
 </div>
