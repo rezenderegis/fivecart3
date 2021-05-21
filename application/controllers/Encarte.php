@@ -114,6 +114,11 @@ class Encarte extends CI_Controller {
             'titulo' => 'Gerar Encarte',
             'productPublish' => $this->core_model->getProductPublish($publishId),
             'template' => $this->core_model->getById('template', array('id' => $template)),  
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js',
+         'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js')
         );
 
       $dataPublish = array ('id_template' => $this->input->post("template"));
@@ -129,7 +134,9 @@ class Encarte extends CI_Controller {
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
-            'vendor/datatables/app.js'),    
+            'vendor/datatables/app.js',
+         'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js'),    
             'products' => $this->core_model->getProducts($this->ion_auth->user()->row()->id)
 
         );
@@ -148,7 +155,9 @@ class Encarte extends CI_Controller {
 
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
-            'vendor/datatables/app.js'),    
+            'vendor/datatables/app.js',
+            'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js'),    
             'products' => $this->core_model->getUserProducts($idProductList,$this->ion_auth->user()->row()->id),
             'idProductList' => $idProductList,
             'publish' => $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $this->ion_auth->user()->row()->id)),
@@ -327,6 +336,8 @@ $date = date('Y-m-d H:i:s');
                 'scripts' => array(
                     'vendor/mask/jquery.mask.min.js',
                     'vendor/mask/app.js',
+                    'vendor/mask/jquery.mask.min.js',
+                    'vendor/mask/app.js'
                 ),
                 'productPublish' => $this->core_model->getUniqueProductPublish($idProductPublish),
                 

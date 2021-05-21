@@ -101,7 +101,7 @@
                                         <tr>
                                             <td><?=$productPub['id_product_publish']?></td>
                                             <td><?=$productPub['name'] ?></td>
-                                            <td><?=$productPub['price']?></td>
+                                            <td class="money"><?=$productPub['price']?></td>
                   
                                             <td class="text-right">
                                             <a title="Editar" href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a> 

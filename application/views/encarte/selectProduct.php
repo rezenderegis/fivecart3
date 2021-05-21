@@ -193,7 +193,8 @@ h4{margin:0;width:400px;}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="<?php echo base_url('public/vendor/jquery/html2canvas.js'); ?>"></script>
-
+<script src="<?php echo base_url('public/vendor/mask/jquery.mask.min.js'); ?>"></script>
+<script src="<?php echo base_url('public/vendor/mask/app.js'); ?>"></script>
 
 
 <div id="content">
@@ -233,7 +234,7 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 <div class="gallery">
 <div class="container_picture">
     <img src="<?= base_url() . "images/Products/".$product['image_link']; ?>" alt="Snow" width="100" height="130">
-    <div class="textocentro"> R$ <?=$product['price']?> </div>
+    <div class="textocentro"><?php echo 'R$'.number_format($product['price'], 2, ',', '.'); ?> </div>
 </div>
     <div class="desc"><?=$product['name']?></div>
 </div>

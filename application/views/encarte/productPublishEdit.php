@@ -39,7 +39,7 @@
   
     <div class="col-md-4">
       <label >Preço</label>
-    <input type="text" class="form-control" name="product_price" placeholder="Situação" value="<?php echo $productPublish->price;?>">
+    <input type="text" class="form-control form-control-user-date money" name="product_price" placeholder="Preço" value="<?php echo $productPublish->price;?>">
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
     <input type="hidden" name="product_publish_id" value="<?php echo $productPublish->id_publish; ?>"
