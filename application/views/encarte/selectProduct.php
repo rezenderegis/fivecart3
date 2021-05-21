@@ -174,10 +174,10 @@ width:30px;
   font-size: 15px;
   color: white;
 position: absolute;
-bottom: 5;
+bottom: 0;
 left: 10px;
     height:auto;
-    padding:1%;
+    padding:1.5%;
     float:left;
 }
 h4{margin:0;width:400px;}
@@ -210,24 +210,23 @@ h4{margin:0;width:400px;}
 
 <br/><br/>
 
-<div id="encarte"  style="background-color: #FFFFFF; 
-                 ">
+<div id="encarte"  style="background-color: #FFFFFF; width: 452px; ">
+<!-- I used to set width and height of div becouse of image generation, to generate in same size.
+But I watched that depending of products and image exceded image limit. I decided to remove 
+this tag to test and worked. I went to container2 and decrease padding of 1% to 0% and and bottom to 0-->
 <!-- style="background-color: #FFFFFF;  width: 452px; height: 1025px;" -->
-<div class="container_text_button">
 
+<div class="container_text_button">
   <?php if ($template->has_logo == 0) { ?>
 <img class = "logo" src="<?= base_url() . "images/logos/maritimus_foods.png"; ?>">  
 <?php } ?>
-
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
   <?php if ($template->header_text_right != '') { ?>
   <div class="text_button_right"><?php echo $template->header_text_right;?></div>
   <?php } ?>
-  
   <?php if ($template->header_left_text != '') { ?>
   <div class="text_button_left"><?php echo $template->header_left_text;?></div>
   <?php } ?>
-
 </div>
 <div class="grid-container">
 <?php foreach ($productPublish as $product) { ?>
@@ -241,11 +240,8 @@ h4{margin:0;width:400px;}
 <?php }?>
 </div>
 <div class="container_text_button">
-
     <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
-
     <?php if ($template->has_footer_text == 0) { ?>
-
     <div class='container2'>
         <div class="left">
             <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' class='iconDetails'>
@@ -256,14 +252,9 @@ h4{margin:0;width:400px;}
     </div>
 </div>
 <?php } ?>
-
-
 </div>
 </div>
 </div>
-
-
-
 <script>
 
 

@@ -24,7 +24,9 @@ class Product extends CI_Controller  {
 
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
-            'vendor/datatables/app.js'),    
+            'vendor/datatables/app.js',
+            'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js'),    
             'products' => $this->core_model->getAllProducts(), 
 
         );

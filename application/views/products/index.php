@@ -78,7 +78,7 @@
                                           
                                             <td> <a  href="<?php echo base_url('/upload/index/'.$product['id']); ?>"> <?=$product['name'] ?></a> 
 </td>
-                                            <td><?=$product['price'] ?></td>
+                                            <td class="money"><?=$product['price'] ?></td>
 
                                             <td><?=$product['bar_code'] ?></td>
                                             <td class="text-center pr-4"><?php echo ($product['name']) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
