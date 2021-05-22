@@ -167,6 +167,15 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
 
     }
+
+    public function getPublishWithTemplate() {
+        $sql = " select p.id, t.header_image, t.footer_image, t.complete_image,p.description,p.date
+        from  publish p inner join template t on p.id_template = t.id where p.id_user = ".$this->ion_auth->user()->row()->id." order by p.date desc";
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+
+
+    }
    
 
 

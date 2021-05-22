@@ -81,6 +81,45 @@ class Encarte extends CI_Controller {
     
     }
 
+
+    public function productList1($idPublish=0) {
+
+        if ($idPublish != 0)
+        { 
+        $data = array (
+            'titulo' => 'Encartes Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js'), 
+            'templates' => $this->core_model->get_all('template'),    
+            'publish' => $this->core_model->get_all('publish', array('id_user' => $this->ion_auth->user()->row()->id, 'id' => $idPublish)), 
+
+        );
+    } else {
+
+        $data = array (
+            'titulo' => 'Encartes Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+            'templates' => $this->core_model->get_all('template'), 
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js'),    
+            'publish' => $this->core_model->getPublishWithTemplate(), 
+
+        );
+
+
+    }
+        $this->load->view('layout/header', $data);
+        $this->load->view('encarte/productList1');
+        $this->load->view('layout/footer');
+
+    
+    }
+
     public function new($publishId, $var) {
 
         if ($var != '') {
