@@ -110,13 +110,14 @@ $cardsInferior = array("Barra_Inferior_Azul_Claro", "Barra_Inferior_Azul_Escuro"
 ?>
     
 <?php
+print_r($templates); die();
 $i = 0;
 foreach ($templates as $template) {
     $i++;
     ?>
     <ul>
-    <li><input type="checkbox" id=<?php echo "cb".$template->id; ?> name="template" value="<?php echo $template->id; ?>"/>
-    <label  for=<?php echo "cb".$template->id; ?>><img class="imagem" src="<?= base_url() . "images/templates/$template->complete_image"; ?> "  width="455" height="300" /></label>
+    <li><input type="checkbox" id=<?php echo "cb".$template['id']; ?> name="template" value="<?php echo $template['id']; ?>"/>
+    <label  for=<?php echo "cb".$template['id']; ?>><img class="imagem" src="<?= base_url() . "images/templates/".$template['complete_image']; ?> "  width="455" height="300" /></label>
    
   </li>
   </ul>

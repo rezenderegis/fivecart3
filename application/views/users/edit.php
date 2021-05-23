@@ -20,7 +20,7 @@
   </ol>
 </nav>
 
-                   
+ 
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -51,9 +51,8 @@
   </div>
 
     <div class="col-md-4">
-      <label >Login</label>
-      <?php if ($usuario->email != NULL) {$disabled = "TRUE"; }?>
-    <input type="text" class="form-control" name="email" disabled = "<?php echo $disabled;?>" placeholder="E-mail" value="<?php echo $usuario->email;?>">
+      <label >E-mail</label>
+    <input type="text" class="form-control" name="email" readonly placeholder="E-mail" value="<?php echo $usuario->email;?>">
     <?php echo form_error('email', '<small class = "form-text text-danger">','</small>');?>
   
   </div>
@@ -63,6 +62,21 @@
     <input type="text" class="form-control" name="username" placeholder="Usuário" value="<?php echo $usuario->username;?>">
     <?php echo form_error('username', '<small class = "form-text text-danger">','</small>');?>
     </div>
+
+    <div class="form-group">
+      <div class="col-md-4">
+      <label >Telefone</label>
+    <input type="text" class="form-control" name="mobile_number" placeholder="Telefone" value="<?php echo $user_detail->mobile_number;?>">
+    <?php echo form_error('mobile_numer', '<small class = "form-text text-danger">','</small>');?>
+  </div>
+
+    <div class="col-md-4">
+      <label >Endereço</label>
+    <input type="textarea" class="form-control" name="address" placeholder="Endereço" value="<?php echo $user_detail->address;?>">
+    <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
+  </div>
+</div>
+
 
 
     <div class="col-md-4">

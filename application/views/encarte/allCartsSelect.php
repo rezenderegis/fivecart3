@@ -70,10 +70,12 @@ foreach ($templates as $template) {
 
 <div class="responsive">
   <div class="gallery">
-    <a target="_top" href="<?php echo base_url('/encarte/new/'.$publishId.'/'.$template->id); ?>" value="<?php echo $template->id; ?>" name="template">
-      <img src="<?= base_url() . "images/templates/$template->complete_image"; ?>" alt="Cinque Terre" width="600" height="400">
+  <div class="desc"><?php echo "<strong>".$template['description']."</strong><br>";
+  if ($template['id_user'] == 1)  { echo "Oferecimento Meus Encartes";}?></div>
+
+    <a target="_top" href="<?php echo base_url('/encarte/new/'.$publishId.'/'.$template['id']); ?>" value="<?php echo $template['id']; ?>" name="template">
+      <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" width="600" height="400">
     </a>
-    <div class="desc"><?=$template->description ?></div>
   </div>
 </div>
 <?php }?>
@@ -81,9 +83,6 @@ foreach ($templates as $template) {
 
 <div class="clearfix"></div>
 
-<div style="padding:6px;">
-  <p>Modelos disponibilizados pela plataforma</p>
-</div>
  
      
                    

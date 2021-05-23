@@ -61,6 +61,9 @@ class Usuario extends CI_Controller  {
         $this->form_validation->set_rules('last_name','', 'trim|required');
         $this->form_validation->set_rules('email','', 'trim|required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('username','', 'trim|required|is_unique[users.username]');
+        $this->form_validation->set_rules('mobile_number','', 'trim|required');
+        $this->form_validation->set_rules('address','', 'trim|required');
+
         $this->form_validation->set_rules('password','Senha', 'required|min_length[5]|max_length[255]');
         $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
 
@@ -84,7 +87,25 @@ class Usuario extends CI_Controller  {
                  $group = array($this->input->post('perfil'));
                  $group = $this->security->xss_clean($group);
                 
-                if ( $this->ion_auth->register($username, $password,$email,$aditional_data,$group)) {
+                $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
+             //   print_r($idUserInserted); die();
+                if ( $idUserInserted) {
+                
+
+
+                $dataDetails = array (
+                    'address' => $this->input->post('address'),
+                    'mobile_number' => $this->input->post('mobile_number'),
+                    'id_user' => $idUserInserted,
+                    'footer_text' => $this->input->post('mobile_number'),
+                    'footer_text2' => $this->input->post('address'),
+                );
+              
+                $dataDetails = html_escape($dataDetails);
+
+               $this->core_model->insert('user_detail', $dataDetails);
+            
+
                         $this->session->set_flashdata('success','Dados salvos com sucesso');
 
                 } else {
@@ -185,11 +206,13 @@ class Usuario extends CI_Controller  {
             'titulo' => 'Editar Usuário',
             'usuario' => $this->ion_auth->user($user_id)->row(),
             'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
+            'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $user_id)),
+
         );
 
 $this->form_validation->set_rules('first_name','', 'trim|required');
 $this->form_validation->set_rules('last_name','', 'trim|required');
-$this->form_validation->set_rules('email','', 'trim|required|valid_email|callback_email_check');
+//$this->form_validation->set_rules('email','', 'trim|required|valid_email|callback_email_check');
 $this->form_validation->set_rules('username','', 'trim|required');
 $this->form_validation->set_rules('password','Senha', 'trim|min_length[5]|max_length[255]');
 $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
@@ -217,6 +240,21 @@ if ($this->form_validation->run()) {
         $perfil_usuario_db = $this->ion_auth->get_users_groups($user_id)->row();
 
         $perfil_usuario_post = $this->input->post('perfil');
+
+
+        $dataDetails = elements(
+
+            array('address', 'mobile_number'
+        
+        ), $this->input->post()
+
+    );
+
+    $dataDetails = html_escape($dataDetails);
+
+    $this->core_model->update('user_detail', $dataDetails, array('id_user' => $user_id));
+
+
 
         //If were diferent, update group. 
  if (($perfil_usuario_db->id != NULL && $perfil_usuario_post != NULL)  && ($perfil_usuario_db->id != $perfil_usuario_post)) {
@@ -253,6 +291,8 @@ if ($this->form_validation->run()) {
         'titulo' => 'Editar Usuário',
         'usuario' => $this->ion_auth->user($user_id)->row(),
         'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
+        'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $user_id)),
+
     );
 
     $this->load->view('/layout/header', $data);
@@ -268,6 +308,43 @@ if ($this->form_validation->run()) {
     }
 
 
+    public function editUserDetails ($idUser=0) {
+
+        $this->form_validation->set_rules('footer_text','', 'trim|required');
+
+        if ($this->form_validation->run()) {
+
+
+    $data = elements(
+
+        array('footer_text', 'footer_text2'
+    
+    ), $this->input->post()
+
+);
+
+$data = html_escape($data);
+
+
+$this->core_model->update('user_detail', $data, array('id_user' => $this->ion_auth->user()->row()->id));
+
+redirect ('encarte/productList1');
+
+} else {
+
+    $data = array (
+
+        'titulo' => 'Editar Usuário',
+        'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id)),
+    );
+
+        $this->load->view('/layout/header', $data);
+        $this->load->view('/users/editUserDetails');
+        $this->load->view('/layout/footer');
+
+}
+
+    }
 
 
 

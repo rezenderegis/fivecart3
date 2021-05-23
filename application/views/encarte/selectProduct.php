@@ -199,7 +199,9 @@ h4{margin:0;width:400px;}
 
 <div id="content">
 </div>
-
+<table>
+<tr>
+<td>
 <button style=" background-color: #008CBA; /* Green */
   border: none;
   color: white;
@@ -210,21 +212,47 @@ h4{margin:0;width:400px;}
   font-size: 16px;" id="download-page-as-image" onClick="setUpDownloadPageAsImage();">Fazer Download do Encarte</button>
 
 <br/><br/>
+</td>
+<td>
+<a style=" background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;" href="<?php echo base_url('encarte/productList1');?>">Concluir</a>
 
+<br/><br/>
+</td>
+
+<td>
+<button style=" background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;"  onclick="goBack()">Mudar Modelo</button>
+
+<br/><br/>
+</td>
+</tr>
+</table>
 <div id="encarte"  style="background-color: #FFFFFF; width: 452px; ">
 <!-- I used to set width and height of div becouse of image generation, to generate in same size.
 But I watched that depending of products and image exceded image limit. I decided to remove 
 this tag to test and worked. I went to container2 and decrease padding of 1% to 0% and and bottom to 0-->
 <!-- style="background-color: #FFFFFF;  width: 452px; height: 1025px;" -->
-
 <div class="container_text_button">
   <?php if ($template->has_logo == 0) { ?>
 <img class = "logo" src="<?= base_url() . "images/logos/maritimus_foods.png"; ?>">  
 <?php } ?>
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
-  <?php if ($template->header_text_right != '') { ?>
-  <div class="text_button_right"><?php echo $template->header_text_right;?></div>
-  <?php } ?>
+
+  <div class="text_button_right"><?php if ($publish->header2 != '') { echo $publish->header2; } else { echo $template->header_text_right;}?></div>
+
   <?php if ($template->header_left_text != '') { ?>
   <div class="text_button_left"><?php echo $template->header_left_text;?></div>
   <?php } ?>
@@ -257,7 +285,9 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 </div>
 </div>
 <script>
-
+function goBack() {
+  window.history.back();
+}
 
 function setUpDownloadPageAsImage() {
   

@@ -29,7 +29,7 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Administrativo</h6>
-            
+            <a class="collapse-item" href="<?=base_url('encarte/productList'); ?>"> Meus Encartes</a>
             <a class="collapse-item"  href="<?=base_url('usuario'); ?>"><i class="fas fa-users"></i> Usuários</a>
         </div>
     </div>
@@ -55,9 +55,11 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Encartes</h6>
-            <a class="collapse-item" href="<?=base_url('encarte/allCarts'); ?>">Templates</a>
-            <a class="collapse-item" href="<?=base_url('encarte/productList'); ?>"> Meus Encartes</a>
+            <a class="collapse-item" href="<?=base_url('encarte/allCarts'); ?>">Templates Disponíveis</a>
+            <a class="collapse-item" href="<?=base_url('encarte/productList1'); ?>"> Meus Encartes</a>
             <a class="collapse-item" href="<?=base_url('product'); ?>">Produtos</a>
+            <a class="collapse-item" href="<?=base_url('usuario/editUserDetails'); ?>">Detalhes do Usuário</a>
+
           
         </div>
         

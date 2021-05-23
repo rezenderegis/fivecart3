@@ -37,8 +37,15 @@
       <label >Descrição da Lista</label>
     <input type="text" class="form-control" name="description" placeholder="Descrição" value="<?php echo $publish->description;?>">
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
+  
   </div>
   
+  <div class="col-md-4">
+      <label >Texto Cabeçalho Direita</label>
+    <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="<?php echo $publish->header2;?>">
+    <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
+  </div>
+
     <input type="hidden" name="product_id" value="<?php echo $publish->id; ?>"
 </div>
 

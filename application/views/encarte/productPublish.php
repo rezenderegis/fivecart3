@@ -47,10 +47,24 @@
 </div>
 <?php endif; ?>   
 
+
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
 
+<div class="card-body"> 
+ <table class="table table-striped">
+ <tr>
+ <td>Descrição</td>
+ <td><?=$publish->description?></td>
+ <tr>
+ <tr>
+ <td>Texto Cabeçalho</td>
+ <td><?=$publish->header2?></td>
+ <tr>
+</table>
+<a title="Alterar Dados" href="<?php echo base_url('encarte/edit/'.$idProductList);?>" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Dados</a>
 
+</div>
 
 <div class="card-header py-3">
 <form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/addProduct/'.$idProductList);?>">
@@ -77,7 +91,11 @@
                         <td>
                             <a title="Alterar Template" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Alterar Template</a>
                         </td>
+
+                       
+                       
                         </tr>
+
                         </table>
                             <?php } else { ?>
                         <a title="Gerar Encarte" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Gerar Encarte</a>

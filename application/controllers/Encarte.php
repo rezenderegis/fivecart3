@@ -16,14 +16,14 @@ class Encarte extends CI_Controller {
 
     }
 
-    public function index($publish) {
+    public function index($publish) {        
 
         $data = array (
 
             'titulo' => 'Gerar Encarte',
             'publishId' => $publish,
            // 'templates' => $this->core_model->get_all('template', array('id_user' => $this->ion_auth->user()->row()->id)), 
-             'templates' => $this->core_model->get_all('template'), 
+             'templates' => $this->core_model->getTemplates(), 
 
         );
         $this->load->view('layout/header', $data);
@@ -37,7 +37,7 @@ class Encarte extends CI_Controller {
         $data = array (
 
             'titulo' => 'Todos os Encartes',
-             'templates' => $this->core_model->get_all('template'), 
+             'templates' => $this->core_model->getTemplates(), 
 
         );
         $this->load->view('layout/header', $data);
@@ -102,12 +102,12 @@ class Encarte extends CI_Controller {
         $data = array (
             'titulo' => 'Encartes Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
-            'templates' => $this->core_model->get_all('template'), 
+            'templates' => $this->core_model->getPublishWithTemplate(), 
 
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
-            'publish' => $this->core_model->getPublishWithTemplate(), 
+            'publish' => $this->core_model->getPublishWithTemplate()
 
         );
 
@@ -122,6 +122,8 @@ class Encarte extends CI_Controller {
 
     public function new($publishId, $var) {
 
+        $publish = $this->core_model->getById('publish', array('id' => $publishId));
+
         if ($var != '') {
 
         $data = array (
@@ -129,6 +131,7 @@ class Encarte extends CI_Controller {
             'titulo' => 'Gerar Encarte',
             'productPublish' => $this->core_model->getProductPublish($publishId),
             'template' => $this->core_model->getById('template', array('id' => $var)),
+            'publish' =>  $publish,
             
         );
       $dataPublish = array ('id_template' => $var);
@@ -149,10 +152,14 @@ class Encarte extends CI_Controller {
 
     public function showPublish($publishId,$template) {
 
+        $publish = $this->core_model->getById('publish', array('id' => $publishId));
+
+        
         $data = array (
             'titulo' => 'Gerar Encarte',
             'productPublish' => $this->core_model->getProductPublish($publishId),
-            'template' => $this->core_model->getById('template', array('id' => $template)),  
+            'template' => $this->core_model->getById('template', array('id' => $template)),
+            'publish' =>  $publish, 
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js',
@@ -243,7 +250,7 @@ class Encarte extends CI_Controller {
 
             $data = elements(
  
-             array('description',
+             array('description', 'header2',
          
          ), $this->input->post()
  
@@ -253,7 +260,7 @@ class Encarte extends CI_Controller {
  
      $this->core_model->update('publish', $data, array('id' => $publish_id));
     
-     redirect ('encarte/productList');
+     redirect ('encarte/productPublish/'.$publish_id);
  
  
  } else {
@@ -291,6 +298,7 @@ class Encarte extends CI_Controller {
         if ($this->form_validation->run()) {
                  $data = array (
                      'description' => $this->input->post('description'),
+                     'header2' => $this->input->post('header2'),
                      'id_user' => $this->ion_auth->user()->row()->id   
                  );
                
@@ -298,7 +306,7 @@ class Encarte extends CI_Controller {
 
                 $idPublish = $this->core_model->insert('publish', $data);
    
-                redirect ('encarte/productList/'.$idPublish);
+                redirect ('encarte/productPublish/'.$idPublish);
               
         } else {
             $data = array (
@@ -313,6 +321,50 @@ class Encarte extends CI_Controller {
 
     }
 
+
+    public function addFromCart($idTemplate=0) {
+
+       /* if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {*/
+
+        $data = array (
+            'titulo' => 'Cadastrar Lista',
+        );
+
+        $this->form_validation->set_rules('description','', 'trim|required');
+
+        if ($this->form_validation->run()) {
+                 $data = array (
+                     'description' => $this->input->post('description'),
+                     'header2' => $this->input->post('header2'),
+                     'id_user' => $this->ion_auth->user()->row()->id,
+                    'id_template' => $idTemplate,
+                 );
+               
+                 $data = html_escape($data);
+
+                $idPublish = $this->core_model->insert('publish', $data);
+   
+                redirect ('encarte/productPublish/'.$idPublish);
+              
+        } else {
+            $data = array (
+                'titulo' => 'Cadastrar Produto',
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('encarte/add');
+            $this->load->view('layout/footer');
+        }
+    
+
+    }
+
+
+
+
     public function addProduct ($idProductList) {
 
  $product_customer = $this->core_model->getById('product_customer', array('id' => $this->input->post("product")));
@@ -324,9 +376,10 @@ $date = date('Y-m-d H:i:s');
             'product_price' => $product_customer->price,
             'date' => $date,         
         );
-     
+        
        $this->core_model->insert('product_publish', $data);
-
+       $getProductPublish =  $this->core_model->get_all('product_publish', array ('id_publish' => $idProductList, 'status'=> 1 ));
+       count($getProductPublish);
        redirect ('encarte/productPublish/'.$idProductList);
     }
 
