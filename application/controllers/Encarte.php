@@ -160,6 +160,7 @@ class Encarte extends CI_Controller {
             'productPublish' => $this->core_model->getProductPublish($publishId),
             'template' => $this->core_model->getById('template', array('id' => $template)),
             'publish' =>  $publish, 
+            'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id)),
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js',
@@ -169,7 +170,7 @@ class Encarte extends CI_Controller {
 
       $dataPublish = array ('id_template' => $this->input->post("template"));
 
-      $this->load->view('encarte/selectProduct',$data);   
+      $this->load->view('encarte/showPublish',$data);   
     
     }
 

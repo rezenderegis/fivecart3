@@ -126,7 +126,7 @@ class Product extends CI_Controller  {
 
 $this->form_validation->set_rules('name','', 'trim|required');
 $this->form_validation->set_rules('description','', 'trim|required');
-$this->form_validation->set_rules('id_cathegory','', 'trim|required');
+//$this->form_validation->set_rules('id_cathegory','', 'trim|required');
 $this->form_validation->set_rules('price','', 'trim|required');
 
 //$this->form_validation->set_rules('image_link','', 'trim|required');
@@ -181,10 +181,6 @@ if ($this->form_validation->run()) {
     
     public function add() {
 
-        if (!$this->ion_auth->is_admin()) {
-            $this->session->set_flashdata('error', 'Acesso não permitido');
-            redirect('home');
-        } else {
 
         $data = array (
             'titulo' => 'Cadastrar Produto',
@@ -192,7 +188,7 @@ if ($this->form_validation->run()) {
 
         $this->form_validation->set_rules('name','', 'trim|required');
         $this->form_validation->set_rules('description','', 'trim|required');
-        $this->form_validation->set_rules('id_cathegory','', 'trim|required');
+       // $this->form_validation->set_rules('id_cathegory','', 'trim|required');
         $this->form_validation->set_rules('price','', 'trim|required');
 
         if ($this->form_validation->run()) {
@@ -220,6 +216,10 @@ if ($this->form_validation->run()) {
         } else {
             $data = array (
                 'titulo' => 'Cadastrar Produto',
+                'scripts' => array(
+                    'vendor/mask/jquery.mask.min.js',
+                    'vendor/mask/app.js',
+                ),
             );
 
             $this->load->view('layout/header', $data);
@@ -228,7 +228,7 @@ if ($this->form_validation->run()) {
         }
        
       
-    }
+    
 
     }
 

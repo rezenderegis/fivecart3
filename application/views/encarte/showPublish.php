@@ -247,7 +247,7 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 <!-- style="background-color: #FFFFFF;  width: 452px; height: 1025px;" -->
 <div class="container_text_button">
   <?php if ($template->has_logo == 0) { ?>
-<img class = "logo" src="<?= base_url() . "images/logos/maritimus_foods.png"; ?>">  
+<img class = "logo" src="<?= base_url() . "images/logos/".$user_detail->logo; ?>">  
 <?php } ?>
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
 
@@ -270,14 +270,16 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 </div>
 <div class="container_text_button">
     <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
-    <?php if ($template->has_footer_text == 0) { ?>
+    <?php if ($template->has_footer_text == 0) {
+    //Must observate it, becouse sometimes the template will be complete.
+      ?>
     <div class='container2'>
         <div class="left">
             <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' class='iconDetails'>
         </div>  
     <div   class="right" >
-    <h4><?php echo $template->footer_text;?></h4>
-    <div style="font-size:.7em;width:400px;float:left; padding-top:5px; "><?php echo $template->footer_text2;?></div>
+    <h4><?php if ($user_detail->footer_text != '') {echo $user_detail->footer_text;} else {echo $template->footer_text;}?></h4>
+    <div style="font-size:.7em;width:400px;float:left; padding-top:5px; "><?php if ($user_detail->footer_text2 != '') {echo $user_detail->footer_text2;} else {echo $template->footer_text2;}?></div>
     </div>
 </div>
 <?php } ?>

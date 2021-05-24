@@ -51,6 +51,7 @@
     <?php echo form_error('barcode', '<small class = "form-text text-danger">','</small>');?>
   
   </div>
+  <!--
   <div class="col-md-4">
       <label >Categoria</label>
     <input type="text" class="form-control" name="id_cathegory" placeholder="Categoria" value="">
@@ -62,9 +63,10 @@
     <input type="text" class="form-control" name="status" placeholder="Situação" value="">
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
+    -->
     <div class="col-md-4">
       <label >Preço</label>
-    <input type="text" class="form-control" name="price" placeholder="Preço" value="">
+    <input type="text" class="form-control form-control-user-date money" name="price" placeholder="Preço" value="">
     <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
     </div>
 </div>
