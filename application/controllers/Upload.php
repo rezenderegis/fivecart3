@@ -50,10 +50,8 @@ public function __construct()
          $config['file_name']           = $this->ion_auth->user()->row()->id.'_'.date('Ymd-H-i-s');
 
             $this->load->library('upload', $config);
-        //     print_r($config); die();
             if ( ! $this->upload->do_upload('userfile'))
             {
-            //  print_r($this->upload->do_upload('userfile')); 
 
                     $error = array('error' => $this->upload->display_errors(),
                     'productIdFromUpload' => '',
@@ -69,7 +67,6 @@ public function __construct()
             }
             else
             {
-                
                    
                     $data = array('upload_data' => $this->upload->data());
                     $uploadData = $data['upload_data'];

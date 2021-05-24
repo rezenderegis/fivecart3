@@ -67,12 +67,13 @@
     <input type="text" class="form-control" name="status" placeholder="Situação" value="<?php echo $product->status;?>"<?=$editValue; ?> >
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
+ -->
     <div class="col-md-4">
       <label >Preço</label>
     <input type="text" class="form-control form-control-user-date money" name="price" placeholder="Situação" value="<?php echo $product_price->price;?>">
     <?php echo form_error('price', '<small class = "form-text text-danger">','</small>');?>
     </div>
-   -->
+   
 </div>
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
