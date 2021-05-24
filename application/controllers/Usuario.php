@@ -105,6 +105,7 @@ class Usuario extends CI_Controller  {
 
                $this->core_model->insert('user_detail', $dataDetails);
             
+                $this->core_model->insertProductDefalt($idUserInserted);
 
                         $this->session->set_flashdata('success','Dados salvos com sucesso');
 

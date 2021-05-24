@@ -5,13 +5,12 @@
      
             <!-- Main Content -->
             <div id="content">
-
+           
                <?php $this->load->view('layout/navbar');?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-       
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -20,6 +19,9 @@
   </ol>
 </nav>
 
+<div class="cabecalho">
+Dados do Seu Novo Encarte
+</div> 
                    
  <!-- DataTales Example -->
  <div class="card shadow mb-4">

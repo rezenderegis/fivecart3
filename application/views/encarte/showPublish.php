@@ -55,6 +55,7 @@ height: auto;
 div.desc {
 font-family: "Helvetica", sans-serif;
 padding: 4px;
+text-transform: uppercase;
 font-size: 13px;
 text-align: center;
 width: 150px;
@@ -159,6 +160,7 @@ text: bold;
 padding-left: 20px;
 padding-right: 20px;
 align: left;
+
 }
 
 
@@ -170,6 +172,7 @@ width:30px;
 } 
 
 .container2 {
+  text-transform: capitalize;
   font-family: "Helvetica", sans-serif;
   font-size: 15px;
   color: white;
@@ -180,8 +183,8 @@ left: 10px;
     padding:1.5%;
     float:left;
 }
-h4{margin:0;width:400px;}
-.left {float:left;width:45px;}
+h4{margin:0;width:400px; text-transform: capitalize; }
+.left {float:left;width:45px; }
 .right {float:left;margin:0 0 0 5px;width:215px;}
 
 </style>
@@ -279,7 +282,7 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
         </div>  
     <div   class="right" >
     <h4><?php if ($user_detail->footer_text != '') {echo $user_detail->footer_text;} else {echo $template->footer_text;}?></h4>
-    <div style="font-size:.7em;width:400px;float:left; padding-top:5px; "><?php if ($user_detail->footer_text2 != '') {echo $user_detail->footer_text2;} else {echo $template->footer_text2;}?></div>
+    <div style="font-size:.7em;width:400px;float:left; padding-top:5px; text-transform: capitalize;"><?php if ($user_detail->footer_text2 != '') {echo $user_detail->footer_text2;} else {echo $template->footer_text2;}?></div>
     </div>
 </div>
 <?php } ?>

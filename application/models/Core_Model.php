@@ -182,7 +182,14 @@ where pp.status =  1 and pp.id = ".$idProduct;
         $sql = " select * from template where status = 1 and (id_user = ".$this->ion_auth->user()->row()->id." or id_user = 1)";
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
+    }
 
+    public function insertProductDefalt($idUser) {
+        $sql = "
+        insert into product_customer (id_user,id_product,date,price)
+select ".$idUser.", id_product, sysdate(),0 from product_customer where id_user = 1;
+        ";
+        $query = $this->db->query ( $sql );	
 
     }
 

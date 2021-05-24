@@ -21,7 +21,6 @@ class Product extends CI_Controller  {
         $data = array (
             'titulo' => 'Produtos Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
-
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js',
