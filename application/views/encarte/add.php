@@ -37,13 +37,13 @@ Dados do Seu Novo Encarte
   <div class="form-group">
       <div class="col-md-4">
       <label >Descrição do Encarte</label>
-    <input type="text" class="form-control" name="description" placeholder="Descrição" value="">
+    <input type="text" class="form-control" name="description" placeholder="Descrição" value="" maxlength="31">
     <?php echo form_error('name', '<small class = "form-text text-danger">','</small>');?>
   </div>
 
   <div class="col-md-4">
       <label >Texto Cabeçalho Direita</label>
-    <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="">
+    <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="" maxlength="21">
     <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 

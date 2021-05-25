@@ -407,13 +407,30 @@ $date = date('Y-m-d H:i:s');
         if ($this->form_validation->run()) {
           
 
-            $data = elements(
+           /* $data = elements(
         
                     array('product_price',
                 
                 ), $this->input->post()
         
-            );
+            );*/
+
+            function floatvalue($val){
+                $val = str_replace(",",".",$val);
+                $val = preg_replace('/\.(?=.*\.)/', '', $val);
+                return floatval($val);
+        }
+        
+            ; 
+        
+        
+            $data = array(
+         
+                'product_price' => floatvalue($this->input->post("product_price")),
+             
+             );
+
+
         
             $data = html_escape($data);
         

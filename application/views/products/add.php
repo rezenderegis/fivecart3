@@ -34,13 +34,13 @@
   <div class="form-group">
       <div class="col-md-4">
       <label >Nome do Produto</label>
-    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="">
+    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="" maxlength="31">
     <?php echo form_error('name', '<small class = "form-text text-danger">','</small>');?>
   </div>
   
     <div class="col-md-4">
       <label >Descrição do Produto</label>
-    <input type="text" class="form-control" name="description" placeholder="Descrição do Produto" value="">
+    <input type="text" class="form-control" name="description" placeholder="Descrição do Produto" value="" maxlength="31">
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
 
   </div>

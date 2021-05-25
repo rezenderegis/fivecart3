@@ -140,13 +140,20 @@ if ($this->form_validation->run()) {
 
     );
 
-    $price = elements(
+    function floatvalue($val){
+        $val = str_replace(",",".",$val);
+        $val = preg_replace('/\.(?=.*\.)/', '', $val);
+        return floatval($val);
+}
 
-        array('price',
-    
-    ), $this->input->post()
+    ; 
 
-);
+
+    $price = array(
+ 
+        'price' => floatvalue($this->input->post("price")),
+     
+     );
 
     $data = html_escape($data);
     $price = html_escape($price);

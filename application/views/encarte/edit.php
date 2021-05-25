@@ -42,7 +42,7 @@
   
   <div class="col-md-4">
       <label >Texto Cabeçalho Direita</label>
-    <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="<?php echo $publish->header2;?>">
+    <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="<?php echo $publish->header2;?>" maxlength="21">
     <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 

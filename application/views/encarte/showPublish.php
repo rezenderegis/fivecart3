@@ -41,25 +41,32 @@ border: 1px solid #777;
 div.gallery img {
   padding-left: 60px;
 margin-top: -1px;
-width: 100%;
 
-width: 100px;
 /** @todo Ficou feio isso, esse -70 pra alinhar a esquerda */
 margin-left: -70px;
 
 align: center;
 /** Altura da foto*/
+width: 100%;
+height: 220px;
+/**
+width: 100%;
 height: auto;
+ */
+
+ 
+
 }
 
 div.desc {
 font-family: "Helvetica", sans-serif;
 padding: 4px;
 text-transform: uppercase;
-font-size: 13px;
+font-size: 11px;
 text-align: center;
 width: 150px;
-
+margin-left: 1px;
+margin-right: 1px;
 margin-bottom: 0;
 
 }
@@ -101,6 +108,7 @@ padding-right: 20px;
 margin-left: auto;
 margin-right: auto;
 width: 80%;
+
 
 }
 
@@ -264,7 +272,11 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 <?php foreach ($productPublish as $product) { ?>
 <div class="gallery">
 <div class="container_picture">
-    <img src="<?= base_url() . "images/Products/".$product['image_link']; ?>" alt="Snow" width="100" height="130">
+    <img src="<?= base_url() . "images/Products/".$product['image_link']; ?>" alt="Snow" width="100" height="130"
+    <?php  if ($product['image_width'] || $product['image_height']) {?> style="width: <?=$product['image_width']?>;
+height: <?=$product['image_height']?>;"  <?php }?>
+    >
+
     <div class="textocentro"><?php echo 'R$'.number_format($product['price'], 2, ',', '.'); ?> </div>
 </div>
     <div class="desc"><?=$product['name']?></div>

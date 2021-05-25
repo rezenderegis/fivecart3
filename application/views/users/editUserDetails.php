@@ -65,16 +65,25 @@ Informações Padronizadas para Seus Encartes
   <div class="form-group">
       <div class="col-md-4">
       <label >Rodapé 1 (Dica: Colocar Telefone)</label>
-    <input type="text" class="form-control" name="footer_text" placeholder="Rodapé" value="<?php echo $user_detail->footer_text;?>">
+    <input type="text" class="form-control" name="footer_text" placeholder="Rodapé" value="<?php echo $user_detail->footer_text;?>" maxlength="49">
     <?php echo form_error('footer_text', '<small class = "form-text text-danger">','</small>');?>
   </div>
 
     <div class="col-md-4">
       <label >Rodapé 2 (Dica - Colocar Endereço)</label>
-    <input type="text" class="form-control" name="footer_text2" placeholder="Rodapé 2" value="<?php echo $user_detail->footer_text2;?>">
+    <input type="text" class="form-control" name="footer_text2" placeholder="Rodapé 2" value="<?php echo $user_detail->footer_text2;?>" maxlength="73">
     <?php echo form_error('footer_text2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 </div>
+
+<div class="alert alert-secondary col-md-4" role="alert">
+     <b> Logo</b> 
+    </div>
+    <div>
+    <img class="img-fluid img-thumbnail bg-gradient-light" src="<?= base_url() . "images/logos/".$user_detail->logo; ?>" alt="Snow" width="200" height="250">
+                          </div>
+<br/>
+
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 </form>
