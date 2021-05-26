@@ -15,10 +15,8 @@ padding: 10px 10px;
 .grid-container {
 display: grid;
 width: 300px;
-grid-template-columns: auto auto auto	;
+grid-template-columns: auto auto auto;
 padding: 0px;
-
-
 
 }
 
@@ -46,15 +44,28 @@ margin-top: -1px;
 margin-left: -70px;
 
 align: center;
-/** Altura da foto*/
-width: 100%;
-height: 220px;
-/**
-width: 100%;
-height: auto;
- */
 
- 
+
+/**The problem with this configuration is that images is generated with difrent sizes and becoume layout
+ugly. */
+/** Altura da foto*/
+/*
+width: 80%;
+height: 180px;*/
+
+
+/**The problem with this configuration is that a image stay with the same size and is necessary
+to adjust the must manualy. */
+/*
+width: 100%;
+height: auto;*/
+    
+    
+    /**This where the best option, but sometimes is necessary adjust manualy the images. */
+    width:  75%;
+    height: 150px;
+    object-fit: scale-down;
+    object-position: bottom; 
 
 }
 
