@@ -61,12 +61,25 @@ width: 100%;
 height: auto;*/
     
     
-    /**This where the best option, but sometimes is necessary adjust manualy the images. */
+    /**This is the best option now, but sometimes is necessary adjust manualy the images. */
+    /*
     width:  75%;
     height: 150px;
-    object-fit: scale-down;
-    object-position: bottom; 
+    object-position: bottom;
+  
+    The best way is use to use object-fit: scale-down;, but html2canvas didn't support:
+    Whit object-fit is not necessary manual adjusments: .
 
+    object-fit: scale-down;
+    width:  75%;
+    height: 150px;
+    object-position: bottom;
+    
+    */
+    
+    width:  75%;
+    height: 150px;
+    object-position: bottom; 
 }
 
 div.desc {
