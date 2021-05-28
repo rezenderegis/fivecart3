@@ -36,6 +36,20 @@ div.gallery:hover {
 border: 1px solid #777;
 }
 
+
+.container_picture {
+
+position: relative;
+text-align: center;
+align: right;
+
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 80%;
+
+}
+
 div.gallery img {
   padding-left: 60px;
 margin-top: -1px;
@@ -67,7 +81,8 @@ height: auto;*/
     height: 150px;
     object-position: bottom;
   
-    The best way is use to use object-fit: scale-down;, but html2canvas didn't support:
+    The best way is use to use object-fit: scale-down;, but html2canvas didn't support.
+    I saw it in https://html2canvas.hertzen.com/features/
     Whit object-fit is not necessary manual adjusments: .
 
     object-fit: scale-down;
@@ -76,10 +91,14 @@ height: auto;*/
     object-position: bottom;
     
     */
-    
+    /** I decied to go in this way and chage in the future, this is a MVP, is a test, I 
+    won't spent more time with this now */
+    object-fit: scale-down;
     width:  75%;
     height: 150px;
     object-position: bottom; 
+
+   
 }
 
 div.desc {
@@ -121,20 +140,6 @@ padding-right: 20px;
 
 }
 
-
-.container_picture {
-
- position: relative;
- text-align: center;
- align: right;
-
- display: block;
-margin-left: auto;
-margin-right: auto;
-width: 80%;
-
-
-}
 
 .container_text_button{
 position: relative;
@@ -282,7 +287,7 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 <!-- style="background-color: #FFFFFF;  width: 452px; height: 1025px;" -->
 <div class="container_text_button">
   <?php if ($template->has_logo == 0) { ?>
-<img class = "logo" src="<?= base_url() . "images/logos/".$user_detail->logo; ?>">  
+<img class = "logo" src="<?= base_url() . "images/logos/".$user_detail->image_link; ?>">  
 <?php } ?>
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
 

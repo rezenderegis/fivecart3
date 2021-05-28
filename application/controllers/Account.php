@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario extends CI_Controller  {
+class Account extends CI_Controller  {
 
     
     public function __construct () {
@@ -9,52 +9,10 @@ class Usuario extends CI_Controller  {
         parent::__construct();
         $this->load->helper('url');
 
-        if (!$this->ion_auth->logged_in()) {
-            $this->session->set_flashdata('info', 'Sua sessão expirou');
-            redirect ('login');
-        }
-
     }
 
-    public function delete($user_id = NULL) {
 
-
-        if (!$this->ion_auth->is_admin()) {
-            $this->session->set_flashdata('error', 'Acesso não permitido');
-            redirect('home');
-        } else {
-
-        if (!$user_id || !$this->ion_auth->user($user_id)->row()) {
-            $this->session->set_flashdata('error', 'Usuário não encontrado');
-            redirect ('/usuario');
-        }
-
-        if ($this->ion_auth->is_admin($user_id)) {
-            $this->session->set_flashdata('error', 'Usuário não pode ser apagado!');
-            redirect ('/usuario');
-        }
-
-        if ($this->ion_auth->delete_user($user_id)) {
-            $this->session->set_flashdata('success', 'Usuário excluído com sucesso!');
-            redirect ('/usuario');
-        } else {
-            $this->session->set_flashdata('error', 'Erro ao deletar o usuário');
-            redirect ('/usuario');
-        }
-    }
-
-}
-    
     public function add() {
-
-        if (!$this->ion_auth->is_admin()) {
-            $this->session->set_flashdata('error', 'Acesso não permitido');
-            redirect('home');
-        } else {
-
-        $data = array (
-            'titulo' => 'Cadastrar Usuário',
-        );
 
 
         $this->form_validation->set_rules('first_name','', 'trim|required');
@@ -80,15 +38,16 @@ class Usuario extends CI_Controller  {
                      'last_name' => $this->input->post('last_name'),
                      'username' => $this->input->post('username'),
 
-                     'active' => $this->input->post('active'),
+                     'active' => 1,
 
                  );
                  $aditional_data = $this->security->xss_clean($aditional_data);
-                 $group = array($this->input->post('perfil'));
+                 $group = array(2);
                  $group = $this->security->xss_clean($group);
                 
                 $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
-             //   print_r($idUserInserted); die();
+            
+                
                 if ( $idUserInserted) {
                 
 
@@ -99,7 +58,7 @@ class Usuario extends CI_Controller  {
                     'id_user' => $idUserInserted,
                     'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
                     'footer_text2' => $this->input->post('address'),
-                    'logo' => 'no-image-icon-23485.png',
+                    'image_link' => 'no-image-icon-23485.png',
                 );
               
                 $dataDetails = html_escape($dataDetails);
@@ -114,7 +73,7 @@ class Usuario extends CI_Controller  {
                     $this->session->set_flashdata('error','Erro ao salvar os dados');
 
                 }
-                redirect ('usuario');
+                redirect ('login');
               
         } else {
             $data = array (
@@ -122,14 +81,93 @@ class Usuario extends CI_Controller  {
             );
 
             $this->load->view('layout/header', $data);
-            $this->load->view('users/add');
+            $this->load->view('account/index');
             $this->load->view('layout/footer');
         }
        
       
     }
 
+
+    public function add2() {
+
+
+        $this->form_validation->set_rules('first_name','', 'trim|required');
+        $this->form_validation->set_rules('last_name','', 'trim|required');
+        $this->form_validation->set_rules('email','', 'trim|required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('username','', 'trim|required|is_unique[users.username]');
+        $this->form_validation->set_rules('mobile_number','', 'trim|required');
+        $this->form_validation->set_rules('address','', 'trim|required');
+
+        $this->form_validation->set_rules('password','Senha', 'required|min_length[5]|max_length[255]');
+        $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
+
+        if ($this->form_validation->run()) {
+            
+
+         
+                  $username = $this->security->xss_clean($this->input->post("username"));
+                  $password = $this->security->xss_clean($this->input->post("password"));
+                  $email = $this->security->xss_clean($this->input->post("email"));
+
+                 $aditional_data = array (
+                     'first_name' => $this->input->post('first_name'),
+                     'last_name' => $this->input->post('last_name'),
+                     'username' => $this->input->post('username'),
+
+                     'active' => 1,
+
+                 );
+                 $aditional_data = $this->security->xss_clean($aditional_data);
+                 $group = array(2);
+                 $group = $this->security->xss_clean($group);
+                
+                $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
+            
+                
+                if ( $idUserInserted) {
+                
+
+
+                $dataDetails = array (
+                    'address' => $this->input->post('address'),
+                    'mobile_number' => $this->input->post('mobile_number'),
+                    'id_user' => $idUserInserted,
+                    'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
+                    'footer_text2' => $this->input->post('address'),
+                    'image_link' => 'no-image-icon-23485.png',
+                );
+              
+                $dataDetails = html_escape($dataDetails);
+
+               $this->core_model->insert('user_detail', $dataDetails);
+            
+                $this->core_model->insertProductDefalt($idUserInserted);
+
+                        $this->session->set_flashdata('success','Dados salvos com sucesso');
+
+                } else {
+                    $this->session->set_flashdata('error','Erro ao salvar os dados');
+
+                }
+                redirect ('login');
+              
+        } else {
+            $data = array (
+                'titulo' => 'Cadastrar Usuário',
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('account/index2');
+            $this->load->view('layout/footer');
+        }
+       
+      
     }
+    
+
+
+
 
     public function index () {
 

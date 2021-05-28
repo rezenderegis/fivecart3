@@ -75,12 +75,13 @@ Informações Padronizadas para Seus Encartes
     <?php echo form_error('footer_text2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 </div>
-
-<div class="alert alert-secondary col-md-4" role="alert">
+<a title="Atualizar Logo" href="<?php echo base_url('uploadFile/uploadFile/'.$user_detail->id_user);?>" class="btn btn-success btn-sm float-center"><i class="fas fa-images"></i>&nbsp;Atualizar Logo</a>
+<br/><br/>
+<div class="alert alert-secondary col-md-4" role="alert">    
      <b> Logo</b> 
     </div>
     <div>
-    <img class="img-fluid img-thumbnail bg-gradient-light" src="<?= base_url() . "images/logos/".$user_detail->logo; ?>" alt="Snow" width="200" height="250">
+    <img class="img-fluid img-thumbnail bg-gradient-light" src="<?= base_url() . "images/logos/".$user_detail->image_link; ?>" alt="Snow" width="200" height="250">
                           </div>
 <br/>
 
