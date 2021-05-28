@@ -158,7 +158,7 @@ left: 250px;
 color: white;
 text: bold;
 width: 200px;
-padding-left: 35px;
+padding-left: 60px;
 padding-right: 10px;
 align: right;
 }
@@ -181,9 +181,15 @@ align: center;
 .logo {
   border-radius: 0px;
   padding: 100px;
+  padding-left: 140px;
   bottom: -99px;
-  width: 200px;
+    object-fit: contain;
+    width:  150px;
+    height: 150px;
   position: absolute;
+  align: center;
+  object-position: bottom; 
+
 }
 
 
