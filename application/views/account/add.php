@@ -70,7 +70,7 @@
     <div class="col-md-4">
       <label >Endereço</label>
     <input type="text" class="form-control" name="address" placeholder="Endereço" value="">
-    <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
+    <?php echo form_error(' ', '<small class = "form-text text-danger">','</small>');?>
   </div>
 </div>
 

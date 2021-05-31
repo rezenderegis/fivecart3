@@ -84,7 +84,7 @@
                                         <a class="small" href="forgot-password.html">Esqueceu a Senha?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="<?php echo base_url('account/add/');?>">Criar uma Conta!</a>
+                                        <a class="small" href="<?php echo base_url('account/add2/');?>">Criar uma Conta!</a>
                                     </div>
                                 </div>
                             </div>

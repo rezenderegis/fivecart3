@@ -91,20 +91,19 @@ class Account extends CI_Controller  {
 
     public function add2() {
 
-
         $this->form_validation->set_rules('first_name','', 'trim|required');
         $this->form_validation->set_rules('last_name','', 'trim|required');
         $this->form_validation->set_rules('email','', 'trim|required|valid_email|is_unique[users.email]');
-        $this->form_validation->set_rules('username','', 'trim|required|is_unique[users.username]');
         $this->form_validation->set_rules('mobile_number','', 'trim|required');
         $this->form_validation->set_rules('address','', 'trim|required');
-
         $this->form_validation->set_rules('password','Senha', 'required|min_length[5]|max_length[255]');
         $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
+        $this->form_validation->set_rules('city','', 'trim|required');
 
+        /// print_r($this->form_validation);
+      //  die();
         if ($this->form_validation->run()) {
             
-
          
                   $username = $this->security->xss_clean($this->input->post("username"));
                   $password = $this->security->xss_clean($this->input->post("password"));
@@ -136,6 +135,10 @@ class Account extends CI_Controller  {
                     'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
                     'footer_text2' => $this->input->post('address'),
                     'image_link' => 'no-image-icon-23485.png',
+                    'city' => $this->input->post('city'),
+                    'company_name' => $this->input->post('company_name'),
+
+
                 );
               
                 $dataDetails = html_escape($dataDetails);
@@ -153,6 +156,9 @@ class Account extends CI_Controller  {
                 redirect ('login');
               
         } else {
+            echo "SAIU 1"; 
+
+
             $data = array (
                 'titulo' => 'Cadastrar Usuário',
             );

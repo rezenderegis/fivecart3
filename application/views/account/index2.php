@@ -7,54 +7,85 @@
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-5 d-none d-lg-block bg-login-image"></div>
+
+
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Crie seu Usuário!</h1>
                         </div>
-                        <form class="user" method="POST" name="form_add">
+                        <form class="user" method="POST" name="form_add2">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                        placeholder="First Name">
+                                    <input type="text" class="form-control form-control-user" id="exampleFirstName" name="first_name"
+                                        placeholder="Nome" value="<?=set_value('first_name');?>">
+                                        <?php echo form_error('first_name', '<small class = "form-text text-danger">','</small>');?>
+
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                        placeholder="Last Name">
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName" name="last_name"
+                                        placeholder="Segundo Nome" value="<?=set_value('last_name');?>">
+                                        <?php echo form_error('last_name', '<small class = "form-text text-danger">','</small>');?>
+
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                    placeholder="Email Address">
+                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
+                                    placeholder="Email" value="<?=set_value('email');?>">
+                                    <?php echo form_error('email', '<small class = "form-text text-danger">','</small>');?>
+
                             </div>
+
+                            <div class="form-group">
+                                <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="mobile_number"
+                                    placeholder="Telefone" value="<?=set_value('mobile_number');?>">
+                                    <?php echo form_error('mobile_number', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="city"
+                                    placeholder="Cidade" value="<?=set_value('city');?>">
+                                    <?php echo form_error('city', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="address"
+                                    placeholder="Endereço" value="<?=set_value('address');?>">
+                                    <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="company_name"
+                                    placeholder="Nome Empresa" value="<?=set_value('company_name');?>">
+                                    <?php echo form_error('company_name', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword" placeholder="Password">
+                                    <input type="password" class="form-control form-control-user" name="password"
+                                        id="exampleInputPassword" placeholder="Senha">
+                                        <?php echo form_error('password', '<small class = "form-text text-danger">','</small>');?>
+
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user"
-                                        id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        id="exampleRepeatPassword" placeholder="Repita a Senha" name="confirm_password">
+                                        <?php echo form_error('confirm_password', '<small class = "form-text text-danger">','</small>');?>
+
                                 </div>
                             </div>
-                            <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                Register Account
-                            </a>
-                            <hr>
-                            <a href="index.html" class="btn btn-google btn-user btn-block">
-                                <i class="fab fa-google fa-fw"></i> Register with Google
-                            </a>
-                            <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                            </a>
+                            
+                            <button type="submit" class="btn btn-primary btn-user btn-block btn-sm">Cadastrar</button>
+ 
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            <a class="small" href="forgot-password.html">Esqueceu sua senha?</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" href="login.html">Already have an account? Login!</a>
+                            <a class="small" href="login.html">Já tem uma conta? Faça o login!</a>
                         </div>
                     </div>
                 </div>
