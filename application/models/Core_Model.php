@@ -67,7 +67,7 @@ class Core_Model extends CI_Model {
            
 
             $this->db->update($table, $data, $condition);
-        //  echo  $this->db->last_query(); die();
+        // echo  $this->db->last_query(); die();
             if ($table && is_array($data) && is_array($condition)) {
                 $this->session->set_flashdata('Success', 'Data update with success!');
             } else {

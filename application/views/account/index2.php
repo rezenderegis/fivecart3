@@ -82,10 +82,10 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="forgot-password.html">Esqueceu sua senha?</a>
+                            <a class="small" href="<?php echo base_url('account/forgotPasswordFormEmail/');?>">Esqueceu sua senha?</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" href="login.html">Já tem uma conta? Faça o login!</a>
+                            <a class="small" href="<?php echo base_url('login');?>">Já tem uma conta? Faça o login!</a>
                         </div>
                     </div>
                 </div>

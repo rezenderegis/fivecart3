@@ -100,11 +100,9 @@ class Account extends CI_Controller  {
         $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
         $this->form_validation->set_rules('city','', 'trim|required');
 
-        /// print_r($this->form_validation);
-      //  die();
+       
         if ($this->form_validation->run()) {
             
-         
                   $username = $this->security->xss_clean($this->input->post("username"));
                   $password = $this->security->xss_clean($this->input->post("password"));
                   $email = $this->security->xss_clean($this->input->post("email"));
@@ -114,19 +112,21 @@ class Account extends CI_Controller  {
                      'last_name' => $this->input->post('last_name'),
                      'username' => $this->input->post('username'),
                      'active' => 1,
+                    // 'activation_code' => $code_confirmation,
+
+
                  );
                  $aditional_data = $this->security->xss_clean($aditional_data);
                  $group = array(2);
                  $group = $this->security->xss_clean($group);
                 
                 $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
-            
-                if ( $idUserInserted) {
+                if ( $idUserInserted['id']) {
                 
                 $dataDetails = array (
                     'address' => $this->input->post('address'),
                     'mobile_number' => $this->input->post('mobile_number'),
-                    'id_user' => $idUserInserted,
+                    'id_user' => $idUserInserted['id'],
                     'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
                     'footer_text2' => $this->input->post('address'),
                     'image_link' => 'no-image-icon-23485.png',
@@ -140,7 +140,11 @@ class Account extends CI_Controller  {
 
                $this->core_model->insert('user_detail', $dataDetails);
             
-                $this->core_model->insertProductDefalt($idUserInserted);
+                $this->core_model->insertProductDefalt($idUserInserted['id']);
+
+                $this->load->model("email_model");
+                $this->email_model->sendCreationAccount($idUserInserted['id']);
+
 
                         $this->session->set_flashdata('success','Dados salvos com sucesso');
 
@@ -531,6 +535,34 @@ if ($this->form_validation->run()) {
 
 
        
+       }
+
+       public function confirmAccount ($activation_code) {
+
+        $data = array(
+ 
+            'active' => 1,
+         
+         );
+        
+
+    $data = html_escape($data);
+
+    $this->core_model->update('users', $data, array('activation_selector' => $activation_code));
+
+    $this->session->set_flashdata('error', 'Verifique sua caixa de entrada!');
+
+             $data = array(
+                'titulo' => 'Login',
+            );
+       
+            $this->load->view('layout/header', $data);
+            $this->load->view('login/index');
+
+            $this->load->view('layout/footer');
+
+
+
        }
       
     
