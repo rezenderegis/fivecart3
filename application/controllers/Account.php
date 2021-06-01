@@ -113,9 +113,7 @@ class Account extends CI_Controller  {
                      'first_name' => $this->input->post('first_name'),
                      'last_name' => $this->input->post('last_name'),
                      'username' => $this->input->post('username'),
-
                      'active' => 1,
-
                  );
                  $aditional_data = $this->security->xss_clean($aditional_data);
                  $group = array(2);
@@ -123,11 +121,8 @@ class Account extends CI_Controller  {
                 
                 $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
             
-                
                 if ( $idUserInserted) {
                 
-
-
                 $dataDetails = array (
                     'address' => $this->input->post('address'),
                     'mobile_number' => $this->input->post('mobile_number'),
@@ -156,8 +151,6 @@ class Account extends CI_Controller  {
                 redirect ('login');
               
         } else {
-            echo "SAIU 1"; 
-
 
             $data = array (
                 'titulo' => 'Cadastrar Usuário',
@@ -401,8 +394,8 @@ redirect ('encarte/productList1');
     }
 
 
-    public function forgotPasswordChange($user_id = null,$hash=0) {
-       
+    public function forgotPasswordChange($code=0) {
+        $user_id = null;
      /*   if ($this->session->userdata('user_id') != $user_id && !$this->ion_auth->is_admin() ) {
             $this->session->set_flashdata('error', 'Usuário não encontrado');
             redirect('home');
@@ -434,9 +427,7 @@ if ($this->form_validation->run()) {
     $data = $this->security->xss_clean($data);
 
     $password = $this->input->post("password");
-
-    $userData = $this->core_model->getById('users',array('id' => $user_id, 'forgotten_password_selector' => $hash));
-
+    $userData = $this->ion_auth->forgotten_password_check($code);
     if (!$userData) 
     {
         $this->session->set_flashdata('error', 'Erro no código');
@@ -453,7 +444,7 @@ if ($this->form_validation->run()) {
         $this->session->set_flashdata('success', 'Dados salvos com sucesso');
 
     } else {
-        $this->session->set_flashdata('eror', 'Erro ao salvar os dados');
+        $this->session->set_flashdata('error', 'Erro ao salvar os dados');
     }
  
   
@@ -465,18 +456,26 @@ if ($this->form_validation->run()) {
 
 } else {
 
-  /*  $data = array (
 
-        'titulo' => 'Editar Usuário',
-        'usuario' => $this->ion_auth->user($user_id)->row(),
-        'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
-        'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $user_id)),
+    $user = $this->ion_auth->forgotten_password_check($code);
+    
+    if ($user)
+    {
+        $this->load->view('/layout/header');
+        $this->load->view('/account/forgotPassword');
+        $this->load->view('/layout/footer');
 
-    );*/
+    } else 
+    {
+        $this->session->set_flashdata('error', 'Código inválido!');
 
-    $this->load->view('/layout/header');
-    $this->load->view('/account/forgotPassword');
-    $this->load->view('/layout/footer');
+        $this->load->view('/layout/header');
+        $this->load->view('/account/forgotPasswordFormEmail');
+        $this->load->view('/layout/footer');
+
+    }
+
+  
 
 }
 
@@ -494,7 +493,7 @@ if ($this->form_validation->run()) {
                redirect('home');
            } {*/
    
-          
+             
     $this->form_validation->set_rules('email','', 'trim|required|valid_email');
     
 

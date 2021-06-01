@@ -7,7 +7,7 @@ class Email_model extends CI_Model {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->enderecoServidor = 'http://localhost/fivecart3/';
+		$this->enderecoServidor = 'http://localhost:8888/fivecart3/';
 		//$this->enderecoServidor = 'http://www.meusencartes.com.br/fivecart3/';
 		
 	}
@@ -31,26 +31,13 @@ class Email_model extends CI_Model {
 		
 		$dados_usuario = $this->core_model->getById('users',array('email' => $email));
 		
-
-		$date = date ( 'm/Y' );
-		$codigo_senha = md5 ( $dados_usuario->id . $email );
-
-		$data = array(
- 
-			'forgotten_password_selector' => $codigo_senha,
-		 
-		 );
 	
-		$data = html_escape($data);
-	
-		$this->core_model->update('users', $data, array('email' => $email));
-		
-		
+		$code = $this->ion_auth->forgotten_password($email);
 		/*
 		 * $inicio = "<br> <b>Altera��o de senha<br><br> Informamos <a href='http://localhost/mysale/index.php/usuarios/alterar_senha/{$dados_usuario['id']}/{$codigo_senha}'>bysale.com.br/alterarSenha</a>. <br> <br>
 		 */
 		
-		$endereco = $this->enderecoServidor."account/forgotPasswordChange/".$dados_usuario->id."/".$codigo_senha;
+		$endereco = $this->enderecoServidor."account/forgotPasswordChange/".$code['forgotten_password_code'];
 		//echo $endereco ; die();
 		// $endereco = "http://localhost/mysale/index.php/usuarios/alterar_senha";
 		$inicio = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
