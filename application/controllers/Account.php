@@ -217,6 +217,7 @@ class Account extends CI_Controller  {
 
     }
 
+
     public function username_check($username){
 
         $usuario_id = $this->input->post('usuario_id');
@@ -391,6 +392,149 @@ redirect ('encarte/productList1');
 }
 
     }
+
+    public function forgotPassword() {
+
+        $this->load->model("email_model");
+        $this->email_model->enviar('rezenderegis@gmail.com  ','fabricio');
+
+    }
+
+
+    public function forgotPasswordChange($user_id = null,$hash=0) {
+       
+     /*   if ($this->session->userdata('user_id') != $user_id && !$this->ion_auth->is_admin() ) {
+            $this->session->set_flashdata('error', 'Usuário não encontrado');
+            redirect('home');
+        } {*/
+
+      //      echo $hash; die();
+
+
+$this->form_validation->set_rules('password','Senha', 'trim|min_length[5]|max_length[255]');
+$this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
+
+if ($this->form_validation->run()) {
+    
+    $data = elements(
+
+            array('password'
+        
+        ), $this->input->post()
+
+    );
+
+    $data = array(
+ 
+        'password' => $this->input->post("password"),
+        'forgotten_password_selector' => '',
+     
+     );
+
+    $data = $this->security->xss_clean($data);
+
+    $password = $this->input->post("password");
+
+    $userData = $this->core_model->getById('users',array('id' => $user_id, 'forgotten_password_selector' => $hash));
+
+    if (!$userData) 
+    {
+        $this->session->set_flashdata('error', 'Erro no código');
+        $this->load->view('/layout/header');
+    $this->load->view('/account/forgotPassword');
+    $this->load->view('/layout/footer');
+
+    } else {    
+
+    
+    if ($this->ion_auth->update($userData->id, $data)) {
+
+
+        $this->session->set_flashdata('success', 'Dados salvos com sucesso');
+
+    } else {
+        $this->session->set_flashdata('eror', 'Erro ao salvar os dados');
+    }
+ 
+  
+
+    
+        redirect('login');
+    }
+    
+
+} else {
+
+  /*  $data = array (
+
+        'titulo' => 'Editar Usuário',
+        'usuario' => $this->ion_auth->user($user_id)->row(),
+        'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
+        'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $user_id)),
+
+    );*/
+
+    $this->load->view('/layout/header');
+    $this->load->view('/account/forgotPassword');
+    $this->load->view('/layout/footer');
+
+}
+
+
+
+        
+    
+    }
+
+
+    public function forgotPasswordFormEmail() {
+       
+        /*   if ($this->session->userdata('user_id') != $user_id && !$this->ion_auth->is_admin() ) {
+               $this->session->set_flashdata('error', 'Usuário não encontrado');
+               redirect('home');
+           } {*/
+   
+          
+    $this->form_validation->set_rules('email','', 'trim|required|valid_email');
+    
+
+   if ($this->form_validation->run()) {
+
+    if (!$this->core_model->getById('users',array('email' => $this->input->post("email")))) {
+        $this->session->set_flashdata('error', 'Esse e-mail não está cadastrado!');
+
+        $this->load->view('/layout/header');
+       $this->load->view('/account/forgotPasswordFormEmail');
+       $this->load->view('/layout/footer');
+    } else {
+    
+       $email = $this->security->xss_clean($this->input->post("email"));
+   
+       $this->load->model("email_model");
+       $this->email_model->enviar($email);
+
+       $this->session->set_flashdata('error', 'Verifique sua caixa de entrada!');
+
+           redirect('login');
+   
+    }
+   
+   } else {
+   
+   
+       $this->load->view('/layout/header');
+       $this->load->view('/account/forgotPasswordFormEmail');
+       $this->load->view('/layout/footer');
+   
+   }
+   
+
+
+
+       
+       }
+      
+    
 
 
 

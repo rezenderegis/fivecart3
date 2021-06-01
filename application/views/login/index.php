@@ -80,15 +80,15 @@
                                         -->
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Esqueceu a Senha?</a>
+                                    <div class="text-center">  
+                                        <a class="small" href="<?php echo base_url('account/forgotPasswordFormEmail/');?>">Esqueceu a Senha?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="<?php echo base_url('account/add2/');?>">Criar uma Conta!</a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </div>
 
