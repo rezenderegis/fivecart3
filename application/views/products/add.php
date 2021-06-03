@@ -18,7 +18,9 @@
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav>
-
+<div class="cabecalho">
+<?php echo $titulo; ?>
+</div>
                    
  <!-- DataTales Example -->
  <div class="card shadow mb-4">

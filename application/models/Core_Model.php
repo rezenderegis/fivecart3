@@ -185,7 +185,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
     }
 
     public function insertProductDefalt($idUser=0, $shop_type=0) {
-        
+        /**Just product in same shop type of cutomer are inserted. */
         $sql = "insert into product_customer (id_user,id_product,date,price)
         select ".$idUser.", pc.id_product, sysdate(),0 from product_customer pc inner join products p on p.id = pc.id_product 
         where pc.id_user = 1 and p.shop_type = ".$shop_type.";";

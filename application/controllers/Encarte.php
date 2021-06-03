@@ -40,6 +40,7 @@ class Encarte extends CI_Controller {
              'templates' => $this->core_model->getTemplates(), 
 
         );
+
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/allCarts1');
         $this->load->view('layout/footer');
@@ -351,13 +352,33 @@ class Encarte extends CI_Controller {
                 redirect ('encarte/productPublish/'.$idPublish);
               
         } else {
-            $data = array (
-                'titulo' => 'Cadastrar Produto',
-            );
 
-            $this->load->view('layout/header', $data);
-            $this->load->view('encarte/add');
-            $this->load->view('layout/footer');
+
+            $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
+            if (count($userProducts) > 0) {
+                
+                $data = array (
+                    'titulo' => 'Cadastar Novo Encarte',
+                );
+    
+                $this->load->view('layout/header', $data);
+                $this->load->view('encarte/add');
+                $this->load->view('layout/footer');
+
+            } else {
+
+                $data = array (
+                    'titulo' => 'Cadastre um produto para criar seu encarte',
+                );
+    
+                $this->load->view('layout/header', $data);
+                $this->load->view('products/add');
+                $this->load->view('layout/footer');
+    
+            }
+
+
+         
         }
     
 

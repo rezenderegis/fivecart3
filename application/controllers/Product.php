@@ -215,7 +215,7 @@ if ($this->form_validation->run()) {
                                                 'id_product' => $idProduct,
                                                 'price' => $this->input->post('price')); 
                 $this->core_model->insert('product_customer', $data_product_customer);
-                redirect ('product');
+                redirect ('upload/index/'. $idProduct);
               
         } else {
             $data = array (
