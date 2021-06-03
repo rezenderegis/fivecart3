@@ -232,6 +232,11 @@ h4{margin:0;width:400px; text-transform: capitalize; }
 .right {float:left;margin:0 0 0 5px;width:215px;}
 
 </style>
+
+<script src="./src/bootstrap-input-spinner.js"></script>
+<script>
+    $("input[type='number']").inputSpinner()
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Helvetica">
 
@@ -268,7 +273,7 @@ h4{margin:0;width:400px; text-transform: capitalize; }
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;" href="<?php echo base_url('encarte/productList1');?>">Concluir</a>
+  font-size: 16px;" href="<?php echo base_url('product');?>">Concluir</a>
 
 <br/><br/>
 </td>
@@ -281,7 +286,7 @@ h4{margin:0;width:400px; text-transform: capitalize; }
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;"  onclick="goBack()">Mudar Modelo</button>
+  font-size: 16px;"  onclick="goBack()">Voltar</button>
 
 <br/><br/>
 </td>
@@ -293,51 +298,55 @@ But I watched that depending of products and image exceded image limit. I decide
 this tag to test and worked. I went to container2 and decrease padding of 1% to 0% and and bottom to 0-->
 <!-- style="background-color: #FFFFFF;  width: 452px; height: 1025px;" -->
 <div class="container_text_button">
-  <?php if ($template->has_logo == 0) { ?>
-<img class = "logo" src="<?= base_url() . "images/logos/".$user_detail->image_link; ?>">  
-<?php } ?>
-  <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
+  
+  <img  src="<?= base_url() . "images/templates/4_Ofertas_Azul_header.jpg"; ?>" width="455" height="200">  
 
-  <div class="text_button_right"><?php if ($publish->header2 != '') { echo $publish->header2; } else { echo $template->header_text_right;}?></div>
 
-  <?php if ($template->header_left_text != '') { ?>
-  <div class="text_button_left"><?php echo $template->header_left_text;?></div>
-  <?php } ?>
 </div>
 <div class="grid-container">
-<?php foreach ($productPublish as $product) { ?>
+<?php // foreach ($productPublish as $product) { ?>
 <div class="gallery">
 <div class="container_picture">
-
-
-    <img src="<?= base_url() . "images/Products/".$product['image_link']; ?>" alt="Snow" width="100" height="130"
-    <?php  if ($product['image_width'] || $product['image_height']) {?> style="width: <?=$product['image_width']?>;
-height: <?=$product['image_height']?>;"  <?php }?>
+    <img src="<?= base_url() . "images/Products/".$productPublish->image_link; ?>" alt="Snow" width="100" height="130"
+    <?php  if ($productPublish->image_width || $productPublish->image_height) {?> style="width: <?=$productPublish->image_width;?>;
+height: <?=$productPublish->image_height?>;"  <?php }?>
     >
 
-    <div class="textocentro"><?php echo 'R$'.number_format($product['price'], 2, ',', '.'); ?> </div>
+    <div class="textocentro"><?php echo 'R$'.number_format($productPublish->price, 2, ',', '.'); ?> </div>
 </div>
-    <div class="desc"><?=$product['name']?></div>
+    <div class="desc"><?=$productPublish->name?></div>
 </div>
-<?php }?>
+
+<?php // }?>
+
+
 </div>
 <div class="container_text_button">
-    <img src="<?= base_url() . "images/templates/".$template->footer_image; ?>" width="455" height="50">
-    <?php if ($template->has_footer_text == 0) {
-    //Must observate it, becouse sometimes the template will be complete.
-      ?>
-    <div class='container2'>
-        <div class="left">
-            <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' class='iconDetails'>
-        </div>  
-    <div   class="right" >
-    <h4><?php if ($user_detail->footer_text != '') {echo $user_detail->footer_text;} else {echo $template->footer_text;}?></h4>
-    <div style="font-size:.7em;width:400px;float:left; padding-top:5px; text-transform: capitalize;"><?php if ($user_detail->footer_text2 != '') {echo $user_detail->footer_text2;} else {echo $template->footer_text2;}?></div>
+    <img src="<?= base_url() . "images/templates/4_Ofertas_Azul_Footer.png"; ?>" width="455" height="50">
+  
+</div>
+</div>
+                      
+
+<form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/changeProductDimension/'.$productPublish->id);?>">
+<form method="POST" name="form_add">
+  <div class="form-group">
+      <div class="col-md-4">
+      <label >Altura  </label>
+      <input name = "image_width" type="number" value="<?=$productPublish->image_width ?>" min="50" max="150" step="10"/>
+    </div>
+    <div class="col-md-4">
+      <label >Largura</label>
+      <input name = "image_height" type="number" value="<?=$productPublish->image_height ?>" min="50" max="150" step="10"/>
     </div>
 </div>
-<?php } ?>
-</div>
-</div>
+<button type="submit" class="btn btn-primary">Ajustar Produto</button>
+</form>
+
+
+
+
+
 </div>
 <script>
 function goBack() {
@@ -385,3 +394,4 @@ function accountForFirefox(click) { // wrapper function
 </script>
       
 
+    

@@ -17,6 +17,7 @@ class Product extends CI_Controller  {
     }
 
     public function index() {
+        $this->session->set_userdata('type_product', 'not_first');
 
         $data = array (
             'titulo' => 'Produtos Cadastrados',

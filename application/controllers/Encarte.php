@@ -165,6 +165,7 @@ class Encarte extends CI_Controller {
     public function showPublish($publishId,$template) {
 
         $publish = $this->core_model->getById('publish', array('id' => $publishId));
+//            'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id)),
 
         
         $data = array (
@@ -172,7 +173,8 @@ class Encarte extends CI_Controller {
             'productPublish' => $this->core_model->getProductPublish($publishId),
             'template' => $this->core_model->getById('template', array('id' => $template)),
             'publish' =>  $publish, 
-            'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id)),
+            
+            'user_detail' => $this->core_model->getById('user_detail', array('id_user' =>  $this->ion_auth->user()->row()->id)),
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js',
@@ -491,6 +493,53 @@ $date = date('Y-m-d H:i:s');
 
             file_put_contents("upload/filename.jpg", $image);
             echo $image;
+    }
+
+
+
+    public function testImage($idProduct=11,$idUser=15,$template=1) {
+
+        
+        
+        $data = array (
+            'titulo' => 'Gerar Encarte',
+            'productPublish' => $this->core_model->getProductTest($idProduct,$idUser),
+            'template' => $this->core_model->getById('template', array('id' => $template)),
+            'publish' =>  0, 
+            
+            'user_detail' => $this->core_model->getById('user_detail', array('id_user' =>  $this->ion_auth->user()->row()->id)),
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js',
+         'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js',
+            'js/bootstrap-input-spinner.js',
+
+            )
+        );
+
+        
+      $dataPublish = array ('id_template' => 1);
+
+      $this->load->view('encarte/testImage',$data);   
+    
+    }
+
+    public function changeProductDimension ($idProduct) {
+
+
+        $data = array (
+
+            'image_width' => $this->input->post("image_width"),
+            'image_height' => $this->input->post("image_height"),
+            
+            
+        );
+        $this->core_model->update('products', $data, array('id' => $idProduct));
+        
+
+        redirect('encarte/testImage/'.$idProduct.'/'.$this->ion_auth->user()->row()->id);
+
     }
 
 }

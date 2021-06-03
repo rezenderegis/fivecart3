@@ -193,6 +193,15 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
+   
+    public function getProductTest($idProduct,$idUser) {
+        $sql = "select p.image_link,p.name,pc.price,pc.id_user,p.id,p.image_width,p.image_height from products p inner join product_customer pc on pc.id_product = p.id
+        where id_product = ".$idProduct." and pc.id_user = ".$idUser.";"; 
+    
+        $query = $this->db->query ( $sql );	
+    return $query->row ();
+    }
+
 
 }
 

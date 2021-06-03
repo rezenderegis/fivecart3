@@ -64,7 +64,12 @@ Regras para upload de arquivo
 </div> 
 
 </form>
-           
+ 
+<br>
+<a title="Voltar" href="<?php echo base_url('encarte/testImage/'.$idProduct.'/'.$this->ion_auth->user()->row()->id)?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Ajustar Dimensões do Produto</a>
+<br>
+
+
 <br/>
      <?php 
      
