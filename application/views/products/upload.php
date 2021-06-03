@@ -20,11 +20,20 @@
                 <div class="cabecalho">
                 Insira uma foto para o produto
 </div>
- <!-- DataTales Example -->
+ <!-- DataTales Example encarte/allCarts -->
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
+                            <?php 
+                            if (strcmp($_SESSION['type_product'] , 'first') == 0) { ?>
+                              <a title="Criar Encarte" href="<?php echo base_url('encarte/allCarts')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Criar Encarte</a>
+                              
+                            <?php             
 
-                            <a title="Voltar" href="<?php echo base_url('Home')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                             } else { ?>
+                            
+                            
+                            <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                            <?php } ?>
 
                         </div>
 

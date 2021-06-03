@@ -73,9 +73,18 @@ div.desc {
             <div id="content">
             
                <?php $this->load->view('layout/navbar');?>
+
+               <?php if (strcmp($type, 'first') == 0) {?>
                <div class="button_header">
-               <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
-            </div>
+                <a title="Criar Nova Lista" href="<?php echo base_url('product/add/first');?>" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                </div>
+
+                <?php } else { ?>
+                <div class="button_header">
+                <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                </div>
+                <?php } ?>
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 

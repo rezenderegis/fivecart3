@@ -85,6 +85,14 @@ class Encarte extends CI_Controller {
 
     public function productList1($idPublish=0) {
 
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
+        if (count($userProducts) == 0) {
+            $type="first";
+        } else {
+            $type="not_first";
+
+        }
+
         if ($idPublish != 0)
         { 
         $data = array (
@@ -96,6 +104,7 @@ class Encarte extends CI_Controller {
             'vendor/datatables/app.js'), 
             'templates' => $this->core_model->get_all('template'),    
             'publish' => $this->core_model->get_all('publish', array('id_user' => $this->ion_auth->user()->row()->id, 'id' => $idPublish)), 
+            'type' => $type,
 
         );
     } else {
@@ -108,7 +117,9 @@ class Encarte extends CI_Controller {
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
-            'publish' => $this->core_model->getPublishWithTemplate()
+            'publish' => $this->core_model->getPublishWithTemplate(),            
+            'type' => $type,
+
 
         );
 
@@ -326,10 +337,15 @@ class Encarte extends CI_Controller {
 
     public function addFromCart($idTemplate=0) {
 
-       /* if (!$this->ion_auth->is_admin()) {
-            $this->session->set_flashdata('error', 'Acesso não permitido');
-            redirect('home');
-        } else {*/
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
+            if (count($userProducts) == 0) {
+                $type="first";
+               redirect('product/add/'.$type);
+    
+            } else {
+
+
+
 
         $data = array (
             'titulo' => 'Cadastrar Lista',
@@ -353,9 +369,6 @@ class Encarte extends CI_Controller {
               
         } else {
 
-
-            $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
-            if (count($userProducts) > 0) {
                 
                 $data = array (
                     'titulo' => 'Cadastar Novo Encarte',
@@ -365,22 +378,9 @@ class Encarte extends CI_Controller {
                 $this->load->view('encarte/add');
                 $this->load->view('layout/footer');
 
-            } else {
-
-                $data = array (
-                    'titulo' => 'Cadastre um produto para criar seu encarte',
-                );
-    
-                $this->load->view('layout/header', $data);
-                $this->load->view('products/add');
-                $this->load->view('layout/footer');
-    
-            }
-
-
-         
+           
         }
-    
+            }
 
     }
 

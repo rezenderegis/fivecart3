@@ -184,11 +184,18 @@ if ($this->form_validation->run()) {
         }
     }
     
-    public function add() {
-
+    public function add($type = 0) {
+      
+        if (strcmp($type, 'first') == 0) {
+            $titulo = '1 - Cadastre o primero produto e crie seu encarte';
+            $this->session->set_userdata('type_product', 'first');
+        } else {
+            $titulo = 'Cadastrar Produto';
+            $this->session->set_userdata('type_product', 'not_first');
+        }
 
         $data = array (
-            'titulo' => 'Cadastrar Produto',
+            'titulo' => $titulo,
         );
 
         $this->form_validation->set_rules('name','', 'trim|required');
@@ -219,7 +226,7 @@ if ($this->form_validation->run()) {
               
         } else {
             $data = array (
-                'titulo' => 'Cadastrar Produto',
+                'titulo' => $titulo,
                 'scripts' => array(
                     'vendor/mask/jquery.mask.min.js',
                     'vendor/mask/app.js',
