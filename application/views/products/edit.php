@@ -49,18 +49,6 @@
 
   </div>
   
-    <div class="col-md-4">
-      <label >Código de Barras</label>
-    <input type="text" class="form-control" name="barcode" placeholder="Código de Barras" value="<?php echo $product->bar_code;?>" >
-    <?php echo form_error('barcode', '<small class = "form-text text-danger">','</small>');?>
-  
-  </div>
-  <div class="col-md-4">
-      <label >Categoria</label>
-    <input type="text" class="form-control" name="id_cathegory" placeholder="Categoria" value="<?php echo $product->id_cathegory;?>" >
-    <?php echo form_error('id_cathegory', '<small class = "form-text text-danger">','</small>');?>
-  
-  </div>
   <!--
     <div class="col-md-4">
       <label >Situação</label>
@@ -68,6 +56,25 @@
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
  -->
+
+ <div class="form-group col-md-4">
+    <label >Segmento do Produto</label>
+
+                                <select class="form-control " name="shop_type">
+                                <option value=""></option>
+                                <option value="1" <?php echo ($product->shop_type == 1) ? 'selected' : '' ?>>Supermercado</option>
+                                <option value="2" <?php echo ($product->shop_type == 2) ? 'selected' : '' ?>>Açougue</option>
+                                <option value="3" <?php echo ($product->shop_type == 3) ? 'selected' : '' ?>>Verdurão</option>
+                                <option value="4" <?php echo ($product->shop_type == 4) ? 'selected' : '' ?>>Cosméticos</option>
+                                <option value="5" <?php echo ($product->shop_type == 5) ? 'selected' : '' ?>>Hamburgeria</option>
+                                <option value="6" <?php echo ($product->shop_type == 6) ? 'selected' : '' ?>>Restaurante</option>
+                                <option value="7" <?php echo ($product->shop_type == 7) ? 'selected' : '' ?>>Outros</option>
+
+                                </select>
+                                <?php echo form_error('shop_type', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+
     <div class="col-md-4">
       <label >Preço</label>
     <input type="text" class="form-control form-control-user-date money" name="price" placeholder="Situação" value="<?php echo $product_price->price;?>">

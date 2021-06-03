@@ -45,12 +45,7 @@
 
   </div>
   
-    <div class="col-md-4">
-      <label >Código de Barras</label>
-    <input type="text" class="form-control" name="barcode" placeholder="Código de Barras" value="">
-    <?php echo form_error('barcode', '<small class = "form-text text-danger">','</small>');?>
-  
-  </div>
+   
   <!--
   <div class="col-md-4">
       <label >Categoria</label>
@@ -64,6 +59,25 @@
     <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
     </div>
     -->
+
+    <div class="form-group col-md-4">
+    <label >Segmento do Produto</label>
+
+                                <select class="form-control " name="shop_type">
+                                <option value=""></option>
+                                <option value="1">Supermercado</option>
+                                <option value="2">Açougue</option>
+                                <option value="3">Verdurão</option>
+                                <option value="4">Cosméticos</option>
+                                <option value="5">Hamburgeria</option>
+                                <option value="6">Restaurante</option>
+                                <option value="7">Outros</option>
+
+                                </select>
+                                <?php echo form_error('shop_type', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+
     <div class="col-md-4">
       <label >Preço</label>
     <input type="text" class="form-control form-control-user-date money" name="price" placeholder="Preço" value="">

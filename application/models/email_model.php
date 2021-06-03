@@ -7,8 +7,8 @@ class Email_model extends CI_Model {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->enderecoServidor = 'http://localhost:8888/fivecart3/';
-		//$this->enderecoServidor = 'http://www.meusencartes.com.br/fivecart3/';
+		//$this->enderecoServidor = 'http://localhost:8888/fivecart3/';
+		$this->enderecoServidor = 'http://www.meusencartes.com.br/fivecart3/';
 		
 	}
 	
@@ -35,14 +35,14 @@ class Email_model extends CI_Model {
 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <meta http-equiv='content-type' content='text/html; charset=utf-8' />
-<title>Superbizu</title>
+<title>Meus Encartes</title>
 </head>
 
 <body>
-    <!-- <p><img src='http://www.superbizu.com.br/imagens/superbizu_email.png' id='logo' alt='Superbizu' width='70' height='61' /></p> -->
+<p><img src='http://meusencartes.com.br/Images/logo_meus_encartes.png' id='logo' alt='Meus Encartes' width='100' height='100' /></p> 
 
     <p class='text'><strong>Ol&aacute; </strong></p>
-    <p class='text'>Voc&ecirc; fez uma solicita&ccedil;&atilde;o para recuperar o acesso ao aplicativo Meus Encartes. </p>
+    <p class='text'>Voc&ecirc; fez uma solicita&ccedil;&atilde;o para recuperar o acesso ao Meus Encartes. </p>
     <p class='text'>Clique no <a href=" . $endereco .">link</a> para alterar sua senha.    </p>
     <p class='text'>Atenciosamente, </p>
     <p align='center' class='text'><strong>Equipe Meus Encartes</strong></p>
@@ -91,18 +91,16 @@ class Email_model extends CI_Model {
 	
 		$endereco = $this->enderecoServidor."account/confirmAccount/".$dados_usuario->activation_selector;
 	
-		
-		
 		// $endereco = "http://localhost/mysale/index.php/usuarios/alterar_senha";
 		$inicio = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <meta http-equiv='content-type' content='text/html; charset=utf-8' />
-<title>Superbizu</title>
+<title>Meus Encartes</title>
 </head>
 
 <body>
-    <!-- <p><img src='http://www.superbizu.com.br/imagens/superbizu_email.png' id='logo' alt='Superbizu' width='70' height='61' /></p> -->
+<p><img src='http://meusencartes.com.br/Images/logo_meus_encartes.png' id='logo' alt='Meus Encartes' width='100' height='100' /></p> 
 
     <p class='text'><strong>Ol&aacute; </strong></p>
     <p class='text'>Bem vindo aos Meus Encartes. </p>
@@ -123,23 +121,51 @@ class Email_model extends CI_Model {
 		$mensagem_completa = $inicio . $meio . $rodape;
 		$this->load->library ( 'email' );
 		
-		$this->email->from ( 'info@meusencartes.com.br', 'Meus Encartes - Esqueci minha senha ' );
+		$this->email->from ( 'info@meusencartes.com.br', 'Meus Encartes - Bem Vindo! ' );
 		$this->email->to ($dados_usuario->email);
 		
-		$this->email->subject ( 'Meus Encartes - Esqueci minha senha' );
+		$this->email->subject ( 'Meus Encartes - Bem Vindo!' );
 		$this->email->message ( $mensagem_completa );
 		
 		if ($this->email->send ()) {
-			
 			 $this->session->set_flashdata("success", "Solicitação feita com sucesso!");
-
 			} else {
 			show_error ( $this->email->print_debugger () );
 			return $this->email->print_debugger ();
-			
 		} 
 	}
 
+
+
+	public function emailForm($email=0,$name=0,$subject=0,$message=0) {
+		
+		if(!extension_loaded('openssl'))
+		{
+			throw new Exception('This app needs the Open SSL PHP extension.');
+		}
+		
+		date_default_timezone_set ( "America/Sao_Paulo" );
+				
+	
+		$this->load->library ( 'email' );
+		
+		$this->email->from ('info@meusencartes.com.br', 'Meus Encartes - Esqueci minha senha ');
+		$this->email->to ($email);
+		$this->email->cc ('info@meusencartes.com.br');
+
+		$this->email->subject ( $subject);
+		$this->email->message ( $message );
+	//	print_r($this->email); die();
+		if ($this->email->send ()) {
+			 $this->session->set_flashdata("success", "Solicitação feita com sucesso!");
+			} else {
+			show_error ( $this->email->print_debugger () );
+			return $this->email->print_debugger ();
+		} 
+	}
 	
 	
 }
+
+		
+		 

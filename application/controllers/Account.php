@@ -99,7 +99,9 @@ class Account extends CI_Controller  {
         $this->form_validation->set_rules('password','Senha', 'required|min_length[5]|max_length[255]');
         $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
         $this->form_validation->set_rules('city','', 'trim|required');
+        $this->form_validation->set_rules('shop_type','', 'required');
 
+        
        
         if ($this->form_validation->run()) {
             
@@ -132,26 +134,28 @@ class Account extends CI_Controller  {
                     'image_link' => 'no-image-icon-23485.png',
                     'city' => $this->input->post('city'),
                     'company_name' => $this->input->post('company_name'),
-
-
+                    'shop_type' => $this->input->post('shop_type'),
                 );
               
                 $dataDetails = html_escape($dataDetails);
 
                $this->core_model->insert('user_detail', $dataDetails);
-            
-                $this->core_model->insertProductDefalt($idUserInserted['id']);
+                
+                $this->core_model->insertProductDefalt($idUserInserted['id'], $this->input->post('shop_type'));
 
                 $this->load->model("email_model");
                 $this->email_model->sendCreationAccount($idUserInserted['id']);
 
 
-                        $this->session->set_flashdata('success','Dados salvos com sucesso');
+                        $this->session->set_flashdata('info','Usuário criado com sucesso! <br> 
+                        Acesse sua caixa de e-mail para confirmar o cadastro!');
 
                 } else {
                     $this->session->set_flashdata('error','Erro ao salvar os dados');
 
                 }
+
+
                 redirect ('login');
               
         } else {
@@ -516,7 +520,7 @@ if ($this->form_validation->run()) {
        $this->load->model("email_model");
        $this->email_model->enviar($email);
 
-       $this->session->set_flashdata('error', 'Verifique sua caixa de entrada!');
+       $this->session->set_flashdata('error', 'Foi enviado um código para seu e-maill. <br>Verifique sua caixa de entrada!');
 
            redirect('login');
    
@@ -547,10 +551,19 @@ if ($this->form_validation->run()) {
         
 
     $data = html_escape($data);
+    
+    $activeData = $this->core_model->getById('users',array('activation_selector' => $activation_code));
+        
+    if (!$activeData) {
+        $this->session->set_flashdata('error', 'Erro ao confirmar o usuário! Acesse o link novamente.');
 
-    $this->core_model->update('users', $data, array('activation_selector' => $activation_code));
+    } else if ($activeData->active == 0) {
+        $this->core_model->update('users', $data, array('activation_selector' => $activation_code));
+        $this->session->set_flashdata('info', 'Usuário confirmado com sucesso! <BR> Faça o login!');
+    } else if ($activeData->active == 1) {
+        $this->session->set_flashdata('info', 'Usuário já está ativo! <BR> Faça o login!');
+    } 
 
-    $this->session->set_flashdata('error', 'Verifique sua caixa de entrada!');
 
              $data = array(
                 'titulo' => 'Login',
@@ -565,13 +578,43 @@ if ($this->form_validation->run()) {
 
        }
       
-    
+    public function sendEmailContact() {
+
+
+        $this->form_validation->set_rules('message','', 'required|trim|min_length[5]|max_length[255]');
+        $this->form_validation->set_rules('subject','', 'trim|required');
+        $this->form_validation->set_rules('name','', 'trim|required');
+        $this->form_validation->set_rules('email','', 'trim|required|valid_email');
+
+     
+
+        
+
+        if ($this->form_validation->run()) {
+
+            $this->load->model("email_model");
+
+            $this->email_model->emailForm($this->input->post("email"), $this->input->post("name"), $this->input->post("subject"), $this->input->post("message"));
+           
+            $this->session->set_flashdata('info','E-mail enviado com sucesso! Aguarde contato!');
+
+
+        }
 
 
 
+
+    }
 
 
 }
+
+
+
+
+
+
+
 
 
 ?>

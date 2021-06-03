@@ -7,6 +7,10 @@
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
+
+
+
+
                 <div class="col-lg-5 d-none d-lg-block bg-login-image"></div>
 
 
@@ -16,6 +20,21 @@
                             <h1 class="h4 text-gray-900 mb-4">Crie seu Usuário!</h1>
                         </div>
                         <form class="user" method="POST" name="form_add2">
+
+
+<?php if ($message = $this->session->flashdata('error')): ?>
+    <div class "row">
+    <div class ="col-md-12">
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong><?php echo $message;?></strong> 
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+</div>
+<?php endif; ?>   
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" id="exampleFirstName" name="first_name"
@@ -61,6 +80,24 @@
                                     <?php echo form_error('company_name', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
+
+                            
+                            <div class="form-group">
+                                <select class="form-control " name="shop_type">
+                                <option value=""></option>
+                                <option value="1">Supermercado</option>
+                                <option value="2">Açougue</option>
+                                <option value="3">Verdurão</option>
+                                <option value="4">Cosméticos</option>
+                                <option value="5">Hamburgeria</option>
+                                <option value="6">Restaurante</option>
+                                <option value="7">Outros</option>
+
+                                </select>
+                                <?php echo form_error('shop_type', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            
 
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">

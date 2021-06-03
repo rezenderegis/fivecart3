@@ -57,9 +57,7 @@
                                     <div class="text-center">  
                                         <a class="small" href="<?php echo base_url('login');?>">Login</a>
                                     </div>
-                                    <div class="text-center">
-                                        <a class="small" href="<?php echo base_url('account/add2/');?>">Criar uma Conta!</a>
-                                    </div>
+                                 
                         
                       
                     </div>

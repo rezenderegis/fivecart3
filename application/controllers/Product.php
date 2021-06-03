@@ -124,7 +124,6 @@ class Product extends CI_Controller  {
         );*/
 
 $this->form_validation->set_rules('name','', 'trim|required');
-$this->form_validation->set_rules('description','', 'trim|required');
 //$this->form_validation->set_rules('id_cathegory','', 'trim|required');
 $this->form_validation->set_rules('price','', 'trim|required');
 
@@ -134,7 +133,7 @@ if ($this->form_validation->run()) {
 
     $data = elements(
 
-            array('name', 'description','id_cathegory','image_link','bar_code', 'status'
+            array('name', 'description','id_cathegory','image_link','status', 'shop_type'
         
         ), $this->input->post()
 
@@ -193,9 +192,9 @@ if ($this->form_validation->run()) {
         );
 
         $this->form_validation->set_rules('name','', 'trim|required');
-        $this->form_validation->set_rules('description','', 'trim|required');
        // $this->form_validation->set_rules('id_cathegory','', 'trim|required');
         $this->form_validation->set_rules('price','', 'trim|required');
+        $this->form_validation->set_rules('shop_type','', 'required');
 
         if ($this->form_validation->run()) {
                  $data = array (
@@ -204,9 +203,8 @@ if ($this->form_validation->run()) {
                      'id_owner' => $this->ion_auth->user()->row()->id,
                      'id_cathegory' => $this->input->post('id_cathegory'),
                      'image_link' => 1,
-                     'bar_code' => $this->input->post('bar_code'),
                      'status' => $this->input->post('status'),
-
+                     'shop_type' => $this->input->post('shop_type'),       
                  );
                
                  $data = html_escape($data);

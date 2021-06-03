@@ -15,7 +15,7 @@
 
 
 
-<!--                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> -->
+                          <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> 
 
                             
                             <div class="col-lg-12">
@@ -24,7 +24,7 @@
     <div class "row">
     <div class ="col-md-12">
 
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong><?php echo $message;?></strong> 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -84,7 +84,7 @@
                                         <a class="small" href="<?php echo base_url('account/forgotPasswordFormEmail/');?>">Esqueceu a Senha?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="<?php echo base_url('account/add2/');?>">Criar uma Conta!</a>
+                                        <a class="small" href="<?php echo base_url('account/add2');?>">Criar uma Conta!</a>
                                     </div>
                                 </div>
                             </div>
