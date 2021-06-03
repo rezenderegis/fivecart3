@@ -26,8 +26,12 @@
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                            <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                        <?php if (strcmp($_SESSION['type_product'] , 'first') == 0) { ?>
+                          <a title="Voltar" href="<?php echo base_url('encarte/allCarts')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
 
+                          <?php } else {?>
+                            <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+<?php }?>
                         </div>
 
                         <div class="card-body">
