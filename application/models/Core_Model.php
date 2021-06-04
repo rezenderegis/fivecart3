@@ -120,7 +120,7 @@ class Core_Model extends CI_Model {
         from product_publish pp inner join publish p on p.id = pp.id_publish
 inner join product_customer pc on pc.id = pp.id_product_customer
 inner join products prod on prod.id = pc.id_product
-where p.id_user = ".$this->ion_auth->user()->row()->id." and pp.status =  1 and p.id = ".$idPublish; 
+where p.id_user = ".$this->ion_auth->user()->row()->id." and pp.status =  1 and p.id = ".$idPublish. " order by pp.id asc"; 
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
@@ -142,7 +142,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
         and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
         inner join product_customer pc on pc.id = pp.id_product_customer
         inner join products prod on prod.id = pc.id_product
-        where pp.status = 1 and p.id = ".$idPublish.")";
+        where pp.status = 1 and p.id = ".$idPublish.")". "order by p.name";
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
