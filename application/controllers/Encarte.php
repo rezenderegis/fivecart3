@@ -477,7 +477,7 @@ $date = date('Y-m-d H:i:s');
             );
          
             $this->load->view('/layout/header', $data);
-            $this->load->view('/encarte/productPublishEdit');
+            $this->load->view('/encarte/editProductPublish');
             $this->load->view('/layout/footer');
         }
 

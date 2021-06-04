@@ -6,8 +6,20 @@
     <i class="fa fa-bars"></i>
 </button>
 
+<button style=" background-color: #4C71DE; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;"  onclick="goBack()">Voltar</button>
 
-
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 <!-- Topbar Navbar -->
 <ul class="navbar-nav ml-auto">
 

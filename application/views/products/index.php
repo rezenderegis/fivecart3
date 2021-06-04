@@ -52,7 +52,7 @@
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                        <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
+                        <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
 
 
                         </div>

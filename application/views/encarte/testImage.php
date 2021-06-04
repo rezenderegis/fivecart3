@@ -36,6 +36,43 @@ div.gallery:hover {
 border: 1px solid #777;
 }
 
+.button_spinner {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+}
+
+.button {
+  padding: 5px 10px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #001F79;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #1C8CBA;
+}
+
+.button:hover {background-color: #1C8CBA}
+
+.button:active {
+  background-color: #1C8CBA;
+  box-shadow: 0 5px #1C8CBA;
+  transform: translateY(4px);
+}
+
+
+
+
+
 
 .container_picture {
 
@@ -330,21 +367,33 @@ height: <?=$productPublish->image_height?>;"  <?php }?>
 
 <form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/changeProductDimension/'.$productPublish->id);?>">
 <form method="POST" name="form_add">
-  <div class="form-group">
-      <div class="col-md-4">
-      <label >Altura  </label>
-      <input name = "image_width" type="number" value="<?=$productPublish->image_width ?>" min="50" max="150" step="10"/>
-    </div>
+  <table>
+    <tr>
+      
+          <div class="form-group">
+              <div class="col-md-4">
+                <td>
+              <label >Largura  </label>
+    </td>
+    <td>
+              <input name = "image_width" type="number" value="<?=$productPublish->image_width ?>" min="20" max="150" step="10" class="button_spinner"/>
+    </td>
+            </div>
+    
+    <tr> 
     <div class="col-md-4">
-      <label >Largura</label>
-      <input name = "image_height" type="number" value="<?=$productPublish->image_height ?>" min="50" max="150" step="10"/>
+      <td>
+      <label >Altura</label>
+    </td>
+    <td>
+      <input name = "image_height" type="number" value="<?=$productPublish->image_height ?>" min="20" max="150" step="10" class="button_spinner"/>
+    </td>
     </div>
+    </tr>
 </div>
-<button type="submit" class="btn btn-primary">Ajustar Produto</button>
+    </table>
+<button type="submit" class="button">Ajustar Imagem</button>
 </form>
-
-
-
 
 
 </div>

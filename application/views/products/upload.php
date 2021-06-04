@@ -29,20 +29,26 @@
                               
                             <?php             
 
-                             } else { ?>
+                             } 
+                             
+                             //else { 
+                               ?>
                             
                             
-                            <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
-                            <?php } ?>
+                           <!-- <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>-->
+                            <?php //} ?>
 
                         </div>
-
-                        <div class="card-body">
-  <?php echo form_open_multipart('upload/do_upload/'.$idProduct);?>
-  <div class="form-group">
-  <div class="alert alert-info" role="alert">
-Regras para upload de arquivo
+        
+                        <div class="card-body">     
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample"  role="button" aria-expanded="false" aria-controls="collapseExample">
+    Regras/Dicas do Upload Imagens
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
   <ul>
+    <li>Remova o fundo das imagens pelo site <a href="https://removal.ai/upload/" target="_blank">Removal.AI</a> </li>
   <li> o arquivo deve ter no máximo 1M</li>
   <li> o arquivo deve ter estar no formato .PNG</li>
   <li>Largura (Width): 13cm </li>
@@ -51,24 +57,31 @@ Regras para upload de arquivo
   <li> CASO TENHA DIFICULDADE EM AJUSTAR A IMAGEM, ENTRE EM CONTATO PELO WATSAPP.</li>
 
 </ul>
+  </div>
 </div>
+
+
+
+  <?php echo form_open_multipart('upload/do_upload/'.$idProduct);?>
+  <div class="form-group">
+  
       <div class="col-md-6">
       <label >Arquivo</label>
-
+      <div class="alert alert-warning" role="alert">
+     <b> Atenção: Para melhor qualidade da imagem, antes de efetuar o UPLOAD, remova o fundo através do site <a href="https://removal.ai/upload/" target="_blank">Removal.AI</a> 
+</b> 
+    </div>
+      
 <div class="input-group">
 
 <input type="file" class="form-control" id="userfile" name="userfile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 
 <input type="hidden" name="productId" value="<?php echo $idProduct; ?>">
-<button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Button</button>
+<button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
 </div> 
 
 </form>
  
-<br>
-<a title="Voltar" href="<?php echo base_url('encarte/testImage/'.$idProduct.'/'.$this->ion_auth->user()->row()->id)?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Ajustar Dimensões do Produto</a>
-<br>
-
 
 <br/>
      <?php 
@@ -77,6 +90,9 @@ Regras para upload de arquivo
       <div class="alert alert-secondary" role="alert">
      <b> Imagem:</b> <?=$productData->image_link;?>
     </div>
+    <a title="Voltar" href="<?php echo base_url('encarte/testImage/'.$idProduct.'/'.$this->ion_auth->user()->row()->id)?>" class="btn btn-primary btn-sm float-left" role="button" aria-expanded="false" aria-controls="collapseExample" ></i>&nbsp;Ajustar Dimensões do Produto</a>
+     </br></br>
+     
     <?php
     // if ($productIdFromUpload) { ?>
 

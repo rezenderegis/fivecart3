@@ -23,11 +23,7 @@
                    
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-
-                            <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
-
-                        </div>
+                        
 
                         <div class="card-body">
  <?php 

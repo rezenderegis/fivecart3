@@ -62,44 +62,43 @@
  <td><?=$publish->header2?></td>
  <tr>
 </table>
-<a title="Alterar Dados" href="<?php echo base_url('encarte/edit/'.$idProductList);?>" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Dados</a>
+<a title="Alterar Dados" href="<?php echo base_url('encarte/edit/'.$idProductList);?>" class="btn btn-primary btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Dados</a>
 
 </div>
 
 <div class="card-header py-3">
 <form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/addProduct/'.$idProductList);?>">
 
-<select class="form-control form-control-lg" name="product">
+<select class="form-control form-control-sm col-sm-6" name="product" >
 <?php foreach ($products as $product) {?>
 <option value="<?php echo $product['id'];?>"><?php echo $product['name'];?></option>
 
 <?php }?>
 </select>
 <br>
-  <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+  <button type="submit" class="btn btn-sm btn-primary">Adicionar Produto</button>
 
 </form>
 
                         <?php
                         if ($publish->id_template != '') { ?>
                         
-                        <table align="right">
+                        <table align="left">
                             <tr>
                            <td>
-                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a> 
+                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a> 
                         </td>
                         <td>
-                            <a title="Alterar Template" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Alterar Template</a>
+                            <a title="Alterar Template" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Alterar Template</a>
                         </td>
 
-                       
-                       
-                        </tr>
 
-                        </table>
                             <?php } else { ?>
-                        <a title="Gerar Encarte" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-success btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Gerar Encarte</a>
-                               <?php }?>     
+                        <a title="Gerar Encarte" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-primary btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Gerar Encarte</a>
+                               <?php }?> 
+                               </tr>
+    
+                               </table>
 
                         </div>
                         <div class="card-body">
@@ -107,22 +106,20 @@
                                 <table class="table table-bordered dataTable"  width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
                                             <th>Produto</th>
+
                                             <th>Preço</th>
-                                            <th class="text-right no-sort">Ação</th>
+                                            <th class="text-right no-sort"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php //print_r($productPublish); die();?>
                                         <?php foreach ($productPublish as $productPub) : ?>
                                         <tr>
-                                            <td><?=$productPub['id_product_publish']?></td>
                                             <td><?=$productPub['name'] ?></td>
-                                            <td class="money"><?=$productPub['price']?></td>
-                  
+                                            <td>   <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money"><?=$productPub['price']?></a> </td>
+
                                             <td class="text-right">
-                                            <a title="Editar" href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a> 
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
 
                                             </td>

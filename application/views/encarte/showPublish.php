@@ -340,6 +340,7 @@ height: <?=$product['image_height']?>;"  <?php }?>
 </div>
 </div>
 <script>
+  
 function goBack() {
   window.history.back();
 }

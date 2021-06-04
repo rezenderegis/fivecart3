@@ -50,15 +50,6 @@ Informações Padronizadas para Seus Encartes
  <div class="card shadow mb-4">
 
  
-                        <div class="card-header py-3">
-
-                        <?php if ($this->ion_auth->is_admin()) {?>
-                        <a title="Voltar" href="<?php echo base_url('usuario')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
-                          <?php } else { ?>
-                            <a title="Voltar" href="<?php echo base_url('Home')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
-                            <?php } ?>
-
-                        </div>
 
                         <div class="card-body">
 <form method="POST" name="form_editUserDetails">
