@@ -376,7 +376,7 @@ height: <?=$productPublish->image_height?>;"  <?php }?>
               <label >Largura  </label>
     </td>
     <td>
-              <input name = "image_width" type="number" value="<?=$productPublish->image_width ?>" min="20" max="150" step="10" class="button_spinner"/>
+              <input name = "image_width" type="number" value="<?=$productPublish->image_width ?>" min="20" max="500" step="10" class="button_spinner"/>
     </td>
             </div>
     
@@ -386,7 +386,7 @@ height: <?=$productPublish->image_height?>;"  <?php }?>
       <label >Altura</label>
     </td>
     <td>
-      <input name = "image_height" type="number" value="<?=$productPublish->image_height ?>" min="20" max="150" step="10" class="button_spinner"/>
+      <input name = "image_height" type="number" value="<?=$productPublish->image_height ?>" min="20" max="500" step="10" class="button_spinner"/>
     </td>
     </div>
     </tr>

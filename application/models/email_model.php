@@ -7,8 +7,8 @@ class Email_model extends CI_Model {
 	
 	public function __construct() {
 		parent::__construct();
-		//$this->enderecoServidor = 'http://localhost:8888/fivecart3/';
-		$this->enderecoServidor = 'http://www.meusencartes.com.br/fivecart3/';
+		$this->enderecoServidor = 'http://localhost:8888/fivecart3/';
+		//$this->enderecoServidor = 'http://www.meusencartes.com.br/fivecart3/';
 		
 	}
 	
@@ -163,6 +163,67 @@ class Email_model extends CI_Model {
 			return $this->email->print_debugger ();
 		} 
 	}
+
+	
+
+
+	public function resendCode($email=0) {
+		
+		if(!extension_loaded('openssl'))
+		{
+			throw new Exception('This app needs the Open SSL PHP extension.');
+		}
+		
+		date_default_timezone_set ( "America/Sao_Paulo" );
+				
+		$dados_usuario = $this->core_model->getById('users',array('email' => $email));
+	
+		$endereco = $this->enderecoServidor."account/confirmAccount/".$dados_usuario->activation_selector;
+	
+		// $endereco = "http://localhost/mysale/index.php/usuarios/alterar_senha";
+		$inicio = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<meta http-equiv='content-type' content='text/html; charset=utf-8' />
+<title>Meus Encartes</title>
+</head>
+
+<body>
+<p><img src='http://meusencartes.com.br/Images/logo_meus_encartes.png' id='logo' alt='Meus Encartes' width='100' height='100' /></p> 
+
+    <p class='text'><strong>Ol&aacute; </strong></p>
+    <p class='text'>Bem vindo aos Meus Encartes. </p>
+    <p class='text'>Acesse seu e-mail e clique no <a href=" . $endereco .">link</a> para ativar sua conta.    </p>
+    <p class='text'>Atenciosamente, </p>
+    <p align='center' class='text'><strong>Equipe Meus Encartes</strong></p>
+    <p align='center' class='text'><strong>Encartes para seu com&eacute;rcio em alguns segundos!</strong></p>
+<hr />
+    <p class='text'>&nbsp;</p>
+
+</body>
+</html>";
+	
+		$meio = "";
+		
+		$rodape = "";
+		
+		$mensagem_completa = $inicio . $meio . $rodape;
+		$this->load->library ( 'email' );
+		
+		$this->email->from ( 'info@meusencartes.com.br', 'Meus Encartes - Ativar Conta! ' );
+		$this->email->to ($dados_usuario->email);
+		
+		$this->email->subject ( 'Meus Encartes - Bem Vindo!' );
+		$this->email->message ( $mensagem_completa );
+		
+		if ($this->email->send ()) {
+			 $this->session->set_flashdata("success", "Solicitação feita com sucesso!");
+			} else {
+			show_error ( $this->email->print_debugger () );
+			return $this->email->print_debugger ();
+		} 
+	}
+
 	
 	
 }

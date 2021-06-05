@@ -29,7 +29,25 @@ public function auth() {
     $password = $this->security->xss_clean($this->input->post('password'));
     $remember = FALSE; // remember the user
     //echo $identity."pass ".$password; die();
-    //print_r($this->ion_auth->login($identity, $password, $remember)); die();
+    $dataUser = $this->core_model->getById('users', array('email' => $this->input->post('email'), 'active' => 0));
+    if ($dataUser) {
+        $email = $this->input->post('email');
+
+        /**    
+        $this->session->set_flashdata('error', 'Seu e-mail ainda não foi confirmado. <br/>Cliqe no link para reeenviar!
+        <a href="localhost:8888/fivecart3/account/resendCode/'.$email.'>">REENVIAR CÓDIGO</a> ');  
+         * 
+         */
+        $this->load->model("email_model");
+
+        $this->email_model->resendCode($this->input->post('email'));
+        $this->session->set_flashdata('error', 'O código de acesso foi reenviado ao seu e-mail. <br/><b>Entre no seu e-mail e confirme</b>');
+\       redirect ('login');
+    } else {
+        
+    
+
+    
     if ($this->ion_auth->login($identity, $password, $remember)) {
         
         $getProductPublish =  $this->core_model->get_all('publish', array ('id_user' => $this->ion_auth->user()->row()->id, 'status'=> 1 ));
@@ -45,6 +63,7 @@ public function auth() {
        redirect ('login');
 
     }
+}
 
 }
 

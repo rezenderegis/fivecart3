@@ -155,7 +155,6 @@ class Account extends CI_Controller  {
 
                 }
 
-
                 redirect ('login');
               
         } else {
@@ -606,15 +605,14 @@ if ($this->form_validation->run()) {
 
     }
 
+    public function resendCode($email=0) {
+       
+
+        $this->session->set_flashdata('info','E-mail enviado com sucesso! Aguarde contato!');
+
+        redirect ('login');
+    }
 
 }
-
-
-
-
-
-
-
-
 
 ?>
