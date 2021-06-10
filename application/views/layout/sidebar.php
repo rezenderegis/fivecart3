@@ -32,6 +32,8 @@
             <h6 class="collapse-header">Administrativo</h6>
             <a class="collapse-item" href="<?=base_url('encarte/productList'); ?>"> Meus Encartes</a>
             <a class="collapse-item"  href="<?=base_url('usuario'); ?>"><i class="fas fa-users"></i> Usuários</a>
+            <a class="collapse-item"  href="<?=base_url('product/showAllProducts'); ?>"><i class="fas fa-users"></i> Imagem Produtos</a>
+
         </div>
     </div>
 </li>

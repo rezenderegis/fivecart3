@@ -169,6 +169,15 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
+    public function getAllProductsComplete() {
+        $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description,p.* FROM product_customer pc inner join products p on pc.id_product = p.id
+        and pc.id_user = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+
+
+    }
+
     public function getPublishWithTemplate() {
         $sql = " select p.id, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,date_format(p.date, '%d/%m/%Y') dates_creation
         from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$this->ion_auth->user()->row()->id." order by p.date desc";
