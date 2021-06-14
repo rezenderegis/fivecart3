@@ -188,7 +188,7 @@ if ($this->form_validation->run()) {
     public function add($type = 0) {
       
         if (strcmp($type, 'first') == 0) {
-            $titulo = '1 - Cadastre o primero produto e crie seu encarte';
+            $titulo = 'Cadastre o primero produto e crie seu encarte';
             $this->session->set_userdata('type_product', 'first');
         } else {
             $titulo = 'Cadastrar Produto';

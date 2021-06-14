@@ -34,7 +34,8 @@ div.cabecalho {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                 <div class="cabecalho">
-                Insira a logo da sua Empresa
+                
+               1 - Complete seu cadastro e insira sua logo
 </div>
        
 

@@ -77,7 +77,8 @@
                                 <option value="4">Cosméticos</option>
                                 <option value="5">Hamburgeria</option>
                                 <option value="6">Restaurante</option>
-                                <option value="7">Outros</option>
+                                <option value="7">Distribuidora de Bebidas</option>
+                                <option value="100">Outros</option>
 
                                 </select>
                                 <?php echo form_error('shop_type', '<small class = "form-text text-danger">','</small>');?>
