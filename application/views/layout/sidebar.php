@@ -58,7 +58,7 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Encartes</h6>
-            <a class="collapse-item" href="<?=base_url('encarte/allCarts'); ?>">Templates Disponíveis</a>
+            <a class="collapse-item" href="<?=base_url('encarte/allCarts'); ?>">Modelos Disponíveis</a>
             <a class="collapse-item" href="<?=base_url('encarte/productList1'); ?>"> Meus Encartes</a>
             <a class="collapse-item" href="<?=base_url('product'); ?>">Produtos</a>
             <a class="collapse-item" href="<?=base_url('usuario/editUserDetails'); ?>">Detalhes do Usuário</a>

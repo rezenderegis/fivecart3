@@ -84,15 +84,15 @@ class Encarte extends CI_Controller {
 
 
     public function productList1($idPublish=0) {
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
 
         $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
-        if ($logo->image_link == 'no-image-icon-23485.png'){
-           redirect ('usuario/editUserDetails');
+        if ($logo->image_link == 'no-image-icon-23485.png' || count($userProducts) == 0){
+           redirect ('encarte/allCarts');
         } else {
             
         
 
-        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
         if (count($userProducts) == 0) {
             $type="first";
         } else {
