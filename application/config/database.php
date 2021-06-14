@@ -97,6 +97,7 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
+
 //Produção
 /*
 $db['default'] = array(

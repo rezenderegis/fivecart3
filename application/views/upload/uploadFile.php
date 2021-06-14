@@ -49,7 +49,7 @@ Regras para upload de arquivo
 <input type="file" class="form-control" id="userfile" name="userfile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 
 <input type="hidden" name="genericIdUpload" value="<?php echo $idProduct; ?>">
-<button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Button</button>
+<button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Salvar</button>
 </div> 
 
 </form>

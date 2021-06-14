@@ -34,7 +34,7 @@ div.cabecalho {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                 <div class="cabecalho">
-Informações Padronizadas para Seus Encartes
+                Insira a logo da sua Empresa
 </div>
        
 

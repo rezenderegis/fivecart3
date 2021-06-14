@@ -85,7 +85,7 @@ div.cabecalho {
                 <div class="container-fluid">
 
                 <div class="cabecalho">
-Escolha o Layout para criar seu encarte
+Escolha o MODELO para criar seu encarte
 </div>
              
 </head>

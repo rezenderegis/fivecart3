@@ -85,6 +85,13 @@ class Encarte extends CI_Controller {
 
     public function productList1($idPublish=0) {
 
+        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
+        if ($logo->image_link == 'no-image-icon-23485.png'){
+           redirect ('usuario/editUserDetails');
+        } else {
+            
+        
+
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
         if (count($userProducts) == 0) {
             $type="first";
@@ -128,7 +135,7 @@ class Encarte extends CI_Controller {
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/productList1');
         $this->load->view('layout/footer');
-
+    }
     
     }
 
@@ -339,6 +346,11 @@ class Encarte extends CI_Controller {
 
     public function addFromCart($idTemplate=0) {
 
+        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
+        if ($logo->image_link == 'no-image-icon-23485.png'){
+           redirect ('usuario/editUserDetails');
+        } else {
+
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
             if (count($userProducts) == 0) {
                 $type="first";
@@ -383,7 +395,7 @@ class Encarte extends CI_Controller {
            
         }
             }
-
+        }
     }
 
 

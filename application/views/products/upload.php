@@ -77,7 +77,7 @@
 <input type="file" class="form-control" id="userfile" name="userfile" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
 
 <input type="hidden" name="productId" value="<?php echo $idProduct; ?>">
-<button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
+<button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Inserir</button>
 </div> 
 
 </form>

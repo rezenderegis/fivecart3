@@ -243,6 +243,20 @@ h4{margin:0;width:400px; text-transform: capitalize; }
 <script src="<?php echo base_url('public/vendor/mask/jquery.mask.min.js'); ?>"></script>
 <script src="<?php echo base_url('public/vendor/mask/app.js'); ?>"></script>
 
+<div class="card-header py-3">
+<form method="POST" name="" action ="<?php echo base_url('product/showAllProducts/1');?>">
+
+<select class="form-control form-control-sm col-sm-6" name="cathegory" >
+<?php foreach ($cathegoryes as $cathegory) {?>
+<option value="<?php echo $cathegory->id;?>"><?php echo $cathegory->name.'-'.$cathegory->id;?></option>
+
+<?php }?>
+</select>
+<br>
+  <button type="submit" class="btn btn-sm btn-primary">Adicionar Produto</button>
+
+</form>
+
 
 <div id="content">
 </div>
@@ -317,7 +331,7 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 height: <?=$product['image_height']?>;"  <?php }?>
     >
 
-    <div class="textocentro"><?php echo 'R$'.number_format($product['price'], 2, ',', '.'); ?> </div>
+    <div class="textocentro"><?php echo 'R$'.number_format(0.00, 2, ',', '.'); ?> </div>
 </div>
     <div class="desc"><?=$product['name']?></div>
     <div class="desc"><?=$product['image_link']?></div>
