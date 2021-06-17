@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="content-language" content="pt-BR" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="icon" type="image/png" href="http://www.pagpouco.com/img/icons/196.png" sizes="196x196">
+	<link rel="icon" type="image/png" href="http://www.pagpouco.com/img/icons/160.png" sizes="160x160">
+	<link rel="apple-touch-icon" sizes="152x152" href="http://www.pagpouco.com/img/icons/152.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="http://www.pagpouco.com/img/icons/144.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="http://www.pagpouco.com/img/icons/120.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="http://www.pagpouco.com/img/icons/114.png">
+	<link rel="icon" type="image/png" href="http://www.pagpouco.com/img/icons/96.png" sizes="96x96">
+	<link rel="apple-touch-icon" sizes="76x76" href="http://www.pagpouco.com/img/icons/76.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="http://www.pagpouco.com/img/icons/72.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="http://www.pagpouco.com/img/icons/60.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="http://www.pagpouco.com/img/icons/57.png">
+	<link rel="icon" type="image/png" href="http://www.pagpouco.com/img/icons/32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="http://www.pagpouco.com/img/icons/16.png" sizes="16x16">
+	<link rel="canonical" href="http://www.pagpouco.com/pagina-nao-encontrada/" />
+	<link rel="alternate" media="only screen and (max-width: 767px)" href="http://m.pagpouco.com/pagina-nao-encontrada/" />
+	<title>Página não Encontrada no PagPouco</title>
+	<meta name="description" content="Infelizmente, essa página não existe no PagPouco"/>
+	<meta name="keywords" content="pagpouco"/>
+	<meta name="robots" content="noindex, follow" />
+	<meta name="author" content="PagPouco" />
+	<meta property="og:title" content="Página não Encontrada no PagPouco" />
+	<meta property="og:description" content="Infelizmente, essa página não existe no PagPouco" />
+	<meta property="og:url" content="http://www.pagpouco.com/pagina-nao-encontrada/" />
+	<meta property="og:image" content="http://www.pagpouco.com/img/share-fb.png" />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="pt_BR" />
+	<meta property="og:site_name" content="PagPouco" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="http://www.pagpouco.com/css/style.css" />
+	<link rel="icon" type="image/png" href="http://www.pagpouco.com/img/favicon.png" />
+	
+	
+	
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		
+		
+		<!-- Menu normal !-->
+<div class="row margin-bottom-138-xs">
+
+	<div class="col-xs-12 position-fixed-xs z-index-2-xs">
+
+		<div class="row bg-az1 wh height-42">
+
+			<div class="col-sm-8 margin-top-10 margin-bottom-5">
+
+				<a href="#" class="btn-sm size2 wh" href="#" data-toggle="modal" data-target="#login" title="Entrar"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Entrar</a> |
+				<a href="http://www.pagpouco.com/cadastro" class="btn-sm size2 wh" title="Cadastre-se"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Cadastre-se </a> | 
+				<a href="https://www.facebook.com/v2.4/dialog/oauth?client_id=143910545959612&state=50de4ed28ece36df170aa35887d24a98&response_type=code&sdk=php-sdk-5.0.0&redirect_uri=http%3A%2F%2Fwww.pagpouco.com%2Fact-facebook%2F%3Fretorno%3Dhttp%3ABARRAREPLACEBARRAREPLACEwww.pagpouco.comBARRAREPLACEimgBARRAREPLACEprodutosBARRAREPLACE7891164002893.jpg&scope=email%2Cuser_birthday%2Cuser_location" class="btn-sm size2 wh" onclick="loginfb.submit();" title="Entrar com o seu Facebook"><i class="fa fa-facebook-square font-size-16"></i> Entrar com o seu Facebook</a> <span class="hidden-sm">|
+				<a href="http://www.pagpoucob2b.com" class="btn-sm size2 wh" title="PagPouco B2B" target="_blank">B2B</a> | 
+				<a href="http://www.pagpoucob2b.com/franquia" class="btn-sm size2 wh" title="Franquias" target="_blank">Franquias</a></span>
+					
+			</div>
+
+			<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+
+                      <div class="modal-header">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            <h3 class="modal-title" id="myModalLabel">Faça Login ou Cadastre-se</h3>
+
+                      </div>
+
+                      
+                      <div class="modal-body">
+
+                             <div class="row">
+
+                                    <div class="col-xs-12 col-sm-6 borda-right-az2-dot borda-bottom-az2-dot-xs padding-bottom-15-xs border-right-0-xs" id="logar" style="">
+
+                                          <h4>Login 
+
+                                          
+                                          </h4>
+
+                                           <form name="login" method="post" action="http://www.pagpouco.com/action/login.php">
+
+                                           <input type="hidden" name="retorno" value="http://www.pagpouco.com/img/produtos/7891164002893.jpg">
+
+          	                                      <p class="margin-top-15"><input type="text" class="form-control" placeholder="Informe o seu e-mail" name="email"></p>
+
+          	                                      <p class="margin-top-15 input-group">
+
+          	                                             <input type="password" class="form-control" name="senha" placeholder="Informe a sua senha">
+          	                                             <span class="input-group-btn"><input type="submit" class="btn but-az border-radius-4 borda-az1" value="Acessar"></span>
+
+          	                                      </p>
+
+                                            </form>
+
+	                                    <p><a href="#" class="size2" onclick="document.getElementById('logar').style.display='none'; document.getElementById('lembrarsenha').style.display='block';" title="Esqueci minha senha">Esqueci minha senha</a></p>
+
+	                                    <p><a href="https://www.facebook.com/v2.4/dialog/oauth?client_id=143910545959612&state=50de4ed28ece36df170aa35887d24a98&response_type=code&sdk=php-sdk-5.0.0&redirect_uri=http%3A%2F%2Fwww.pagpouco.com%2Fact-facebook%2F%3Fretorno%3Dhttp%3ABARRAREPLACEBARRAREPLACEwww.pagpouco.comBARRAREPLACEimgBARRAREPLACEprodutosBARRAREPLACE7891164002893.jpg&scope=email%2Cuser_birthday%2Cuser_location" class="btn btn-md but-az size1 float-right" title="Entrar com o seu Facebook"><i class="fa fa-facebook-square"></i> Entrar com o seu Facebook</a></p>
+
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 borda-right-az2-dot borda-bottom-az2-dot-xs padding-bottom-15-xs border-right-0-xs" id="lembrarsenha" style="display:none;">
+
+                                              
+                                              <h4>Não lembra a sua senha?</h4>
+
+                                              <p class="margin-top-15 ci1">Informe o seu e-mail de cadastro. O sistema responderá sua solicitação com as instruções para gerar uma nova senha para você.</p>
+
+                                              <form name="lembrarsenha" method="post" action="http://www.pagpouco.com/action/lembrarsenha.php">
+
+                                              <input type="hidden" name="retorno" value="http://www.pagpouco.com/img/produtos/7891164002893.jpg">
+
+                                              <p class="margin-top-15 input-group">
+                                                     <input type="text" name="email" class="form-control" placeholder="Informe o seu e-mail">
+                                                     <span class="input-group-btn"><input type="submit" class="btn but-az border-radius-4 borda-az1" type="button" value="Enviar Nova Senha"></span>
+                                              </p>
+
+                                              </form>
+                                              <p><a href="#" class="size2" onclick="document.getElementById('logar').style.display='block'; document.getElementById('lembrarsenha').style.display='none';" title="Voltar">Voltar</a></p>
+
+                                    </div>
+
+                                    <form name="precad" method="get" action="http://www.pagpouco.com/cadastro/">
+
+                                     <div class="col-xs-12 col-sm-6">
+
+	                                    <h4>Cadastre-se</h4>
+
+	                                    <p class="margin-top-15"><input type="text" class="form-control" placeholder="Informe o seu nome" name="n"></p>
+
+	                                    <p class="margin-top-15 input-group">
+
+      	                                             <input type="text" class="form-control" placeholder="Informe o seu e-mail" name="e">
+      	                                             <span class="input-group-btn"><button class="btn but-az border-radius-4 borda-az1" type="submit"><span class="glyphicon glyphicon-send padding-0"></span> Continuar</button></span>
+
+	                                    </p>
+
+                                    </div>
+
+                                    </form>
+
+                             </div>
+
+                      </div>
+
+                </div>
+
+        </div>
+
+</div>
+			<div class="col-xs-6 col-sm-4 margin-top-6 margin-bottom-5">
+				
+				<a class="float-right btn-sm but-az size2 az1-xs bg-wh-xs size1-xs" href="#" data-toggle="modal" data-target="#alterarcidade" title="Alterar cidade consultada"><span class="hidden-sm">Melhores ofertas em <b>São Paulo/SP</b></span> <span class="hidden-md hidden-lg">São Paulo/SP</span> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></a>
+				<!-- Modal -->
+<div class="modal fade" id="alterarcidade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+          <div class="modal-dialog modal-lg">
+
+                    <div class="modal-content">
+
+                              <div class="modal-header">
+
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+
+                                        <h3 class="modal-title" id="myModalLabel">Em qual cidade você deseja pesquisar?</h3>
+
+                              </div>
+
+                              <div class="modal-body">
+
+                                        <div class="row">
+
+                                                  
+                                                  <form name="cidade8521" method="post" action="http://www.pagpouco.com/ACT-cidade.php">
+                                                  <input type="hidden" name="retorno" value="http://www.pagpouco.com/img/produtos/7891164002893.jpg">
+                                                  <input type="hidden" name="cidade" value="8521">
+                                                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+                                                  <h4><a onclick="cidade8521.submit();" class="cursor-pointer" title="Belo Horizonte/MG"><i class="fa fa-square-o"></i> Belo Horizonte/MG</a></h4>
+                                                  </div>
+                                                  </form>
+
+                                                  
+                                                  <form name="cidade8541" method="post" action="http://www.pagpouco.com/ACT-cidade.php">
+                                                  <input type="hidden" name="retorno" value="http://www.pagpouco.com/img/produtos/7891164002893.jpg">
+                                                  <input type="hidden" name="cidade" value="8541">
+                                                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+                                                  <h4><a onclick="cidade8541.submit();" class="cursor-pointer" title="Manaus/AM"><i class="fa fa-square-o"></i> Manaus/AM</a></h4>
+                                                  </div>
+                                                  </form>
+
+                                                  
+                                                  <form name="cidade8511" method="post" action="http://www.pagpouco.com/ACT-cidade.php">
+                                                  <input type="hidden" name="retorno" value="http://www.pagpouco.com/img/produtos/7891164002893.jpg">
+                                                  <input type="hidden" name="cidade" value="8511">
+                                                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+                                                  <h4><a onclick="cidade8511.submit();" class="cursor-pointer" title="Rio de Janeiro/RJ"><i class="fa fa-square-o"></i> Rio de Janeiro/RJ</a></h4>
+                                                  </div>
+                                                  </form>
+
+                                                  
+                                                  <form name="cidade3" method="post" action="http://www.pagpouco.com/ACT-cidade.php">
+                                                  <input type="hidden" name="retorno" value="http://www.pagpouco.com/img/produtos/7891164002893.jpg">
+                                                  <input type="hidden" name="cidade" value="3">
+                                                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+                                                  <h4><a onclick="cidade3.submit();" class="cursor-pointer" title="Santos/SP"><i class="fa fa-square-o"></i> Santos/SP</a></h4>
+                                                  </div>
+                                                  </form>
+
+                                                  
+                                                  <form name="cidade1271" method="post" action="http://www.pagpouco.com/ACT-cidade.php">
+                                                  <input type="hidden" name="retorno" value="http://www.pagpouco.com/img/produtos/7891164002893.jpg">
+                                                  <input type="hidden" name="cidade" value="1271">
+                                                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+                                                  <h4><a onclick="cidade1271.submit();" class="cursor-pointer" title="São Paulo/SP"><i class="fa fa-check-square"></i> São Paulo/SP</a></h4>
+                                                  </div>
+                                                  </form>
+
+                                                  
+                                             </div>
+
+                              </div>
+
+                    </div>
+
+          </div>
+
+</div>			
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="thumbnail border-radius-0 border-0 height-81 bg-az1-xs">
+
+				<nav class="navbar header-barra">
+
+					<div class="col-sm-12 margin-top-13">
+
+						<a class="navbar-brand logo" href="http://www.pagpouco.com" title="PagPouco.com"><img src="http://www.pagpouco.com/img/logo.svg"  alt="PagPouco.com" /></a>
+
+						<a href="https://instagram.com/pagpouco" target="_blank" class="float-right" title="Instagram"><i class="fa fa-instagram"></i></a>
+						<a href="https://twitter.com/EuPagoPouco" target="_blank" class="float-right" title="Twitter"><i class="fa fa-twitter"></i></a>
+						<a href="https://www.facebook.com/EuPagoPouco" target="_blank" class="float-right" title="Facebook"><i class="fa fa-facebook"></i></a>
+
+						<form name="buscar1" method="post" action="http://www.pagpouco.com/busca/">
+						
+							<div class="input-group">
+								
+								<input type="text" class="form-control busca" placeholder="Informe o produto e descubra a melhor oferta!" onchange="form.action='http://www.pagpouco.com/busca/' + this.value;">
+								
+								<span class="input-group-btn borda-ci2 bg-ci3 border-left-0 border-radius-32 padding-5">
+									<button class="btn but-busca" type="button" onclick="buscar1.submit();">BUSCAR</button>
+								</span>
+							
+							</div>
+
+						</form>
+
+					</div>
+
+				</nav>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<!-- Menu fixo !-->
+
+<nav class="navbar navbar-fixed-top display-none z-index-2" id="menufixo">
+
+	<div class="row">
+
+		<div class="thumbnail border-radius-0 border-0 height-52 bg-az1">
+
+			<div class="col-sm-12 col-md-12 col-lg-12">
+
+				<a class="navbar-brand logo-fixo" href="http://www.pagpouco.com" title="PagPouco.com"><img class="max-height-32" src="http://www.pagpouco.com/img/logo2.svg" alt="PagPouco.com" /></a>
+
+				<a href="#" class="btn-sm size2 wh float-left margin-top-4 margin-right-30" data-toggle="modal" data-target="#login" title="Meu PagPouco.com"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Entrar</a>
+
+				<a class="float-right btn-sm but-az size2 margin-left-15 margin-top-4" href="#" data-toggle="modal" data-target="#alterarcidade" title="Alterar cidade consultada"><span class="hidden-sm">Melhores ofertas em <b>São Paulo/SP</b></span> <span class="visible-sm-inline">São Paulo/SP</span> <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></a>
+
+				<form name="buscar2" method="get" action="http://www.pagpouco.com/busca/">
+
+					<div class="input-group margin-top-4">
+
+						<input type="text" class="form-control busca-fixo" placeholder="Informe o produto e descubra a melhor oferta!" onchange="form.action='http://www.pagpouco.com/busca/' + this.value;">
+
+						<span class="input-group-btn bg-wh border-left-0 border-radius-32 padding-2">
+							<input type="submit" class="btn but-busca-fixo" value="Buscar">
+						</span>
+
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</nav>
+		<!-- Modal -->
+<div class="modal fade" id="navrapida" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-dialog modal-lg">
+
+                        <div class="modal-content">
+
+                                    <div class="modal-header">
+
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                                <h3 class="modal-title" id="myModalLabel">Navegação Rápida</h3>
+
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                                <div class="row">
+
+                                                            
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/animais" title="Animais"><i class="fa fa-square-o"></i> Animais</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/bazar-e-utilidades" title="Bazar e Utilidades"><i class="fa fa-square-o"></i> Bazar e Utilidades</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/bebidas" title="Bebidas"><i class="fa fa-square-o"></i> Bebidas</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/biscoitos-e-chocolates" title="Biscoitos e Chocolates"><i class="fa fa-square-o"></i> Biscoitos e Chocolates</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/carnes" title="Carnes"><i class="fa fa-square-o"></i> Carnes</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/cereais-e-farinaceos" title="Cereais e Farináceos"><i class="fa fa-square-o"></i> Cereais e Farináceos</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/congelados" title="Congelados"><i class="fa fa-square-o"></i> Congelados</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/especial" title="Especial"><i class="fa fa-square-o"></i> Especial</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/frios-e-laticinios" title="Frios e Laticínios"><i class="fa fa-square-o"></i> Frios e Laticínios</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/hortifruti" title="Hortifruti"><i class="fa fa-square-o"></i> Hortifruti</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/limpeza" title="Limpeza"><i class="fa fa-square-o"></i> Limpeza</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/matinais-e-sobremesas" title="Matinais e Sobremesas"><i class="fa fa-square-o"></i> Matinais e Sobremesas</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/mercearia" title="Mercearia"><i class="fa fa-square-o"></i> Mercearia</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/padaria" title="Padaria"><i class="fa fa-square-o"></i> Padaria</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+
+                                                                   <div class="checkbox"> <a href="http://www.pagpouco.com/categoria/perfumaria-e-higiene" title="Perfumaria e Higiene"><i class="fa fa-square-o"></i> Perfumaria e Higiene</a></div>
+                                                            
+                                                            </div>
+
+                                                          
+                                                </div>
+
+                                    </div>
+
+                        </div>
+
+            </div>
+
+</div>
+		<div class="bg-ci3 border-radius-0 padding-bottom-0 margin-bottom-15 margin-top--4">
+
+			<div class="row">
+
+				<div class="col-sm-12 col-md-12 col-lg-12 margin-0 padding-0 text-center ">
+
+					<a data-toggle="modal" data-target="#navrapida" class="btn-sm size1 ve1 cursor-pointer" title="Todas as categorias"><span class="fa fa-th" aria-hidden="true"></span> Todas as Categorias</a>
+
+					<a href="http://www.pagpouco.com/categoria/supermercado/" class="btn-sm size1 ve1 cursor-pointer" title="Todos os produtos"><span class="fa fa-th-list" aria-hidden="true"></span> Todos os Produtos</a>
+
+					
+					<a href="http://www.pagpouco.com/categoria/bebidas/" class="btn-sm size1" title="Bebidas" target="_blank"><span class="fa fa-glass" aria-hidden="true"></span> Bebidas</a>
+
+					
+					<a href="http://www.pagpouco.com/categoria/supermercado/?FIL_det[]=36&FIL_det[]=108&FIL_det[]=41&FIL_det[]=210&FIL_det[]=51&FIL_det[]=126&FIL_det[]=128&FIL_det[]=219&FIL_det[]=56&FIL_det[]=1263&FIL_det[]=63&FIL_det[]=65&FIL_det[]=66&FIL_det[]=71" class="btn-sm size1" title="Cesta Básica" target="_blank"><span class="fa fa-shopping-cart" aria-hidden="true"></span> Cesta Básica</a>
+
+					
+					<a href="http://www.pagpouco.com/busca/light" class="btn-sm size1" title="Produtos Light" target="_blank"><span class="fa fa-cutlery" aria-hidden="true"></span> Produtos Light</a>
+
+					
+					<a href="http://www.pagpouco.com/busca/integral" class="btn-sm size1" title="Produtos Integrais" target="_blank"><span class="fa fa-spoon" aria-hidden="true"></span> Produtos Integrais</a>
+
+					
+					<a href="http://www.pagpouco.com/categoria/supermercado?FIL_det[]=233&FIL_det[]=202&FIL_det[]=50&FIL_det[]=79&FIL_det[]=83&FIL_det[]=195&FIL_det[]=90&FIL_det[]=89&FIL_det[]=99&FIL_det[]=92" class="btn-sm size1" title="Guloseimas" target="_blank"><span class="fa fa-birthday-cake" aria-hidden="true"></span> Guloseimas</a>
+
+					
+					<a href="https://play.google.com/store/apps/details?id=com.leo_r.pagpouco" class="btn-sm size1" title="APP no Google Play" target="_blank"><span class="fa fa-android" aria-hidden="true"></span> APP no Google Play</a>
+
+					
+					<a href="https://itunes.apple.com/br/app/pagpouco.com-compare-precos/id1097092382?l=pt&ls=1&mt=8" class="btn-sm size1" title="APP na Apple Store" target="_blank"><span class="fa fa-apple" aria-hidden="true"></span> APP na Apple Store</a>
+
+					
+				</div>
+
+			</div>
+
+		</div>
+
+		
+<div class="row">
+
+	<div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
+
+		<div class="thumbnail border-radius-0 padding-20">
+
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+					<h1>Página não encontrada :-(</h1>
+
+				</div>
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 margin-top-20 text-justify">
+
+					Infelizmente, a página que você procurou não existe em nosso site.<br /><br />
+
+					Que tal <a href="http://www.pagpouco.com/categoria/supermercado/" title='Todos os produtos'>clicar aqui</a> e procurar os seus produtos?<br /><br />
+
+					Caso prefira, você também pode <a href="http://www.pagpouco.com/contato" title="Contato">entrar em contato</a> conosco.<br /><br />
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="col-sm-6 col-md-5 col-lg-5">
+
+
+	<div class="row margin-bottom-20">
+
+		<div class="col-sm-12 col-md-12 col-lg-12">
+
+			<a href="http://www.pagpouco.com/cadastro/?utm_source=cta&utm_medium=site_h_3&utm_campaign=Cadastro" title="Cadastro"><img src="http://www.pagpouco.com/img/banners/home-cadastro3.jpg" alt="Cadastre-se" /></a>
+
+		</div>
+
+	</div>
+
+
+	<div class="thumbnail padding-20 border-radius-0" >
+
+		<div class="row">
+
+			<div class="col-sm-12 col-md-12 col-lg-12">
+
+				<div class="media-left media-middle hidden-sm">
+
+					<img src="http://www.pagpouco.com/img/whatsapp.png" alt="WhatsApp" />
+
+				</div>
+
+				<div class="media-left media-middle padding-left-10">
+
+					<b class="size16">Receba promoções personalizadas no WhatsApp!</b><br/>
+					Adicione o contato <span class="white-space-nowrap size16">(11) 9 9323-8766</span> na sua agenda, e envie uma mensagem informando Cidade e Bairro.
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+</div>
+
+	
+	<div class="row bg-az1">
+
+		<div class="col-md-12">
+
+			<div class="row padding-15 bg-az1 wh">
+
+				<div class="col-sm-4 col-md-6 padding-0">
+
+					<a class="btn but-az float-left" href="#" data-toggle="modal" data-target="#alterarcidade" title="Alterar cidade consultada"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> <span class="hidden-sm">Melhores ofertas em</span> <b>São Paulo/SP</b> <i class="fa fa-refresh"></i></a>
+
+				</div>
+
+				<form name="cadaemail" method="get" action="http://www.pagpouco.com/cadastro/">
+
+				<div class="col-xs-12 col-sm-8 col-md-6 padding-0">
+
+					<a href="https://instagram.com/pagpouco" target="_blank" title="Instagram"><i class="fa fa-instagram fa-instagram-wh float-right"></i></a>
+					<a href="https://twitter.com/EuPagoPouco" target="_blank" title="Twitter"><i class="fa fa-twitter fa-twitter-wh float-right"></i></a>
+				  	<a href="https://www.facebook.com/EuPagoPouco" target="_blank" title="Facebook"><i class="fa fa-facebook fa-facebook-wh float-right"></i></a>
+
+					<div class="input-group">
+
+						<input type="text" class="form-control email z-index-1" name="e" placeholder="Informe o seu e-mail e receba as melhores ofertas!">
+						<span class="input-group-btn bg-wh border-left-0 border-radius-32 padding-2"><button class="btn but-email" type="submit">Cadastrar</button></span>
+
+					</div>
+
+				</div>
+
+				</form>
+
+		  	</div>
+
+		</div>
+
+		<div class="col-sm-12">
+
+			<div class="row padding-15 wh borda-top-wh-dot bg-az1">
+
+				<div class="col-sm-4 col-md-3 text-center-xs wh">
+
+					<p><b>O PODER DE COMPRA É SEU!</b></p>
+					<p><a href="http://www.pagpouco.com/o-que-e" class="wh" title="O que é o PagPouco.com"><i class="fa fa-angle-right"></i> O que é o PagPouco.com</a></p>
+					<p><a href="http://blog.pagpouco.com" class="wh" target="_blank" title="Blog do PagPouco.com"><i class="fa fa-angle-right"></i> Blog do PagPouco.com</a></p>
+					<p><a href="http://www.pagpouco.com/contato" class="wh" title="Fale conosco"><i class="fa fa-angle-right"></i> Fale Conosco</a></p>
+										<p><a href="http://www.pagpouco.com/cadastro" class="wh" title="Cadastre-se"><i class="fa fa-angle-right"></i> Cadastre-se</a></p>
+					<p><a href="https://www.facebook.com/v2.4/dialog/oauth?client_id=143910545959612&state=50de4ed28ece36df170aa35887d24a98&response_type=code&sdk=php-sdk-5.0.0&redirect_uri=http%3A%2F%2Fwww.pagpouco.com%2Fact-facebook%2F%3Fretorno%3Dhttp%3ABARRAREPLACEBARRAREPLACEwww.pagpouco.comBARRAREPLACEimgBARRAREPLACEprodutosBARRAREPLACE7891164002893.jpg&scope=email%2Cuser_birthday%2Cuser_location" class="wh" title="Entrar com o seu Facebook"><i class="fa fa-facebook-square"></i> Entrar com o seu Facebook</a></p>
+										<p><a href="https://play.google.com/store/apps/details?id=com.leo_r.pagpouco" target="_blank" title="Baixe no Google Play"><img src="http://www.pagpouco.com/img/google-play.png" alt="Baixe no Google Play" /></a> <a href="https://itunes.apple.com/br/app/pagpouco.com-compare-precos/id1097092382?l=pt&ls=1&mt=8" target="_blank" title="Baixe na Apple Store"><img src="http://www.pagpouco.com/img/apple-store.png" alt="Baixe na Apple Store" /></a></p>
+
+				</div>
+
+				<div class="col-sm-4 col-md-3">
+
+					<p><b>PAGPOUCO PARA EMPRESAS</b></p>
+					<p style="margin-top: 20px;"><a href="http://www.pagpoucob2b.com" target="_blank" title="PagPouco B2B"><img src="http://www.pagpoucob2b.com/img/logo.svg" alt="PagPouco B2B"></a></p>
+					<p style="margin-top: 20px;"><a href="http://www.pagpoucob2b.com" target="_blank" class="wh" title="PagPouco B2B">Conheça a Plataforma B2B do PagPouco, divulgue os seus produtos online e venda mais</a></p>
+
+					<p style="margin-top: 40px;"><b>SEJA UM FRANQUEADO</b></p>
+					<p><a href="http://www.pagpoucob2b.com/franquia" target="_blank" class="wh" title="Franquias">Leve o PagPouco para a sua região e revolucione o varejo nacional conosco</a></p>
+
+				</div>
+
+				<div class="col-sm-4 col-md-3 text-center-xs">
+
+					<p><b>CONTATO</b></p>
+					<p><i class="fa fa-angle-right"></i>  Av. Angélica, 819 / Sala 51 - São Paulo/SP</p>
+					<p><i class="fa fa-angle-right"></i>  Fone: (11) 3666.7034 / (13) 3322.7293</p>
+					<p><i class="fa fa-angle-right"></i>  WhatsApp: (11) 9 9323.8766</p>
+					<p><i class="fa fa-angle-right"></i>  E-mail: <a href="mailto:contato@pagpouco.com" class="wh" title="Enviar email">contato@pagpouco.com</a></p>
+					<p><a href="http://www.pagpouco.com/contato" class="wh" title="Contato"><i class="fa fa-angle-right"></i>  Clique aqui e envie a sua mensagem</a></p>
+
+				</div>
+
+				<div class="hidden-sm col-md-3 text-center">
+
+					<p><a href="http://www.pagpouco.com" title="PagPouco.com"><img src="http://www.pagpouco.com/img/logo3.svg" alt="PagPouco.com" /></a></p>
+
+					<p class="margin-top-30"><b>EVENTOS</b></p>
+					<p><a href="http://brasil.campus-party.org/" title="Campus Party 2016" target="_blank"><img src="http://www.pagpouco.com/img/campusparty.svg" alt="Campus Party 2016" /></a></p>
+					<p class="margin-top-30"><a href="http://hotsite.fiesp.com.br/acelera/" title="Acelera Startup" target="_blank"><img src="http://www.pagpouco.com/img/acelera.svg" alt="Acelera" /></a></p>
+
+					<p class="margin-top-30"><b>DESENVOLVIMENTO</b></p>
+					<p><a href="http://www.10fc.com.br" title="10FC" target="_blank"><img src="http://www.pagpouco.com/img/10fc.svg" alt="10FC" /></a></p>
+
+				</div>
+
+				<div class="col-xs-12 text-center">
+
+					<p class="margin-top-30 padding-top-15 borda-top-az3-dot text-center"><b>PagPouco.com - O poder de compra é seu</b> &copy; Todos os direitos reservados.</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	
+</div> <!--/.container-fluid -->
+
+
+<!-- JavaScript Includes -->
+<script src="http://www.pagpouco.com/dist/js/bootstrap.min.js"></script>
+<script src="http://www.pagpouco.com/js/tests/vendor/jquery.min.js"></script>
+<script src="http://www.pagpouco.com/js/dropdown.js"></script>
+<script src="http://www.pagpouco.com/js/carousel.js"></script>
+<script src="http://www.pagpouco.com/js/transition.js"></script>
+<script src="http://www.pagpouco.com/js/tooltip.js"></script>
+<script src="http://www.pagpouco.com/js/modal.js"></script>
+<script src="http://www.pagpouco.com/js/collapse.js"></script>
+<script src="http://www.pagpouco.com/js/alert.js"></script>
+<script> $(function () { $('[data-toggle="tooltip"]').tooltip() }) </script>
+
+<!-- JavaScript Actions -->
+
+<!-- Adicionando produtos à lista -->
+<script>
+function AddProduto(codigo){
+
+	$.ajax({
+	url: 'http://www.pagpouco.com/action/atualizarlista.php',
+	type: 'POST',
+	data:({
+	codigo: codigo
+	}),
+
+	success:function(result) {
+
+		var resultado = jQuery.parseJSON(result);
+
+		if(resultado.botao == "N"){
+
+			document.getElementById(codigo + "N").style.display = 'inline';
+			document.getElementById(codigo + "S").style.display = 'none';
+
+		} else {
+
+			document.getElementById(codigo + "N").style.display = 'none';
+			document.getElementById(codigo + "S").style.display = 'inline';
+
+		}
+
+		$("#lista_qtd1").html(resultado.qtd);
+		$("#lista_qtd2").html(resultado.qtd);
+
+	}
+});
+}
+
+function AddProduto2(codigo){
+
+	$.ajax({
+	url: 'http://www.pagpouco.com/action/atualizarlista.php',
+	type: 'POST',
+	data:({
+	codigo: codigo
+	}),
+
+	success:function(result) {
+
+		var resultado = jQuery.parseJSON(result);
+
+		if(resultado.botao == "N"){
+
+			document.getElementById(codigo + "N2").style.display = 'block';
+			document.getElementById(codigo + "S2").style.display = 'none';
+
+		} else {
+
+			document.getElementById(codigo + "N2").style.display = 'none';
+			document.getElementById(codigo + "S2").style.display = 'block';
+
+		}
+
+		$("#lista_qtd1").html(resultado.qtd);
+		$("#lista_qtd2").html(resultado.qtd);
+
+	}
+});
+}
+</script>
+
+<!-- Adicionando mercados para seguir -->
+<script>
+function AddMercado(id_estab){
+
+	$.ajax({
+	url: 'http://www.pagpouco.com/action/atualizarmercados.php',
+	type: 'POST',
+	data:({
+	id_estab: id_estab
+	}),
+
+	success:function(result) {
+
+		var resultado = jQuery.parseJSON(result);
+
+		if(resultado.botao == "N"){
+
+			document.getElementById(id_estab + "SN2").style.display = 'inline';
+			document.getElementById(id_estab + "SS2").style.display = 'none';
+
+		} else {
+
+			document.getElementById(id_estab + "SN2").style.display = 'none';
+			document.getElementById(id_estab + "SS2").style.display = 'inline';
+
+		}
+
+	}
+});
+}
+</script>
+
+<script type="text/javascript">
+	$(window).load(function(){
+	$('#bemvindo').modal('show');
+	});
+	</script><!-- Modal -->
+<div class="modal fade" data-backdrop="static" id="bemvindo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+     <div class="modal-dialog modal-md">
+
+          <div class="modal-content padding-30">
+
+               <div class="modal-body">
+
+                    <div class="row">
+
+                         <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 text-center size18">
+
+                              <b class="az1">SEJA BEM-VINDO(A) AO PAGPOUCO.COM!</b><br /><br />
+
+                             Comparamos milhares de preços em supermercados para você economizar tempo e dinheiro.
+
+                         </div>
+
+                         
+                         <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 text-center size18 margin-top-30">
+
+                              <form method="post" name="minhacidade">
+
+                                   <select class="form-control" onchange="form.action='http://www.pagpouco.com/' + this.value; form.submit();">
+
+                                             <option value="santos/?BV=1">Alterar para Santos/SP</option><option value="sao-paulo/?BV=1" selected>Minha cidade é São Paulo/SP</option><option value="rio-de-janeiro/?BV=1">Alterar para Rio de Janeiro/RJ</option><option value="belo-horizonte/?BV=1">Alterar para Belo Horizonte/MG</option><option value="manaus/?BV=1">Alterar para Manaus/AM</option>
+                                             <option value="cadastro">Cadastre-se e peça a sua cidade</option>
+
+                                   </select>
+
+                              </form>
+
+                         </div>
+
+                         
+                         <div class="col-sm-12 col-md-12 col-lg-12 text-center margin-top-30">
+
+                                        <a href="http://www.pagpouco.com/cadastro/?utm_source=cta&utm_medium=botaobemvindo&utm_campaign=Cadastro" class="btn but-ve btn-lg border-radius-30 size16" title="Cadastre-se gratuitamente"><i class="fa fa-users"></i> Cadastre-se gratuitamente para acessar ferramentas incríveis!</a>
+
+                         </div>
+
+                         <div class="col-sm-12 col-md-12 col-lg-12 text-center margin-top-15">
+
+                              ou
+
+                         </div>
+
+                         <div class="col-sm-12 col-md-12 col-lg-12 text-center margin-top-15">
+
+                                        <a href="https://www.facebook.com/v2.4/dialog/oauth?client_id=143910545959612&state=50de4ed28ece36df170aa35887d24a98&response_type=code&sdk=php-sdk-5.0.0&redirect_uri=http%3A%2F%2Fwww.pagpouco.com%2Fact-facebook%2F%3Fretorno%3Dhttp%3ABARRAREPLACEBARRAREPLACEwww.pagpouco.comBARRAREPLACEimgBARRAREPLACEprodutosBARRAREPLACE7891164002893.jpg&scope=email%2Cuser_birthday%2Cuser_location" class="btn but-az btn-lg border-radius-30 size16" title="Entrar com o seu Facebook"><i class="fa fa-facebook-square font-size-16"></i> Entrar com o seu Facebook</a><br /><br />
+                                        <a href="" title="Veja os preços agora" data-dismiss="modal">Veja os preços agora</a>
+
+                         </div>
+
+                    </div>
+
+               </div>
+
+          </div>
+
+     </div>
+
+</div>
+<script type="text/javascript">
+	
+	onscroll = function(){
+
+		var Scro = document.documentElement.scrollTop||document.body.scrollTop;
+
+		if( Scro > 122 ){
+
+			 $("#menufixo").fadeIn('1000');
+
+		} else {
+
+			$("#menufixo").fadeOut('1000');
+
+		}
+
+	}
+
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-25464004-6', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+var _ss = _ss || [];
+_ss.push(['_setDomain', 'https://koi-3QMYM89ZM0.marketingautomation.services/net']);
+_ss.push(['_setAccount', 'KOI-2HSHHZESI']);
+_ss.push(['_trackPageView']);
+(function() {
+    var ss = document.createElement('script');
+    ss.type = 'text/javascript'; ss.async = true;
+
+    ss.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'koi-3QMYM89ZM0.marketingautomation.services/client/ss.js?ver=1.1.1';
+    var scr = document.getElementsByTagName('script')[0];
+    scr.parentNode.insertBefore(ss, scr);
+})();
+</script>
+
+
+</body>
+</html>
+

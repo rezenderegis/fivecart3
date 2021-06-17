@@ -242,7 +242,17 @@ h4{margin:0;width:400px; text-transform: capitalize; }
 <script src="<?php echo base_url('public/vendor/jquery/html2canvas.js'); ?>"></script>
 <script src="<?php echo base_url('public/vendor/mask/jquery.mask.min.js'); ?>"></script>
 <script src="<?php echo base_url('public/vendor/mask/app.js'); ?>"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JY9TND5J09"></script>
+<script>
 
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JY9TND5J09');
+  
+</script>
 
 <div id="content">
 </div>
@@ -294,7 +304,10 @@ this tag to test and worked. I went to container2 and decrease padding of 1% to 
 <!-- style="background-color: #FFFFFF;  width: 452px; height: 1025px;" -->
 <div class="container_text_button">
   <?php if ($template->has_logo == 0) { ?>
-<img class = "logo" src="<?= base_url() . "images/logos/".$user_detail->image_link; ?>">  
+<img class = "logo" src="<?= base_url() . "images/logos/".$user_detail->image_link; ?>"  
+<?php  if ($user_detail->image_width || $user_detail->image_height) {?> style="width: <?=$user_detail->image_width?>;
+height: <?=$user_detail->image_height?>;"  <?php }?>
+>  
 <?php } ?>
   <img  src="<?= base_url() . "images/templates/".$template->header_image; ?>" width="455" height="200">  
 

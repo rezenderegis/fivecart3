@@ -160,15 +160,15 @@
 <?php }?>
 </select>
 <br>
-  <button type="submit" class="btn btn-sm btn-primary">Adicionar Produto</button>
-
-</form>
-
-                        <?php
+  <?php
                         if ($publish->id_template != '') { ?>
                         
                         <table align="left">
                             <tr>
+                            <td>
+                            <button type="submit" class="btn btn-sm btn-primary">Adicionar Produto</button>
+
+                            </td>
                            <td>
                             <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a> 
                         </td>
@@ -183,6 +183,10 @@
                                </tr>
     
                                </table>
+
+</form>
+
+                        
 
                         </div>
                         <div class="card-body">

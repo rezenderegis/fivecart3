@@ -84,6 +84,7 @@ class Encarte extends CI_Controller {
 
 
     public function productList1($idPublish=0) {
+        
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
 
         $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));

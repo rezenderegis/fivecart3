@@ -1830,6 +1830,7 @@ class Ion_auth_model extends CI_Model
 		}
 
 		$this->trigger_events('extra_where');
+		
 		$this->db->update($this->tables['users'], $data, ['id' => $id]);
 
 		if ($this->db->trans_status() === FALSE)

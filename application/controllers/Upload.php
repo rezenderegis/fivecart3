@@ -127,9 +127,9 @@ public function __construct()
          $config['upload_path']          = './images/'.$location.'/';
             $config['allowed_types']        = 'gif|jpg|png|jpeg';
 
-            $config['max_size']             = 5120;
-            $config['max_width']            = 1024;
-            $config['max_height']           = 768;
+            $config['max_size']             = 10000;
+           // $config['max_width']            = 1024;
+           // $config['max_height']           = 768;
          $config['detect_mime']           = true;
          $config['mod_mime_fix']           = true;
 
