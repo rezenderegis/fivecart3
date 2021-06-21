@@ -1,3 +1,22 @@
+<style>
+
+.container_text_button{
+position: relative;
+}
+.text_button_right {
+font-family: "Helvetica", sans-serif;
+position: absolute;
+font-size: 12px;
+bottom: 8px;
+left: 200px;
+color: white;
+text: bold;
+width: 300px;
+padding-left: 50px;
+padding-right: 10px;
+align: right;
+}
+</style>
 
 
    <?php $this->load->view('layout/sidebar'); ?>
@@ -40,24 +59,25 @@ Dados do Seu Novo Encarte
     <input type="text" class="form-control" name="description" placeholder="Descrição" value="" maxlength="31">
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
   </div>
+<BR/>
 
   <div class="col-md-4">
       <label >Texto Cabeçalho Direita</label>
-    <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="" maxlength="21">
+    <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="" maxlength="21" >
     <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
   </div>
-
-
-  
-    <div class="col-md-4">
-      <label ></label>
-
+  <BR/>
+  <div class ="container_text_button">
+  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="455" height="200">  
+  <div class="text_button_right">
+    <h6>Seu Texto Cabeçalho AQUI<h6>
   </div>
-  
-
+</div>
+    <div class="col-md-4">
+  </div>
 </div>
 
-  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+  <button type="submit" class="btn btn-primary btn-sm">Próximo</button>
 </form>
 
 

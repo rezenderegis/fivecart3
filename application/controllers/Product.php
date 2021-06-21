@@ -16,7 +16,7 @@ class Product extends CI_Controller  {
 
     }
 
-    public function index() {
+    public function index($idProduct=0) {
         $this->session->set_userdata('type_product', 'not_first');
 
         $data = array (
@@ -27,7 +27,7 @@ class Product extends CI_Controller  {
             'vendor/datatables/app.js',
             'vendor/mask/jquery.mask.min.js',
             'vendor/mask/app.js'),    
-            'products' => $this->core_model->getAllProducts(), 
+            'products' => $this->core_model->getAllProducts($idProduct), 
 
         );
 
@@ -210,7 +210,7 @@ if ($this->form_validation->run()) {
                      'description' => $this->input->post('description'),
                      'id_owner' => $this->ion_auth->user()->row()->id,
                      'id_cathegory' => $this->input->post('id_cathegory'),
-                     'image_link' => 1,
+                     'image_link' => '',
                      'status' => $this->input->post('status'),
                      'shop_type' => $this->input->post('shop_type'),       
                  );

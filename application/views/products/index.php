@@ -1,5 +1,4 @@
 
-
    <?php $this->load->view('layout/sidebar'); ?>
 
    <?php $this->load->view('/layout/watsapp');?>
@@ -61,7 +60,7 @@
                                 <table class="table table-based dataTable"  width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th class="text-right">Id</th>
                                             <th>Nome</th>
                                             <th>Preço</th>
 

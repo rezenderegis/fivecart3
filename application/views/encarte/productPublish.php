@@ -1,4 +1,29 @@
 <style>
+
+
+.container_text_button{
+position: relative;
+}
+.text_button_right {
+font-family: "Helvetica", sans-serif;
+position: absolute;
+font-size: 12px;
+bottom: 8px;
+left: 200px;
+color: white;
+text: bold;
+width: 300px;
+padding-left: 50px;
+padding-right: 10px;
+align: right;
+}
+
+
+.container_text_button{
+position: relative;
+}
+
+
 /* Dropdown Button */
 .dropbtn {
   background-color: #04AA6D;
@@ -123,6 +148,13 @@
  <td><?=$publish->header2?></td>
  <tr>
 </table>
+<div class ="container_text_button">
+  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="350" height="100">  
+  <div class="text_button_right">
+    <h6><?=$publish->header2 ?><h6>
+  </div>
+</div>
+
 
 <!--
 <a href="#about">About</a>
@@ -133,8 +165,18 @@
     <a href="#support">Support</a>
     <a href="#tools">Tools</a>
     -->
-<a title="Alterar Dados" href="<?php echo base_url('encarte/edit/'.$idProductList);?>" class="btn btn-primary btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Dados</a>
+<table>
+<tr>
+<td>
+<a title="Alterar Cabeçalho" href="<?php echo base_url('encarte/edit/'.$idProductList);?>" class="btn btn-primary btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Cabeçalho</a>
+</td>
 
+<td>
+<a title="Alterar Rodapé" href="<?php echo base_url('usuario/editUserDetails');?>" class="btn btn-primary btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Rodapé</a>
+</td>
+
+</tr>
+</table>
 </div>
 
 <!--
@@ -169,13 +211,13 @@
                             <button type="submit" class="btn btn-sm btn-primary">Adicionar Produto</button>
 
                             </td>
-                           <td>
-                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a> 
-                        </td>
+                           
                         <td>
                             <a title="Alterar Template" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Alterar Template</a>
                         </td>
-
+                        <td>
+                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a> 
+                        </td>
 
                             <?php } else { ?>
                         <a title="Gerar Encarte" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-primary btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Gerar Encarte</a>

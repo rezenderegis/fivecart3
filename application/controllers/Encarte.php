@@ -106,7 +106,6 @@ class Encarte extends CI_Controller {
         $data = array (
             'titulo' => 'Encartes Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
-
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'), 
@@ -140,6 +139,70 @@ class Encarte extends CI_Controller {
     
     }
 
+    public function productList2($idPublish=0,$idUser=0) {
+        
+        if ($idUser == 0 ) {
+            $idUser = $this->ion_auth->user()->row()->id;
+        } else {
+            $idUser = $idUser;
+        }
+
+
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $idUser));
+
+        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $idUser));
+        if ($logo->image_link == 'no-image-icon-23485.png' || count($userProducts) == 0){
+           redirect ('encarte/allCarts');
+        } else {
+            
+        
+
+        if (count($userProducts) == 0) {
+            $type="first";
+        } else {
+            $type="not_first";
+
+        }
+
+        if ($idPublish != 0)
+        { 
+        $data = array (
+            'titulo' => 'Encartes Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js'), 
+            'templates' => $this->core_model->get_all('template'),    
+            'publish' => $this->core_model->get_all('publish', array('id_user' => $idUser , 'id' => $idPublish)), 
+            'type' => $type,
+
+        );
+    } else {
+
+        $data = array (
+            'titulo' => 'Encartes Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+            'templates' => $this->core_model->getPublishWithTemplate1($idUser), 
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js'),    
+            'publish' => $this->core_model->getPublishWithTemplate1($idUser ),            
+            'type' => $type,
+
+
+        );
+
+
+    }
+        $this->load->view('layout/header', $data);
+        $this->load->view('encarte/productList1');
+        $this->load->view('layout/footer');
+    }
+    
+    }
+
     public function new($publishId, $var) {
 
         $publish = $this->core_model->getById('publish', array('id' => $publishId));
@@ -156,9 +219,11 @@ class Encarte extends CI_Controller {
         );
       $dataPublish = array ('id_template' => $var);
        // $this->load->view('/layout/header', $data);
-        $this->load->view('encarte/selectProduct',$data);
+      //  $this->load->view('encarte/selectProduct',$data);
         $this->core_model->update('publish', $dataPublish, array('id' => $publishId));
+        $this->session->set_flashdata('success', 'Modelo alterado com sucesso!');
 
+        redirect('encarte/productList1');
      //   $this->load->view('layout/footer');
     } else {
         $this->load->view('/layout/header');
@@ -217,7 +282,8 @@ class Encarte extends CI_Controller {
 
     }
     public function productPublish($idProductList = NULL) {
-        
+        $publish = $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $this->ion_auth->user()->row()->id));
+        $idTemplate = $publish->id_template;
         $data = array (
             'titulo' => 'Produtos Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
@@ -229,7 +295,9 @@ class Encarte extends CI_Controller {
             'vendor/mask/app.js'),    
             'products' => $this->core_model->getUserProducts($idProductList,$this->ion_auth->user()->row()->id),
             'idProductList' => $idProductList,
-            'publish' => $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $this->ion_auth->user()->row()->id)),
+            'publish' => $publish,
+            'template' => $this->core_model->getById('template', array('id' => $idTemplate)),
+
             'productPublish' => $this->core_model->getProductPublish($idProductList),
 
         );
@@ -384,9 +452,11 @@ class Encarte extends CI_Controller {
               
         } else {
 
-                
+                $template = $this->core_model->getById('template', array('id' => $idTemplate));
+                //print_r($template); die();
                 $data = array (
                     'titulo' => 'Cadastar Novo Encarte',
+                    'template' =>  $template
                 );
     
                 $this->load->view('layout/header', $data);

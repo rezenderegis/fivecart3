@@ -73,7 +73,8 @@ public function __construct()
                     
                        // print_r($uploadData); die();
                     $data = array (
-                        'image_link' => $uploadData['file_name'], 'image_name_origin' => $uploadData['client_name']);
+                        'image_link' => $uploadData['file_name'], 'image_name_origin' => $uploadData['client_name'],
+                        'image_height'=> 150, 'image_width' => 150);
  
                     $this->core_model->update('products', $data, array('id' => $this->input->post('productId')));
                     $productData = $this->core_model->getById('products', array('id' => $idProduct));
@@ -143,8 +144,7 @@ public function __construct()
       
             if ( ! $this->upload->do_send('userfile'))
             {
-              echo "aqui";
-              die();
+           
                     $error = array('error' => $this->upload->display_errors(),
                     'productIdFromUpload' => '',
                     'idProduct' => $id, 'nameImage' => '', 'productData' => ''
@@ -176,7 +176,8 @@ public function __construct()
 
                  $dataProductId = array (
                         'productIdFromUpload' => $fileName,
-                        'idProduct' => $id, 'nameImage' => '', 'productData' => $productData, 'error' => '0');
+                        'idProduct' => $id, 'nameImage' => '', 'productData' => $productData, 'error' => '0',
+                        'image_height'=> 150, 'image_width' => 150);
 
                         $productId = $this->input->post('productId');
                       

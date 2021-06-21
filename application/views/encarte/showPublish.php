@@ -95,8 +95,7 @@ height: auto;*/
     won't spent more time with this now
     I cant decrease the width and heigh less than width:  75%; height: 150%;, because of quality
     */
-    object-fit: scale-down;
-    width:  75%;
+    width:  100%;
     height: 150px;
     object-position: bottom; 
 
@@ -136,7 +135,7 @@ padding-top: 2px;
 bottom: 0px;
 right: 20px;
 background-color: <?=$template->main_color;?>;
-color: #FFFFFF;
+color: <?=$template->font_color;?>;
 padding-left: 20px;
 padding-right: 20px;
 

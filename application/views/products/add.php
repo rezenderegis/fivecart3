@@ -40,13 +40,13 @@
   <div class="form-group">
       <div class="col-md-4">
       <label >Nome do Produto</label>
-    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="" maxlength="31">
+    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="<?=set_value('name');?>" maxlength="31">
     <?php echo form_error('name', '<small class = "form-text text-danger">','</small>');?>
   </div>
   
     <div class="col-md-4">
       <label >Descrição do Produto</label>
-    <input type="text" class="form-control" name="description" placeholder="Descrição do Produto" value="" maxlength="31">
+    <input type="text" class="form-control" name="description" placeholder="Descrição do Produto" value="<?=set_value('description');?>" maxlength="31">
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
 
   </div>
@@ -87,7 +87,7 @@
 
     <div class="col-md-4">
       <label >Preço</label>
-    <input type="text" class="form-control form-control-user-date money" name="price" placeholder="Preço" value="">
+    <input type="text" class="form-control form-control-user-date money" name="price" placeholder="Preço" value="<?=set_value('price');?>">
     <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
     </div>
 </div>

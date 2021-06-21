@@ -45,11 +45,10 @@ public function auth() {
 \       redirect ('login');
     } else {
         
-    
+        //$this->session->set_userdata('type_product', 'first');
 
-    
     if ($this->ion_auth->login($identity, $password, $remember)) {
-        
+
         $getProductPublish =  $this->core_model->get_all('publish', array ('id_user' => $this->ion_auth->user()->row()->id, 'status'=> 1 ));
         if (count($getProductPublish) > 0) {
             redirect('encarte/productList1');

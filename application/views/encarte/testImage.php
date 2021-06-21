@@ -2,8 +2,7 @@
 
 
 <style>
-
-
+ 
 
 #salvar {
 top: 0;
@@ -298,7 +297,7 @@ h4{margin:0;width:400px; text-transform: capitalize; }
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;" id="download-page-as-image" onClick="setUpDownloadPageAsImage();">Fazer Download do Encarte</button>
+  font-size: 16px;" id="download-page-as-image" onClick="setUpDownloadPageAsImage();">Visualizar Imagem</button>
 
 <br/><br/>
 </td>
@@ -316,15 +315,14 @@ h4{margin:0;width:400px; text-transform: capitalize; }
 </td>
 
 <td>
-<button style=" background-color: #008CBA; /* Green */
+<a style=" background-color: #008CBA; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;"  onclick="goBack()">Voltar</button>
-
+  font-size: 16px;"  href="<?php echo base_url('product/index/'.$productPublish->id);?>">Voltar</a>
 <br/><br/>
 </td>
 </tr>
@@ -363,7 +361,6 @@ height: <?=$productPublish->image_height?>;"  <?php }?>
   
 </div>
 </div>
-                      
 
 <form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/changeProductDimension/'.$productPublish->id);?>">
 <form method="POST" name="form_add">
@@ -392,11 +389,13 @@ height: <?=$productPublish->image_height?>;"  <?php }?>
     </tr>
 </div>
     </table>
+    
 <button type="submit" class="button">Ajustar Imagem</button>
-</form>
 
-
+</form> 
 </div>
+<button class="button" id="download-page-as-image" onClick="setUpDownloadPageAsImage();">Visualizar Imagem</button>
+
 <script>
 function goBack() {
   window.history.back();

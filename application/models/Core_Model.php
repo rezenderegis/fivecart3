@@ -126,6 +126,8 @@ where p.id_user = ".$this->ion_auth->user()->row()->id." and pp.status =  1 and 
 
     }
 
+    
+
     public function getUniqueProductPublish($idProduct) {
         $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price,prod.image_link, pp.id_publish, pp.id as id_product_publish from product_publish pp inner join publish p on p.id = pp.id_publish
 inner join product_customer pc on pc.id = pp.id_product_customer
@@ -160,9 +162,16 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
-    public function getAllProducts() {
-        $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
-        and pc.id_user = ".$this->ion_auth->user()->row()->id;
+    public function getAllProducts($idProduct=0) {
+
+        if ($idProduct != 0) {
+            $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
+            and pc.id_user = ".$this->ion_auth->user()->row()->id." and p.id = ".$idProduct." order by p.id desc";
+        } else {
+            $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
+            and pc.id_user = ".$this->ion_auth->user()->row()->id." order by p.id desc";
+        }
+
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
@@ -181,6 +190,15 @@ where pp.status =  1 and pp.id = ".$idProduct;
     public function getPublishWithTemplate() {
         $sql = " select p.id, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,date_format(p.date, '%d/%m/%Y') dates_creation
         from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$this->ion_auth->user()->row()->id." order by p.date desc";
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+
+
+    }
+
+    public function getPublishWithTemplate1($idUser) {
+        $sql = " select p.id, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,date_format(p.date, '%d/%m/%Y') dates_creation
+        from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$idUser." order by p.date desc";
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 

@@ -35,13 +35,19 @@
                                ?>
                             
                             
-                           <!-- <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>-->
+                           <!-- <a title="Voltar" href="<?php echo base_url('product/index/'.$idProduct)?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>-->
                             <?php //} ?>
 
                         </div>
         
-                        <div class="card-body">     
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample"  role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="card-body">  
+                       
+                        <a class="btn btn-primary btn-sm float-left"  href="<?php echo base_url('product')
+                        ?>">
+   Concluir
+  </a>
+  &nbsp;&nbsp;
+  <a class="btn btn-primary btn-sm " data-toggle="collapse" href="#collapseExample"  role="button" aria-expanded="false" aria-controls="collapseExample">
     Regras/Dicas do Upload Imagens
   </a>
 </p>
@@ -87,14 +93,22 @@
      <?php 
      
      if ($error == '0') { ?>
-      <div class="alert alert-secondary" role="alert">
-     <b> Imagem:</b> <?=$productData->image_link;?>
-    </div>
-    <a title="Voltar" href="<?php echo base_url('encarte/testImage/'.$idProduct.'/'.$this->ion_auth->user()->row()->id)?>" class="btn btn-primary btn-sm float-left" role="button" aria-expanded="false" aria-controls="collapseExample" ></i>&nbsp;Ajustar Dimensões do Produto</a>
-     </br></br>
+      <div >
+
+     <?php 
+     if ($productData->image_link) {?>
+
+
+
+
+<div>
+    <a title="Voltar" href="<?php echo base_url('encarte/testImage/'.$idProduct.'/'.$this->ion_auth->user()->row()->id)?>" class="btn btn-primary btn-sm float-left" role="button" aria-expanded="false" aria-controls="collapseExample" ></i>&nbsp;Ajustar Imagem</a>
      
-    <?php
-    // if ($productIdFromUpload) { ?>
+ 
+    </div>
+    <br/></br>
+     <?php }?>
+
 
     <img class="img-fluid img-thumbnail" src="<?= base_url() . "images/Products/".$productData->image_link; ?>" alt="Snow" width="200" height="250">
      
