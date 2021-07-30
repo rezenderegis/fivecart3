@@ -7,7 +7,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Fivendi <?php echo date('Y')?></span>
+                        <span>Copyright &copy; Followe <?php echo date('Y')?></span>
                     </div>
                 </div>
             </footer>
@@ -34,15 +34,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sair do Sistema</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Logoff</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Deseja realmente sair?</div>
+                <div class="modal-body">Would you like logoff?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-primary btn-sm" href="<?=base_url('login/logout');?>">Sair</a>
+                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Yes</button>
+                    <a class="btn btn-primary btn-sm" href="<?=base_url('login/logout');?>">No</a>
                 </div>
             </div>
         </div>

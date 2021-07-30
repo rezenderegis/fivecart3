@@ -33,44 +33,84 @@
 <form method="POST" name="form_add">
   <div class="form-group">
       <div class="col-md-4">
-      <label >Nome do Produto</label>
-    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="" maxlength="31">
+      <label >Atividade</label>
+    <input type="text" class="form-control" name="name" placeholder="Nome da Atividade" value="" maxlength="100">
     <?php echo form_error('name', '<small class = "form-text text-danger">','</small>');?>
   </div>
   
     <div class="col-md-4">
-      <label >Descrição do Produto</label>
-    <input type="text" class="form-control" name="description" placeholder="Descrição do Produto" value="" maxlength="31">
+      <label >Descrição</label>
+    <input type="text" class="form-control" name="description" placeholder="Descrição da Atividade" value="" maxlength="300">
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
 
   </div>
-  
     <div class="col-md-4">
-      <label >Código de Barras</label>
-    <input type="text" class="form-control" name="barcode" placeholder="Código de Barras" value="">
-    <?php echo form_error('barcode', '<small class = "form-text text-danger">','</small>');?>
-  
-  </div>
-  <!--
-  <div class="col-md-4">
-      <label >Categoria</label>
-    <input type="text" class="form-control" name="id_cathegory" placeholder="Categoria" value="">
-    <?php echo form_error('id_cathegory', '<small class = "form-text text-danger">','</small>');?>
-  
-  </div>
-    <div class="col-md-4">
-      <label >Situação</label>
-    <input type="text" class="form-control" name="status" placeholder="Situação" value="">
-    <?php echo form_error('status', '<small class = "form-text text-danger">','</small>');?>
+      <label>Manager</label>
+      <select class="form-control" name="id_responsible">
+        <?php foreach($usersTeam as $user) :?>
+          <option value="<?=$user['id']?>"><?=$user['first_name'].' '.$user['last_name']?></option>
+          <?php endforeach;?>
+
+          </select>
     </div>
-    -->
     <div class="col-md-4">
-      <label >Preço</label>
-    <input type="text" class="form-control form-control-user-date money" name="price" placeholder="Preço" value="">
+      <label>Tecnical Responsible</label>
+      <select class="form-control" name="tecnical_responsible">
+        <?php foreach($usersTeam as $user) :?>
+          <option value="<?=$user['id']?>"><?=$user['first_name'].' '.$user['last_name']?></option>
+          <?php endforeach;?>
+
+          </select>
+    </div>
+  
+    <div class="col-md-4">
+      <label >Previsão Entrega</label>
+    <input type="text" class="form-control date" name="date_delivery" placeholder="Previsão de Entrega" value="">
     <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
     </div>
-</div>
+    
 
+    <div class="col-md-4">
+      <label >Atividade Pai</label>
+    <input type="text" class="form-control" name="phather_actity" placeholder="Atividade Pai" value="">
+    <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
+    </div>
+
+    <div class="col-md-4">
+      <label >Tag1</label>
+    <input type="text" class="form-control" name="tag1" placeholder="Tag 1" value="">
+    <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
+    </div>
+
+
+    <div class="col-md-4">
+      <label >Tag2</label>
+    <input type="text" class="form-control" name="tag1" placeholder="Tag 2" value="">
+    <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
+    </div>
+
+
+    <div class="col-md-4">
+      <label >Tag3</label>
+    <input type="text" class="form-control" name="tag1" placeholder="Tag 3" value="">
+    <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
+    </div>
+    <div class="col-md-4">
+      <label >Tag4</label>
+    <input type="text" class="form-control" name="tag4" placeholder="Identificador" value="">
+    <?php echo form_error('preco', '<small class = "form-text text-danger">','</small>');?>
+    </div>
+    <div class="col-md-4">
+      <label>Status</label>
+      <select class="form-control" name="status_exec">
+        <?php foreach($status as $statu) :?>
+          <option value="<?=$statu['id']?>"><?=$statu['description']?></option>
+          <?php endforeach;?>
+
+          </select>
+    </div>
+
+</div>
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 </form>

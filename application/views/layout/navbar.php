@@ -50,13 +50,13 @@
             aria-labelledby="userDropdown">
             <a class="dropdown-item" href="<?php echo base_url('usuario/edit/'.$this->session->userdata('user_id'));?>">
                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-900"></i>
-                Dados do Usuário
+                User Data
             </a>
          
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-900"></i>
-                Sair
+                Logoff
             </a>
         </div>
     </li>

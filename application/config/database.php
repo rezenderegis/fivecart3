@@ -74,13 +74,13 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 //Desenvolvimento
-/*
+
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost:8889',
 	'username' => 'root',
 	'password' => 'root',
-	'database' => 'fivendi',
+	'database' => 'flowt',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -95,10 +95,10 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-);*/
+);
 
 //Produção
-
+/*
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'onecart.mysql.dbaas.com.br',
@@ -120,3 +120,4 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+*/

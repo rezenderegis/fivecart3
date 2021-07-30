@@ -114,74 +114,44 @@ class Core_Model extends CI_Model {
     }
 
 
-    public function getProductPublish($idPublish) {
-        $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price,prod.image_link, pp.id_publish, pp.id as id_product_publish,
-        p.id_user as id_user_publish, p.header2, prod.image_width, prod.image_height
-        from product_publish pp inner join publish p on p.id = pp.id_publish
-inner join product_customer pc on pc.id = pp.id_product_customer
-inner join products prod on prod.id = pc.id_product
-where p.id_user = ".$this->ion_auth->user()->row()->id." and pp.status =  1 and p.id = ".$idPublish; 
+
+    public function getAllProducts($id_responsible='',$tag1='',$tag2='',$tag3='',$tag4='',$tecnical_responsible='',$status_exe='') {
+        $sql = " SELECT p.id, p.name, p.description,p.id_owner,date_format(p.date_delivery, '%d/%m/%Y') as date_delivery,p.phather_actity,u.first_name,p.tag1,p.tag2,p.tag3,p.tag4 
+        FROM products p left join users u on u.id = p.id_responsible
+        where p.status = 1 and p.id_owner = ".$this->ion_auth->user()->row()->id
+        ;
+       if ($id_responsible) {
+           $sql = $sql . " and p.id_responsible = ".$id_responsible;
+        }
+        if ($tecnical_responsible) {
+            $sql = $sql . " and p.tecnical_responsible = ".$tecnical_responsible;
+         }
+        if ($tag1) {
+            $sql = $sql . " and p.tag1 = '$tag1'";
+         }
+
+         if ($tag2) {
+            $sql = $sql . " and p.tag2 = '$tag2'";
+         }
+         if ($tag3) {
+            $sql = $sql . " and p.tag3 = '$tag3'";
+         }
+         if ($tag4) {
+            $sql = $sql . " and p.tag4 = '$tag4'";
+         }
+     //  echo $sql; die();
     $query = $this->db->query ( $sql );	
+    //print_r($this->db->last_query()); die();
     return $query->result_array ();
+
 
     }
 
-    public function getUniqueProductPublish($idProduct) {
-        $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price,prod.image_link, pp.id_publish, pp.id as id_product_publish from product_publish pp inner join publish p on p.id = pp.id_publish
-inner join product_customer pc on pc.id = pp.id_product_customer
-inner join products prod on prod.id = pc.id_product
-where pp.status =  1 and pp.id = ".$idProduct; 
+
+    public function get_last_report($id_activity) {
+        $sql = " select  description,date_format(data, '%d/%m/%Y %H:%i') as data  from activity_report where id_activity = ".$id_activity." order by id desc limit 1";
     $query = $this->db->query ( $sql );	
     return $query->row ();
-
-    }
-
-    public function getUserProducts($idPublish,$idUser) {
-        $sql = "select p.name,pc.id,pc.price  from product_customer pc inner join products p on p.id = pc.id_product
-        where pc.id_user = ".$idUser."
-        and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
-        inner join product_customer pc on pc.id = pp.id_product_customer
-        inner join products prod on prod.id = pc.id_product
-        where pp.status = 1 and p.id = ".$idPublish.")";
-    $query = $this->db->query ( $sql );	
-    return $query->result_array ();
-
-    }
-
-    public function getProducts($idUser) {
-        $sql = "select p.name,pc.id,pc.price  from product_customer pc inner join products p on p.id = pc.id_product
-        where pc.id_user = ".$idUser."
-        and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
-        inner join product_customer pc on pc.id = pp.id_product_customer
-        inner join products prod on prod.id = pc.id_product
-        where pp.status = 1)";
-    $query = $this->db->query ( $sql );	
-    return $query->result_array ();
-
-    }
-
-    public function getAllProducts() {
-        $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
-        and pc.id_user = ".$this->ion_auth->user()->row()->id;
-    $query = $this->db->query ( $sql );	
-    return $query->result_array ();
-
-
-    }
-
-    public function getPublishWithTemplate() {
-        $sql = " select p.id, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,date_format(p.date, '%d/%m/%Y') dates_creation
-        from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$this->ion_auth->user()->row()->id." order by p.date desc";
-    $query = $this->db->query ( $sql );	
-    return $query->result_array ();
-
-
-    }
-   
-    public function getTemplates() {
-        $sql = " select * from template where status = 1 and (id_user = ".$this->ion_auth->user()->row()->id." or id_user = 1)";
-    $query = $this->db->query ( $sql );	
-    return $query->result_array ();
     }
 
     public function insertProductDefalt($idUser) {
@@ -192,6 +162,57 @@ select ".$idUser.", id_product, sysdate(),0 from product_customer where id_user 
         $query = $this->db->query ( $sql );	
 
     }
+
+
+    public function getUserTeam() {
+        $sql = "    select * from users u inner join user_team ut on ut.id_member = u.id where ut.id_user = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+    }
+
+    public function verifyUserTeam($emailVerify) {
+        $sql = "select u.id from users u inner join user_team ut on ut.id_member = u.id where
+        u.email = '$emailVerify' and ut.id_user = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );
+    return $query->row ()->id;
+    }
+    public function tag1() {
+        $sql = "select distinct(p.tag1) as tag from users u inner join user_team ut on u.id = ut.id_member
+        inner join products p on p.id_owner = ut.id_user
+        and ut.id_user = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );
+    return $query->result_array();
+    }
+    public function tag2() {
+        $sql = "select distinct(p.tag2) as tag from users u inner join user_team ut on u.id = ut.id_member
+        inner join products p on p.id_owner = ut.id_user
+        and ut.id_user = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );
+    return $query->result_array();
+    }
+
+    public function tag3() {
+        $sql = "select distinct(p.tag3) as tag from users u inner join user_team ut on u.id = ut.id_member
+        inner join products p on p.id_owner = ut.id_user
+        and ut.id_user = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );
+    return $query->result_array();
+    }
+    public function tag4() {
+        $sql = "select distinct(p.tag4) as tag from users u inner join user_team ut on u.id = ut.id_member
+        inner join products p on p.id_owner = ut.id_user
+        and ut.id_user = ".$this->ion_auth->user()->row()->id;
+    $query = $this->db->query ( $sql );
+    return $query->result_array();
+    }
+
+    public function getStatus() {
+        $sql = "select * from parameters where type = 'status'";
+    $query = $this->db->query ( $sql );
+    return $query->result_array();
+    }
+
+
 
 
 }

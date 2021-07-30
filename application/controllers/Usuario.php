@@ -131,6 +131,63 @@ class Usuario extends CI_Controller  {
 
     }
     
+
+    public function addTeamMember() {
+
+
+        $data = array (
+            'titulo' => 'Cadastrar Usuário',
+        );
+
+
+
+        $this->form_validation->set_rules('email','', 'trim|required|valid_email');
+       
+        if ($this->form_validation->run()) {
+            
+            $user = $this->core_model->getById('users', array('email' => $this->input->post('email')));
+            $userVerify = $this->core_model->verifyUserTeam($this->input->post('email'));
+         // echo  count($userVerify);
+            
+            if (is_null($user)) {
+                $this->session->set_flashdata('success','Usuário não encontrado!');
+                redirect ('usuario/team');
+
+            } 
+            
+            if (!is_null($userVerify) ) {
+             //   echo "Usuário já pertence ao time!"; die();
+                $this->session->set_flashdata('success','Usuário já pertence ao time!');
+                redirect ('usuario/team');
+            }
+         
+
+            $data = array ('id_member' =>   $user->id, 'id_user' => $this->ion_auth->user()->row()->id);
+            $this->core_model->insert('user_team', $data);
+
+             $this->session->set_flashdata('success','Dados salvos com sucesso');
+
+             
+             redirect ('usuario/team');
+              
+        } else {
+            $data = array (
+                'titulo' => 'Cadastrar Usuário',
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('users/addTeamMember');
+            $this->load->view('layout/footer');
+        }
+        }
+       
+      
+    
+
+    
+
+
+
     public function index () {
 
         if (!$this->ion_auth->is_admin()) {
@@ -150,6 +207,30 @@ class Usuario extends CI_Controller  {
        
         $this->load->view('layout/header', $data);
         $this->load->view('users/index');
+        $this->load->view('layout/footer');
+
+    }
+    }
+
+
+    public function team () {
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {
+        $data = array (
+            'titulo' => 'Team',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js'),    
+            'usuarios' => $this->core_model->getUserTeam(), 
+
+        );
+       
+        $this->load->view('layout/header', $data);
+        $this->load->view('users/team');
         $this->load->view('layout/footer');
 
     }
@@ -336,7 +417,7 @@ redirect ('encarte/productList1');
 
     $data = array (
 
-        'titulo' => 'Editar Usuário',
+        'titulo' => 'Edit User',
         'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id)),
     );
 

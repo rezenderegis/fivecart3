@@ -50,23 +50,23 @@
                                 <div class="p-5">
                                     
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Seja bem vindo!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
                                     </div>
                                     <form class="user" name="form_auth" method="POST" action="<?=base_url('login/auth');?>">
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"
                                                 
-                                                placeholder="Entre com seu e-mail">
+                                                placeholder="E-mail">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="password" class="form-control form-control-user"
-                                                 placeholder="Digite sua senha">
+                                                 placeholder="Password">
                                         </div>
                                       
   
 
                                         <button type="submit"  class="btn btn-primary btn-user btn-block">
-                                            Entrar
+                                            Log In
 </button>
                                         <hr>
 
@@ -81,10 +81,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Esqueceu a Senha?</a>
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Criar uma Conta!</a>
+                                        <a class="small" href="register.html">Create Account!</a>
                                     </div>
                                 </div>
                             </div>

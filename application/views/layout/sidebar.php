@@ -6,7 +6,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Meus Encartes<sup></sup></div>
+    <div class="sidebar-brand-text mx-3">flowct<sup></sup></div>
 </a>
 
 <!-- Divider -->
@@ -28,9 +28,9 @@
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Administrativo</h6>
-            <a class="collapse-item" href="<?=base_url('encarte/productList'); ?>"> Meus Encartes</a>
-            <a class="collapse-item"  href="<?=base_url('usuario'); ?>"><i class="fas fa-users"></i> Usuários</a>
+            <h6 class="collapse-header">Admin</h6>
+            <a class="collapse-item" href="<?=base_url('encarte/productList'); ?>"> Flowt</a>
+            <a class="collapse-item"  href="<?=base_url('usuario'); ?>"><i class="fas fa-users"></i> Users</a>
         </div>
     </div>
 </li>
@@ -49,16 +49,15 @@
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
         aria-controls="collapsePages">
         <i class="fas fa-fw fa-folder"></i>
-        <span>Encarte</span>
+        <span>Activities</span>
     </a>
     <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Encartes</h6>
-            <a class="collapse-item" href="<?=base_url('encarte/allCarts'); ?>">Templates Disponíveis</a>
-            <a class="collapse-item" href="<?=base_url('encarte/productList1'); ?>"> Meus Encartes</a>
-            <a class="collapse-item" href="<?=base_url('product'); ?>">Produtos</a>
-            <a class="collapse-item" href="<?=base_url('usuario/editUserDetails'); ?>">Detalhes do Usuário</a>
+        <a class="collapse-item"  href="<?=base_url('usuario/team'); ?>"> Team</a>
+
+            <a class="collapse-item" href="<?=base_url('activity/'); ?>">Activity</a>
+           <!-- <a class="collapse-item" href="<?=base_url('usuario/editUserDetails'); ?>">User Details</a>-->
 
           
         </div>

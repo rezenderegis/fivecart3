@@ -1,4 +1,5 @@
 $(function () {
+    $('.date').mask('99/99/9999', {reverse: true});
     $('.money').mask('#.##0,00', {reverse: true});
     $('.money2').mask('#,##0.00', {reverse: true});
     $('.cep').mask('00000-000');

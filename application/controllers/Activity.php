@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Product extends CI_Controller  {
+class Activity extends CI_Controller  {
 
     
     public function __construct () {
@@ -17,9 +17,22 @@ class Product extends CI_Controller  {
     }
 
     public function index() {
+        $id_responsible = $this->input->post('id_responsible');
+        $tag1_form = $this->input->post('tag1');
+        $tag2_form = $this->input->post('tag2');
+        $tag3_form = $this->input->post('tag3');
+        $tag4_form = $this->input->post('tag4');
+        $tecnical_responsible = $this->input->post('tecnical_responsible');
 
-        $userTeam = $this->core_model->getUserTeam();
         
+        $userTeam = $this->core_model->getUserTeam();
+        $tag1 = $this->core_model->tag1();
+        $tag2 = $this->core_model->tag2();
+        $tag3 = $this->core_model->tag3();
+        $tag4 = $this->core_model->tag4();
+        $status = $this->core_model->getStatus();
+
+
 
         $data = array (
             'titulo' => 'Activities',
@@ -29,7 +42,14 @@ class Product extends CI_Controller  {
             'vendor/datatables/app.js',
             'vendor/mask/jquery.mask.min.js',
             'vendor/mask/app.js'),    
-            'products' => $this->core_model->getAllProducts(), 
+            'products' => $this->core_model->getAllProducts( $id_responsible,$tag1_form,$tag2_form,$tag3_form,$tag4_form,$tecnical_responsible ), 
+            'usersTeam' => $userTeam,
+            'tags1' => $tag1,
+            'tags2' => $tag2,
+            'tags3' => $tag3,
+            'tags4' => $tag4,
+            'status' => $status,
+
 
         );
 
@@ -49,7 +69,7 @@ class Product extends CI_Controller  {
 
         if ($product_id && !$this->core_model->getById('products', array('id' => $product_id))) {
             $this->session->set_flashdata('error', 'Produto não encontrado');
-            redirect('product');
+            redirect('activity');
 
         }
     
@@ -60,16 +80,26 @@ class Product extends CI_Controller  {
         $this->form_validation->set_rules('description','', 'trim|required');
         $this->form_validation->set_rules('id_responsible','', 'trim|required');
         $this->form_validation->set_rules('date_delivery','', 'trim|required');
-        $this->form_validation->set_rules('id_activity','', 'trim|required');
 
 
 if ($this->form_validation->run()) {
 
-    $data = elements(
+    $data = str_replace("/", "-", $this->input->post('date_delivery'));
 
-            array('name', 'description','id_responsible','date_delivery','id_activity','tecnical_responsible','status_exec'
-        
-        ), $this->input->post()
+
+    $data = array (
+        'name' => $this->input->post('name'),
+        'description' => $this->input->post('description'),
+        'id_responsible' => $this->input->post('id_responsible'),
+        'date_delivery' =>  date('Y-m-d', strtotime($data)),
+        'phather_actity' => $this->input->post('phather_actity'),
+        'tag1' => $this->input->post('tag1'),
+        'tag2' => $this->input->post('tag2'),
+        'tag3' => $this->input->post('tag3'),
+        'tag4' => $this->input->post('tag4'),
+        'tecnical_responsible' => $this->input->post('tecnical_responsible'),
+        'status_exec' => $this->input->post('status_exec'),
+
 
     );
     
@@ -83,6 +113,7 @@ if ($this->form_validation->run()) {
 
 } else {
     $userTeam = $this->core_model->getUserTeam();
+    $status = $this->core_model->getStatus();
 
     $data = array (
 
@@ -94,6 +125,7 @@ if ($this->form_validation->run()) {
         'product' => $this->core_model->getById('products', array('id' => $product_id)),
         'product_price' => $this->core_model->getById('product_customer', array('id_product' => $product_id, 'id_user'  => $this->ion_auth->user()->row()->id)),
         'usersTeam' => $userTeam,
+        'status' => $status,
 
     );
    
@@ -115,7 +147,6 @@ if ($this->form_validation->run()) {
         $this->form_validation->set_rules('description','', 'trim|required');
         $this->form_validation->set_rules('id_responsible','', 'trim|required');
         $this->form_validation->set_rules('date_delivery','', 'trim|required');
-        $this->form_validation->set_rules('id_activity','', 'trim|required');
 
 
         if ($this->form_validation->run()) {
@@ -131,12 +162,14 @@ if ($this->form_validation->run()) {
                      'id_owner' => $this->ion_auth->user()->row()->id,
                      'id_responsible' => $this->input->post('id_responsible'),
                      'date_delivery' =>  date('Y-m-d', strtotime($data)),
-                     'id_activity' => $this->input->post('id_activity'),
                      'phather_actity' => $this->input->post('phather_actity'),
+                     'tag1' => $this->input->post('tag1'),
+                     'tag2' => $this->input->post('tag2'),
+                     'tag3' => $this->input->post('tag3'),
+                     'tag4' => $this->input->post('tag4'),
                      'tecnical_responsible' => $this->input->post('tecnical_responsible'),
                      'status_exec' => $this->input->post('status_exec'),
 
-                     
                  );
                
 
@@ -145,12 +178,12 @@ if ($this->form_validation->run()) {
                 $idProduct = $this->core_model->insert('products', $data);
                  
                
-                redirect ('product');
+                redirect ('activity');
               
         } else {
             $userTeam = $this->core_model->getUserTeam();
             $status = $this->core_model->getStatus();
-
+            
             $data = array (
                 'titulo' => 'Cadastrar Produto',
                 'scripts' => array(
@@ -159,6 +192,7 @@ if ($this->form_validation->run()) {
                 ),
                 'usersTeam' => $userTeam,
                 'status' => $status,
+
             );
 
             $this->load->view('layout/header', $data);
