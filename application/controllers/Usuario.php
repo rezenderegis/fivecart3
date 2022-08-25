@@ -349,7 +349,34 @@ redirect ('encarte/productList1');
     }
 
 
+    public function changeUser() {
 
+        if ($this->input->post("user")) {
+            $this->session->set_userdata('user_id', $this->input->post("user"));
+            redirect('encarte/allCarts');
+        } else {
+
+        $data = array (
+            'titulo' => 'Produtos Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js',
+            'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js'),   
+            'userHistorys' => $this->core_model->getUserHistory(),  
+            'users' => $this->core_model->get_all("users"),
+           
+        );
+        $this->load->view('layout/header', $data);
+        $this->load->view('users/changeUser');
+        $this->load->view('layout/footer');
+    }
+
+      
+
+    }
 
 
 }

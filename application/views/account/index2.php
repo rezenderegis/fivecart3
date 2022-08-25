@@ -1,3 +1,7 @@
+   <!-- Event snippet for Inscrição conversion page -->
+   <script>
+  gtag('event', 'conversion', {'send_to': 'AW-960812691/U6FvCMqAjcgCEJOtk8oD'});
+</script>
 
 <body class="bg-gradient-primary">
 

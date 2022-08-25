@@ -196,6 +196,8 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
+
+
     public function getPublishWithTemplate1($idUser) {
         $sql = " select p.id, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,date_format(p.date, '%d/%m/%Y') dates_creation
         from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$idUser." order by p.date desc";
@@ -225,8 +227,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
           where pc.id_user = 1 and p.id_cathegory = 7;";
           
     }
-//echo $sql ;
-//die();
+
 
         $query = $this->db->query ( $sql );	
 
@@ -239,6 +240,32 @@ where pp.status =  1 and pp.id = ".$idProduct;
     
         $query = $this->db->query ( $sql );	
     return $query->row ();
+    }
+
+   
+
+
+    public function getUserHistory() {
+       
+$sql = "
+
+select p.id_user, u.first_name, p.date, ud.company_name comname, pc.id,p.description,user_owner.first_name user_owner_first_name ,pc.id_product,prod.name prodname,pp.product_price price,prod.image_link, pp.id_publish, pp.id as id_product_publish,
+        p.id_user as id_user_publish, p.header2, prod.image_width, prod.image_height,pp.status
+        from product_publish pp inner join publish p on p.id = pp.id_publish
+inner join product_customer pc on pc.id = pp.id_product_customer
+inner join products prod on prod.id = pc.id_product
+inner join users u on u.id = p.id_user
+inner join user_detail ud on p.id_user = ud.id_user
+inner join users user_owner on user_owner.id = prod.id_owner
+where p.id_user > 32;
+
+";
+
+
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+
+
     }
 
 

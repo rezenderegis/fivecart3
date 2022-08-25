@@ -40,7 +40,7 @@
   <div class="form-group">
       <div class="col-md-4">
       <label >Nome do Produto</label>
-    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="<?=set_value('name');?>" maxlength="31">
+    <input type="text" class="form-control" name="name" placeholder="Nome do Produto" value="<?=set_value('name');?>" maxlength="55">
     <?php echo form_error('name', '<small class = "form-text text-danger">','</small>');?>
   </div>
   

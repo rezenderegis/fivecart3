@@ -57,10 +57,10 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-based dataTable"  width="100%" cellspacing="0">
+                                <table id="product_table" class="table table-based dataTable"  width="100%" cellspacing="0" >
                                     <thead>
                                         <tr>
-                                            <th class="text-right">Id</th>
+                                            <th class="text-right ">Id</th>
                                             <th>Nome</th>
                                             <th>Preço</th>
 
@@ -115,3 +115,19 @@
 
             </div>
             <!-- End of Main Content -->
+
+            <script>
+
+
+$(document).ready(function () {
+
+$('#product_table').DataTable({
+"order": [[ 1, "desc" ]]
+});
+$('.dataTables_length').addClass('bs-select');
+});
+
+
+
+
+</script>
