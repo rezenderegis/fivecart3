@@ -307,6 +307,21 @@ class Encarte extends CI_Controller {
 
     }
 
+    public function showAllPproducts($idProductList = NULL, $productName) {
+        $products = $this->core_model->getUserProductsByName($idProductList,$this->ion_auth->user()->row()->id, $productName);
+       print_r($products); die();
+        return $products;
+    }
+
+    public function showCombo($idProductList = NULL, $productName) {
+        $products = $this->core_model->getUserProductsByName($idProductList,$this->ion_auth->user()->row()->id, $productName);
+      
+        $data = array ("products" => $products, "productName" =>  $productName);
+        $this->load->view('encarte/gethint', $data);
+
+        return $products;
+    }
+
     public function newProductPublish($idProductList = NULL) {
         
         $data = array (
@@ -489,6 +504,23 @@ $date = date('Y-m-d H:i:s');
        count($getProductPublish);
        redirect ('encarte/productPublish/'.$idProductList);
     }
+
+    public function addProduct1 ($idProductList,$idProduct) {
+        $product_customer = $this->core_model->getById('product_customer', array('id' => $idProduct));
+      
+       $date = date('Y-m-d H:i:s');
+               $data = array (
+                   'id_product_customer' => $idProduct,
+                   'id_publish' => $idProductList,
+                   'product_price' => $product_customer->price,
+                   'date' => $date,         
+               );
+               
+              $this->core_model->insert('product_publish', $data);
+              $getProductPublish =  $this->core_model->get_all('product_publish', array ('id_publish' => $idProductList, 'status'=> 1 ));
+              count($getProductPublish);
+              redirect ('encarte/productPublish/'.$idProductList);
+           }
 
     public function deleteProduct($idProductPublish,$idPublish) {
         

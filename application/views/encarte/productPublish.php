@@ -1,3 +1,5 @@
+
+
 <style>
 
 
@@ -148,83 +150,70 @@ position: relative;
  <td><?=$publish->header2?></td>
  <tr>
 </table>
+
+<div class="dropdown">
+  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Alterar Encarte
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>">Alterar Cabeçalho</a>
+    <a class="dropdown-item" href="<?php echo base_url('usuario/editUserDetails');?>">Alterar Rodapé</a>
+    <?php
+    if ($publish->id_template != '') { ?>
+    <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Alterar Template</a>
+   
+                        <?php } else { ?>
+                          <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Gerar Encarte</a>
+                           <?php }?> 
+
+                
+      </div>
+</div>
+<br/>
+<br/>
+
 <div class ="container_text_button">
   <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="350" height="100">  
   <div class="text_button_right">
     <h6><?=$publish->header2 ?><h6>
   </div>
 </div>
+<br/>
 
 
-<!--
-<a href="#about">About</a>
-    <a href="#base">Base</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
-    <a href="#custom">Custom</a>
-    <a href="#support">Support</a>
-    <a href="#tools">Tools</a>
-    -->
-<table>
-<tr>
-<td>
-<a title="Alterar Cabeçalho" href="<?php echo base_url('encarte/edit/'.$idProductList);?>" class="btn btn-primary btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Cabeçalho</a>
-</td>
 
-<td>
-<a title="Alterar Rodapé" href="<?php echo base_url('usuario/editUserDetails');?>" class="btn btn-primary btn-sm"><i class="fas fa-box-open"></i>&nbsp;Alterar Rodapé</a>
-</td>
-
-</tr>
-</table>
-</div>
-
-<!--
+<div class="card-header py-1">
+<a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Visualizar Encarte</a>
+<br/>
+<br/>
 <div class="dropdown">
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <button onclick="myFunction()" class="btn btn-primary btn-lg">Adicionar Produto</button>
   <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()" name="product">
+    <input type="text" placeholder="Procurar..." id="myInput" onkeyup="filterFunction()" name="product">
     <?php foreach ($products as $product) {?>
-<a href="<?php echo $product['id'];?>"><?php echo $product['name'];?></a>
+    <a href="<?php echo base_url('encarte/addProduct1/'.$idProductList.'/'.$product['id']);?>"><?php echo $product['name'];?></a>
 
-<?php }?>
+    <?php }?>
     
-  </div>
 </div>
-    -->
-<div class="card-header py-3">
+
+
+
+    
 <form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/addProduct/'.$idProductList);?>">
 
+<!--
 <select class="form-control form-control-sm col-sm-6" name="product" >
 <?php foreach ($products as $product) {?>
 <option value="<?php echo $product['id'];?>"><?php echo $product['name'];?></option>
 
 <?php }?>
 </select>
+-->
 <br>
-  <?php
-                        if ($publish->id_template != '') { ?>
+ 
+                    
                         
-                        <table align="left">
-                            <tr>
-                            <td>
-                            <button type="submit" class="btn btn-sm btn-primary">Adicionar Produto</button>
-
-                            </td>
-                           
-                        <td>
-                            <a title="Alterar Template" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Alterar Template</a>
-                        </td>
-                        <td>
-                            <a title="Visualizar Encarte" href="<?php echo base_url('encarte/showPublish/'.$idProductList.'/'.$publish->id_template);?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Visualizar Encarte</a> 
-                        </td>
-
-                            <?php } else { ?>
-                        <a title="Gerar Encarte" href="<?php echo base_url('encarte/index/'.$idProductList);?>" class="btn btn-primary btn-sm float-right"><i class="fas fa-box-open"></i>&nbsp;Gerar Encarte</a>
-                               <?php }?> 
-                               </tr>
-    
-                               </table>
 
 </form>
 
