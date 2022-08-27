@@ -33,7 +33,7 @@ public function __construct()
     {
       date_default_timezone_set('America/Sao_Paulo');
 
-         
+
 
          $config['upload_path']          = './images/Products/';
             $config['allowed_types']        = 'gif|jpg|png|jpeg|webp';
@@ -48,8 +48,12 @@ public function __construct()
 
          $config['file_name']           = $this->ion_auth->user()->row()->id.'_'.date('Ymd-H-i-s');
 
+
+
             $this->load->library('upload', $config);
-          //  print_r($config); die();
+
+            print_r($this->upload->data()); die();
+
             if ( ! $this->upload->do_upload('userfile'))
             {
 
@@ -67,8 +71,8 @@ public function __construct()
             }
             else
             {
-                   
                     $data = array('upload_data' => $this->upload->data());
+
                     $uploadData = $data['upload_data'];
                     
                        // print_r($uploadData); die();
