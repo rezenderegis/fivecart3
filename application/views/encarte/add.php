@@ -66,6 +66,22 @@ Dados do Seu Novo Encarte
     <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="" maxlength="21" >
     <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
   </div>
+
+
+  <div class="form-group">
+      <div class="col-md-4">
+      <label >Rodapé 1 (Dica: Colocar Telefone)</label>
+    <input type="text" class="form-control" name="footer_text" placeholder="Rodapé" value="" maxlength="49">
+    <?php echo form_error('footer_text', '<small class = "form-text text-danger">','</small>');?>
+  </div>
+
+    <div class="col-md-4">
+      <label >Rodapé 2 (Dica - Colocar Endereço)</label>
+    <input type="text" class="form-control" name="footer_text2" placeholder="Rodapé 2" value="" maxlength="73">
+    <?php echo form_error('footer_text2', '<small class = "form-text text-danger">','</small>');?>
+  </div>
+</div>
+
   <BR/>
   <div class ="container_text_button">
   <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="455" height="200">  

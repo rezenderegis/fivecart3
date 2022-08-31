@@ -46,6 +46,22 @@
     <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 
+  <div class="form-group">
+      <div class="col-md-4">
+      <label >Rodapé 1 (Dica: Colocar Telefone)</label>
+    <input type="text" class="form-control" name="footer_text" placeholder="Rodapé" value="<?php echo $publish->footer_text;?>" maxlength="49">
+    <?php echo form_error('footer_text', '<small class = "form-text text-danger">','</small>');?>
+  </div>
+
+    <div class="col-md-4">
+      <label >Rodapé 2 (Dica - Colocar Endereço)</label>
+    <input type="text" class="form-control" name="footer_text2" placeholder="Rodapé 2" value="<?php echo $publish->footer_text2;?>" maxlength="73">
+    <?php echo form_error('footer_text2', '<small class = "form-text text-danger">','</small>');?>
+  </div>
+</div>
+
+
+
     <input type="hidden" name="product_id" value="<?php echo $publish->id; ?>"
 </div>
 

@@ -70,7 +70,7 @@ foreach ($templates as $template) {
 
 <div class="responsive">
   <div class="gallery">
-  <div class="desc"><?php echo "<strong>".$template['description']."</strong><br>";
+  <div class="desc"><?php echo "#".$template['id']."<strong>"."-".$template['description']."</strong><br>";
   if ($template['id_user'] == 1)  { echo "Oferecimento Meus Encartes";}?></div>
 
     <a target="_top" href="<?php echo base_url('/encarte/new/'.$publishId.'/'.$template['id']); ?>" value="<?php echo $template['id']; ?>" name="template">

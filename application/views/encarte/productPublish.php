@@ -86,6 +86,41 @@ position: relative;
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
+
+.imgProduct {
+
+  align: center;
+
+      object-fit: scale-down;
+      width:  150px;
+      height: 150px;
+      object-position: bottom;
+      
+
+}
+
+div.desc {
+  font-family: "Helvetica", sans-serif;
+  padding: 4px;
+  text-transform: uppercase;
+  font-size: 11px;
+  text-align: center;
+  width: 150px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-bottom: 0;
+
+}
+
+.tableFit {
+    width: auto !important;
+    table-layout: auto !important;
+}
+
+.alignCenter {
+  vertical-align: middle;
+
+}
 </style>
 
    <?php $this->load->view('layout/sidebar'); ?>
@@ -142,25 +177,36 @@ position: relative;
 <div class="card-body"> 
  <table class="table table-striped">
  <tr>
- <td>Descrição</td>
- <td><?=$publish->description?></td>
+ <td><strong>Descrição</strong></td>
+ <td><strong><?=$publish->description?></strong></td>
  <tr>
  <tr>
  <td>Texto Cabeçalho</td>
  <td><?=$publish->header2?></td>
  <tr>
+ <tr>
+ <td>Texto Rodapé 1</td>
+ <td><?=$publish->footer_text?></td>
+ <tr>
+ <tr>
+ <td>Texto Rodapé 2</td>
+ <td><?=$publish->footer_text2?></td>
+ <tr>
 </table>
 
+<table class"table"">
+  <tr>
+    <td>
+
 <div class="dropdown">
-  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Alterar Encarte
+  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Alterar
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>">Alterar Cabeçalho</a>
-    <a class="dropdown-item" href="<?php echo base_url('usuario/editUserDetails');?>">Alterar Rodapé</a>
+    <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>">Textos</a>
     <?php
     if ($publish->id_template != '') { ?>
-    <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Alterar Template</a>
+    <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Template</a>
    
                         <?php } else { ?>
                           <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Gerar Encarte</a>
@@ -169,8 +215,17 @@ position: relative;
                 
       </div>
 </div>
-<br/>
-<br/>
+                        </td>
+
+     
+                        <td>
+
+                        <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a>
+
+    </td>
+    </table>
+
+
 
 <div class ="container_text_button">
   <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="350" height="100">  
@@ -180,14 +235,8 @@ position: relative;
 </div>
 <br/>
 
-
-
-<div class="card-header py-1">
-<a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Visualizar Encarte</a>
-<br/>
-<br/>
 <div class="dropdown">
-  <button onclick="myFunction()" class="btn btn-primary btn-lg">Adicionar Produto</button>
+  <button onclick="myFunction()" class="btn btn-primary btn-sm">Adicionar Produto</button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Procurar..." id="myInput" onkeyup="filterFunction()" name="product">
     <?php foreach ($products as $product) {?>
@@ -197,38 +246,15 @@ position: relative;
     
 </div>
 
-
-
+</div>
     
-<form method="POST" name="form_addProduct" action ="<?php echo base_url('encarte/addProduct/'.$idProductList);?>">
-
-<!--
-<select class="form-control form-control-sm col-sm-6" name="product" >
-<?php foreach ($products as $product) {?>
-<option value="<?php echo $product['id'];?>"><?php echo $product['name'];?></option>
-
-<?php }?>
-</select>
--->
-<br>
- 
-                    
-                        
-
-</form>
-
-                        
-
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <!-- 04-06: I excluded dataTable class because she wasnt organizing like query-->
-                                <table class="table table-bordered "  width="100%" cellspacing="0">
+                                <table class="table tableFit"  width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th class="no-sort">Produto</th>
-
-                                            <th class="no-sort">Preço</th>
                                             <th class="text-right no-sort"></th>
                                         </tr>
                                     </thead>
@@ -236,16 +262,20 @@ position: relative;
                                     <?php //print_r($productPublish); die();?>
                                         <?php foreach ($productPublish as $productPub) : ?>
                                         <tr>
-                                            <td><?=$productPub['name'] ?></td>
-                                            <td>   <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money"><?=$productPub['price']?></a> </td>
-
-                                            <td class="text-right">
+                                       
+                                            <td>
+                                                <img src="<?php echo base_url('/images/Products/'.$productPub['image_link']); ?>" class="imgProduct">
+                                                <br/>
+                                                <?=$productPub['name'] ?>
+                                                <br/>
+                                                <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money"><?=$productPub['price']?></a>
+                                            </td>
+                                            <td class="alignCenter">
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
 
                                             </td>
-                                            
                                         </tr>
-
+                                     
 
 <!-- Logout Modal-->
 
@@ -286,8 +316,8 @@ position: relative;
                         </div>
                     </div>
 
-
-
+                    </div>
+    </div>
 
 
                 </div>

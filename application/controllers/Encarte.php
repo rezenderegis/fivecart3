@@ -356,7 +356,7 @@ class Encarte extends CI_Controller {
 
             $data = elements(
  
-             array('description', 'header2',
+             array('description', 'header2','footer_text','footer_text2',
          
          ), $this->input->post()
  
@@ -455,6 +455,8 @@ class Encarte extends CI_Controller {
                  $data = array (
                      'description' => $this->input->post('description'),
                      'header2' => $this->input->post('header2'),
+                     'footer_text' => $this->input->post('footer_text'),
+                     'footer_text2' => $this->input->post('footer_text2'),
                      'id_user' => $this->ion_auth->user()->row()->id,
                     'id_template' => $idTemplate,
                  );

@@ -312,7 +312,7 @@ if ($this->form_validation->run()) {
 
     public function editUserDetails ($idUser=0) {
 
-        $this->form_validation->set_rules('footer_text','', 'trim|required');
+        $this->form_validation->set_rules('footer_text','', 'trim');
 
         if ($this->form_validation->run()) {
 

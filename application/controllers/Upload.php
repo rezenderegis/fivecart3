@@ -52,7 +52,7 @@ public function __construct()
 
             $this->load->library('upload', $config);
 
-            print_r($this->upload->data()); die();
+           // print_r($this->upload->data()); die();
 
             if ( ! $this->upload->do_upload('userfile'))
             {

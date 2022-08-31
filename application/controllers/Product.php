@@ -124,7 +124,7 @@ class Product extends CI_Controller  {
             'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
         );*/
 
-$this->form_validation->set_rules('name','', 'trim|required');
+$this->form_validation->set_rules('name','', 'trim|required|min_length[16]');
 //$this->form_validation->set_rules('id_cathegory','', 'trim|required');
 $this->form_validation->set_rules('price','', 'trim|required');
 
@@ -199,7 +199,7 @@ if ($this->form_validation->run()) {
             'titulo' => $titulo,
         );
 
-        $this->form_validation->set_rules('name','', 'trim|required');
+        $this->form_validation->set_rules('name','', 'trim|required|min_length[16]');
        // $this->form_validation->set_rules('id_cathegory','', 'trim|required');
         $this->form_validation->set_rules('price','', 'trim|required');
         $this->form_validation->set_rules('shop_type','', 'required');

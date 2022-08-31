@@ -103,7 +103,9 @@ div.desc {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-
+                <div class="cabecalho">
+Meus encartes criados
+</div>
                 <?php if ($message = $this->session->flashdata('error')): ?>
     <div class "row">
     <div class ="col-md-12">
@@ -147,7 +149,7 @@ foreach ($templates as $template) {
 
 <div class="responsive">
   <div class="gallery">
-  <div class="desc"><?php echo "<strong>".$template['description']."</strong><br> Data Criação: ".$template['dates_creation'];?></div>
+  <div class="desc"><?php echo "<strong>".$template['description']."</strong><br> Data Criação: ".$template['dates_creation']."ID Template #".$template['id'];?></div>
     <a target="" href="<?php echo base_url('/encarte/productPublish/'.$template['id']); ?> ">
       <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" width="600" height="400">
     </a>
