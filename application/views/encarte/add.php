@@ -82,7 +82,20 @@ Dados do Seu Novo Encarte
   </div>
 </div>
 
-  <BR/>
+  <div class="form-group col-md-4">
+    <label >Tamanho do Encarte</label>
+
+                                <select class="form-control " name="column_amount">
+                                <option value="3">Mini - 3 Colunas</option>
+                                <option value="4">Médio - 4 Colunas</option>
+                                <option value="5">Grande - 5 Colunas </option>
+                                <option value="6">Grande - 6 colunas </option>
+                                </select>
+                                <?php echo form_error('column_amount', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+
+
   <div class ="container_text_button">
   <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="455" height="200">  
   <div class="text_button_right">
@@ -92,6 +105,8 @@ Dados do Seu Novo Encarte
     <div class="col-md-4">
   </div>
 </div>
+
+
 
   <button type="submit" class="btn btn-primary btn-sm">Próximo</button>
 </form>

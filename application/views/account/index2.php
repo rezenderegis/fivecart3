@@ -74,7 +74,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="address"
-                                    placeholder="Endereço" value="<?=set_value('address');?>">
+                                    placeholder="Endereço da Empresa" value="<?=set_value('address');?>">
                                     <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>

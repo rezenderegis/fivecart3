@@ -104,7 +104,7 @@ div.desc {
                 <div class="container-fluid">
 
                 <div class="cabecalho">
-Meus encartes criados
+Meus Encartes
 </div>
                 <?php if ($message = $this->session->flashdata('error')): ?>
     <div class "row">

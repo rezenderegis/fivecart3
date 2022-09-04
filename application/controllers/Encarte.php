@@ -356,7 +356,7 @@ class Encarte extends CI_Controller {
 
             $data = elements(
  
-             array('description', 'header2','footer_text','footer_text2',
+             array('description', 'header2','footer_text','footer_text2','column_amount',
          
          ), $this->input->post()
  
@@ -459,6 +459,7 @@ class Encarte extends CI_Controller {
                      'footer_text2' => $this->input->post('footer_text2'),
                      'id_user' => $this->ion_auth->user()->row()->id,
                     'id_template' => $idTemplate,
+                    'column_amount' => $this->input->post('column_amount'), 
                  );
                
                  $data = html_escape($data);
@@ -658,5 +659,53 @@ $date = date('Y-m-d H:i:s');
         redirect('encarte/testImage/'.$idProduct.'/'.$this->ion_auth->user()->row()->id);
 
     }
+
+    public function viewFlyerImage($user, $publishId) {
+
+       
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
+
+        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
+        if ($logo->image_link == 'no-image-icon-23485.png' || count($userProducts) == 0){
+           redirect ('encarte/allCarts');
+        } else {
+            
+        
+
+        if (count($userProducts) == 0) {
+            $type="first";
+        } else {
+            $type="not_first";
+
+        }
+
+     
+
+        $data = array (
+            'titulo' => 'Encartes Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+            'templates' => $this->core_model->getPublishWithTemplate(), 
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js'),    
+            'publish' => $this->core_model->getPublishWithTemplate(),            
+            'type' => $type,
+            'publishId' => $publishId,
+            'user' => $user,
+
+
+        );
+
+
+    
+        $this->load->view('layout/header', $data);
+        $this->load->view('encarte/viewFlyerImage');
+        $this->load->view('layout/footer');
+    }
+
+    }
+
+
 
 }

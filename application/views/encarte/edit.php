@@ -60,6 +60,18 @@
   </div>
 </div>
 
+<div class="form-group col-md-4">
+    <label >Tamanho do Encarte</label>
+
+                                <select class="form-control " name="column_amount">
+                                <option value="3" <?php if ($publish->column_amount == 3) {echo 'selected';}?>>Mini - 3 Colunas</option>
+                                <option value="4" <?php if ($publish->column_amount == 4) {echo 'selected';}?>>Médio - 4 Colunas</option>
+                                <option value="5" <?php if ($publish->column_amount == 5) {echo 'selected';}?>>Grande - 5 Colunas </option>
+                                <option value="6" <?php if ($publish->column_amount == 6) {echo 'selected';}?>>Grande - 6 colunas </option>
+                                </select>
+                                <?php echo form_error('column_amount', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
 
 
     <input type="hidden" name="product_id" value="<?php echo $publish->id; ?>"
