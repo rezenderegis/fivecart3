@@ -86,7 +86,7 @@ position: relative;
 
 </style>
 
-   <?php $this->load->view('layout/sidebar'); ?>
+   <?php //$this->load->view('layout/sidebar'); ?>
 
      
             <!-- Main Content -->

@@ -63,7 +63,7 @@ div.desc {
 
 
 
-   <?php $this->load->view('layout/sidebar'); ?>
+   <?php //$this->load->view('layout/sidebar'); ?>
 
 
 </head>
@@ -86,7 +86,9 @@ div.desc {
             
                <?php $this->load->view('layout/navbar');?>
 
-
+               <div class="cabecalho">
+Meus Encartes
+</div>
 
 
                <?php if (strcmp($type, 'first') == 0) {?>
@@ -103,9 +105,7 @@ div.desc {
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                <div class="cabecalho">
-Meus Encartes
-</div>
+      
                 <?php if ($message = $this->session->flashdata('error')): ?>
     <div class "row">
     <div class ="col-md-12">

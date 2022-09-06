@@ -178,14 +178,24 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
-    public function getAllProducts($idProduct=0) {
-
+    public function getAllProducts($idProduct=0,$type=1) {
+//echo $type; die();
         if ($idProduct != 0) {
             $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
             and pc.id_user = ".$this->ion_auth->user()->row()->id." and p.id = ".$idProduct." order by p.id desc";
         } else {
-            $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
-            and pc.id_user = ".$this->ion_auth->user()->row()->id." order by p.id desc";
+            if ($type == 1) {
+               
+            $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description 
+            FROM product_customer pc inner join products p on pc.id_product = p.id
+            where p.id_owner != 1 and pc.id_user = ".$this->ion_auth->user()->row()->id." order by p.id desc";
+            } else {
+               
+                $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description 
+                FROM product_customer pc inner join products p on pc.id_product = p.id
+                where pc.id_user = ".$this->ion_auth->user()->row()->id." order by p.id desc";
+                        
+            }
         }
 
     $query = $this->db->query ( $sql );	

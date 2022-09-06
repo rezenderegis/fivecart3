@@ -16,18 +16,22 @@ class Product extends CI_Controller  {
 
     }
 
-    public function index($idProduct=0) {
+    public function index($idProduct=0,$type=1) {
         $this->session->set_userdata('type_product', 'not_first');
-
+        if ($type == 1) {
+            $titulo = "Meus Produtos";
+        } else {
+            $titulo = "Produtos da Plataforma";
+        }
         $data = array (
-            'titulo' => 'Produtos Cadastrados',
+            'titulo' => $titulo,
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js',
             'vendor/mask/jquery.mask.min.js',
             'vendor/mask/app.js'),    
-            'products' => $this->core_model->getAllProducts($idProduct), 
+            'products' => $this->core_model->getAllProducts($idProduct,$type), 
 
         );
 

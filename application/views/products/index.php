@@ -1,5 +1,17 @@
+<style>
+  .imgProductInclude {
 
-   <?php $this->load->view('layout/sidebar'); ?>
+align: center;
+
+    object-fit: scale-down;
+    width:  150px;
+    height: 150px;
+    object-position: bottom;
+    
+
+}
+  </style>
+   <?php //$this->load->view('layout/sidebar'); ?>
 
    <?php $this->load->view('/layout/watsapp');?>
 
@@ -11,13 +23,10 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<?php echo base_url('/') ?>">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
-  </ol>
-</nav>
 
+<div class="cabecalho">
+<?php echo $titulo; ?>
+</div>
 <?php if ($message = $this->session->flashdata('error')): ?>
     <div class "row">
     <div class ="col-md-12">
@@ -49,12 +58,26 @@
 
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
-                        <div class="card-header py-3">
+  <br/>
+                      <div class="container">
+                        <div class="row">
+                          <div class="align-self-start">
+                            <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
+                            &nbsp;
+                          </div>
 
-                        <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
-
+                        <div class="align-self-start">
+                          &nbsp;
+                          <a title="Meus Produtos" href="<?=base_url('product/index/0/1'); ?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Meus Produtos</a>
+                        </div>
+                        <div class="align-self-start">
+                                      
+                        <a title="Produtos da Plataforma" href="<?=base_url('product/index/0/2'); ?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Produtos da Plataforma</a>
+                        </div>  
 
                         </div>
+                      </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="product_table" class="table table-based dataTable"  width="100%" cellspacing="0" >
@@ -63,8 +86,7 @@
                                             <th class="text-right ">Id</th>
                                             <th>Nome</th>
                                             <th>Preço</th>
-
-                                            <th class="text-right no-sort"></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,8 +106,15 @@
                                                 </td>       
                                           
                                             <td class="money"><?=$product['price'] ?></td>
+
                                             <td class="text-right">
-                                            <a title="Imagem" href=" <?php echo base_url('/upload/index/'.$product['id']); ?>" class="btn btn-sm btn-primary" ><i class="fas fa-images"></i></a> 
+                                            <a title="Imagem" href=" <?php echo base_url('/upload/index/'.$product['id']); ?>" class="btn btn-sm btn-primary" >
+                                            <?php if ($product['image_link'] != null) { ?>
+                                            <img src="<?php echo base_url('/images/Products/'.$product['image_link']); ?>" class="imgProductInclude">
+                                            <?php } else { ?>
+                                              <img src="<?php echo base_url('/images/Products/no_image.png'); ?>" class="imgProductInclude">
+
+                                            <?php } ?>
                                             </td>
 
                                         </tr>

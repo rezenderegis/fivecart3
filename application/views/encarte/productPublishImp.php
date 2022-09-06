@@ -1,6 +1,229 @@
 
 
 <style>
+#salvar {
+top: 0;
+right: 0;
+height: 20px;
+padding: 10px 10px;
+}
+
+.grid-container {
+display: grid;
+width: 300px;
+grid-template-columns: auto auto;
+padding: 0px;
+
+}
+
+div.gallery {
+
+margin: 0px;
+border: 0px solid #ccc;
+float: left;
+width: 150px;
+margin-bottom: -1;
+display: inline-block;
+  align-self: flex-end;
+
+}
+
+div.gallery:hover {
+border: 1px solid #777;
+}
+
+
+.container_picture {
+
+text-align: center;
+align: right;
+
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 80%;
+
+}
+
+div.gallery img {
+  padding-left: 60px;
+margin-top: -1px;
+
+/** @todo Ficou feio isso, esse -70 pra alinhar a esquerda */
+margin-left: -70px;
+
+align: center;
+
+
+/**The problem with this configuration is that images is generated with difrent sizes and becoume layout
+ugly. */
+/** Altura da foto*/
+/*
+width: 80%;
+height: 180px;*/
+
+
+/**The problem with this configuration is that a image stay with the same size and is necessary
+to adjust the must manualy. */
+/*
+width: 100%;
+height: auto;*/
+    
+    
+    /**This is the best option now, but sometimes is necessary adjust manualy the images. */
+    /*
+    width:  75%;
+    height: 150px;
+    object-position: bottom;
+  
+    The best way is use to use object-fit: scale-down;, but html2canvas didn't support.
+    I saw it in https://html2canvas.hertzen.com/features/
+    Whit object-fit is not necessary manual adjusments: .
+
+    object-fit: scale-down;
+    width:  75%;
+    height: 150px;
+    object-position: bottom;
+    
+    */
+    /** I decied to go in this way and chage in the future, this is a MVP, is a test, I 
+    won't spent more time with this now
+    I cant decrease the width and heigh less than width:  75%; height: 150%;, because of quality
+    */
+    width:  100%;
+    height: 150px;
+    object-position: bottom; 
+
+   
+}
+
+div.desc {
+font-family: "Helvetica", sans-serif;
+padding: 4px;
+text-transform: uppercase;
+font-size: 11px;
+text-align: center;
+width: 150px;
+margin-left: 1px;
+margin-right: 1px;
+margin-bottom: 0;
+
+}
+
+/* Bottom right text */
+.text-block {
+position: relative;
+text-align: center;
+bottom: 5px;
+right: 5px;
+background-color: black;
+color: white;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+.textocentro {
+font-family: "Helvetica", sans-serif;
+position: absolute;
+font-size: 13px;
+padding-top: 2px;
+bottom: 0px;
+right: 20px;
+background-color: <?=$template->main_color;?>;
+color: <?=$template->font_color;?>;
+padding-left: 20px;
+padding-right: 20px;
+
+}
+
+
+.container_text_button{
+position: relative;
+}
+
+.tudo {
+position: relative;
+}
+
+.text_button_right {
+font-family: "Helvetica", sans-serif;
+position: absolute;
+font-size: 12px;
+bottom: 8px;
+left: 250px;
+color: white;
+text: bold;
+width: 200px;
+padding-left: 60px;
+padding-right: 10px;
+align: right;
+}
+
+.text_button_left {
+line-height: 125%;
+font-family: "Sofia", sans-serif;
+font-size: 40px;
+position: absolute;
+bottom: 70px;
+left: 10px;
+color: yellow;
+text: bold;
+width: 300px;
+padding-left: 0px;
+padding-right: 20px;
+align: center;
+}
+
+.logo {
+  border-radius: 0px;
+  padding: 100px;
+  padding-left: 140px;
+  bottom: -99px;
+    width:  140px;
+    height: 90px;
+  position: absolute;
+  align: center;
+  object-position: bottom; 
+
+}
+
+
+.footer_text {
+font-size: 20px;
+position: absolute;
+bottom: 10;
+left: 10px;
+color: yellow;
+text: bold;
+padding-left: 20px;
+padding-right: 20px;
+align: left;
+
+}
+
+
+.iconDetails {
+ margin-left:2%;
+float:left; 
+height:30px;
+width:30px; 
+} 
+
+.container2 {
+  text-transform: capitalize;
+  font-family: "Helvetica", sans-serif;
+  font-size: 15px;
+  color: white;
+position: absolute;
+bottom: 0;
+left: 10px;
+    height:auto;
+    padding:1.5%;
+    float:left;
+}
+h4{margin:0;width:400px; text-transform: capitalize; }
+.left {float:left;width:45px; }
+.right {float:left;margin:0 0 0 5px;width:215px;}
 
 
 .container_text_button{
@@ -92,10 +315,11 @@ position: relative;
   align: center;
 
       object-fit: scale-down;
-      width:  150px;
-      height: 150px;
+      width:  300px;
+      height: 300px;
       object-position: bottom;
-      
+      margin-top: 8px;
+  vertical-align: middle;
 
 }
 
@@ -120,6 +344,23 @@ div.desc {
 .alignCenter {
   vertical-align: middle;
 
+}
+
+.rowFormat {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create two equal columns that sits next to each other */
+.columnFormat {
+  flex: 50%;
+  padding: 0 4px;
+}
+
+.imageFormat {
+  margin-top: 8px;
+  vertical-align: middle;
 }
 </style>
 
@@ -217,13 +458,9 @@ Produtos do Encarte
      
                         <td>
 
+                       <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a>
                        <!--  <a href="<?php echo base_url('encarte/viewFlyerImage/'.$this->ion_auth->user()->row()->id.'/'.$idProductList);?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a> -->
-                      <?php if ($existProductWithoutPrice == 1) { ?>
-                       <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-sm">Visualizar</a> 
-                        <?php } else { ?>
-                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i>Visualizar</a>
 
-                          <?php } ?>
                         
 
     </td>
@@ -232,7 +469,7 @@ Produtos do Encarte
 
 
 <div class ="container_text_button">
-  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="600" height="200">  
+  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="350" height="100">  
   <div class="text_button_right">
     <h6><?=$publish->header2 ?><h6>
   </div>
@@ -252,39 +489,26 @@ Produtos do Encarte
 
 </div>
     
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <!-- 04-06: I excluded dataTable class because she wasnt organizing like query-->
-                                <table class="table tableFit"  width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th class="no-sort">Produto</th>
-                                            <th class="text-right no-sort"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php //print_r($productPublish); die();?>
-                                        <?php foreach ($productPublish as $productPub) : ?>
-                                        <tr>
-                                       
-                                            <td>
-                                                <img src="<?php echo base_url('/images/Products/'.$productPub['image_link']); ?>" class="imgProduct">
-                                                <br/>
-                                                <?=$productPub['name'] ?>
-                                                <br/>
-                                                <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money <?php if ($productPub['price'] == 0.00) {echo 'bg-warning';}?>"><?=$productPub['price']?></a>
-                                            </td>
-                                            <td class="alignCenter">
-                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
+  
+  <div class="grid-container">
+<?php foreach ($productPublish as $product) { ?>
+<div class="gallery">
+<div class="container_picture">
 
-                                            </td>
-                                        </tr>
-                                     
+
+    <img src="<?php echo "http://meusencartes.com.br/fivecart3/images/Products/".$product['image_link']; ?>" alt="Snow" >
+
+    <div class="textocentro"><?php echo 'R$'.number_format($product['price'], 2, ',', '.'); ?> </div>
+</div>
+    <div class="desc"><?=$product['name']?></div>
+</div>
+<?php }?>
+</div>
 
 <!-- Logout Modal-->
 
 
-
+<!--
 <div class="modal fade" id="user-<?php echo $productPub['id_product_publish']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -304,52 +528,19 @@ Produtos do Encarte
         </div>
     </div>
                                         
+-->
 
 
 
-
-
-
-
-
-
-                                        <?php endforeach;?>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
-                        <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="600" height="100">  
+                        <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="350" height="100">  
 
                     </div>
 
                     </div>
                     
     </div>
-
-
-
-
-    <div class="modal fade" id="user-showPictureButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Deseja continuar?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Existem produtos sem preço. Deseja continuar?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>">Sim</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
 
 
                 </div>

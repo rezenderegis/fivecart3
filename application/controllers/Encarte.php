@@ -284,6 +284,16 @@ class Encarte extends CI_Controller {
     public function productPublish($idProductList = NULL) {
         $publish = $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $this->ion_auth->user()->row()->id));
         $idTemplate = $publish->id_template;
+       
+        $existProductWithoutPrice = 0;
+        foreach($this->core_model->getProductPublish($idProductList) as $verify) {
+            //print_r($verify); die();
+            if ($verify['price'] == '0.00') {
+                $existProductWithoutPrice = 1;
+               
+            }
+        }
+       
         $data = array (
             'titulo' => 'Produtos Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
@@ -297,7 +307,7 @@ class Encarte extends CI_Controller {
             'idProductList' => $idProductList,
             'publish' => $publish,
             'template' => $this->core_model->getById('template', array('id' => $idTemplate)),
-
+            'existProductWithoutPrice' => $existProductWithoutPrice,
             'productPublish' => $this->core_model->getProductPublish($idProductList),
 
         );

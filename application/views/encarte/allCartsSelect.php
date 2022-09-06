@@ -50,7 +50,7 @@ div.desc {
   clear: both;
 }
 </style>
-   <?php $this->load->view('layout/sidebar'); ?>
+   <?php //$this->load->view('layout/sidebar'); ?>
 
             <!-- Main Content -->
             <div id="content">

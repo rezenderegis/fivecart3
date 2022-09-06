@@ -1,4 +1,4 @@
-<?php $this->load->view('layout/sidebar'); ?>
+<?php //$this->load->view('layout/sidebar'); ?>
         
 
 <div id="whatswidget-pre-wrapper" class="">

@@ -1,5 +1,5 @@
 
-   <?php $this->load->view('layout/sidebar'); ?>
+   <?php //$this->load->view('layout/sidebar'); ?>
 
      
             <!-- Main Content -->
@@ -10,14 +10,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-       
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="<?php echo base_url('/') ?>">Usuários</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
-  </ol>
-</nav>
 <div class="cabecalho">
 <?php echo $titulo; ?>
 </div>
