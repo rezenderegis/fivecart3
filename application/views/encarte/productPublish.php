@@ -219,7 +219,7 @@ Produtos do Encarte
 
                        <!--  <a href="<?php echo base_url('encarte/viewFlyerImage/'.$this->ion_auth->user()->row()->id.'/'.$idProductList);?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a> -->
                       <?php if ($existProductWithoutPrice == 1) { ?>
-                       <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-sm">Visualizar</a> 
+                       <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-sm text-dark">Visualizar</a> 
                         <?php } else { ?>
                           <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i>Visualizar</a>
 
@@ -282,9 +282,6 @@ Produtos do Encarte
                                      
 
 <!-- Logout Modal-->
-
-
-
 <div class="modal fade" id="user-<?php echo $productPub['id_product_publish']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
