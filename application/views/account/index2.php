@@ -80,7 +80,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="company_name"
-                                    placeholder="Nome Empresa" value="<?=set_value('company_name');?>">
+                                    placeholder="Nome Empresa" value="<?=set_value('company_name');?>" maxlength="25">
                                     <?php echo form_error('company_name', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>

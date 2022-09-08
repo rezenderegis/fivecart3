@@ -99,7 +99,7 @@ class Usuario extends CI_Controller  {
                     'id_user' => $idUserInserted,
                     'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
                     'footer_text2' => $this->input->post('address'),
-                    'logo' => 'no-image-icon-23485.png',
+                    //'logo' => 'no-image-icon-23485.png',
                 );
               
                 $dataDetails = html_escape($dataDetails);

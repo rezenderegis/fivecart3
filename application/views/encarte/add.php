@@ -61,6 +61,7 @@ Dados do Seu Novo Encarte
   </div>
 <BR/>
 
+<!--
   <div class="col-md-4">
       <label >Texto Cabeçalho Direita</label>
     <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="" maxlength="21" >
@@ -94,7 +95,7 @@ Dados do Seu Novo Encarte
                                 <?php echo form_error('column_amount', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
-
+-->
 
   <div class ="container_text_button">
   <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="455" height="200">  
