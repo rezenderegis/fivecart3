@@ -111,7 +111,7 @@ class Account extends CI_Controller  {
 
                  $aditional_data = array (
                      'first_name' => $this->input->post('first_name'),
-                     'last_name' => $this->input->post('last_name'),
+            //         'last_name' => $this->input->post('last_name'),
                      'username' => $this->input->post('username'),
                      'active' => 1,
                     // 'activation_code' => $code_confirmation,
@@ -123,39 +123,44 @@ class Account extends CI_Controller  {
                  $group = $this->security->xss_clean($group);
                 
                 $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
-                if ( $idUserInserted['id']) {
+       
+                if ( $idUserInserted) {
                 
                 $dataDetails = array (
-                    'address' => $this->input->post('address'),
-                    'mobile_number' => $this->input->post('mobile_number'),
-                    'id_user' => $idUserInserted['id'],
-                    'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
-                    'footer_text2' => $this->input->post('address'),
+               //     'address' => $this->input->post('address'),
+                  //  'mobile_number' => $this->input->post('mobile_number'),
+                    'id_user' => $idUserInserted,
+                //    'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
+               //     'footer_text2' => $this->input->post('address'),
                     //'image_link' => 'no-image-icon-23485.png',
-                    'city' => $this->input->post('city'),
-                    'company_name' => $this->input->post('company_name'),
+               //     'city' => $this->input->post('city'),
+                //    'company_name' => $this->input->post('company_name'),
                     'shop_type' => $this->input->post('shop_type'),
                 );
               
                 $dataDetails = html_escape($dataDetails);
 
                $this->core_model->insert('user_detail', $dataDetails);
-                
-                $this->core_model->insertProductDefalt($idUserInserted['id'], $this->input->post('shop_type'));
+            
+                $this->core_model->insertProductDefalt($idUserInserted, $this->input->post('shop_type'));
 
                 $this->load->model("email_model");
-                $this->email_model->sendCreationAccount($idUserInserted['id']);
+                $this->email_model->sendCreationAccount($idUserInserted);
 
 
-                        $this->session->set_flashdata('info','Usuário criado com sucesso! <br> 
-                        Acesse sua caixa de e-mail para confirmar o cadastro!');
+               /*         $this->session->set_flashdata('info','Usuário criado com sucesso! <br> 
+                        Acesse sua caixa de e-mail para confirmar o cadastro!');*/
 
                 } else {
                     $this->session->set_flashdata('error','Erro ao salvar os dados');
 
                 }
 
-                redirect ('login');
+
+
+                $this->auth($this->input->post("username"),$this->input->post("password"));
+           
+            //    redirect ('login');
               
         } else {
 
@@ -172,6 +177,56 @@ class Account extends CI_Controller  {
     }
     
 
+    public function auth($emailReceived=0,$passwordReceived=0) {
+   
+        $identity = '';
+        $password = '';
+    
+        if ($emailReceived != 0) {
+            $identity = $emailReceived;
+            $password = $passwordReceived;
+        } else {
+        $identity = $this->security->xss_clean($this->input->post('email'));
+        $password = $this->security->xss_clean($this->input->post('password'));
+        }
+        $remember = FALSE; // remember the user
+        //echo $identity."pass ".$password; die();
+        $dataUser = $this->core_model->getById('users', array('email' => $this->input->post('email'), 'active' => 0));
+        if ($dataUser) {
+            $email = $this->input->post('email');
+    
+            /**    
+            $this->session->set_flashdata('error', 'Seu e-mail ainda não foi confirmado. <br/>Cliqe no link para reeenviar!
+            <a href="localhost:8888/fivecart3/account/resendCode/'.$email.'>">REENVIAR CÓDIGO</a> ');  
+             * 
+             */
+            $this->load->model("email_model");
+    
+            $this->email_model->resendCode($this->input->post('email'));
+            $this->session->set_flashdata('error', 'O código de acesso foi reenviado ao seu e-mail. <br/><b>Entre no seu e-mail e confirme</b>');
+    \       redirect ('login');
+        } else {
+            
+            //$this->session->set_userdata('type_product', 'first');
+    
+        if ($this->ion_auth->login($identity, $password, $remember)) {
+    
+            $getProductPublish =  $this->core_model->get_all('publish', array ('id_user' => $this->ion_auth->user()->row()->id, 'status'=> 1 ));
+            if (count($getProductPublish) > 0) {
+                redirect('encarte/productList1');
+            } else {
+                redirect('encarte/allCarts');
+    
+            }
+    
+        } else {
+            $this->session->set_flashdata('error', 'Usuário ou senha não encontrados!');
+           redirect ('login');
+    
+        }
+    }
+    
+    }
 
 
 

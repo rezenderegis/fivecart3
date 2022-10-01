@@ -22,11 +22,18 @@ class Login extends CI_Controller {
 
 }
 
-public function auth() {
+public function auth($emailReceived=0,$passwordReceived=0) {
    
+    $identity = '';
+    $password = '';
 
+    if ($emailReceived != 0) {
+        $identity = $emailReceived;
+        $password = $passwordReceived;
+    } else {
     $identity = $this->security->xss_clean($this->input->post('email'));
     $password = $this->security->xss_clean($this->input->post('password'));
+    }
     $remember = FALSE; // remember the user
     //echo $identity."pass ".$password; die();
     $dataUser = $this->core_model->getById('users', array('email' => $this->input->post('email'), 'active' => 0));

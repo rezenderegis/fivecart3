@@ -319,8 +319,8 @@ if ($this->form_validation->run()) {
 
 
     $data = elements(
-
-        array('footer_text', 'footer_text2'
+             //,
+        array('footer_text', 'footer_text2', 'city', 'company_name','address', 'mobile_number',
     
     ), $this->input->post()
 

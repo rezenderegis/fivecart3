@@ -46,12 +46,7 @@
                                         <?php echo form_error('first_name', '<small class = "form-text text-danger">','</small>');?>
 
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName" name="last_name"
-                                        placeholder="Segundo Nome" value="<?=set_value('last_name');?>">
-                                        <?php echo form_error('last_name', '<small class = "form-text text-danger">','</small>');?>
-
-                                </div>
+                              
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
@@ -59,7 +54,7 @@
                                     <?php echo form_error('email', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
-
+<!--
                             <div class="form-group">
                                 <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="mobile_number"
                                     placeholder="Telefone" value="<?=set_value('mobile_number');?>">
@@ -84,11 +79,11 @@
                                     <?php echo form_error('company_name', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
-
+-->
                             
                             <div class="form-group">
                                 <select class="form-control " name="shop_type">
-                                <option value=""></option>
+                                <option value="">TIPO COMÉRCIO</option>
                                 <option value="1">Supermercado</option>
                                 <option value="2">Açougue</option>
                                 <option value="3">Verdurão</option>

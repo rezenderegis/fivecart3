@@ -54,6 +54,33 @@ div.cabecalho {
 
                         <div class="card-body">
 <form method="POST" name="form_editUserDetails">
+  
+<div class="form-group">
+                                <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="mobile_number"
+                                    placeholder="Telefone" value="<?php echo $user_detail->mobile_number;?>">
+                                    <?php echo form_error('mobile_number', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="city"
+                                    placeholder="Cidade" value="<?php echo $user_detail->city;?>">
+                                    <?php echo form_error('city', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="address"
+                                    placeholder="Endereço da Empresa" value="<?php echo $user_detail->address;?>">
+                                    <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="company_name"
+                                    placeholder="Nome Empresa" value="<?php echo $user_detail->company_name;?>" maxlength="25">
+                                    <?php echo form_error('company_name', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+
+
   <div class="form-group">
       <div class="col-md-4">
       <label >Rodapé 1 (Dica: Colocar Telefone)</label>

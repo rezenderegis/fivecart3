@@ -287,6 +287,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
         select ".$idUser.", pc.id_product, sysdate(),0 from product_customer pc inner join products p on p.id = pc.id_product 
         where pc.id_user = 1 and p.id_cathegory in (".$shop_type.");";
    
+   
 
 
         $query = $this->db->query ( $sql );	
