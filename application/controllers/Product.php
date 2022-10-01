@@ -17,12 +17,26 @@ class Product extends CI_Controller  {
     }
 
     public function index($idProduct=0,$type=1) {
+        
+        $title = 'Todos os Encartes';
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
+
+      
         $this->session->set_userdata('type_product', 'not_first');
+
+        if (count($userProducts) == 0){
+            $titulo = 'Cadastre produtos para criar seu ENCARTE';
+            
+        } else {
         if ($type == 1) {
+
             $titulo = "Meus Produtos";
+
         } else {
             $titulo = "Produtos da Plataforma";
         }
+    }
+
         $data = array (
             'titulo' => $titulo,
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
@@ -34,6 +48,11 @@ class Product extends CI_Controller  {
             'products' => $this->core_model->getAllProducts($idProduct,$type), 
 
         );
+
+        $publish =  $this->core_model->getById('publish', array ('id_user' => $this->ion_auth->user()->row()->id));
+        if (!$publish && $userProducts){
+           $this->session->set_flashdata('error', 'Crie seu primeiro encarte!');
+         } 
 
         $this->load->view('layout/header', $data);
         $this->load->view('products/index');
@@ -203,7 +222,7 @@ if ($this->form_validation->run()) {
             'titulo' => $titulo,
         );
 
-        $this->form_validation->set_rules('name','', 'trim|required|min_length[16]');
+        $this->form_validation->set_rules('name','', 'trim|required|min_length[5]');
        // $this->form_validation->set_rules('id_cathegory','', 'trim|required');
         $this->form_validation->set_rules('price','', 'trim|required');
         $this->form_validation->set_rules('shop_type','', 'required');
@@ -215,7 +234,7 @@ if ($this->form_validation->run()) {
                      'id_owner' => $this->ion_auth->user()->row()->id,
                      'id_cathegory' => $this->input->post('id_cathegory'),
                      'image_link' => '',
-                     'status' => $this->input->post('status'),
+                     'status' => 1,
                      'shop_type' => $this->input->post('shop_type'),       
                  );
                

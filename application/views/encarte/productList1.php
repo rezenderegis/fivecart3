@@ -77,7 +77,7 @@ div.desc {
 <?php $this->load->view('/layout/watsapp');?>
 
             <!-- Main Content -->
-            <div id="content">
+<div id="content">
 
 
 
@@ -87,24 +87,11 @@ div.desc {
                <?php $this->load->view('layout/navbar');?>
 
                <div class="cabecalho">
-Meus Encartes
-</div>
+      Meus Encartes
+    </div>
 
 
-               <?php if (strcmp($type, 'first') == 0) {?>
-               <div class="button_header">
-                <a title="Criar Nova Lista" href="<?php echo base_url('product/add/first');?>" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
-                </div>
-
-                <?php } else { ?>
-                <div class="button_header">
-                <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-success btn-sm"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
-                </div>
-                <?php } ?>
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
+             
       
                 <?php if ($message = $this->session->flashdata('error')): ?>
     <div class "row">
@@ -112,6 +99,8 @@ Meus Encartes
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong><?php echo $message;?></strong> 
+  <a href="<?php echo base_url('encarte/allCarts');?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui</a>
+
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -136,6 +125,20 @@ Meus Encartes
 <?php endif; ?>   
 
 </div>
+
+<?php if (strcmp($type, 'first') == 0) {?>
+               <div class="button_header">
+                <a title="Criar Nova Lista" href="<?php echo base_url('product/add/first');?>" class="btn btn-primary btn-lg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                </div>
+
+                <?php } else { ?>
+                <div class="button_header">
+                <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-primary btn-lg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                </div>
+                <?php } ?>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
 
   

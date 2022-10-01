@@ -34,15 +34,32 @@ class Encarte extends CI_Controller {
 
     public function allCarts() {
 
+        $title = 'Todos os Encartes';
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
+
+        //TODO: This is not workink
+        if (count($userProducts) == 0){
+            $title = 'Cadastre produtos para criar seu ENCARTE';
+            
+        }
+
         $data = array (
 
-            'titulo' => 'Todos os Encartes',
+            'titulo' => $title,
              'templates' => $this->core_model->getTemplates(), 
 
         );
 
         $this->load->view('layout/header', $data);
-        $this->load->view('encarte/allCarts1');
+
+        if (count($userProducts) == 0){
+
+            redirect ('product/index/0/1', $data);
+         } else {
+
+            $this->load->view('encarte/allCarts1');
+         
+        }
         $this->load->view('layout/footer');
     }
 
@@ -88,9 +105,9 @@ class Encarte extends CI_Controller {
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
 
         $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
-        if ($logo->image_link == 'no-image-icon-23485.png' || count($userProducts) == 0){
-           redirect ('encarte/allCarts');
-        } else {
+        if (count($userProducts) == 0){
+            redirect ('product/index/0/1');
+         } else {
             
         
 
@@ -132,6 +149,12 @@ class Encarte extends CI_Controller {
 
 
     }
+
+    $publish =  $this->core_model->getById('publish', array ('id_user' => $this->ion_auth->user()->row()->id));
+    if (!$publish){
+       $this->session->set_flashdata('error', 'Crie seu primeiro encarte!');
+     } 
+
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/productList1');
         $this->load->view('layout/footer');
@@ -221,6 +244,15 @@ class Encarte extends CI_Controller {
        // $this->load->view('/layout/header', $data);
       //  $this->load->view('encarte/selectProduct',$data);
         $this->core_model->update('publish', $dataPublish, array('id' => $publishId));
+
+        $date = date('Y-m-d H:i:s');
+
+        $dataUpdate = array('dateUpdate' => $date,);
+
+        $this->core_model->update('publish', $dataUpdate, array('id' => $publishId));
+
+
+
         $this->session->set_flashdata('success', 'Modelo alterado com sucesso!');
 
         redirect('encarte/productList1');
@@ -261,6 +293,42 @@ class Encarte extends CI_Controller {
     
     }
 
+    public function getAllFlyers() {
+
+        if (!$this->ion_auth->is_admin()) {
+            $this->session->set_flashdata('error', 'Acesso não permitido');
+            redirect('home');
+        } else {
+
+
+        $publish = $this->core_model->getAllFlyers();
+
+ 
+        $data = array (
+            'titulo' => 'Encartes Cadastrados',
+            'publish' =>  $publish, 
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js',
+         'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js')
+        );
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('encarte/getAllFlyers');   
+
+        $this->load->view('layout/footer');
+    }
+    
+    }
+
+
+
+
+
+
+
+
     public function newPublish() {
         
         $data = array (
@@ -282,6 +350,8 @@ class Encarte extends CI_Controller {
 
     }
     public function productPublish($idProductList = NULL) {
+        $userDetail = $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id));
+
         $publish = $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $this->ion_auth->user()->row()->id));
         $idTemplate = $publish->id_template;
        
@@ -309,8 +379,25 @@ class Encarte extends CI_Controller {
             'template' => $this->core_model->getById('template', array('id' => $idTemplate)),
             'existProductWithoutPrice' => $existProductWithoutPrice,
             'productPublish' => $this->core_model->getProductPublish($idProductList),
+            'userDetail' => $userDetail,
+
 
         );
+
+
+        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
+     //   print_r($logo);
+      //  die();
+
+
+      if (is_null($logo)) {
+        $this->session->set_flashdata('error', 'Inclua uma Logo para melhorar a qualidade do seu encarte!');
+ 
+    } else if (!$logo->image_link){
+            $this->session->set_flashdata('error', 'Inclua uma Logo para melhorar a qualidade do seu encarte!');
+          } 
+
+
         $this->load->view('layout/header', $data);
         $this->load->view('encarte/productPublish');
         $this->load->view('layout/footer');
@@ -376,6 +463,13 @@ class Encarte extends CI_Controller {
  
      $this->core_model->update('publish', $data, array('id' => $publish_id));
     
+     $date = date('Y-m-d H:i:s');
+
+     $dataUpdate = array('dateUpdate' => $date,);
+
+   $this->core_model->update('publish', $dataUpdate, array('id' => $publish_id));
+
+
      redirect ('encarte/productPublish/'.$publish_id);
  
  
@@ -460,13 +554,14 @@ class Encarte extends CI_Controller {
         );
 
         $this->form_validation->set_rules('description','', 'trim|required');
+        $userDetail =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
 
         if ($this->form_validation->run()) {
                  $data = array (
                      'description' => $this->input->post('description'),
                      'header2' => $this->input->post('header2'),
-                     'footer_text' => $this->input->post('footer_text'),
-                     'footer_text2' => $this->input->post('footer_text2'),
+                     'footer_text' => $userDetail->footer_text,
+                     'footer_text2' => $userDetail->footer_text2,
                      'id_user' => $this->ion_auth->user()->row()->id,
                     'id_template' => $idTemplate,
                     'column_amount' => $this->input->post('column_amount'), 
@@ -530,6 +625,12 @@ $date = date('Y-m-d H:i:s');
                );
                
               $this->core_model->insert('product_publish', $data);
+              
+              
+                $dataUpdate = array('dateUpdate' => $date,);
+
+              $this->core_model->update('publish', $dataUpdate, array('id' => $idProductList));
+
               $getProductPublish =  $this->core_model->get_all('product_publish', array ('id_publish' => $idProductList, 'status'=> 1 ));
               count($getProductPublish);
               redirect ('encarte/productPublish/'.$idProductList);
@@ -546,6 +647,14 @@ $date = date('Y-m-d H:i:s');
             );
 
             $this->core_model->update('product_publish', $data, array('id' => $idProductPublish));
+            
+            $date = date('Y-m-d H:i:s');
+
+            $dataUpdate = array('dateUpdate' => $date,);
+
+          $this->core_model->update('publish', $dataUpdate, array('id' => $idPublish));
+
+            
             redirect ('encarte/productPublish/'.$idPublish);
 
         } 

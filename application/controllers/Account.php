@@ -58,7 +58,7 @@ class Account extends CI_Controller  {
                     'id_user' => $idUserInserted,
                     'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
                     'footer_text2' => $this->input->post('address'),
-                    'image_link' => 'no-image-icon-23485.png',
+                    //'image_link' => 'no-image-icon-23485.png',
                 );
               
                 $dataDetails = html_escape($dataDetails);
@@ -92,13 +92,13 @@ class Account extends CI_Controller  {
     public function add2() {
 
         $this->form_validation->set_rules('first_name','', 'trim|required');
-        $this->form_validation->set_rules('last_name','', 'trim|required');
+       // $this->form_validation->set_rules('last_name','', 'trim|required');
         $this->form_validation->set_rules('email','', 'trim|required|valid_email|is_unique[users.email]');
-        $this->form_validation->set_rules('mobile_number','', 'trim|required');
-        $this->form_validation->set_rules('address','', 'trim|required');
+       // $this->form_validation->set_rules('mobile_number','', 'trim|required');
+        //$this->form_validation->set_rules('address','', 'trim|required');
         $this->form_validation->set_rules('password','Senha', 'required|min_length[5]|max_length[255]');
         $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
-        $this->form_validation->set_rules('city','', 'trim|required');
+        //$this->form_validation->set_rules('city','', 'trim|required');
         $this->form_validation->set_rules('shop_type','', 'required');
 
         
@@ -131,7 +131,7 @@ class Account extends CI_Controller  {
                     'id_user' => $idUserInserted['id'],
                     'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
                     'footer_text2' => $this->input->post('address'),
-                    'image_link' => 'no-image-icon-23485.png',
+                    //'image_link' => 'no-image-icon-23485.png',
                     'city' => $this->input->post('city'),
                     'company_name' => $this->input->post('company_name'),
                     'shop_type' => $this->input->post('shop_type'),

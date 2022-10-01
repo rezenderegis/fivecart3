@@ -23,44 +23,43 @@
                    
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
+                       <!--
                         <div class="card-header py-3">
-
-                            <a title="Voltar" href="<?php echo base_url('Home')?>" class="btn btn-success btn-sm float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
-
+                            <a title="Voltar" href="<?php echo base_url('Home')?>" class="btn btn-primary btn-lg float-right"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
                         </div>
-
+                        -->
                         <div class="card-body">
                             
 <form method="POST" name="form_edit">
   <div class="form-group">
-      <div class="col-md-4">
+      <div class="col-md-6">
       <label >Descrição da Lista</label>
     <input type="text" class="form-control" name="description" placeholder="Descrição" value="<?php echo $publish->description;?>">
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
   
   </div>
   
-  <div class="col-md-4">
+  <div class="col-md-6">
       <label >Texto Cabeçalho Direita</label>
     <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="<?php echo $publish->header2;?>" maxlength="21">
     <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 
   <div class="form-group">
-      <div class="col-md-4">
+      <div class="col-md-6">
       <label >Rodapé 1 (Dica: Colocar Telefone)</label>
     <input type="text" class="form-control" name="footer_text" placeholder="Rodapé" value="<?php echo $publish->footer_text;?>" maxlength="49">
     <?php echo form_error('footer_text', '<small class = "form-text text-danger">','</small>');?>
   </div>
 
-    <div class="col-md-4">
-      <label >Rodapé 2 (Dica - Colocar Endereço)</label>
+    <div class="col-md-6">
+      <label>Rodapé 2 (Dica - Colocar Endereço)</label>
     <input type="text" class="form-control" name="footer_text2" placeholder="Rodapé 2" value="<?php echo $publish->footer_text2;?>" maxlength="73">
     <?php echo form_error('footer_text2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 </div>
 
-<div class="form-group col-md-4">
+<div class="form-group col-md-6">
     <label >Tamanho do Encarte</label>
 
                                 <select class="form-control " name="column_amount">
@@ -77,7 +76,7 @@
     <input type="hidden" name="product_id" value="<?php echo $publish->id; ?>"
 </div>
 
-  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+  <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
 </form>
 
 

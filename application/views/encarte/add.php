@@ -8,12 +8,11 @@ font-family: "Helvetica", sans-serif;
 position: absolute;
 font-size: 12px;
 bottom: 8px;
-left: 200px;
+left: 100px;
 color: white;
 text: bold;
 width: 300px;
-padding-left: 50px;
-padding-right: 10px;
+padding-left: -100px;
 align: right;
 }
 </style>
@@ -46,7 +45,7 @@ Dados do Seu Novo Encarte
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                            <a title="Voltar" href="<?php echo base_url('encarte/allCarts')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                            <a title="Voltar" href="<?php echo base_url('encarte/allCarts')?>" class="btn btn-primary btn-lg float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
 
                         </div>
 
@@ -98,7 +97,7 @@ Dados do Seu Novo Encarte
 -->
 
   <div class ="container_text_button">
-  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="455" height="200">  
+  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="300" height="100">  
   <div class="text_button_right">
     <h6>Seu Texto Cabeçalho AQUI<h6>
   </div>
@@ -109,7 +108,7 @@ Dados do Seu Novo Encarte
 
 
 
-  <button type="submit" class="btn btn-primary btn-sm">Próximo</button>
+  <button type="submit" class="btn btn-primary btn-lg">Próximo</button>
 </form>
 
 

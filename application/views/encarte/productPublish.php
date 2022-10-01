@@ -1,8 +1,6 @@
 
 
 <style>
-
-
 .container_text_button{
 position: relative;
 }
@@ -126,13 +124,13 @@ div.desc {
    <?php //$this->load->view('layout/sidebar'); ?>
 
      
-            <!-- Main Content -->
-            <div id="content">
+<!-- Main Content -->
+<div id="content">
 
                <?php $this->load->view('layout/navbar');?>
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+ <div class="container-fluid">
 
 
 
@@ -142,6 +140,8 @@ div.desc {
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong><?php echo $message;?></strong> 
+  <a href="<?php echo base_url('usuario/editUserDetails');?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui</a>
+
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -165,13 +165,37 @@ div.desc {
 </div>
 <?php endif; ?>   
 <div class="cabecalho">
-Produtos do Encarte
+Produtos e Informações do Encarte
 </div>
 
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
 
+<?php 
+ $footer_text = "";
+ $footer_text2 = "";
+
+if ($publish->footer_text) {
+  $footer_text = $publish->footer_text;
+  $footer_text2 = $publish->footer_text2;
+}else if ($userDetail->footer_text) {
+ 
+
+  $footer_text = $userDetail->footer_text;
+  $footer_text2 = $userDetail->footer_text2;
+} else if ($template->footer_text2) {
+  
+  $footer_text = $template->footer_text;
+  $footer_text2 = $template->footer_text2;
+
+  
+}
+
+
+?>
+
 <div class="card-body"> 
+  <!--
  <table class="table table-striped">
  <tr>
  <td><strong>Descrição</strong></td>
@@ -183,20 +207,26 @@ Produtos do Encarte
  <tr>
  <tr>
  <td>Texto Rodapé 1</td>
- <td><?=$publish->footer_text?></td>
+ <td>
+ <a href="<?php echo base_url('encarte/edit/'.$idProductList);?>"><?=$footer_text?></a>
+
+</td>
  <tr>
  <tr>
  <td>Texto Rodapé 2</td>
- <td><?=$publish->footer_text2?></td>
+ <td>
+ <a href="<?php echo base_url('encarte/edit/'.$idProductList);?>"><?=$footer_text2?></a>
+ 
+ </td>
  <tr>
 </table>
-
+-->
 <table class"table"">
   <tr>
     <td>
 
 <div class="dropdown">
-  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Alterar
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -219,9 +249,9 @@ Produtos do Encarte
 
                        <!--  <a href="<?php echo base_url('encarte/viewFlyerImage/'.$this->ion_auth->user()->row()->id.'/'.$idProductList);?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a> -->
                       <?php if ($existProductWithoutPrice == 1) { ?>
-                       <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-sm text-dark">Visualizar</a> 
+                       <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark">Visualizar</a> 
                         <?php } else { ?>
-                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i>Visualizar</a>
+                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i>Visualizar</a>
 
                           <?php } ?>
                         
@@ -232,7 +262,7 @@ Produtos do Encarte
 
 
 <div class ="container_text_button">
-  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="600" height="200">  
+  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="300" height="100">  
   <div class="text_button_right">
     <h6><?=$publish->header2 ?><h6>
   </div>
@@ -240,7 +270,7 @@ Produtos do Encarte
 <br/>
 
 <div class="dropdown">
-  <button onclick="myFunction()" class="btn btn-primary btn-sm">Adicionar Produto</button>
+  <button onclick="myFunction()" class="btn btn-primary btn-lg">Adicionar Produto</button>
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Procurar..." id="myInput" onkeyup="filterFunction()" name="product">
     <?php foreach ($products as $product) {?>
@@ -263,8 +293,12 @@ Produtos do Encarte
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php //print_r($productPublish); die();?>
+                                    <?php 
+                                    
+                                    $id_product_publish = 0;
+                                    ?>
                                         <?php foreach ($productPublish as $productPub) : ?>
+                                          <?php $id_product_publish =  $productPub['id_product_publish']; ?>
                                         <tr>
                                        
                                             <td>
@@ -275,16 +309,14 @@ Produtos do Encarte
                                                 <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money <?php if ($productPub['price'] == 0.00) {echo 'bg-warning';}?>"><?=$productPub['price']?></a>
                                             </td>
                                             <td class="alignCenter">
-                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
+                                                <!--<a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> -->
+                                                <a href="<?php echo base_url('encarte/deleteProduct/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']);?>"  class="btn btn-lg btn-danger"><i class="far fa-trash-alt"></i></a> 
 
-                                            </td>
-                                        </tr>
-                                     
 
 <!-- Logout Modal-->
-<div class="modal fade" id="user-<?php echo $productPub['id_product_publish']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade bd-example-modal-sm" id="user-<?php echo $productPub['id_product_publish']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja deletar?</h5>
@@ -300,7 +332,11 @@ Produtos do Encarte
             </div>
         </div>
     </div>
-                                        
+    
+                                            </td>
+                                        </tr>
+                                     
+                                    
 
 
 
@@ -315,13 +351,13 @@ Produtos do Encarte
                                 </table>
                             </div>
                         </div>
-                        <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="600" height="100">  
+                        <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="300" height="100">  
 
-                    </div>
-
-                    </div>
                     
-    </div>
+
+
+                    
+
 
 
 
@@ -347,12 +383,11 @@ Produtos do Encarte
 
 
 
-
-
-                </div>
+                                   
+    </div>
+             
                 <!-- /.container-fluid -->
-
-            </div>
+ </div>
             <!-- End of Main Content -->
 <script>
 

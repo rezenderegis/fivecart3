@@ -75,11 +75,14 @@ function goBack() {
                 &nbsp;
                 Usuarios
             </a>
-            <a class="dropdown-item" href="<?=base_url('product/showAllProducts'); ?>">
+            <a class="dropdown-item" href="<?=base_url('encarte/getAllFlyers'); ?>">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-white h3"></i>
                 &nbsp;
-                Imagen Produtos
+                Encartes Cadastrados
             </a>
+
+            
+
         </div>
         
     </li>

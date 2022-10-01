@@ -144,10 +144,11 @@ class Usuario extends CI_Controller  {
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
-            'usuarios' => $this->ion_auth->users()->result(), 
+            'usuarios' => $this->core_model->getUsers(), 
 
         );
-       
+     
+       //from_unixtime(created_on ,'%Y-%m-%d'),from_unixtime(last_login  ,'%Y-%m-%d')
         $this->load->view('layout/header', $data);
         $this->load->view('users/index');
         $this->load->view('layout/footer');

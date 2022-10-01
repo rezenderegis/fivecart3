@@ -80,7 +80,7 @@ $db['default'] = array(
 	'hostname' => 'localhost:8889',
 	'username' => 'root',
 	'password' => 'root',
-	'database' => 'fivendi',
+	'database' => 'onecart',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -97,7 +97,6 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 */
-
 //Produção
 
 $db['default'] = array(

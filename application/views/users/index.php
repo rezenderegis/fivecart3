@@ -64,23 +64,28 @@
                                             <th>User</th>
                                             <th>Login</th>
                                             <th>Perfil</th>
+                                            <th>Criado</th>
+                                            <th>Ultimo Login</th>
 
                                             <th class="text-center">Ativo</th>
                                             <th class="text-right no-sort">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+  
                                         <?php foreach ($usuarios as $user) : ?>
                                         <tr>
-                                            <td><?=$user->id?></td>
-                                            <td><?=$user->username ?></td>
-                                            <td><?=$user->email ?></td>
-                                            <td><?php echo ($this->ion_auth->is_admin($user->id) ? 'Administrador' : 'Vendedor');?></td>
-                  
-                                            <td class="text-center pr-4"><?php echo ($user->active) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
+                                            <td><?=$user['id']?></td>
+                                            <td><?=$user['username'] ?></td>
+                                            <td><?=$user['email'] ?></td>
+                                            <td><?php // echo (//$this->ion_auth->is_admin($user['id) ? 'Administrador' : 'Vendedor');?></td>
+                                                <td><?=$user['created_on1'] ?></td>
+                                                <td><?=$user['last_login1'] ?></td>
+ 
+                                            <td class="text-center pr-4"><?php echo ($user['active']) == 1 ? '<span class="badge badge-info btn-sm">Sim</span>' : '<span class="badge badge-warning">Não</span>' ?></td>
                                             <td class="text-right">
-                                                <a title="Editar" href="<?php echo base_url('/usuario/edit/'.$user->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
-                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $user->id; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> 
+                                                <a title="Editar" href="<?php echo base_url('/usuario/edit/'.$user['id']); ?>" class="btn btn-sm btn-primary"><i class="fas fa-user-edit"></i></a> 
+                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $user['id']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> 
 
                                             </td>
 
@@ -88,7 +93,7 @@
 
 
 <!-- Logout Modal-->
-<div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="user-<?php echo $user['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -101,7 +106,7 @@
                 <div class="modal-body">Para excluir o registro cliquem em Sim</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuario/delete/'.$user->id);?>">Sim</a>
+                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('usuario/delete/'.$user['id']);?>">Sim</a>
                 </div>
             </div>
         </div>

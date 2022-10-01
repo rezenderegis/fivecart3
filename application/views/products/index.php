@@ -4,8 +4,8 @@
 align: center;
 
     object-fit: scale-down;
-    width:  150px;
-    height: 150px;
+    width:  100px;
+    height: 100px;
     object-position: bottom;
     
 
@@ -33,6 +33,8 @@ align: center;
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong><?php echo $message;?></strong> 
+  <a href="<?php echo base_url('encarte/allCarts');?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui</a>
+
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -62,17 +64,17 @@ align: center;
                       <div class="container">
                         <div class="row">
                           <div class="align-self-start">
-                            <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
+                            <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
                             &nbsp;
                           </div>
 
                         <div class="align-self-start">
                           &nbsp;
-                          <a title="Meus Produtos" href="<?=base_url('product/index/0/1'); ?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Meus Produtos</a>
+                          <a title="Meus Produtos" href="<?=base_url('product/index/0/1'); ?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Meus Produtos</a>
                         </div>
                         <div class="align-self-start">
                                       
-                        <a title="Produtos da Plataforma" href="<?=base_url('product/index/0/2'); ?>" class="btn btn-success btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Produtos da Plataforma</a>
+                        <a title="Produtos da Plataforma" href="<?=base_url('product/index/0/2'); ?>" class="btn btn-primary btn-sm float-left"><i class="fas fa-box-open"></i>&nbsp;Produtos da Plataforma</a>
                         </div>  
 
                         </div>

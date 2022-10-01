@@ -144,7 +144,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
         and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
         inner join product_customer pc on pc.id = pp.id_product_customer
         inner join products prod on prod.id = pc.id_product
-        where pp.status = 1 and p.id = ".$idPublish.")". "order by p.name";
+        where pp.status = 1 and p.id = ".$idPublish.")". "and p.status = 1 order by p.name";
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
@@ -182,18 +182,18 @@ where pp.status =  1 and pp.id = ".$idProduct;
 //echo $type; die();
         if ($idProduct != 0) {
             $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description FROM product_customer pc inner join products p on pc.id_product = p.id
-            and pc.id_user = ".$this->ion_auth->user()->row()->id." and p.id = ".$idProduct." order by p.id desc";
+            and pc.id_user = ".$this->ion_auth->user()->row()->id." and p.id = ".$idProduct." and p.status = 1 order by p.id desc";
         } else {
             if ($type == 1) {
                
             $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description 
             FROM product_customer pc inner join products p on pc.id_product = p.id
-            where p.id_owner != 1 and pc.id_user = ".$this->ion_auth->user()->row()->id." order by p.id desc";
+            where p.id_owner != 1 and pc.id_user = ".$this->ion_auth->user()->row()->id." and p.status = 1  order by p.id desc";
             } else {
                
                 $sql = " SELECT p.id, p.name, pc.price as price,p.id_owner,p.bar_code,p.status,p.id_cathegory,p.image_link,p.description 
                 FROM product_customer pc inner join products p on pc.id_product = p.id
-                where pc.id_user = ".$this->ion_auth->user()->row()->id." order by p.id desc";
+                where pc.id_user = ".$this->ion_auth->user()->row()->id." and p.status = 1 order by p.id desc";
                         
             }
         }
@@ -240,19 +240,53 @@ where pp.status =  1 and pp.id = ".$idProduct;
     }
 
     public function insertProductDefalt($idUser=0, $shop_type=0) {
+        /*
+        1 Supermercado - OK
+        2 Açougue - OK
+        3 Verdurão - ok
+        4 Cosméticos - OK
+        5 Hamburgeria - ok
+        6 Restaurante - ok
+        7 Distribuidora de Bebidas - OK
+        8 Loja de Ferragens - OK
+        9 - Papelaria - OK
+        10 - Eletrodomésticos - OK
+        11 - Panificadora - OK 
+        99 Outros                      
+        */
 
-        if ($shop_type != 7) {
+
+
+        if ($shop_type == 1) {
+            $idcathegory = '5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,29,30,31,33,34,35';
+        } else if ($shop_type == 2) {
+            $idcathegory = '6';
+        }else if ($shop_type == 3) {
+            $idcathegory = '25';
+        }
+        else if ($shop_type == 7) {
+            $idcathegory = '7';
+        }else if ($shop_type == 4) {
+            $idcathegory = '20';
+        }else if ($shop_type == 8) {
+            $idcathegory = '26';
+        } else if ($shop_type == 9) {
+            $idcathegory = '26';
+        }else if ($shop_type == 10) {
+            $idcathegory = '31,33,34';
+        }else if ($shop_type == 11) {
+            $idcathegory = '10';
+        }else if ($shop_type == 5) {
+            $idcathegory = '7';
+        }else if ($shop_type == 6) {
+            $idcathegory = '7';
+        }
+
         /**Just product in same shop type of cutomer are inserted. */
         $sql = "insert into product_customer (id_user,id_product,date,price)
         select ".$idUser.", pc.id_product, sysdate(),0 from product_customer pc inner join products p on p.id = pc.id_product 
-        where pc.id_user = 1 and p.shop_type = ".$shop_type.";";
-    }  else {
-          /**If shop type were Liquor Store, will insert Drinks, that is kind 7. */
-          $sql = "insert into product_customer (id_user,id_product,date,price)
-          select ".$idUser.", pc.id_product, sysdate(),0 from product_customer pc inner join products p on p.id = pc.id_product 
-          where pc.id_user = 1 and p.id_cathegory = 7;";
-          
-    }
+        where pc.id_user = 1 and p.id_cathegory in (".$shop_type.");";
+   
 
 
         $query = $this->db->query ( $sql );	
@@ -291,6 +325,30 @@ where p.id_user > 32;
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
+
+    
+    }
+
+    public function getUsers() {
+        $sql = "select *, from_unixtime(created_on ,'%Y-%m-%d') as created_on1,from_unixtime(last_login  ,'%Y-%m-%d') as last_login1 from users u order by created_on1 desc";
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
+
+    }
+
+    public function getAllFlyers() {
+        $sql = "select  ud2.company_name, u2.email ,u2.id,from_unixtime(u2.last_login  ,'%Y-%m-%d') as last_login1, 
+        from_unixtime(u2.created_on  ,'%Y-%m-%d') as created_on1  ,p.date as date_flyer,p.id id_publish, p.id_user id_user,p.description,
+        ud2.mobile_number, p.dateUpdate
+        from publish p inner join users u2 on u2.id = p.id_user 
+        inner join user_detail ud2 on  ud2.id_user = u2.id 
+        where p.id_user in (
+        select u.id  from users u inner join user_detail ud  on ud.id_user = u.id 
+        where u.id not in (28,1,26,27,12,13,14,17,16,15,25,30,29,33,18,19,20,22,23,31,36,35,40,44,51,52,53,54,55,57))
+        order by date_flyer desc
+        ";
+    $query = $this->db->query ( $sql );	
+    return $query->result_array ();
 
     }
 

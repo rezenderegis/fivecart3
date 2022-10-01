@@ -19,10 +19,10 @@
                         <div class="card-header py-3">
 
                         <?php if (strcmp($_SESSION['type_product'] , 'first') == 0) { ?>
-                          <a title="Voltar" href="<?php echo base_url('encarte/allCarts')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                          <a title="Voltar" href="<?php echo base_url('encarte/allCarts')?>" class="btn btn-primary btn-lg float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
 
                           <?php } else {?>
-                            <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                            <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-primary btn-lg float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
 <?php }?>
                         </div>
 
@@ -85,7 +85,7 @@
 </div>
 
 
-  <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+  <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
 </form>
 
 
