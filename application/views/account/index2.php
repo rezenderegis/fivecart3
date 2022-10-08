@@ -1,7 +1,25 @@
-   <!-- Event snippet for Inscrição conversion page -->
-   <script>
-  gtag('event', 'conversion', {'send_to': 'AW-960812691/U6FvCMqAjcgCEJOtk8oD'});
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+ fbq('init', '435688927479728'); 
+fbq('track', 'PageView');
 </script>
+<noscript>
+ <img height="1" width="1" 
+src="https://www.facebook.com/tr?id=435688927479728&ev=PageView
+&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+
+
+
 
 <body class="bg-gradient-primary">
 
@@ -39,47 +57,50 @@
 </div>
 </div>
 <?php endif; ?>   
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
+<div class="form-group">
+<!--
                                     <input type="text" class="form-control form-control-user" id="exampleFirstName" name="first_name"
                                         placeholder="Nome" value="<?=set_value('first_name');?>">
                                         <?php echo form_error('first_name', '<small class = "form-text text-danger">','</small>');?>
 
                                 </div>
-                              
-                            </div>
+-->                          
+                            
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email"
                                     placeholder="Email" value="<?=set_value('email');?>">
                                     <?php echo form_error('email', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
-<!--
+
                             <div class="form-group">
                                 <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="mobile_number"
                                     placeholder="Telefone" value="<?=set_value('mobile_number');?>">
                                     <?php echo form_error('mobile_number', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
+                            <!--
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="city"
                                     placeholder="Cidade" value="<?=set_value('city');?>">
                                     <?php echo form_error('city', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
+
                             <div class="form-group">
                                 <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="address"
                                     placeholder="Endereço da Empresa" value="<?=set_value('address');?>">
                                     <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
+-->
                             <div class="form-group">
                                 <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="company_name"
                                     placeholder="Nome Empresa" value="<?=set_value('company_name');?>" maxlength="25">
                                     <?php echo form_error('company_name', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
--->
+
                             
                             <div class="form-group">
                                 <select class="form-control " name="shop_type">

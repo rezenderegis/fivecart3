@@ -255,8 +255,6 @@ where pp.status =  1 and pp.id = ".$idProduct;
         99 Outros                      
         */
 
-
-
         if ($shop_type == 1) {
             $idcathegory = '5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,29,30,31,33,34,35';
         } else if ($shop_type == 2) {
@@ -285,10 +283,8 @@ where pp.status =  1 and pp.id = ".$idProduct;
         /**Just product in same shop type of cutomer are inserted. */
         $sql = "insert into product_customer (id_user,id_product,date,price)
         select ".$idUser.", pc.id_product, sysdate(),0 from product_customer pc inner join products p on p.id = pc.id_product 
-        where pc.id_user = 1 and p.id_cathegory in (".$shop_type.");";
-   
-   
-
+        where pc.id_user = 1 and p.id_cathegory in (".$idcathegory.");";
+      
 
         $query = $this->db->query ( $sql );	
 

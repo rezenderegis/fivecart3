@@ -15,7 +15,7 @@
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
 
-                            <a title="Voltar" href="<?=base_url('encarte/allCarts'); ?>"  class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Criar Encarte</a>
+                            <a title="Voltar" href="<?=base_url('usuario/editUserDetails'); ?>"  class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
 
                         </div>
 

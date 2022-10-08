@@ -216,7 +216,6 @@ class Usuario extends CI_Controller  {
 $this->form_validation->set_rules('first_name','', 'trim|required');
 $this->form_validation->set_rules('last_name','', 'trim|required');
 //$this->form_validation->set_rules('email','', 'trim|required|valid_email|callback_email_check');
-$this->form_validation->set_rules('username','', 'trim|required');
 $this->form_validation->set_rules('password','Senha', 'trim|min_length[5]|max_length[255]');
 $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
 
@@ -311,20 +310,40 @@ if ($this->form_validation->run()) {
     }
 
 
-    public function editUserDetails ($idUser=0) {
+    public function editUserDetails1 ($type=1) {
+        //$type - 1: User Detail, $type - 2: Default Encarte
 
         $this->form_validation->set_rules('footer_text','', 'trim');
+        $user_detail = $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id));
 
         if ($this->form_validation->run()) {
 
+            $footer_text = $user_detail->footer_text;
+            $footer_text2 = $user_detail->footer_text2;
 
-    $data = elements(
-             //,
-        array('footer_text', 'footer_text2', 'city', 'company_name','address', 'mobile_number',
-    
-    ), $this->input->post()
 
-);
+if (!$user_detail->footer_text) {
+
+    $footer_text = 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number');
+}
+if (!$user_detail->footer_text2) {
+  
+    $footer_text2 = $this->input->post('address');
+}
+
+
+$data = array (
+         'address' => $this->input->post('address'),
+         'mobile_number' => $this->input->post('mobile_number'),
+         'footer_text' => $footer_text,
+         'footer_text2' => $footer_text2,
+        'city' => $this->input->post('city'),
+       'company_name' => $this->input->post('company_name')
+         );
+   
+     $data = html_escape($data);
+
+//print_r($data); die();
 
 $data = html_escape($data);
 
@@ -338,11 +357,67 @@ redirect ('encarte/productList1');
     $data = array (
 
         'titulo' => 'Editar Usuário',
-        'user_detail' => $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id)),
+        'user_detail' => $user_detail,
     );
 
         $this->load->view('/layout/header', $data);
-        $this->load->view('/users/editUserDetails');
+   
+         $this->load->view('/users/editUserDetails');
+
+        $this->load->view('/layout/footer');
+
+}
+
+    }
+
+
+
+    public function editUserDetails () {
+        //$type - 1: User Detail, $type - 2: Default Encarte
+
+        $this->form_validation->set_rules('footer_text','', 'trim');
+        $user_detail = $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id));
+
+        if ($this->form_validation->run()) {
+
+            $footer_text = $user_detail->footer_text;
+            $footer_text2 = $user_detail->footer_text2;
+
+
+
+$data = array (
+         'address' => $this->input->post('address'),
+         'mobile_number' => $this->input->post('mobile_number'),
+         'footer_text' => $this->input->post('footer_text'),
+         'footer_text2' => $this->input->post('footer_text2'),
+        'city' => $this->input->post('city'),
+       'company_name' => $this->input->post('company_name')
+         );
+   
+     $data = html_escape($data);
+
+
+
+$data = html_escape($data);
+
+
+$this->core_model->update('user_detail', $data, array('id_user' => $this->ion_auth->user()->row()->id));
+
+redirect ('encarte/productList1');
+
+} else {
+
+    $data = array (
+
+        'titulo' => 'Editar Usuário',
+        'user_detail' => $user_detail,
+    );
+
+        $this->load->view('/layout/header', $data);
+       
+
+            $this->load->view('/users/editUserDetails');
+  
         $this->load->view('/layout/footer');
 
 }

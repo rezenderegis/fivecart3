@@ -19,7 +19,11 @@ div.cabecalho {
 }
 </style>
   
-
+<script>
+$('#address').bind('keypress keyup blur', function() {
+    $('#footer_text2').val($(this).val());
+});
+  </script>
 
 
 
@@ -35,7 +39,7 @@ div.cabecalho {
                 <div class="container-fluid">
                 <div class="cabecalho">
                 
-               1 - Complete seu cadastro e insira sua logo
+               Complete seu cadastro
 </div>
        
 
@@ -53,6 +57,13 @@ div.cabecalho {
  
 
                         <div class="card-body">
+ 
+
+<div class="button_header">
+                <a title="Atualizar Logo" href="<?php echo base_url('uploadFile/uploadFile/'.$user_detail->id_user);?>" class="btn btn-primary btn-lg"><i class="fas fa-box-open"></i>&nbsp;Atualizar Logo</a>
+                </div>
+<br/>
+
 <form method="POST" name="form_editUserDetails">
   
 <div class="form-group">
@@ -68,7 +79,7 @@ div.cabecalho {
 
                             </div>
                             <div class="form-group">
-                                <input type="mobile_numer" class="form-control form-control-user" id="exampleInputEmail" name="address"
+                                <input type="mobile_numer" class="form-control form-control-user" id="address" name="address"
                                     placeholder="Endereço da Empresa" value="<?php echo $user_detail->address;?>">
                                     <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
 
@@ -79,23 +90,26 @@ div.cabecalho {
                                     <?php echo form_error('company_name', '<small class = "form-text text-danger">','</small>');?>
 
                             </div>
+  <div class="card ">
+  <div class="card-header bg-primary text-white">
+  Facilite sua vida. Defina rodapés padronizados
 
+  </div>
+  <div class="card-body ">
 
-  <div class="form-group">
-      <div class="col-md-4">
+      <div class="col-md-6">
       <label >Rodapé 1 (Dica: Colocar Telefone)</label>
     <input type="text" class="form-control" name="footer_text" placeholder="Rodapé" value="<?php echo $user_detail->footer_text;?>" maxlength="49">
     <?php echo form_error('footer_text', '<small class = "form-text text-danger">','</small>');?>
   </div>
-
-    <div class="col-md-4">
+    <div class="col-md-6">
       <label >Rodapé 2 (Dica - Colocar Endereço)</label>
-    <input type="text" class="form-control" name="footer_text2" placeholder="Rodapé 2" value="<?php echo $user_detail->footer_text2;?>" maxlength="73">
+    <input type="text" class="form-control" id="footer_text2" name="footer_text2" placeholder="Rodapé 2" value="<?php echo $user_detail->footer_text2;?>" maxlength="73">
     <?php echo form_error('footer_text2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 </div>
-<a title="Atualizar Logo" href="<?php echo base_url('uploadFile/uploadFile/'.$user_detail->id_user);?>" class="btn btn-success btn-sm float-center"><i class="fas fa-images"></i>&nbsp;Atualizar Logo</a>
-<br/><br/>
+</div>
+<br/>
 <div class="alert alert-secondary col-md-4" role="alert">    
      <b> Logo</b> 
     </div>
@@ -107,7 +121,6 @@ div.cabecalho {
 
   <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 </form>
-
 
 
 

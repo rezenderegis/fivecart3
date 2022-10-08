@@ -81,7 +81,7 @@ align: center;
                                             <th>Id Publish</th>
                                             <th>ID User</th>
                                             <th>Description</th>
-
+                                            <th>Link</th>
                                            
                                         </tr>
                                     </thead>
@@ -102,9 +102,12 @@ align: center;
                                             </td>
                                             <td><?=$pub['id_user']?></td>
                                             <td><?=$pub['description']?></td>
+                                          <td>
+                                          <a title="View" href="<?php echo base_url('encarte/viewFlyerImage/'.$pub['id_user'].'/'.$pub['id_publish']);?>" class="btn btn-primary btn-sm">&nbsp;View</a>
 
-                                               
-                                            
+                                          </td>
+
+                                         
 
                                         </tr>
 

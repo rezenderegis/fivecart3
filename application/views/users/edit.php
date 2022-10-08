@@ -57,25 +57,6 @@
   
   </div>
 
-    <div class="col-md-4">
-      <label >Username</label>
-    <input type="text" class="form-control" name="username" placeholder="Usuário" value="<?php echo $usuario->username;?>">
-    <?php echo form_error('username', '<small class = "form-text text-danger">','</small>');?>
-    </div>
-
-    <div class="form-group">
-      <div class="col-md-4">
-      <label >Telefone</label>
-    <input type="text" class="form-control" name="mobile_number" placeholder="Telefone" value="<?php echo $user_detail->mobile_number;?>">
-    <?php echo form_error('mobile_numer', '<small class = "form-text text-danger">','</small>');?>
-  </div>
-
-    <div class="col-md-4">
-      <label >Endereço</label>
-    <input type="textarea" class="form-control" name="address" placeholder="Endereço" value="<?php echo $user_detail->address;?>">
-    <?php echo form_error('address', '<small class = "form-text text-danger">','</small>');?>
-  </div>
-</div>
 
 
 

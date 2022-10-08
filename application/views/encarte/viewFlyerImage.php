@@ -59,11 +59,22 @@ div.desc {
   display: table;
   clear: both;
 }
+
+.imgProduct {
+
+align: center;
+
+    object-fit: scale-down;
+    width:  400px;
+    height: 600px;
+    object-position: bottom;
+    
+
+}
 </style>
 
 
 
-   <?php $this->load->view('layout/sidebar'); ?>
 
 
 </head>
@@ -91,9 +102,9 @@ div.desc {
                 <div class="container-fluid">
 
 <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>" download="w3logo">
-<img src="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>" />
+<img src="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>" class="imgProduct"/>
 </a>
-
+<!-- viewFlyerImage/1/52 -->
 
 </div>
 

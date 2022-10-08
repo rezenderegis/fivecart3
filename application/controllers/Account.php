@@ -90,11 +90,10 @@ class Account extends CI_Controller  {
 
 
     public function add2() {
-
-        $this->form_validation->set_rules('first_name','', 'trim|required');
+      //  $this->form_validation->set_rules('first_name','', 'trim|required');
        // $this->form_validation->set_rules('last_name','', 'trim|required');
         $this->form_validation->set_rules('email','', 'trim|required|valid_email|is_unique[users.email]');
-       // $this->form_validation->set_rules('mobile_number','', 'trim|required');
+        $this->form_validation->set_rules('mobile_number','', 'trim|required');
         //$this->form_validation->set_rules('address','', 'trim|required');
         $this->form_validation->set_rules('password','Senha', 'required|min_length[5]|max_length[255]');
         $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
@@ -110,7 +109,7 @@ class Account extends CI_Controller  {
                   $email = $this->security->xss_clean($this->input->post("email"));
 
                  $aditional_data = array (
-                     'first_name' => $this->input->post('first_name'),
+               //      'first_name' => $this->input->post('first_name'),
             //         'last_name' => $this->input->post('last_name'),
                      'username' => $this->input->post('username'),
                      'active' => 1,
@@ -123,18 +122,18 @@ class Account extends CI_Controller  {
                  $group = $this->security->xss_clean($group);
                 
                 $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
-       
+                
                 if ( $idUserInserted) {
                 
                 $dataDetails = array (
-               //     'address' => $this->input->post('address'),
-                  //  'mobile_number' => $this->input->post('mobile_number'),
+                  //  'address' => $this->input->post('address'),
+                    'mobile_number' => $this->input->post('mobile_number'),
                     'id_user' => $idUserInserted,
-                //    'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
-               //     'footer_text2' => $this->input->post('address'),
+                    'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
+                  //  'footer_text2' => $this->input->post('address'),
                     //'image_link' => 'no-image-icon-23485.png',
-               //     'city' => $this->input->post('city'),
-                //    'company_name' => $this->input->post('company_name'),
+                    // 'city' => $this->input->post('city'),
+                    'company_name' => $this->input->post('company_name'),
                     'shop_type' => $this->input->post('shop_type'),
                 );
               
