@@ -349,6 +349,65 @@ class Encarte extends CI_Controller {
         $this->load->view('layout/footer');
 
     }
+
+
+    public function productPublishBeta($idProductList = NULL) {
+        $userDetail = $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id));
+
+        $publish = $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $this->ion_auth->user()->row()->id));
+        $idTemplate = $publish->id_template;
+       
+        $existProductWithoutPrice = 0;
+        foreach($this->core_model->getProductPublish($idProductList) as $verify) {
+            //print_r($verify); die();
+            if ($verify['price'] == '0.00') {
+                $existProductWithoutPrice = 1;
+               
+            }
+        }
+       
+        $data = array (
+            'titulo' => 'Produtos Cadastrados',
+            'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
+
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js',
+            'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js'),    
+            'products' => $this->core_model->getUserProducts($idProductList,$this->ion_auth->user()->row()->id),
+            'idProductList' => $idProductList,
+            'publish' => $publish,
+            'template' => $this->core_model->getById('template', array('id' => $idTemplate)),
+            'existProductWithoutPrice' => $existProductWithoutPrice,
+            'productPublish' => $this->core_model->getProductPublish($idProductList),
+            'userDetail' => $userDetail,
+
+
+        );
+
+
+        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
+     //   print_r($logo);
+      //  die();
+
+
+      if (is_null($logo)) {
+        $this->session->set_flashdata('error', 'Inclua uma Logo para melhorar a qualidade do seu encarte!');
+ 
+    } else if (!$logo->image_link){
+            $this->session->set_flashdata('error', 'Inclua uma Logo para melhorar a qualidade do seu encarte!');
+          } 
+
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('encarte/productPublish');
+        $this->load->view('layout/footer');
+
+    }
+
+
+
     public function productPublish($idProductList = NULL) {
         $userDetail = $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id));
 
