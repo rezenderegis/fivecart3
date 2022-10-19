@@ -211,9 +211,13 @@ if ($this->form_validation->run()) {
     public function add($type = 0) {
       
         if (strcmp($type, 'first') == 0) {
+            $this->core_model->insertLog('product->add', 'System redirect add first product');
+
             $titulo = 'Cadastre o primero produto e crie seu encarte';
             $this->session->set_userdata('type_product', 'first');
         } else {
+            $this->core_model->insertLog('product->add', 'User clicked add product');
+
             $titulo = 'Cadastrar Produto';
             $this->session->set_userdata('type_product', 'not_first');
         }
@@ -246,6 +250,9 @@ if ($this->form_validation->run()) {
                                                 'id_product' => $idProduct,
                                                 'price' => $this->input->post('price')); 
                 $this->core_model->insert('product_customer', $data_product_customer);
+                
+                $this->core_model->insertLog('product->add', 'User Save Product');
+
                 redirect ('upload/index/'. $idProduct);
               
         } else {

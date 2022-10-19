@@ -50,19 +50,19 @@ div.desc {
 .responsive {
   padding: 0 10px;
   float: left;
-  width: 24.99999%;
+  width: 12.99999%;
 }
 
 @media only screen and (max-width: 700px) {
   .responsive {
-    width: 49.99999%;
+    width: 25.99999%;
     margin: 6px 0;
   }
 }
 
 @media only screen and (max-width: 500px) {
   .responsive {
-    width: 100%;
+    width: 50%;
   }
 }
 
@@ -106,9 +106,9 @@ foreach ($templates as $template) {
   if ($template['id_user'] == 1)  { echo "Oferecimento Meus Encartes";}?></div>
 
     <a target="" href="<?php echo base_url('/encarte/addFromCart/'.$template['id']); ?> ">
-      <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" width="600" height="400">
-      <img src="<?= base_url() . "images/templates/meio.png"; ?>" alt="Cinque Terre" width="600" height="400">
-      <img src="<?= base_url() . "images/templates/".$template['footer_image']; ?>" alt="Cinque Terre" width="600" height="400">
+      <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" >
+      <img src="<?= base_url() . "images/templates/meio.png"; ?>" alt="Cinque Terre" >
+      <img src="<?= base_url() . "images/templates/".$template['footer_image']; ?>" alt="Cinque Terre">
 
     </a>
   </div>

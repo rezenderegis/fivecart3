@@ -57,6 +57,9 @@ class Encarte extends CI_Controller {
             redirect ('product/index/0/1', $data);
          } else {
 
+         
+            $this->core_model->insertLog('allCarts', '');
+
             $this->load->view('encarte/allCarts1');
          
         }
@@ -106,10 +109,13 @@ class Encarte extends CI_Controller {
 
         $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
         if (count($userProducts) == 0){
+            $this->core_model->insertLog('encarte->productList1', 'Redirect user whithout product');
+
             redirect ('product/index/0/1');
          } else {
             
-        
+            $this->core_model->insertLog('encarte->productList1', 'Load sreen');
+
 
         if (count($userProducts) == 0) {
             $type="first";
@@ -601,6 +607,9 @@ class Encarte extends CI_Controller {
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
             if (count($userProducts) == 0) {
                 $type="first";
+
+                $this->core_model->insertLog('addFromCart', 'System redirect add first product');
+
                redirect('product/add/'.$type);
     
             } else {
@@ -627,6 +636,7 @@ class Encarte extends CI_Controller {
                  );
                
                  $data = html_escape($data);
+                 $this->core_model->insertLog('encarte->addFromCart', 'Insert publish');
 
                 $idPublish = $this->core_model->insert('publish', $data);
    
@@ -641,6 +651,8 @@ class Encarte extends CI_Controller {
                     'template' =>  $template
                 );
     
+                $this->core_model->insertLog('addFromCart', 'Load form');
+
                 $this->load->view('layout/header', $data);
                 $this->load->view('encarte/add');
                 $this->load->view('layout/footer');

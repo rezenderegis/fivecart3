@@ -75,7 +75,7 @@
                                             <td class="text-right">
                                                 <a title="Editar" href="<?php echo base_url('/encarte/edit/'.$pub->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a> 
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $pub->id; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> 
-                                                <a title="Produtos" href="<?php echo base_url('/encarte/productPublish/'.$pub->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-box-open"></i></a> 
+                                                <a title="Produtos" href="<?php echo base_url('/encarte/viewFlyerImage/'.$pub->id.'/'.$this->ion_auth->user()->row()->id); ?>" class="btn btn-sm btn-primary"><i class="fas fa-box-open"></i></a> 
 
                                             </td>
                                             

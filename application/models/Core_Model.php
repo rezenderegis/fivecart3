@@ -349,6 +349,17 @@ where p.id_user > 32;
 
     }
 
+    public function insertLog($feacture=0, $description=0) {
+        $dataLog = array (
+            'id_user' => $this->ion_auth->user()->row()->id,
+            'feacture' => $feacture,
+            'detail' => $description,
+        );
+      
+        return $this->core_model->insert('log', $dataLog);
+        
+    }
+
 
 }
 
