@@ -147,7 +147,7 @@ class Product extends CI_Controller  {
             'perfil' => $this->ion_auth->get_users_groups($user_id)->row(),
         );*/
 
-$this->form_validation->set_rules('name','', 'trim|required|min_length[16]');
+//$this->form_validation->set_rules('name','', 'trim|required|min_length[16]');
 //$this->form_validation->set_rules('id_cathegory','', 'trim|required');
 $this->form_validation->set_rules('price','', 'trim|required');
 
@@ -157,7 +157,7 @@ if ($this->form_validation->run()) {
 
     $data = elements(
 
-            array('name', 'description','id_cathegory','image_link','status', 'shop_type'
+            array('name', 'description','id_cathegory', 'shop_type'
         
         ), $this->input->post()
 
@@ -207,7 +207,7 @@ if ($this->form_validation->run()) {
 }
         }
     }
-    
+
     public function add($type = 0) {
       
         if (strcmp($type, 'first') == 0) {

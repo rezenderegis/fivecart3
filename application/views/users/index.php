@@ -63,7 +63,7 @@
                                             <th>#</th>
                                             <th>User</th>
                                             <th>Login</th>
-                                            <th>Perfil</th>
+                                            <th>Categoria</th>
                                             <th>Criado</th>
                                             <th>Ultimo Login</th>
 
@@ -78,7 +78,10 @@
                                             <td><?=$user['id']?></td>
                                             <td><?=$user['username'] ?></td>
                                             <td><?=$user['email'] ?></td>
-                                            <td><?php // echo (//$this->ion_auth->is_admin($user['id) ? 'Administrador' : 'Vendedor');?></td>
+                                         
+                                                <td><?=$user['shop_type_description'] ?></td>
+
+                                         
                                                 <td><?=$user['created_on1'] ?></td>
                                                 <td><?=$user['last_login1'] ?></td>
  

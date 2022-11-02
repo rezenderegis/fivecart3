@@ -218,7 +218,15 @@ div.cabecalho {
 	box-shadow: inset 0 0 5px #476EDB(53,86,129, 0.5);
 	font-family: 'Muli', sans-serif;
 }
+div.divbuttom {
 
+    margin: 5em 5 5em 5;
+	position: relative;
+	border: 1px solid #fff;
+	padding: 5px 15px 5px 5px;
+  
+
+}
 .imgProductInclude {
 
     align: center;

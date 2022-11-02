@@ -55,6 +55,7 @@ public function auth($emailReceived=0,$passwordReceived=0) {
         //$this->session->set_userdata('type_product', 'first');
 
     if ($this->ion_auth->login($identity, $password, $remember)) {
+        $this->session->set_userdata('idpublish', '');
 
         $getProductPublish =  $this->core_model->get_all('publish', array ('id_user' => $this->ion_auth->user()->row()->id, 'status'=> 1 ));
         if (count($getProductPublish) > 0) {

@@ -106,7 +106,6 @@ public function __construct()
     {
        
            $productData = $this->core_model->getById($type, array($atribute_find => $id));
-
           $this->load->view('/layout/header');
             $this->load->view('upload/uploadFile', array('error' => '0', 'idProduct' => $id,
              'nameImage' => $nameImage, 'productIdFromUpload' => '', 'productData' => $productData));

@@ -37,9 +37,9 @@ div.gallery img {
 }
 
 div.desc {
-  padding: 15px;
+  padding: 4px;
   text-align: center;
-  font-size: 14px;
+  font-size: 10px;
 
 }
 
@@ -78,24 +78,51 @@ div.desc {
 
 </div>
    <?php //$this->load->view('layout/sidebar'); ?>
-
+   </head>
 
             <!-- Main Content -->
             <div id="content">
 
                <?php $this->load->view('layout/navbar');?>
 
-           
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+               <div class="container-fluid">
 
+              
                 <div class="cabecalho">
-Escolha o MODELO para criar seu encarte
+Escolha o MODELO
 </div>
-             
-</head>
+<div class="card shadow mb-6">
+
+     
+ 
+<!-- ($user_detail->beta_tester == 1) { -->
+<br/>
+  <div class="container-fluid">
+                        <div class="row">
+                          <div class="align-self-start">
+                          <a title="Posts" href="<?=base_url('encarte/allCarts/2'); ?>" class="btn btn-primary btn-bg ">Posts</a>
+                            &nbsp;
+                          </div>
+
+                        <div class="align-self-start">
+                          &nbsp;
+                          <a title="Posts" href="<?=base_url('encarte/allCarts/1'); ?>" class="btn btn-primary btn-bg ">Encartes</a>
+                        </div>
+                      
+
+                        </div>
+                      </div>
+
+<div class="card-body">
+
+
+
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
 
   
+
 <?php
 foreach ($templates as $template) {
     ?>
@@ -103,13 +130,17 @@ foreach ($templates as $template) {
 <div class="responsive">
   <div class="gallery">
   <div class="desc"><?php echo "<strong>#".$template['id']."-".$template['description']."</strong><br>";
-  if ($template['id_user'] == 1)  { echo "Oferecimento Meus Encartes";}?></div>
+  if ($template['id_user'] == 1)  { echo "Meus Encartes";}?></div>
 
     <a target="" href="<?php echo base_url('/encarte/addFromCart/'.$template['id']); ?> ">
+    <?php if ($template['type_template'] == 1) {?>
       <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" >
-      <img src="<?= base_url() . "images/templates/meio.png"; ?>" alt="Cinque Terre" >
+      <img src="<?= base_url() . "images/templates/".$template['middle_image']; ?>" alt="Cinque Terre" >
       <img src="<?= base_url() . "images/templates/".$template['footer_image']; ?>" alt="Cinque Terre">
+<?php } else if ($template['type_template'] == 2) {?>
+  <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" >
 
+  <?php }?>
     </a>
   </div>
 </div>
@@ -122,5 +153,10 @@ foreach ($templates as $template) {
  
      
                    
+</div>
 
+</div>
+</div>
+
+</div>
 </div>

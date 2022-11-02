@@ -214,9 +214,10 @@ where pp.status =  1 and pp.id = ".$idProduct;
     }
 
     public function getPublishWithTemplate() {
-        $sql = " select p.id, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,date_format(p.date, '%d/%m/%Y') dates_creation
+        $sql = " select p.id, p.id as id_publish_sh, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,p.description description_publish, date_format(p.date, '%d/%m/%Y') dates_creation,t.*,t.id id_template
         from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$this->ion_auth->user()->row()->id." order by p.date desc";
-    $query = $this->db->query ( $sql );	
+   
+        $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
 
@@ -233,9 +234,21 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
    
-    public function getTemplates() {
-        $sql = " select * from template where status = 1 and (id_user = ".$this->ion_auth->user()->row()->id." or id_user = 1)";
-    $query = $this->db->query ( $sql );	
+    public function getTemplates($type=0) {
+
+        if ($type == 0) {
+            $filter = ' and type_template  in (1,2)';
+        } elseif ($type == 2){
+            $filter = ' and type_template = 2';
+
+        } elseif ($type == 1) {
+            $filter = ' and type_template = 1';
+        }
+        
+
+        $sql = " select * from template where status = 1 and (id_user = ".$this->ion_auth->user()->row()->id." or id_user = 1) ".$filter." order by order_template asc";
+   
+        $query = $this->db->query ( $sql );	
     return $query->result_array ();
     }
 
@@ -254,7 +267,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
         11 - Panificadora - OK 
         99 Outros                      
         */
-
+        if ($shop_type != 99) {
         if ($shop_type == 1) {
             $idcathegory = '5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,29,30,31,33,34,35';
         } else if ($shop_type == 2) {
@@ -287,6 +300,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
       
 
         $query = $this->db->query ( $sql );	
+    }
 
     }
 
@@ -327,23 +341,64 @@ where p.id_user > 32;
     }
 
     public function getUsers() {
-        $sql = "select *, from_unixtime(created_on ,'%Y-%m-%d') as created_on1,from_unixtime(last_login  ,'%Y-%m-%d') as last_login1 from users u order by created_on1 desc";
+        $sql = "select *,st.description shop_type_description, from_unixtime(created_on  ,'%Y-%m-%d %k:%i') as created_on1,from_unixtime(last_login  ,'%Y-%m-%d') as last_login1 from users u 
+        left join user_detail ud on ud.id_user = u.id 
+        left join shop_type st on st.id = ud.shop_type order by created_on1 desc";
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
     }
 
-    public function getAllFlyers() {
-        $sql = "select  ud2.company_name, u2.email ,u2.id,from_unixtime(u2.last_login  ,'%Y-%m-%d') as last_login1, 
-        from_unixtime(u2.created_on  ,'%Y-%m-%d') as created_on1  ,p.date as date_flyer,p.id id_publish, p.id_user id_user,p.description,
-        ud2.mobile_number, p.dateUpdate
-        from publish p inner join users u2 on u2.id = p.id_user 
+    public function getAllFlyers($has_product=0, $has_logo=0,$has_flyer) {
+    
+        $filter_has_product = '';
+        $filter_has_logo = '';
+        $filter_has_flyer = '';
+
+        $filter = '';
+        if ($has_product != 0) {
+            if ($has_product == 1) {
+            $filter_has_product = " and 	(SELECT COUNT(*) FROM product_publish pp2 LEFT JOIN publish p2  on p2.id = pp2.id_publish
+            WHERE p2.id_user  = p.id_user having count(*) >1) ";
+            }
+            if ($has_product == 2) {
+                $filter_has_product = " and u2.id not in (SELECT p2.id_user FROM product_publish pp2 LEFT JOIN publish p2  on p2.id = pp2.id_publish
+                WHERE p2.id_user  = p.id_user group by p2.id_user having count(*) > 0) ";
+                }
+        } 
+
+        if ($has_logo != 0) {
+            if ($has_logo == 1) {
+            $filter_has_logo = " and image_link is not null";
+            } else {
+                $filter_has_logo = " and image_link is null";
+
+            }
+        }
+       // $filter_has_flyer = " and p.id is not null";
+        if ($has_flyer != 0) {
+            if ($has_flyer == 1) {
+                $filter_has_flyer = " and p.id is not null";
+            } else if ($has_flyer == 2) {
+                $filter_has_flyer = " and p.id is null";
+            }
+        } else {
+            $filter_has_flyer = ' ';
+        }
+        
+        $filter .= $filter_has_logo .= $filter_has_flyer .= $filter_has_product;
+      
+        $sql = "select p.id_user as id_user_post,st.description shop_type_description, ud2.company_name, u2.email ,u2.id as iduserenc, u2.id,from_unixtime(u2.last_login  ,'%Y-%m-%d') as last_login1, 
+        from_unixtime(u2.created_on  ,'%Y-%m-%d %k:%i') as created_on1  ,p.date as date_flyer,p.id id_publish, p.id_user id_user,p.description,
+        ud2.mobile_number, p.dateUpdate, ud2.image_link ,       (SELECT COUNT(*) FROM product_publish pp2 LEFT JOIN publish p2  on p2.id = pp2.id_publish
+       WHERE p2.id_user  = p.id_user) as qtd_product
+        from publish p right join users u2 on u2.id = p.id_user 
         inner join user_detail ud2 on  ud2.id_user = u2.id 
-        where p.id_user in (
-        select u.id  from users u inner join user_detail ud  on ud.id_user = u.id 
-        where u.id not in (28,1,26,27,12,13,14,17,16,15,25,30,29,33,18,19,20,22,23,31,36,35,40,44,51,52,53,54,55,57))
+        left join shop_type st on st.id = ud2.shop_type 
+        where u2.id not in (28,1,26,27,12,13,14,17,16,15,25,30,29,33,18,19,20,22,23,31,36,35,40,44,51,52,53,54,55,57) " .$filter. "
         order by date_flyer desc
         ";
+      
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 

@@ -420,6 +420,8 @@ redirect ('encarte/productList1');
   
         $this->load->view('/layout/footer');
 
+        
+
 }
 
     }
@@ -451,6 +453,99 @@ redirect ('encarte/productList1');
     }
 
       
+
+    }
+   
+    public function adjustLoogo($type_logo=0, $idUser=0) {
+        //1 - Logo Flyer, 2 - Logo Post
+    if (($idUser == $this->ion_auth->user()->row()->id) || ( $this->ion_auth->user()->row()->id == 1)) {
+  
+       $userDetail = $this->core_model->getById('user_detail', array('id_user' =>  $idUser));
+
+       $imageWidth = '';
+       $imageHeight = '';
+       $minSize = '';
+       $maxSize = '';
+        if ($type_logo == 1) {  
+            if ($userDetail->image_width || $userDetail->image_height) {
+                
+                $imageWidth = $userDetail->image_width;
+                $imageHeight = $userDetail->image_height; 
+                $minSize = 50;
+                $maxSize = 150;
+            } 
+        }elseif ($type_logo == 2) {
+           
+            if ($userDetail->image_width_big || $userDetail->image_height_big) {
+              $imageWidth = $userDetail->image_width_big;
+              $imageHeight = $userDetail->image_height_big; 
+              $minSize = 10;
+              $maxSize = 400;
+          }
+      }
+
+        
+       
+        $data = array (
+            'titulo' => 'Gerar Encarte',            
+            'user_detail' => $this->core_model->getById('user_detail', array('id_user' =>  $idUser)),
+            'type_logo' => $type_logo,
+            'imageWidth' => $imageWidth,
+            'imageHeight' => $imageHeight,
+            'minSize' => $minSize,
+            'maxSize' => $maxSize,
+            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'vendor/datatables/dataTables.bootstrap4.min.js',
+            'vendor/datatables/app.js',
+         'vendor/mask/jquery.mask.min.js',
+            'vendor/mask/app.js',
+            'js/bootstrap-input-spinner.js',
+          
+
+            )
+        );
+
+      $this->load->view('layout/header', $data);
+      $this->load->view('users/adjustLogo');   
+      $this->load->view('layout/footer');
+    
+
+    } else {
+        $this->session->set_flashdata('error', 'Acesso não permitido');
+        redirect('home');
+    }
+
+    }
+
+    public function changeLogoDimension ($type_logo,$id_user=0) {
+       
+       // if ($this->input->post("image_width") != '' || $this->input->post("image_height") != '') {
+          
+        if ($type_logo == 1) {
+            $data = array (
+
+                'image_width' => $this->input->post("image_width"),
+                'image_height' => $this->input->post("image_height"),
+                
+                
+            );
+        } elseif ($type_logo == 2) {
+            $data = array (
+
+                'image_width_big' => $this->input->post("image_width"),
+                'image_height_big' => $this->input->post("image_height"),
+                
+                
+            );
+          
+        }
+        $this->core_model->update('user_detail', $data, array('id_user' => $id_user));
+
+   // }
+
+
+
+        redirect('usuario/adjustLoogo/'.$type_logo.'/'.$id_user);
 
     }
 

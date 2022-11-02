@@ -52,7 +52,8 @@ function goBack() {
     
     </li>
 
-    <?php if ($this->ion_auth->is_admin()) { ?>
+    <?php 
+    if ($this->ion_auth->is_admin()) { ?>
     <li class="nav-item dropdown no-arrow">
         <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

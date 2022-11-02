@@ -51,19 +51,31 @@ div.desc {
 }
 </style>
    <?php //$this->load->view('layout/sidebar'); ?>
-
+   </head>
             <!-- Main Content -->
             <div id="content">
 
                <?php $this->load->view('layout/navbar');?>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
              
-</head>
+<div class="cabecalho">
+Escolha o MODELO
+</div>           
 
-  
+
+<div class="divbuttom">
+
+<a title="Meus Produtos" href="<?=base_url('encarte/index/'.$publishId.'/2'); ?>" class="btn btn-primary btn-bg">Posts</a>
+
+</div>
+<div class="divbuttom">
+<a title="Posts" href="<?=base_url('encarte/index/'.$publishId.'/1'); ?>" class="btn btn-primary btn-bg ">Encartes</a>
+
+</div>  
+
+     <!-- Begin Page Content -->
+     <div class="container-fluid">
+
 <?php
 foreach ($templates as $template) {
     ?>
@@ -74,11 +86,17 @@ foreach ($templates as $template) {
   if ($template['id_user'] == 1)  { echo "Oferecimento Meus Encartes";}?></div>
 
     <a target="_top" href="<?php echo base_url('/encarte/new/'.$publishId.'/'.$template['id']); ?>" value="<?php echo $template['id']; ?>" name="template">
-      <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" width="600" height="400">
-    </a>
+  
+    <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" width="600" height="400">
+ 
+  </a>
   </div>
 </div>
 <?php }?>
+
+
+
+
 
 
 <div class="clearfix"></div>

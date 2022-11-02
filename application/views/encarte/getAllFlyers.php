@@ -20,6 +20,9 @@ align: center;
 
                <?php $this->load->view('layout/navbar');?>
 
+
+
+               
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -58,6 +61,69 @@ align: center;
 </div>
 <?php endif; ?>   
 
+
+
+
+                
+<form method="POST" name="form_getAllFlyers">
+  <div class="form-group">
+  <div class="form-group col-md-4">
+    <label >Tem Encarte</label>
+
+                                <select class="form-control " name="has_flyer">
+                                <option value="0">Todos</option>
+                                <option value="1">Sim</option>
+                                <option value="2">Não</option>
+                             
+
+                                </select>
+    <div class="form-group col-md-4">
+    <label >Tem Produto</label>
+
+                                <select class="form-control " name="has_product">
+                                <option value="0"></option>
+                                <option value="1">Sim</option>
+                                <option value="2">Não</option>
+                             
+
+                                </select>
+                                <?php echo form_error('shop_type', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+                            <div class="form-group col-md-4">
+    <label >Tem logo</label>
+
+                                <select class="form-control " name="has_logo">
+                                <option value=""></option>
+                                <option value="1">Sim</option>
+                                <option value="2">Não</option>
+                             
+
+                                </select>
+
+                         
+                                <?php echo form_error('shop_type', '<small class = "form-text text-danger">','</small>');?>
+
+                            </div>
+
+
+</div>
+
+
+  <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+</form>
+
+
+
+
+                        
+
+
+
+
+
+
+
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
   <br/>
@@ -70,6 +136,7 @@ align: center;
                                 
                                 <thead>
                                         <tr>
+                                        <th>ID Publish</th>
                                             <th>Empresa</th>
                                             <th>Email</th>
                                             <th>Phone</th>
@@ -81,6 +148,9 @@ align: center;
                                             <th>Id Publish</th>
                                             <th>ID User</th>
                                             <th>Description</th>
+                                            <th>Prod Encarte</th>
+                                            <th>Categoria</th>
+                                            <th>Logo</th>
                                             <th>Link</th>
                                            
                                         </tr>
@@ -89,6 +159,8 @@ align: center;
                                         <?php foreach ($publish as $pub) : ?>
 
                                         <tr>
+                                        <td><?=$pub['id']?></td>
+                                        
                                             <td><?=$pub['company_name']?></td>
                                             <td><?=$pub['email']?></td>
                                             <td><?=$pub['mobile_number']?></td>
@@ -97,11 +169,20 @@ align: center;
                                             <td><?=$pub['date_flyer']?></td>
                                             <td><?=$pub['dateUpdate']?></td>
                                             <td>
-                                            <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$pub['id_user']?>/<?=$pub['id_publish']?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i><?=$pub['id_publish']?></a>
+                                            <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$pub['id_user_post']?>/<?=$pub['id_publish']?>/0" class="btn btn-primary btn-sm" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i><?=$pub['id_publish']?></a>
   
                                             </td>
-                                            <td><?=$pub['id_user']?></td>
+                                            <td><?=$pub['iduserenc']?></td>
                                             <td><?=$pub['description']?></td>
+                                            <td><?=$pub['qtd_product']?></td>
+                                            
+                                            <td><?=$pub['shop_type_description']?></td>
+
+                                            <td>
+                                            <a href="<?php echo base_url('/usuario/adjustLoogo/1/'.$pub['iduserenc']); ?>"><?=$pub['image_link']?></a>
+
+                                          </td>
+
                                           <td>
                                           <a title="View" href="<?php echo base_url('encarte/viewFlyerImage/'.$pub['id_user'].'/'.$pub['id_publish']);?>" class="btn btn-primary btn-sm">&nbsp;View</a>
 

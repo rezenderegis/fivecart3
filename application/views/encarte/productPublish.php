@@ -137,6 +137,12 @@ div.desc {
   vertical-align: middle;
 
 }
+
+.price {
+  font-family: "Helvetica", sans-serif;
+  padding: 4px;
+  font-size: 30px;
+}
 </style>
 
    <?php //$this->load->view('layout/sidebar'); ?>
@@ -148,6 +154,10 @@ div.desc {
                <?php $this->load->view('layout/navbar');?>
 
                 <!-- Begin Page Content -->
+
+
+
+
  <div class="container-fluid">
 
 
@@ -158,7 +168,7 @@ div.desc {
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong><?php echo $message;?></strong> 
-  <a href="<?php echo base_url('usuario/editUserDetails');?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui</a>
+  <a href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui</a>
 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -183,8 +193,11 @@ div.desc {
 </div>
 <?php endif; ?>   
 <div class="cabecalho">
-Produtos e Informações do Encarte
+Produtos do Encarte
 </div>
+
+<a class="btn btn-primary btn-lg" href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>">Ajustar Logo</a>
+<br/>
 
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
@@ -212,7 +225,9 @@ if ($publish->footer_text) {
 
 ?>
 
+
 <div class="card-body"> 
+
   <!--
  <table class="table table-striped">
  <tr>
@@ -266,21 +281,36 @@ if ($publish->footer_text) {
                         <td>
 
                        <!--  <a href="<?php echo base_url('encarte/viewFlyerImage/'.$this->ion_auth->user()->row()->id.'/'.$idProductList);?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a> -->
-                      <?php if ($existProductWithoutPrice == 1) { ?>
-                       <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark">Visualizar</a> 
-                        <?php } else { ?>
-                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i>Visualizar</a>
 
-                          <?php } ?>
+                      <?php 
+                     
+                      if ($template->type_template == 1) {
+                      if ($existProductWithoutPrice == 1) { ?>
+                       <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark">Visualizar</a> 
+                        <?php } else { ?>
+                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/0" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i>Visualizar</a>
+
+                          <?php } 
+                      }
+                          ?>
                         
 
+    </td>
+    <td> 
+    <a class="btn btn-primary btn-lg" href="<?php echo base_url('product/index/0/1');?>">Novo Produto</a>
+
+   
     </td>
     </table>
 
 
 
 <div class ="container_text_button">
+<?php if ($template->type_template == 1) { ?>
   <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="300" height="100">  
+  <?php } else {?>
+    <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="150" height="100">  
+<?php }?>
   <div class="text_button_right">
     <h6><?=$publish->header2 ?><h6>
   </div>
@@ -302,6 +332,11 @@ if ($publish->footer_text) {
 </div>
 
 </div>
+
+
+                      
+
+
     
                         <div class="card-body">
                             <div class="table-responsive">
@@ -327,34 +362,27 @@ if ($publish->footer_text) {
                                                 <br/>
                                                 <?=$productPub['name'] ?>
                                                 <br/>
-                                                <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money <?php if ($productPub['price'] == 0.00) {echo 'bg-warning';}?>"><?=$productPub['price']?></a>
-                                            </td>
+                                                <table>
+                                                <tr>
+                                                  <td>
+                                                <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money price <?php if ($productPub['price'] == 0.00) {echo 'bg-warning';}?>"><?=$productPub['price']?></a>
+                                        </td> 
+                                                <?php if ($template->type_template == 2) {?>
+                                                  <td>
+                                                <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/<?=$productPub['id_product_publish']?>"  role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar  </a>
+                                                </td>
+                                                <?php }?>
+                                                </table>
+                                              </td>
                                             <td class="alignCenter">
                                                 <!--<a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> -->
                                                 <a href="<?php echo base_url('encarte/deleteProduct/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']);?>"  class="btn btn-lg btn-danger"><i class="far fa-trash-alt"></i></a> 
 
 
-<!-- Logout Modal-->
-<div class="modal fade bd-example-modal-sm" id="user-<?php echo $productPub['id_product_publish']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja deletar?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Para excluir o registro cliquem em Sim</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="<?php echo base_url('encarte/deleteProduct/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']);?>">Sim</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
     
                                             </td>
+                                          
                                         </tr>
                                      
                                     
@@ -372,8 +400,10 @@ if ($publish->footer_text) {
                                 </table>
                             </div>
                         </div>
+                        <?php                       if ($template->type_template == 1) {
+?>
                         <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="300" height="100">  
-
+<?php } ?>
                     
 
 
@@ -396,7 +426,7 @@ if ($publish->footer_text) {
                 <div class="modal-body">Existem produtos sem preço. Deseja continuar?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>">Sim</a>
+                    <a class="btn btn-danger btn-sm" href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/0">Sim</a>
                 </div>
             </div>
         </div>

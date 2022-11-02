@@ -61,6 +61,18 @@ align: center;
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
   <br/>
+  <div class="container">
+
+  <?php 
+  if ($this->session->userdata('idpublish')) { 
+    ?>
+                        
+                                <a title="Voltar" href="<?=base_url('encarte/productPublish/'. $this->session->userdata('idpublish')); ?>"  class="btn btn-primary btn-lg float-left">&nbsp;Voltar</a>
+
+                               
+                                <?php }?>
+  </div>
+  <br/>
                       <div class="container">
                         <div class="row">
                           <div class="align-self-start">

@@ -43,9 +43,9 @@ div.gallery img {
 }
 
 div.desc {
-  padding: 15px;
+  padding: 5px;
   text-align: center;
-  font-size: 14px;
+  font-size: 10px;
 
 }
 
@@ -56,7 +56,7 @@ div.desc {
 .responsive {
   padding: 0 10px;
   float: left;
-  width: 24.99999%;
+  width: 12.99999%;
 }
 
 @media only screen and (max-width: 700px) {
@@ -108,8 +108,11 @@ div.desc {
       Meus Encartes
     </div>
 
+    <div class="container-fluid">
+    <div class="card shadow mb-6">
 
-             
+    <div class="card-body">
+       
       
                 <?php if ($message = $this->session->flashdata('error')): ?>
     <div class "row">
@@ -142,7 +145,6 @@ div.desc {
 </div>
 <?php endif; ?>   
 
-</div>
 
 <?php if (strcmp($type, 'first') == 0) {?>
                <div class="button_header">
@@ -155,25 +157,23 @@ div.desc {
                 </div>
                 <?php } ?>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
+                
 
   
 <?php
 //print_r($templates);
 foreach ($templates as $template) {
   //echo "<pre>";
-//print_r($template);
-    ?>
+?>
 
 
 <div class="responsive">
   <div class="gallery">
-  <div class="desc"><?php echo "<strong>".$template['description']."</strong><br> Data Criação: ".$template['dates_creation']."ID Template #".$template['id'];?></div>
-    <a target="" href="<?php echo base_url('/encarte/productPublish/'.$template['id']); ?> ">
-      <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" width="600" height="400">
+  <div class="desc"><?php echo "<strong>".$template['description_publish']."</strong> (#".$template['id_publish_sh'].") <br><strong>  Data:</strong> ".$template['dates_creation']."<strong>Template </strong>".$template['id_template'];?></div>
+    <a target="" href="<?php echo base_url('/encarte/productPublish/'.$template['id_publish_sh']); ?> ">
+    <img src="<?= base_url() . "images/templates/".$template['complete_image']; ?>" alt="Cinque Terre" width="400" height="200">
 
+ 
     </a>
   </div>
 </div>
@@ -185,8 +185,7 @@ foreach ($templates as $template) {
 
 <div class="clearfix"></div>
 
- 
-     
-                   
-
+</div>
+</div>
+</div>
 </div>

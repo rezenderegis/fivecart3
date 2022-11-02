@@ -29,7 +29,7 @@
                         </div>
                         -->
                         <div class="card-body">
-                            
+                         
 <form method="POST" name="form_edit">
   <div class="form-group">
       <div class="col-md-6">
@@ -38,13 +38,14 @@
     <?php echo form_error('description', '<small class = "form-text text-danger">','</small>');?>
   
   </div>
-  
+  <?php if ($template->type_template == 1) {?>
+
   <div class="col-md-6">
       <label >Texto Cabeçalho Direita</label>
     <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="<?php echo $publish->header2;?>" maxlength="21">
     <?php echo form_error('header2', '<small class = "form-text text-danger">','</small>');?>
   </div>
-
+<?php }?>
   <div class="form-group">
       <div class="col-md-6">
       <label >Rodapé 1 (Dica: Colocar Telefone)</label>
@@ -58,7 +59,7 @@
     <?php echo form_error('footer_text2', '<small class = "form-text text-danger">','</small>');?>
   </div>
 </div>
-
+<?php if ($template->type_template == 1) {?>
 <div class="form-group col-md-6">
     <label >Tamanho do Encarte</label>
 
@@ -70,8 +71,8 @@
                                 </select>
                                 <?php echo form_error('column_amount', '<small class = "form-text text-danger">','</small>');?>
 
-                            </div>
-
+ </div>
+<?php }?>
 
     <input type="hidden" name="product_id" value="<?php echo $publish->id; ?>"
 </div>

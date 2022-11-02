@@ -13,10 +13,11 @@
 <div class="cabecalho">
 <?php echo $titulo; ?>
 </div>
-                   
+     
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
+
 
                         <?php if (strcmp($_SESSION['type_product'] , 'first') == 0) { ?>
                           <a title="Voltar" href="<?php echo base_url('encarte/allCarts')?>" class="btn btn-primary btn-lg float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
@@ -24,6 +25,7 @@
                           <?php } else {?>
                             <a title="Voltar" href="<?php echo base_url('product')?>" class="btn btn-primary btn-lg float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
 <?php }?>
+
                         </div>
 
                         <div class="card-body">

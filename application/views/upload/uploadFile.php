@@ -14,9 +14,25 @@
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
                         <div class="card-header py-3">
+                            <table>
+                               <tr>
+                                <?php 
+                             
+                                if ($this->session->userdata('idpublish')) { ?>
+                                <td>
+                                <a title="Voltar" href="<?=base_url('encarte/productPublish/'. $this->session->userdata('idpublish')); ?>"  class="btn btn-primary btn-lg float-left">&nbsp;Voltar</a>
 
-                            <a title="Voltar" href="<?=base_url('usuario/editUserDetails'); ?>"  class="btn btn-success btn-sm float-left"><i class="fas fa-arrow-left"></i>&nbsp;Voltar</a>
+                                </td>
+                                <?php }?>
+                                <td>
+                         
+                           <!-- <a title="Voltar" href="<?=base_url('usuario/editUserDetails'); ?>"  class="btn btn-primary btn-lg float-left">&nbsp;Voltar</a>-->
+                                </td>
+                              <td>
+                            <a title="Voltar" href="<?=base_url('usuario/adjustLoogo/1/'. $this->ion_auth->user()->row()->id); ?>"  class="btn btn-primary btn-lg float-left">&nbsp;Tamanho Logo</a>
+</td>
 
+</table>
                         </div>
 
                         <div class="card-body">

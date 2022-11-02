@@ -101,8 +101,8 @@ align: center;
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-<a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>" download="w3logo">
-<img src="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>" class="imgProduct"/>
+<a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>/0" download="w3logo">
+<img src="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>/0" class="imgProduct"/>
 </a>
 <!-- viewFlyerImage/1/52 -->
 
