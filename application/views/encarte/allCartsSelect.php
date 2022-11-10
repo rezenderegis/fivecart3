@@ -62,16 +62,24 @@ div.desc {
 Escolha o MODELO
 </div>           
 
+<div class="container-fluid">
+                        <div class="row">
+                          <div class="align-self-start">
+                          <a title="Meus Produtos" href="<?=base_url('encarte/index/'.$publishId.'/2'); ?>" class="btn btn-primary btn-bg">Posts</a>
 
-<div class="divbuttom">
+                          &nbsp;
+                          </div>
 
-<a title="Meus Produtos" href="<?=base_url('encarte/index/'.$publishId.'/2'); ?>" class="btn btn-primary btn-bg">Posts</a>
+                        <div class="align-self-start">
+                          &nbsp;
+                          <a title="Posts" href="<?=base_url('encarte/index/'.$publishId.'/1'); ?>" class="btn btn-primary btn-bg ">Encartes</a>
 
-</div>
-<div class="divbuttom">
-<a title="Posts" href="<?=base_url('encarte/index/'.$publishId.'/1'); ?>" class="btn btn-primary btn-bg ">Encartes</a>
+                        </div>
+                      
 
-</div>  
+                        </div>
+  </div>
+<br/> 
 
      <!-- Begin Page Content -->
      <div class="container-fluid">

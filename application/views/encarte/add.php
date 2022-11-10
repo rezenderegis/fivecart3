@@ -58,7 +58,7 @@ align: right;
 </nav>
 
 <div class="cabecalho">
-Dados do Seu Novo Encarte
+Confirme o Modelo
 </div> 
                    
  <!-- DataTales Example -->
@@ -70,9 +70,27 @@ Dados do Seu Novo Encarte
                         </div>
 
                         <div class="card-body">
-                            
+  
+                        <?php 
+                                                $descriton_post = '';
+
+                        if ($template->type_template == 1) {
+  $width = 300;
+  $height = 100;
+  $descriton_post = "Encarte";
+
+} elseif ($template->type_template == 2) {
+  $width = 400;
+  $height = 350;
+  $descriton_post = "Post";
+} ?>
+
 <form method="POST" name="form_add">
-  <div class="form-group">
+<input type="hidden" id="description" name="description" value=<?=$descriton_post?>>
+
+<!--  
+
+<div class="form-group">
       <div class="col-md-4">
       <label >Descrição do Encarte</label>
     <input type="text" class="form-control" name="description" placeholder="Descrição" value="" maxlength="31">
@@ -80,7 +98,7 @@ Dados do Seu Novo Encarte
   </div>
 <BR/>
 
-<!--
+
   <div class="col-md-4">
       <label >Texto Cabeçalho Direita</label>
     <input type="text" class="form-control" name="header2" placeholder="Texto Cabeçalho Direita" value="" maxlength="21" >
@@ -117,10 +135,8 @@ Dados do Seu Novo Encarte
 -->
 
   <div class ="container_text_button">
-  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="300" height="100">  
-  <div class="text_button_right">
-    <h6>Seu Texto Cabeçalho AQUI<h6>
-  </div>
+  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width=<?=$width?> height=<?=$height?>>  
+
 </div>
     <div class="col-md-4">
   </div>

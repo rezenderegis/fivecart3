@@ -213,9 +213,18 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
-    public function getPublishWithTemplate() {
+    public function getPublishWithTemplate($typeFind=0) {
+        if ($typeFind == 0) {
+            $filter = ' and t.type_template  in (1,2)';
+        } elseif ($typeFind == 2){
+            $filter = ' and t.type_template = 2';
+
+        } elseif ($typeFind == 1) {
+            $filter = ' and t.type_template = 1';
+        }
+
         $sql = " select p.id, p.id as id_publish_sh, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,p.description description_publish, date_format(p.date, '%d/%m/%Y') dates_creation,t.*,t.id id_template
-        from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$this->ion_auth->user()->row()->id." order by p.date desc";
+        from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$this->ion_auth->user()->row()->id.$filter." order by p.date desc";
    
         $query = $this->db->query ( $sql );	
     return $query->result_array ();
@@ -226,6 +235,9 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
 
     public function getPublishWithTemplate1($idUser) {
+
+  
+
         $sql = " select p.id, t.header_image, t.footer_image, t.complete_image complete_image,p.description description,date_format(p.date, '%d/%m/%Y') dates_creation
         from  publish p inner join template t on p.id_template = t.id where p.status = 1 and p.id_user = ".$idUser." order by p.date desc";
     $query = $this->db->query ( $sql );	

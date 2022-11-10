@@ -44,7 +44,7 @@ position: relative;
 
 /* Dropdown Button */
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: #4469D7;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -54,7 +54,7 @@ position: relative;
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+  background-color: #eec458;
 }
 
 /* The search field */
@@ -82,7 +82,8 @@ position: relative;
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f6f6f6;
+  color: #FFFFFF;
+  background-color: #4469D7;
   min-width: 230px;
   border: 1px solid #ddd;
   z-index: 1;
@@ -90,14 +91,14 @@ position: relative;
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color: #eec458}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
@@ -179,6 +180,20 @@ div.desc {
 <?php endif; ?>   
 
 
+    <div class "row">
+    <div class ="col-md-12">
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong><?php echo "Deseja remover o fundo branco de alguma imagem?";?></strong> 
+  <a href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui e será removida em até 24hrs</a>
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+</div>
+</div>
+
 <?php if ($message = $this->session->flashdata('success')): ?>
     <div class "row">
     <div class ="col-md-12">
@@ -192,12 +207,12 @@ div.desc {
 </div>
 </div>
 <?php endif; ?>   
+<!--
 <div class="cabecalho">
-Produtos do Encarte
+Inclua Produtos no Encarte
 </div>
+-->
 
-<a class="btn btn-primary btn-lg" href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>">Ajustar Logo</a>
-<br/>
 
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
@@ -228,39 +243,30 @@ if ($publish->footer_text) {
 
 <div class="card-body"> 
 
-  <!--
- <table class="table table-striped">
- <tr>
- <td><strong>Descrição</strong></td>
- <td><strong><?=$publish->description?></strong></td>
- <tr>
- <tr>
- <td>Texto Cabeçalho</td>
- <td><?=$publish->header2?></td>
- <tr>
- <tr>
- <td>Texto Rodapé 1</td>
- <td>
- <a href="<?php echo base_url('encarte/edit/'.$idProductList);?>"><?=$footer_text?></a>
+<div class="dropdown">
+  <button type="button" onclick="myFunction()" class="btn btn-warning btn-lg text-dark">Incluir Produto no Encarte</button>
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Procurar..." id="myInput" onkeyup="filterFunction()" name="product">
+    <?php foreach ($products as $product) {?>
+    <a href="<?php echo base_url('encarte/addProduct1/'.$idProductList.'/'.$product['id']);?>"><?php echo $product['name'];?>
+    <!-- <img src="<?php echo base_url('/images/Products/'.$product['image_link']); ?>" class="imgProduct">
+    -->
+  </a>
 
-</td>
- <tr>
- <tr>
- <td>Texto Rodapé 2</td>
- <td>
- <a href="<?php echo base_url('encarte/edit/'.$idProductList);?>"><?=$footer_text2?></a>
- 
- </td>
- <tr>
-</table>
--->
+    <?php }?>
+    
+</div>
+
+</div>
+
+<br/><br/>
 <table class"table"">
   <tr>
     <td>
 
 <div class="dropdown">
   <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Alterar
+    Dados
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>">Textos</a>
@@ -286,9 +292,9 @@ if ($publish->footer_text) {
                      
                       if ($template->type_template == 1) {
                       if ($existProductWithoutPrice == 1) { ?>
-                       <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark">Visualizar</a> 
+                       <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark">Visualizar &nbsp;&nbsp; &nbsp; &nbsp;</a> 
                         <?php } else { ?>
-                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/0" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i>Visualizar</a>
+                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/0" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar &nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                           <?php } 
                       }
@@ -296,42 +302,33 @@ if ($publish->footer_text) {
                         
 
     </td>
-    <td> 
-    <a class="btn btn-primary btn-lg" href="<?php echo base_url('product/index/0/1');?>">Novo Produto</a>
+                    </tr>
+                    <tr>
+        <td>
+        <a class="btn btn-primary btn-lg" href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>">Logo &nbsp; &nbsp; &nbsp;&nbsp;</a>
 
-   
-    </td>
+        </td>
+        <td>
+        <a class="btn btn-primary btn-lg" href="<?php echo base_url('product/index/0/1');?>"> Novo Produto</a>
+
+        </td>
+      </tr>
     </table>
-
+ 
+<br/>
 
 
 <div class ="container_text_button">
-<?php if ($template->type_template == 1) { ?>
-  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="300" height="100">  
-  <?php } else {?>
-    <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="150" height="100">  
-<?php }?>
-  <div class="text_button_right">
-    <h6><?=$publish->header2 ?><h6>
-  </div>
+<?php //if ($template->type_template == 1) { ?>
+  <!--  <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="300" height="100">  -->
+  <?php // } else {?>
+   <!-- <img  src="<?= base_url() . "images/templates/".$template->header_image ?>" width="150" height="100">  -->
+<?php //}?>
+
 </div>
 <br/>
 
-<div class="dropdown">
-  <button onclick="myFunction()" class="btn btn-primary btn-lg">Adicionar Produto</button>
-  <div id="myDropdown" class="dropdown-content">
-    <input type="text" placeholder="Procurar..." id="myInput" onkeyup="filterFunction()" name="product">
-    <?php foreach ($products as $product) {?>
-    <a href="<?php echo base_url('encarte/addProduct1/'.$idProductList.'/'.$product['id']);?>"><?php echo $product['name'];?>
-    <!-- <img src="<?php echo base_url('/images/Products/'.$product['image_link']); ?>" class="imgProduct">
-    -->
-  </a>
 
-    <?php }?>
-    
-</div>
-
-</div>
 
 
                       
@@ -400,10 +397,9 @@ if ($publish->footer_text) {
                                 </table>
                             </div>
                         </div>
-                        <?php                       if ($template->type_template == 1) {
-?>
-                        <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="300" height="100">  
-<?php } ?>
+                        <?php          //             if ($template->type_template == 1) {?>
+       <!--                 <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="300" height="100">  -->
+
                     
 
 

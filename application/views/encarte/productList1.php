@@ -61,14 +61,14 @@ div.desc {
 
 @media only screen and (max-width: 700px) {
   .responsive {
-    width: 49.99999%;
+    width: 25.99999%;
     margin: 6px 0;
   }
 }
 
 @media only screen and (max-width: 500px) {
   .responsive {
-    width: 100%;
+    width: 50%;
   }
 }
 
@@ -145,15 +145,33 @@ div.desc {
 </div>
 <?php endif; ?>   
 
+<div class="container-fluid">
+                        <div class="row">
+                          <div class="align-self-start">
+                          <a title="Posts" href="<?=base_url('encarte/productList1/0/2'); ?>" class="btn btn-primary btn-bg">Posts</a>
+
+                          &nbsp;
+                          </div>
+
+                        <div class="align-self-start">
+                          &nbsp;
+                          <a title="Encartes" href="<?=base_url('encarte/productList1/0/1'); ?>" class="btn btn-primary btn-bg ">Encartes</a>
+
+                        </div>
+                      
+
+                        </div>
+  </div>
+<br/> 
 
 <?php if (strcmp($type, 'first') == 0) {?>
                <div class="button_header">
-                <a title="Criar Nova Lista" href="<?php echo base_url('product/add/first');?>" class="btn btn-primary btn-lg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                <a title="Criar Nova Lista" href="<?php echo base_url('product/add/first');?>" class="btn btn-primary btn-bg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
                 </div>
 
                 <?php } else { ?>
                 <div class="button_header">
-                <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-primary btn-lg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-primary btn-bg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
                 </div>
                 <?php } ?>
 

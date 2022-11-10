@@ -111,7 +111,7 @@ Escolha o MODELO
                       
 
                         </div>
-                      </div>
+  </div>
 
 <div class="card-body">
 

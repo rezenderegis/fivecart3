@@ -104,7 +104,7 @@ class Encarte extends CI_Controller {
     }
 
 
-    public function productList1($idPublish=0) {
+    public function productList1($idPublish=0,$typeFind=0) {
       
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
        
@@ -147,12 +147,11 @@ class Encarte extends CI_Controller {
         $data = array (
             'titulo' => 'Encartes Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
-            'templates' => $this->core_model->getPublishWithTemplate(), 
+            'templates' => $this->core_model->getPublishWithTemplate($typeFind), 
 
             'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
             'vendor/datatables/app.js'),    
-            'publish' => $this->core_model->getPublishWithTemplate(),            
             'type' => $type,
 
 
@@ -530,7 +529,7 @@ class Encarte extends CI_Controller {
 
             $data = elements(
  
-             array('description', 'header2','footer_text','footer_text2','column_amount',
+             array('description', 'header2','footer_text','footer_text2','column_amount','show_background',
          
          ), $this->input->post()
  
@@ -637,11 +636,10 @@ class Encarte extends CI_Controller {
         $data = array (
             'titulo' => 'Cadastrar Lista',
         );
-
         $this->form_validation->set_rules('description','', 'trim|required');
         $userDetail =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
-
         if ($this->form_validation->run()) {
+           /// echo $this->input->post('description'); 
                  $data = array (
                      'description' => $this->input->post('description'),
                      'header2' => $this->input->post('header2'),
@@ -651,7 +649,7 @@ class Encarte extends CI_Controller {
                     'id_template' => $idTemplate,
                     'column_amount' => $this->input->post('column_amount'), 
                  );
-               
+            //   print_r($data); die();
                  $data = html_escape($data);
                  $this->core_model->insertLog('encarte->addFromCart', 'Insert publish');
 

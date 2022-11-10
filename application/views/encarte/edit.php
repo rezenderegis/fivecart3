@@ -74,6 +74,19 @@
  </div>
 <?php }?>
 
+<?php if ($template->background_image != '' && $template->type_template == 1) {?>
+<div class="form-group col-md-6">
+    <label >Mostrar Imagem Fundo</label>
+
+                                <select class="form-control " name="show_background">
+                                <option value="0" <?php if ($publish->show_background == 0) {echo 'selected';}?>>Não</option>
+                                <option value="1" <?php if ($publish->show_background == 1) {echo 'selected';}?>>Sim</option>
+                                </select>
+                                <?php echo form_error('column_amount', '<small class = "form-text text-danger">','</small>');?>
+
+ </div>
+<?php }?>
+
     <input type="hidden" name="product_id" value="<?php echo $publish->id; ?>"
 </div>
 
