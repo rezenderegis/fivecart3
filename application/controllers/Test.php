@@ -1,7 +1,7 @@
 <?php
 defined ('BASEPATH') OR exit ('Not allowed!');
 
-class Encarte extends CI_Controller {
+class Test extends CI_Controller {
 
     
     public function __construct () {
@@ -9,10 +9,10 @@ class Encarte extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
 
-        if (!$this->ion_auth->logged_in()) {
+       /* if (!$this->ion_auth->logged_in()) {
             $this->session->set_flashdata('info', 'Sua sessão expirou');
             redirect ('login');
-        }
+        }*/
 
     }
 
@@ -245,7 +245,7 @@ class Encarte extends CI_Controller {
         $data = array (
 
             'titulo' => 'Gerar Encarte',
-            'productPublish' => $this->core_model->getProductPublish($publishId, $this->ion_auth->user()->row()->id),
+            'productPublish' => $this->core_model->getProductPublish($publishId),
             'template' => $this->core_model->getById('template', array('id' => $var)),
             'publish' =>  $publish,
             
@@ -420,20 +420,20 @@ class Encarte extends CI_Controller {
 
 
 
-    public function productPublish($idProductList = NULL) {
+    public function productPublish($idProductList = NULL, $idUser) {
        
         $this->session->set_userdata('idpublish', $idProductList);
         
-        $userDetail = $this->core_model->getById('user_detail', array('id_user' => $this->ion_auth->user()->row()->id));
-        $helpFundo = $this->core_model->getById('help', array('id_user' => $this->ion_auth->user()->row()->id, 'id_publish' => $idProductList,'type_help' => 1, 'status' => 1));
-        $helpLogo = $this->core_model->getById('help', array('id_user' => $this->ion_auth->user()->row()->id, 'id_publish' => $idProductList,'type_help' => 1, 'status' => 2));
+        $userDetail = $this->core_model->getById('user_detail', array('id_user' => $idUser));
+        $helpFundo = $this->core_model->getById('help', array('id_user' => $idUser, 'id_publish' => $idProductList,'type_help' => 1, 'status' => 1));
+        $helpLogo = $this->core_model->getById('help', array('id_user' => $idUser, 'id_publish' => $idProductList,'type_help' => 1, 'status' => 2));
        
-        $publish = $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $this->ion_auth->user()->row()->id));
+        $publish = $this->core_model->getById('publish', array('id' => $idProductList, 'id_user' => $idUser));
        
         $idTemplate = $publish->id_template;
        
         $existProductWithoutPrice = 0;
-        foreach($this->core_model->getProductPublish($idProductList,$this->ion_auth->user()->row()->id) as $verify) {
+        foreach($this->core_model->getProductPublish($idProductList,$idUser) as $verify) {
            
             if ($verify['price'] == '0.00') {
                 $existProductWithoutPrice = 1;
@@ -441,7 +441,7 @@ class Encarte extends CI_Controller {
             }
         }
        
-        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
+        $logo =  $this->core_model->getById('user_detail', array ('id_user' => $idUser));
 
         $data = array (
             'titulo' => 'Produtos Cadastrados',
@@ -452,13 +452,13 @@ class Encarte extends CI_Controller {
             'vendor/datatables/app.js',
             'vendor/mask/jquery.mask.min.js',
             'vendor/mask/app.js'),    
-            'products' => $this->core_model->getUserProducts($idProductList,$this->ion_auth->user()->row()->id),
+            'products' => $this->core_model->getUserProducts($idProductList,$idUser),
             'idProductList' => $idProductList,
             'publish' => $publish,
             'template' => $this->core_model->getById('template', array('id' => $idTemplate)),
             'existProductWithoutPrice' => $existProductWithoutPrice,
             'user_detail' =>   $logo,
-            'productPublish' => $this->core_model->getProductPublish($idProductList, $this->ion_auth->user()->row()->id),
+            'productPublish' => $this->core_model->getProductPublish($idProductList,$idUser),
             'userDetail' => $userDetail,
             'helpFundo' => $helpFundo,
             'helpLogo' => $helpLogo,
@@ -870,7 +870,7 @@ $date = date('Y-m-d H:i:s');
 
     }
 
-    public function viewFlyerImage($user, $publishId,$id_product=0) {
+    public function viewFlyerImage($user, $publishId) {
 
        
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
@@ -903,7 +903,6 @@ $date = date('Y-m-d H:i:s');
             'type' => $type,
             'publishId' => $publishId,
             'user' => $user,
-            'id_product' => $id_product,
 
 
         );
@@ -926,13 +925,9 @@ $date = date('Y-m-d H:i:s');
 
     }
 
-    public function callUrlAws($idProductList,$id_user,$id_product_publish=0,$imageQuality=0) {
-      
-        //$address = 'http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/';
-        
-        $address = 'http://localhost:3333/publish/';
+    public function callUrlAws($idProductList,$id_product_publish=0) {
 
-        $url = $address.$id_user."/".$idProductList."/".$id_product_publish."/".$imageQuality;
+        $url = "http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/".$this->ion_auth->user()->row()->id."/".$idProductList."/".$id_product_publish;
 
         $date = date('Y-m-d H:i:s');
 

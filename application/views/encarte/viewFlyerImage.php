@@ -65,9 +65,9 @@ div.desc {
 align: center;
 
     object-fit: scale-down;
-    width:  400px;
-    height: 600px;
-    object-position: bottom;
+    width:  200px;
+    height: 300px;
+    object-position: top;
     
 
 }
@@ -95,27 +95,34 @@ align: center;
 
      
             
-               <?php $this->load->view('layout/navbar');?>
+ <?php $this->load->view('layout/navbar');?>
 
+ <div id="content">
+ <div class="container-fluid">
+ <a class="btn btn-primary btn-lg" href="<?= base_url() . "encarte/callUrlAws/".$publishId."/".$user."/".$id_product."/1"; ?>"> Download Alta Resolução</a>
+ 
+ <br/>
+<br/>
+ <div class="card shadow mb-4">
+  
+ <div class="card-body"> 
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+ <picture>
 
-<a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>/0" download="w3logo">
-<img src="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$user?>/<?=$publishId?>/0" class="imgProduct"/>
-</a>
+<img src="<?= base_url() . "encarte/callUrlAws/".$publishId."/".$user."/".$id_product."/0"; ?>" class="img-fluid img-thumbnail imgProduct"/>
+</picture>
 <!-- viewFlyerImage/1/52 -->
 
+
+
+
+
+
+
 </div>
-
-
-
-
-
-<div class="clearfix"></div>
-
- 
      
-                   
-
+</div>           
+</div>
+</div>
 </div>

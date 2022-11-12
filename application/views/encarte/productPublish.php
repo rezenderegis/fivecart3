@@ -179,21 +179,24 @@ div.desc {
 </div>
 <?php endif; ?>   
 
-
+<?php if ($publish->date_generate) { ?>
     <div class "row">
     <div class ="col-md-12">
 
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong><?php echo "Deseja remover o fundo branco de alguma imagem?";?></strong> 
-  <a href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui e será removida em até 24hrs</a>
-
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong><?php echo "Não gostou do Post ou Encarte? Quer ajuda para melhorar?";?></strong> 
+  <a  href="<?= base_url() . "encarte/callUrlZap"; ?>">
+  
+    <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' style='width: 15px; heigth: 15px;'>
+    Entre em contato pelo WhatsApp, atendimento Imediato!
+    </a>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 </div>
 </div>
-
+<?php } ?>
 <?php if ($message = $this->session->flashdata('success')): ?>
     <div class "row">
     <div class ="col-md-12">
@@ -294,14 +297,33 @@ if ($publish->footer_text) {
                       if ($existProductWithoutPrice == 1) { ?>
                        <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark">Visualizar &nbsp;&nbsp; &nbsp; &nbsp;</a> 
                         <?php } else { ?>
-                          <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/0" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar &nbsp;&nbsp;&nbsp;&nbsp;</a>
-
+                          <a href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/0"; ?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar &nbsp;&nbsp;&nbsp;&nbsp;</a>
+                         
                           <?php } 
                       }
                           ?>
                         
 
     </td>
+    <td>
+    
+    
+      <?php 
+      $mensagemFundo = '(24hrs)';
+      $mensagemLogo = '(24hrs)';
+
+      if ($helpFundo) {
+        $mensagemFundo = '(Em Processamento)';
+      }
+      
+      if ($helpLogo) {
+        $mensagemLogo = '(Em Processamento)';
+
+      }
+      
+      ?>
+
+                    </td>
                     </tr>
                     <tr>
         <td>
@@ -313,6 +335,28 @@ if ($publish->footer_text) {
 
         </td>
       </tr>
+      <tr>
+    <td>
+    <div class="dropdown justify-content-center">
+  <button  class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Ajuda
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item " href="<?php echo base_url('help/new/1/'.$idProductList);?>">Remover Fundo Produtos <?=$mensagemFundo?> </a>
+   
+ 
+    <a class="dropdown-item" href="<?php echo base_url('help/new/2/'.$idProductList);?>">Melhorar Logo <?=$mensagemFundo?></a>
+                
+    <a class="dropdown-item" href="<?= base_url() . "encarte/callUrlZap"; ?>">
+    <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' style='width: 15px; heigth: 15px;'>
+    WhatsApp - Atendimento Imediato
+    </a>
+
+                
+      </div>
+</div>
+    </td>
+    </tr>
     </table>
  
 <br/>
@@ -366,7 +410,8 @@ if ($publish->footer_text) {
                                         </td> 
                                                 <?php if ($template->type_template == 2) {?>
                                                   <td>
-                                                <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/<?=$productPub['id_product_publish']?>"  role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar  </a>
+                                                  
+                                                <a href="<?= base_url() . "encarte/callUrlAws/".$idProductList."/".$productPub['id_product_publish']; ?>"  role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar  </a>
                                                 </td>
                                                 <?php }?>
                                                 </table>
@@ -422,7 +467,7 @@ if ($publish->footer_text) {
                 <div class="modal-body">Existem produtos sem preço. Deseja continuar?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?= $this->ion_auth->user()->row()->id?>/<?=$idProductList?>/0">Sim</a>
+                    <a class="btn btn-danger btn-sm" href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/0"; ?>">Sim</a>
                 </div>
             </div>
         </div>
