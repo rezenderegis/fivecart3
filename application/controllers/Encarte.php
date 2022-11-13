@@ -928,9 +928,9 @@ $date = date('Y-m-d H:i:s');
 
     public function callUrlAws($idProductList,$id_user,$id_product_publish=0,$imageQuality=0) {
       
-        //$address = 'http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/';
+        $address = 'http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/';
         
-        $address = 'http://localhost:3333/publish/';
+        //$address = 'http://localhost:3333/publish/';
 
         $url = $address.$id_user."/".$idProductList."/".$id_product_publish."/".$imageQuality;
 

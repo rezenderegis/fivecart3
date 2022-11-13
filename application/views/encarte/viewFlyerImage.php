@@ -65,8 +65,8 @@ div.desc {
 align: center;
 
     object-fit: scale-down;
-    width:  200px;
-    height: 300px;
+    width:  400px;
+    height: 600px;
     object-position: top;
     
 

@@ -272,10 +272,10 @@ if ($publish->footer_text) {
     Dados
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>">Textos</a>
+    <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>">Alterar Textos</a>
     <?php
     if ($publish->id_template != '') { ?>
-    <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Template</a>
+    <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Alterar Template</a>
    
                         <?php } else { ?>
                           <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Gerar Encarte</a>
@@ -288,23 +288,21 @@ if ($publish->footer_text) {
 
      
                         <td>
+                        <a class="btn btn-primary btn-lg" href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>">Ajustar Logo &nbsp;</a>
 
                        <!--  <a href="<?php echo base_url('encarte/viewFlyerImage/'.$this->ion_auth->user()->row()->id.'/'.$idProductList);?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a> -->
 
-                      <?php 
-                     
-                      if ($template->type_template == 1) {
-                      if ($existProductWithoutPrice == 1) { ?>
-                       <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark">Visualizar &nbsp;&nbsp; &nbsp; &nbsp;</a> 
-                        <?php } else { ?>
-                          <a href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/0"; ?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar &nbsp;&nbsp;&nbsp;&nbsp;</a>
-                         
-                          <?php } 
-                      }
-                          ?>
+                  
                         
 
     </td>
+    <?php if ($this->ion_auth->user()->row()->id == 1) {?>
+    <td>
+   
+    <a href=" <?= base_url() . "encarte/viewFlyerImage/".$this->ion_auth->user()->row()->id."/".$idProductList."/0"; ?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+    </td>
+    <?php }?>
     <td>
     
     
@@ -327,17 +325,8 @@ if ($publish->footer_text) {
                     </tr>
                     <tr>
         <td>
-        <a class="btn btn-primary btn-lg" href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>">Logo &nbsp; &nbsp; &nbsp;&nbsp;</a>
 
-        </td>
-        <td>
-        <a class="btn btn-primary btn-lg" href="<?php echo base_url('product/index/0/1');?>"> Novo Produto</a>
-
-        </td>
-      </tr>
-      <tr>
-    <td>
-    <div class="dropdown justify-content-center">
+        <div class="dropdown justify-content-center">
   <button  class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Ajuda
   </button>
@@ -355,8 +344,34 @@ if ($publish->footer_text) {
                 
       </div>
 </div>
+
+
+        </td>
+        <td>
+        <a class="btn btn-primary btn-lg" href="<?php echo base_url('product/index/0/1');?>"> Novo Produto</a>
+
+        </td>
+      </tr>
+      <?php 
+                     
+                     if ($template->type_template == 1) { ?>
+      <tr>
+    <td colspan="2">
+   
+   <?php 
+                      if ($existProductWithoutPrice == 1) { ?>
+                       <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark btn-block">Visualizar &nbsp;&nbsp; &nbsp; &nbsp;</a> 
+                        <?php } else { ?>
+                          <a href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/0/1"; ?>" class="btn btn-primary btn-lg btn-block" role="button" aria-disabled="true" id="showPictureButton">Visualizar&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                         
+                          <?php } 
+                     
+                          ?>
+
+
     </td>
     </tr>
+    <?php }?>
     </table>
  
 <br/>
@@ -411,9 +426,24 @@ if ($publish->footer_text) {
                                                 <?php if ($template->type_template == 2) {?>
                                                   <td>
                                                   
-                                                <a href="<?= base_url() . "encarte/callUrlAws/".$idProductList."/".$productPub['id_product_publish']; ?>"  role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar  </a>
+                                                <a href="<?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/".$productPub['id_product_publish']."/1"; ?>"  role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar  </a>
+                                                
+                                              
                                                 </td>
+
+                                                
                                                 <?php }?>
+
+
+                                                <?php if ($this->ion_auth->user()->row()->id == 1 && $template->type_template == 2) {?>
+                                            <td>
+                                          
+                                            <a href=" <?= base_url() . "encarte/viewFlyerImage/".$this->ion_auth->user()->row()->id."/".$idProductList."/".$productPub['id_product_publish']; ?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar v&nbsp;&nbsp;&nbsp;&nbsp;</a>
+
+                                            </td>
+
+                                                <?php }?>
+
                                                 </table>
                                               </td>
                                             <td class="alignCenter">
@@ -467,7 +497,7 @@ if ($publish->footer_text) {
                 <div class="modal-body">Existem produtos sem preço. Deseja continuar?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                    <a class="btn btn-danger btn-sm" href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/0"; ?>">Sim</a>
+                    <a class="btn btn-danger btn-sm" href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/0/1"; ?>">Sim</a>
                 </div>
             </div>
         </div>
