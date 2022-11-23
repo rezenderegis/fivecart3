@@ -19,6 +19,11 @@ src="https://www.facebook.com/tr?id=435688927479728&ev=PageView
 <!-- End Facebook Pixel Code -->
 
 <style>
+.img-flag {
+    width: 40px;
+    height: 40px;
+}
+
 .container_text_button{
 position: relative;
 }
@@ -146,6 +151,11 @@ div.desc {
 }
 </style>
 
+<!-- select2 css -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-theme@0.1.0-beta.10/dist/select2-bootstrap.min.css" rel="stylesheet" />
+
+
    <?php //$this->load->view('layout/sidebar'); ?>
 
      
@@ -247,7 +257,8 @@ if ($publish->footer_text) {
 <div class="card-body"> 
 
 <div class="dropdown">
-  <button type="button" onclick="myFunction()" class="btn btn-warning btn-lg text-dark">Incluir Produto no Encarte</button>
+
+  <!-- <button type="button" onclick="myFunction()" class="btn btn-warning btn-lg text-dark">Incluir Produto no Encarte</button> -->
   <div id="myDropdown" class="dropdown-content">
     <input type="text" placeholder="Procurar..." id="myInput" onkeyup="filterFunction()" name="product">
     <?php foreach ($products as $product) {?>
@@ -260,10 +271,12 @@ if ($publish->footer_text) {
     
 </div>
 
+
+
 </div>
 
 <br/><br/>
-<table class"table"">
+<table class"table">
   <tr>
     <td>
 
@@ -385,93 +398,25 @@ if ($publish->footer_text) {
 <?php //}?>
 
 </div>
-<br/>
 
+<select class="product-list form-control">
+    <option></option>
+</select>
 
+<div class="card-body">
+    <div class="loading text-primary" style="display:none"><b>Processando...</b></div><br>
+    <div class="table-responsive">
+        <table id="product-publish-list" class="table tableFit"  width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th class="text-right"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 
-
-                      
-
-
-    
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <!-- 04-06: I excluded dataTable class because she wasnt organizing like query-->
-                                <table class="table tableFit"  width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th class="no-sort">Produto</th>
-                                            <th class="text-right no-sort"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php 
-                                    
-                                    $id_product_publish = 0;
-                                    ?>
-                                        <?php foreach ($productPublish as $productPub) : ?>
-                                          <?php $id_product_publish =  $productPub['id_product_publish']; ?>
-                                        <tr>
-                                       
-                                            <td>
-                                                <img src="<?php echo base_url('/images/Products/'.$productPub['image_link']); ?>" class="imgProduct">
-                                                <br/>
-                                                <?=$productPub['name'] ?>
-                                                <br/>
-                                                <table>
-                                                <tr>
-                                                  <td>
-                                                <a href="<?php echo base_url('/encarte/editProductPublish/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']); ?>" class="money price <?php if ($productPub['price'] == 0.00) {echo 'bg-warning';}?>"><?=$productPub['price']?></a>
-                                        </td> 
-                                                <?php if ($template->type_template == 2) {?>
-                                                  <td>
-                                                  
-                                                <a href="<?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/".$productPub['id_product_publish']."/1"; ?>"  role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar  </a>
-                                                
-                                              
-                                                </td>
-
-                                                
-                                                <?php }?>
-
-
-                                                <?php if ($this->ion_auth->user()->row()->id == 1 && $template->type_template == 2) {?>
-                                            <td>
-                                          
-                                            <a href=" <?= base_url() . "encarte/viewFlyerImage/".$this->ion_auth->user()->row()->id."/".$idProductList."/".$productPub['id_product_publish']; ?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar v&nbsp;&nbsp;&nbsp;&nbsp;</a>
-
-                                            </td>
-
-                                                <?php }?>
-
-                                                </table>
-                                              </td>
-                                            <td class="alignCenter">
-                                                <!--<a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $productPub['id_product_publish']; ?>" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></a> -->
-                                                <a href="<?php echo base_url('encarte/deleteProduct/'.$productPub['id_product_publish'].'/'.$productPub['id_publish']);?>"  class="btn btn-lg btn-danger"><i class="far fa-trash-alt"></i></a> 
-
-
-
-    
-                                            </td>
-                                          
-                                        </tr>
-                                     
-                                    
-
-
-
-
-
-
-
-
-
-                                        <?php endforeach;?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                         <?php          //             if ($template->type_template == 1) {?>
        <!--                 <img  src="<?= base_url() . "images/templates/".$template->footer_image ?>" width="300" height="100">  -->
 
@@ -511,6 +456,7 @@ if ($publish->footer_text) {
                 <!-- /.container-fluid -->
  </div>
             <!-- End of Main Content -->
+
 <script>
 
     /* When the user clicks on the button,
@@ -535,3 +481,128 @@ function filterFunction() {
   }
 }
     </script>
+    
+    
+<script>
+(function() {
+    $(document).ready(function() {
+        var loading = $('.loading');
+        var product = $('.product-list');
+        var productPublish = $('#product-publish-list');
+        var urlProductList = '<?= base_url("encarte/getProductList/$idProductList") ?>';
+        var idUser = '<?= $this->ion_auth->user()->row()->id ?>';
+        var template = '<?= $template->type_template ?>';
+        
+        function formatProduct (product) {
+            if (!product.id) {
+                return product.text;
+            }
+            
+            var baseUrlImg = '<?= base_url("/images/Products") ?>';
+            var $product = $(
+                '<span><img src="' + baseUrlImg + '/' + product.image_link + '" class="img-flag" /> ' + product.text + '</span>'
+            );
+            
+            return $product;
+        }
+        
+        product.select2({
+            language: 'pt-BR',
+            theme: 'bootstrap',
+            placeholder: 'Incluir Produto no Encarte',
+            templateResult: formatProduct,
+            delay: 250,
+            ajax: {
+                url: urlProductList,
+                dataType: 'json'
+            }
+        });
+        
+        var productPublishTable = productPublish.DataTable({
+            dom: 't',
+            language: {
+                "emptyTable": "Nenhum produto cadastrado",
+                "loadingRecords": "",
+                "zeroRecords": "Nenhum produto cadastrado",
+            },
+            ajax: '<?= base_url("encarte/getProductPublishList/$idProductList") ?>',
+            paging: false,
+            searching: false,
+            ordering:  false,
+            columns: [
+                {
+                    data: 'name',
+                    render: function(data, type, obj) {
+                        var urlImg = '<?= base_url("/images/Products/") ?>' + obj.image_link;
+                        var img = $('<img class="imgProduct">').attr('src', urlImg);
+                        
+                        var div = $('<div></div>');
+                        var span = $('<span></span>').text(data);
+                        
+                        var urlEditProductPublish = '<?= base_url("/encarte/editProductPublish/") ?>' + obj.id_product_publish + '/' + obj.id_publish;
+                        var aEditProductPublish = $('<a class="money price"></a>')
+                            .text(obj.price)
+                            .attr('href', urlEditProductPublish)
+                            .addClass(obj.price == '0.00' ? 'bg-warning' : '');
+                        
+                        var table = $('<table><tr><td>' + aEditProductPublish[0].outerHTML + '</td></tr></table>');
+                        
+                        if(template == 2) {
+                            var urlAws = '<?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/" ?>' + obj.id_product_publish + "/1";
+                            table.find('tr').append('<td><a href="' + urlAws + '" role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar </a></td>');
+                            
+                            if(idUser == 1) {
+                                var urlFlyerImage = '<?= base_url() . "encarte/viewFlyerImage/".$this->ion_auth->user()->row()->id."/".$idProductList."/" ?>' + obj.id_product_publish;
+                                table.find('tr').append('<td><a href="' + urlFlyerImage + '" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar v&nbsp;&nbsp;&nbsp;&nbsp;</a></td>');
+                            }
+                        }
+                        
+                        div
+                            .append(img)
+                            .append('<br>')
+                            .append(span)
+                            .append('<br>')
+                            .append(table);
+                        
+                        return div[0].outerHTML;
+                    }
+                },
+                {
+                    data: 'id_product_publish',
+                    render: function(data, type, obj) {
+                        var url = '<?= base_url("encarte/deleteProduct/") ?>' + obj.id_product_publish + '/' + obj.id_publish + '/' + 'isAjax';
+                        var e = $('<a class="del-product-publish btn btn-lg btn-danger"><i class="far fa-trash-alt"></i></a>')
+                            .attr('href', url)
+                        return e[0].outerHTML;
+                    }
+                },
+            ],
+        });
+        
+        product.on('select2:select', function(){
+            var urlAddProduct = '<?= base_url("encarte/addProduct1/$idProductList/") ?>' + this.value;
+            loading.show();
+            $.get(urlAddProduct, function() {
+                productPublishTable.ajax.reload();
+            }).fail(function (e) {
+                alert(e.responseText);
+            });
+            product.val(null).trigger('change');
+        });
+        
+        productPublishTable.on('preXhr.dt', function() {
+            loading.show();
+        }).on('xhr.dt', function() {
+            loading.hide();
+        }).on('click', '.del-product-publish', function(e) {
+            loading.show();
+            e.preventDefault();
+            $.get(this.href, function() {
+                productPublishTable.ajax.reload();
+            }).fail(function (e) {
+                alert(e.responseText);
+            });
+        });
+    });
+})();
+</script>
