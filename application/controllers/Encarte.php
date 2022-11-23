@@ -417,6 +417,27 @@ class Encarte extends CI_Controller {
         $this->load->view('layout/footer');
 
     }
+    
+    public function getProductList($idProductList = NULL)
+    {
+        $term = $_GET['term'] ?? null;
+        //$this->session->set_userdata('idpublish', $idProductList);
+        $list = ['results' => $this->core_model->getUserProductList($idProductList,$this->ion_auth->user()->row()->id, $term)];
+        
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($list));
+    }
+    
+    public function getProductPublishList($idProductList = NULL)
+    {
+        //$this->session->set_userdata('idpublish', $idProductList);
+        $list = ['data' => $this->core_model->getProductPublish($idProductList, $this->ion_auth->user()->row()->id)];
+        
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($list));
+    }
 
 
 
@@ -446,12 +467,13 @@ class Encarte extends CI_Controller {
         $data = array (
             'titulo' => 'Produtos Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),
-
-            'scripts' => array('vendor/datatables/jquery.dataTables.min.js', 
+            'scripts' => array(
+            'vendor/datatables/jquery.dataTables.min.js', 
             'vendor/datatables/dataTables.bootstrap4.min.js',
-            'vendor/datatables/app.js',
+            //'vendor/datatables/app.js',
             'vendor/mask/jquery.mask.min.js',
-            'vendor/mask/app.js'),    
+            'vendor/mask/app.js'
+            ),    
             'products' => $this->core_model->getUserProducts($idProductList,$this->ion_auth->user()->row()->id),
             'idProductList' => $idProductList,
             'publish' => $publish,
@@ -462,8 +484,6 @@ class Encarte extends CI_Controller {
             'userDetail' => $userDetail,
             'helpFundo' => $helpFundo,
             'helpLogo' => $helpLogo,
-
-
         );
 
 
@@ -727,7 +747,7 @@ $date = date('Y-m-d H:i:s');
               redirect ('encarte/productPublish/'.$idProductList);
            }
 
-    public function deleteProduct($idProductPublish,$idPublish) {
+    public function deleteProduct($idProductPublish,$idPublish, $isAjax = NULL) {
         
         if ($idProductPublish != NULL) {
 
@@ -745,8 +765,9 @@ $date = date('Y-m-d H:i:s');
 
           $this->core_model->update('publish', $dataUpdate, array('id' => $idPublish));
 
-            
-            redirect ('encarte/productPublish/'.$idPublish);
+            if ($isAjax == NULL) {
+                redirect ('encarte/productPublish/'.$idPublish);
+            }
 
         } 
 
