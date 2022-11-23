@@ -56,6 +56,7 @@
   */
 </script>
 
+<script src="<?php echo base_url('public/vendor/jquery/jquery.min.js'); ?>"></script>
 </head>
 
 <body id="page-top">

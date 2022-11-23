@@ -49,7 +49,7 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="<?php echo base_url('public/vendor/jquery/jquery.min.js'); ?>"></script>
+    
     <script src="<?php echo base_url('public/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 
     <!-- Core plugin JavaScript-->
@@ -57,6 +57,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('public/js/sb-admin-2.min.js');?>"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/pt-BR.js"></script>
 
     <?php if (isset($scripts)): ?>
 
