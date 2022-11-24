@@ -621,7 +621,9 @@ class Encarte extends CI_Controller {
     public function addFromCart($idTemplate=0) {
 
         $logo =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
-      /*  if ($logo->image_link == 'no-image-icon-23485.png'){
+        $template =  $this->core_model->getById('template', array ('id' => $idTemplate));
+      
+        /*  if ($logo->image_link == 'no-image-icon-23485.png'){
            redirect ('usuario/editUserDetails');
         } else { */
 
@@ -643,6 +645,10 @@ class Encarte extends CI_Controller {
         );
         $this->form_validation->set_rules('description','', 'trim|required');
         $userDetail =  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id));
+        $show_background = 0;
+        if ($template->background_image) {
+            $show_background = 1;
+        }
         if ($this->form_validation->run()) {
            /// echo $this->input->post('description'); 
                  $data = array (
@@ -653,8 +659,9 @@ class Encarte extends CI_Controller {
                      'id_user' => $this->ion_auth->user()->row()->id,
                     'id_template' => $idTemplate,
                     'column_amount' => $this->input->post('column_amount'), 
+                    'show_background' => $show_background,
                  );
-            //   print_r($data); die();
+             
                  $data = html_escape($data);
                  $this->core_model->insertLog('encarte->addFromCart', 'Insert publish');
 
@@ -930,7 +937,7 @@ $date = date('Y-m-d H:i:s');
       
         $address = 'http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/';
         
-        //$address = 'http://localhost:3333/publish/';
+      //  $address = 'http://localhost:3333/publish/';
 
         $url = $address.$id_user."/".$idProductList."/".$id_product_publish."/".$imageQuality;
 

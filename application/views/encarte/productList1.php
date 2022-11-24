@@ -105,7 +105,7 @@ div.desc {
                <?php $this->load->view('layout/navbar');?>
 
                <div class="cabecalho">
-      Meus Encartes
+      Meus Encartes (ROGERIO TESTE OK)
     </div>
 
     <div class="container-fluid">
