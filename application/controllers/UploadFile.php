@@ -9,6 +9,7 @@ public function __construct()
     {
             parent::__construct();
             $this->load->helper(array('form', 'url'));
+            $this->lang->load('english', 'english');
 
             if (!$this->ion_auth->logged_in()) {
                 $this->session->set_flashdata('info', 'Sua sessão expirou');

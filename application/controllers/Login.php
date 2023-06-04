@@ -3,11 +3,18 @@ defined ('BASEPATH') OR exit ('Not allowed!');
 
 class Login extends CI_Controller {
 
-   
+    public function __construct () {
+
+        parent::__construct();
+       
+//        $this->lang->load($this->session->userdata['userLanguage'], $this->session->userdata['userLanguage']);
+
+    }
 
     
 
     public function index() {
+       // $this->lang->load('english', 'english');
 
             $data = array(
                 'titulo' => 'Login',
@@ -55,7 +62,10 @@ public function auth($emailReceived=0,$passwordReceived=0) {
         //$this->session->set_userdata('type_product', 'first');
 
     if ($this->ion_auth->login($identity, $password, $remember)) {
+        $dataUser = $this->core_model->getById('user_detail', array('id_user' => $this->session->userdata['user_id']));
+       
         $this->session->set_userdata('idpublish', '');
+        $this->session->set_userdata('userLanguage', $dataUser->language);
 
         $getProductPublish =  $this->core_model->get_all('publish', array ('id_user' => $this->ion_auth->user()->row()->id, 'status'=> 1 ));
         if (count($getProductPublish) > 0) {

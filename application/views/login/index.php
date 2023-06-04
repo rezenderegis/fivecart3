@@ -1,5 +1,4 @@
 
-
     <div class="container">
 
         <!-- Outer Row -->
@@ -50,7 +49,9 @@
                                 <div class="p-5">
                                     
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Seja bem vindo!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">
+                                        <?=lang('login_subheading');?>    
+                                        Seja bem vindo!</h1>
                                     </div>
                                     <form class="user" name="form_auth" method="POST" action="<?=base_url('login/auth');?>">
                                         <div class="form-group">

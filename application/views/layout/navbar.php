@@ -29,7 +29,7 @@ function goBack() {
         <a class="nav-link dropdown-toggle" href="<?=base_url('encarte/productList1'); ?>" id="userDropdown" role="button">
         <i class="fas fa-book-open fa-lg" style="color:white"></i>
         &nbsp;
-        <span class="mr-2 d-none d-lg-inline text-white h3 ">Meus Encartes</span>
+        <span class="mr-2 d-none d-lg-inline text-white h3 "><?=lang('menu_my_posts');?> </span>
         </a>
     
     </li>
@@ -39,7 +39,7 @@ function goBack() {
         
         <i class="fas fa-image fa-lg" style="color:white"></i>
         &nbsp;
-        <span class="mr-2 d-none d-lg-inline text-white h3">Modelos</span>
+        <span class="mr-2 d-none d-lg-inline text-white h3"><?=lang('menu_models');?></span>
         </a>
     
     </li>
@@ -47,7 +47,7 @@ function goBack() {
         <a class="nav-link dropdown-toggle" href="<?=base_url('product/index/0/1'); ?>" id="userDropdown" role="button">
         <i class="fas fa-box-open fa-lg" style="color:white"></i>  
         &nbsp;
-        <span class="mr-2 d-none d-lg-inline text-white h3">Produtos</span>
+        <span class="mr-2 d-none d-lg-inline text-white h3"><?=lang('menu_products');?></span>
         </a>
     
     </li>
@@ -58,7 +58,7 @@ function goBack() {
         <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             &nbsp;
-            <span class="mr-2 d-none d-lg-inline text-white h3">Admin</span>
+            <span class="mr-2 d-none d-lg-inline text-white h3"><?=lang('menu_admin');?></span>
         </a>
         
         <!-- Dropdown - User Information -->
@@ -104,7 +104,7 @@ function goBack() {
            
            <i class="fas fa-user fa-sm fa-fw mr-2 text-white fa-lg"></i>
 
-            <span class="mr-2 d-none d-lg-inline text-white h3">&nbsp;Bem vindo, <?=$this->ion_auth->user()->row()->first_name ?></span>
+            <span class="mr-2 d-none d-lg-inline text-white h3">&nbsp;<?=lang('welcome');?>, <?=$this->ion_auth->user()->row()->first_name ?></span>
         </a>
         
         <!-- Dropdown - User Information -->

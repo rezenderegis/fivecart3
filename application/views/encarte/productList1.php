@@ -105,7 +105,7 @@ div.desc {
                <?php $this->load->view('layout/navbar');?>
 
                <div class="cabecalho">
-      Meus Encartes
+       <?=lang('my_posts');?>
     </div>
 
     <div class="container-fluid">
@@ -120,7 +120,7 @@ div.desc {
 
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong><?php echo $message;?></strong> 
-  <a href="<?php echo base_url('encarte/allCarts');?>" class="p-1 mb-2 bg-warning text-dark">Clique Aqui</a>
+  <a href="<?php echo base_url('encarte/allCarts');?>" class="p-1 mb-2 bg-warning text-dark"><?=lang('click_here');?></a>
 
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -144,18 +144,18 @@ div.desc {
 </div>
 </div>
 <?php endif; ?>   
-
 <div class="container-fluid">
                         <div class="row">
                           <div class="align-self-start">
-                          <a title="Posts" href="<?=base_url('encarte/productList1/0/2'); ?>" class="btn btn-primary btn-bg">Posts</a>
+                          <a title="Posts" href="<?=base_url('encarte/productList1/0/2'); ?>" class="btn btn-primary btn-bg"> <?=lang('product_list_posts');?>
+</a>
 
                           &nbsp;
                           </div>
 
                         <div class="align-self-start">
                           &nbsp;
-                          <a title="Encartes" href="<?=base_url('encarte/productList1/0/1'); ?>" class="btn btn-primary btn-bg ">Encartes</a>
+                          <a title="Encartes" href="<?=base_url('encarte/productList1/0/1'); ?>" class="btn btn-primary btn-bg "><?=lang('product_list_booklets');?></a>
 
                         </div>
                       
@@ -166,12 +166,12 @@ div.desc {
 
 <?php if (strcmp($type, 'first') == 0) {?>
                <div class="button_header">
-                <a title="Criar Nova Lista" href="<?php echo base_url('product/add/first');?>" class="btn btn-primary btn-bg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                <a title="Criar Nova Lista" href="<?php echo base_url('product/add/first');?>" class="btn btn-primary btn-bg"><i class="fas fa-box-open"></i>&nbsp; <?=lang('product_list_new_booklets');?></a>
                 </div>
 
                 <?php } else { ?>
                 <div class="button_header">
-                <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-primary btn-bg"><i class="fas fa-box-open"></i>&nbsp;Novo Encarte</a>
+                <a title="Criar Nova Lista" href="<?php echo base_url('encarte/allCarts');?>" class="btn btn-primary btn-bg"><i class="fas fa-box-open"></i>&nbsp; <?=lang('product_list_new_booklets');?></a>
                 </div>
                 <?php } ?>
 

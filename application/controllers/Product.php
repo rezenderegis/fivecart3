@@ -2,12 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Product extends CI_Controller  {
-
+ 
     
     public function __construct () {
 
         parent::__construct();
         $this->load->helper('url');
+        $this->lang->load($this->session->userdata['userLanguage'], $this->session->userdata['userLanguage']);
 
         if (!$this->ion_auth->logged_in()) {
             $this->session->set_flashdata('info', 'Sua sessão expirou');
@@ -25,15 +26,15 @@ class Product extends CI_Controller  {
         $this->session->set_userdata('type_product', 'not_first');
 
         if (count($userProducts) == 0){
-            $titulo = 'Cadastre produtos para criar seu ENCARTE';
+            $titulo = lang('include_new_products');
             
         } else {
         if ($type == 1) {
 
-            $titulo = "Meus Produtos";
+            $titulo = lang('my_products');
 
         } else {
-            $titulo = "Produtos da Plataforma";
+            $titulo = lang('new_product');
         }
     }
 
@@ -51,7 +52,8 @@ class Product extends CI_Controller  {
 
         $publish =  $this->core_model->getById('publish', array ('id_user' => $this->ion_auth->user()->row()->id));
         if (!$publish && $userProducts){
-           $this->session->set_flashdata('error', 'Crie seu primeiro encarte!');
+           $this->session->set_flashdata('error', lang('message_create_first_post'));
+           
          } 
 
         $this->load->view('layout/header', $data);

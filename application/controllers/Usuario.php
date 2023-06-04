@@ -8,6 +8,7 @@ class Usuario extends CI_Controller  {
 
         parent::__construct();
         $this->load->helper('url');
+        $this->lang->load($this->session->userdata['userLanguage'], $this->session->userdata['userLanguage']);
 
         if (!$this->ion_auth->logged_in()) {
             $this->session->set_flashdata('info', 'Sua sessão expirou');
@@ -91,7 +92,7 @@ class Usuario extends CI_Controller  {
              //   print_r($idUserInserted); die();
                 if ( $idUserInserted) {
                 
-
+                //18-12: TODO Inserir usuario detail para continuar os testes
 
                 $dataDetails = array (
                     'address' => $this->input->post('address'),

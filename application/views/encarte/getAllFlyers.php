@@ -169,8 +169,9 @@ align: center;
                                             <td><?=$pub['date_flyer']?></td>
                                             <td><?=$pub['dateUpdate']?></td>
                                             <td>
-                                            <a href="http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/<?=$pub['id_user_post']?>/<?=$pub['id_publish']?>/0" class="btn btn-primary btn-sm" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i><?=$pub['id_publish']?></a>
-  
+                                            <a href="http://postater.com/publish/<?=$pub['id_user_post']?>/<?=$pub['id_publish']?>/0" class="btn btn-primary btn-sm" role="button" aria-disabled="true" id="showPictureButton"><i class="fa fa-file-picture-o"></i><?=$pub['id_publish']?></a>
+
+
                                             </td>
                                             <td><?=$pub['iduserenc']?></td>
                                             <td><?=$pub['description']?></td>

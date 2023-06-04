@@ -49,13 +49,14 @@ align: right;
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-
+<!--
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo base_url('/') ?>">Usuários</a></li>
     <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
   </ol>
 </nav>
+-->
 
 <!-- <div class="card-header py-3">
 
@@ -64,7 +65,7 @@ align: right;
 </div> -->    
 
 <div class="cabecalho">
-Confirme o Modelo
+<?=lang('confirm_model');?>
 </div> 
         
  <!-- DataTales Example -->
@@ -88,7 +89,8 @@ Confirme o Modelo
 } ?>
 
 <form method="POST" name="form_add">
-<button type="submit" class="btn btn-primary btn-lg btn-block">Confirmar</button>
+<button type="submit" class="btn btn-primary btn-lg btn-block"><?=lang('confirm');?>
+</button>
 <br/> <br/>
 <input type="hidden" id="description" name="description" value=<?=$descriton_post?>>
 

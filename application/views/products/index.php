@@ -76,17 +76,17 @@ align: center;
                       <div class="container">
                         <div class="row">
                           <div class="align-self-start">
-                            <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-primary btn-bg float-left"><i class="fas fa-box-open"></i>&nbsp;Novo</a>
+                            <a title="Cadastrar Novo Produto" href="<?php echo base_url('product/add');?>" class="btn btn-primary btn-bg float-left"><i class="fas fa-box-open"></i>&nbsp;<?=lang('new_product');?></a>
                             &nbsp;
                           </div>
 
                         <div class="align-self-start">
                           &nbsp;
-                          <a title="Meus Produtos" href="<?=base_url('product/index/0/1'); ?>" class="btn btn-primary btn-bg float-left"><i class="fas fa-box-open"></i>&nbsp;Meus Produtos</a>
+                          <a title="Meus Produtos" href="<?=base_url('product/index/0/1'); ?>" class="btn btn-primary btn-bg float-left"><i class="fas fa-box-open"></i>&nbsp;<?=lang('my_products');?></a>
                         </div>
                         <div class="align-self-start">
                                       
-                        <a title="Produtos da Plataforma" href="<?=base_url('product/index/0/2'); ?>" class="btn btn-primary btn-bg float-left"><i class="fas fa-box-open"></i>&nbsp;Produtos da Plataforma</a>
+                        <a title="Produtos da Plataforma" href="<?=base_url('product/index/0/2'); ?>" class="btn btn-primary btn-bg float-left"><i class="fas fa-box-open"></i>&nbsp;<?=lang('platform_products');?></a>
                         </div>  
 
                         </div>

@@ -8,8 +8,24 @@ class Account extends CI_Controller  {
 
         parent::__construct();
         $this->load->helper('url');
+      //  $this->lang->load($this->session->userdata['userLanguage'], $this->session->userdata['userLanguage']);
+    //  $this->load->library('language');
+/*
+      $acceptLanguage = $this->input->server('HTTP_ACCEPT_LANGUAGE');
 
-    }
+      $languages = '';
+    $languageRanges = explode(',', $acceptLanguage);
+    foreach ($languageRanges as $languageRange) {
+    $parts = explode(',', $languageRange);
+    $languages = strtolower($parts[0]);
+  */
+}
+
+
+
+
+     // $preferredLanguage = $this->language->detect($acceptLanguage);
+    
 
 
     public function add() {
@@ -89,6 +105,102 @@ class Account extends CI_Controller  {
     }
 
 
+    public function add3() {
+        //  $this->form_validation->set_rules('first_name','', 'trim|required');
+         // $this->form_validation->set_rules('last_name','', 'trim|required');
+          $this->form_validation->set_rules('email','', 'trim|required|valid_email|is_unique[users.email]');
+          $this->form_validation->set_rules('mobile_number','', 'trim|required');
+          //$this->form_validation->set_rules('address','', 'trim|required');
+          $this->form_validation->set_rules('password','Senha', 'required|min_length[5]|max_length[255]');
+          $this->form_validation->set_rules('confirm_password','Confirma', 'matches[password]');
+          //$this->form_validation->set_rules('city','', 'trim|required');
+          $this->form_validation->set_rules('shop_type','', 'required');
+          $this->form_validation->set_rules('language','', 'required');
+          $this->form_validation->set_rules('country','', 'required');
+
+          
+         
+          if ($this->form_validation->run()) {
+              
+                    $username = $this->security->xss_clean($this->input->post("username"));
+                    $password = $this->security->xss_clean($this->input->post("password"));
+                    $email = $this->security->xss_clean($this->input->post("email"));
+
+                   $aditional_data = array (
+                 //      'first_name' => $this->input->post('first_name'),
+              //         'last_name' => $this->input->post('last_name'),
+                       'username' => $this->input->post('username'),
+                       'active' => 1,
+                      // 'activation_code' => $code_confirmation,
+  
+  
+                   );
+                   $aditional_data = $this->security->xss_clean($aditional_data);
+                   $group = array(2);
+                   $group = $this->security->xss_clean($group);
+                  
+                  $idUserInserted = $this->ion_auth->register($username, $password,$email,$aditional_data,$group);
+                  
+                  if ( $idUserInserted) {
+                  
+                  $dataDetails = array (
+                    //  'address' => $this->input->post('address'),
+                      'mobile_number' => $this->input->post('mobile_number'),
+                      'id_user' => $idUserInserted,
+                      'footer_text' => 'Faça seu pedido pelo telefone: '.$this->input->post('mobile_number'),
+                    //  'footer_text2' => $this->input->post('address'),
+                      //'image_link' => 'no-image-icon-23485.png',
+                      // 'city' => $this->input->post('city'),
+                      'company_name' => $this->input->post('company_name'),
+                      'shop_type' => $this->input->post('shop_type'),
+                      'language' => $this->input->post('language'),
+                      'country' => $this->input->post('country'),
+
+                      
+                  );
+                
+                  $dataDetails = html_escape($dataDetails);
+  
+                 $this->core_model->insert('user_detail', $dataDetails);
+              
+                  $this->core_model->insertProductDefalt($idUserInserted, $this->input->post('shop_type'));
+  
+             //     $this->load->model("email_model");
+            //      $this->email_model->sendCreationAccount($idUserInserted);
+  
+  
+                 /*         $this->session->set_flashdata('info','Usuário criado com sucesso! <br> 
+                          Acesse sua caixa de e-mail para confirmar o cadastro!');*/
+  
+                  } else {
+                      $this->session->set_flashdata('error','Erro ao salvar os dados');
+  
+                  }
+  
+  
+  
+                  $this->auth($this->input->post("username"),$this->input->post("password"));
+             
+              //    redirect ('login');
+                
+          } else {
+  
+              $data = array (
+                  'titulo' => 'Cadastrar Usuário',
+              );
+  
+              $this->load->view('layout/header', $data);
+              $this->load->view('account/index3');
+              $this->load->view('layout/footer');
+          }
+         
+        
+      }
+      
+
+
+
+
     public function add2() {
       //  $this->form_validation->set_rules('first_name','', 'trim|required');
        // $this->form_validation->set_rules('last_name','', 'trim|required');
@@ -143,8 +255,8 @@ class Account extends CI_Controller  {
             
                 $this->core_model->insertProductDefalt($idUserInserted, $this->input->post('shop_type'));
 
-                $this->load->model("email_model");
-                $this->email_model->sendCreationAccount($idUserInserted);
+           //     $this->load->model("email_model");
+          //      $this->email_model->sendCreationAccount($idUserInserted);
 
 
                /*         $this->session->set_flashdata('info','Usuário criado com sucesso! <br> 
@@ -205,7 +317,14 @@ class Account extends CI_Controller  {
             $this->session->set_flashdata('error', 'O código de acesso foi reenviado ao seu e-mail. <br/><b>Entre no seu e-mail e confirme</b>');
     \       redirect ('login');
         } else {
+            $dataUser = $this->core_model->getById('users', array('email' => $this->input->post('email')));
+
+            $dataUser1 = $this->core_model->getById('user_detail', array('id_user' => $dataUser->id));
+
             
+            $this->session->set_userdata('userLanguage', $dataUser1->language);
+    
+    
             //$this->session->set_userdata('type_product', 'first');
     
         if ($this->ion_auth->login($identity, $password, $remember)) {

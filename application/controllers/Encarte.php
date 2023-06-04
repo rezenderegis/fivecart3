@@ -8,7 +8,8 @@ class Encarte extends CI_Controller {
 
         parent::__construct();
         $this->load->helper('url');
-
+      //  print_r($this->session->userdata);die();
+        $this->lang->load($this->session->userdata['userLanguage'], $this->session->userdata['userLanguage']);
         if (!$this->ion_auth->logged_in()) {
             $this->session->set_flashdata('info', 'Sua sessão expirou');
             redirect ('login');
@@ -33,6 +34,7 @@ class Encarte extends CI_Controller {
 
 
     public function allCarts($type=0) {
+       // print_r($this->session->userdata['userLanguage']); die();
 
         $title = 'Todos os Encartes';
         $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
@@ -162,7 +164,7 @@ class Encarte extends CI_Controller {
 
     $publish =  $this->core_model->getById('publish', array ('id_user' => $this->ion_auth->user()->row()->id));
     if (!$publish){
-       $this->session->set_flashdata('error', 'Crie seu primeiro encarte!');
+       $this->session->set_flashdata('error', lang('message_create_first_post'));
      } 
 
         $this->load->view('layout/header', $data);
@@ -405,10 +407,12 @@ class Encarte extends CI_Controller {
 
 
       if (is_null($logo)) {
-        $this->session->set_flashdata('error', 'Inclua uma Logo para melhorar a qualidade do seu encarte!');
+        $this->session->set_flashdata('error', 
+        lang('insert_logo')
+        );
  
     } else if (!$logo->image_link){
-            $this->session->set_flashdata('error', 'Inclua uma Logo para melhorar a qualidade do seu encarte!');
+            $this->session->set_flashdata('error', lang('insert_logo'));
           } 
 
 
@@ -420,9 +424,25 @@ class Encarte extends CI_Controller {
     
     public function getProductList($idProductList = NULL)
     {
+    
         $term = $_GET['term'] ?? null;
         //$this->session->set_userdata('idpublish', $idProductList);
-        $list = ['results' => $this->core_model->getUserProductList($idProductList,$this->ion_auth->user()->row()->id, $term)];
+ 
+        $list = ['results' => $this->core_model->getUserProductList2($idProductList,$this->ion_auth->user()->row()->id, $term)];
+        
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($list));
+    }
+    public function getProductList1($idProductList = NULL)
+    {
+    
+        $term = $_GET['term'] ?? null;
+        //$this->session->set_userdata('idpublish', $idProductList);
+        $list = ['results' => $this->Core_Model->getUserProductList($idProductList,$this->ion_auth->user()->row()->id, $term)];
+
+       print_r( $this->core_model->getUserProductList1());
+       die();
         
         return $this->output
             ->set_content_type('application/json')
@@ -948,10 +968,11 @@ $date = date('Y-m-d H:i:s');
     }
 
     public function callUrlAws($idProductList,$id_user,$id_product_publish=0,$imageQuality=0) {
-      
-        $address = 'http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/';
         
-        //$address = 'http://localhost:3333/publish/';
+       // $address = 'http://ec2-3-87-24-65.compute-1.amazonaws.com/publish/';
+      //  $address = 'http://postater.com/publish/';
+
+        $address = 'http://localhost:3333/publish/';
 
         $url = $address.$id_user."/".$idProductList."/".$id_product_publish."/".$imageQuality;
 

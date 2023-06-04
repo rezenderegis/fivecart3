@@ -152,7 +152,7 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     
     
-    public function getUserProductList2($idPublish=0,$idUser=0,$term=0) {
+    public function getUserProductList($idPublish=0,$idUser=0,$term=0) {
         $sql = "select p.name as text,pc.id,pc.price,p.image_link  from product_customer pc inner join products p on p.id = pc.id_product
         where pc.id_user = ".$idUser."
         and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish

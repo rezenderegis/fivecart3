@@ -89,7 +89,8 @@ div.desc {
 
               
                 <div class="cabecalho">
-Escolha o MODELO
+
+<?=lang('choose_model');?>
 </div>
 <div class="card shadow mb-6">
 
@@ -100,13 +101,13 @@ Escolha o MODELO
   <div class="container-fluid">
                         <div class="row">
                           <div class="align-self-start">
-                          <a title="Posts" href="<?=base_url('encarte/allCarts/2'); ?>" class="btn btn-primary btn-bg ">Posts</a>
+                          <a title="Posts" href="<?=base_url('encarte/allCarts/2'); ?>" class="btn btn-primary btn-bg "><?=lang('product_list_posts');?></a>
                             &nbsp;
                           </div>
 
                         <div class="align-self-start">
                           &nbsp;
-                          <a title="Posts" href="<?=base_url('encarte/allCarts/1'); ?>" class="btn btn-primary btn-bg ">Encartes</a>
+                          <a title="Posts" href="<?=base_url('encarte/allCarts/1'); ?>" class="btn btn-primary btn-bg "><?=lang('product_list_booklets');?></a>
                         </div>
                       
 

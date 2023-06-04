@@ -20,8 +20,8 @@ src="https://www.facebook.com/tr?id=435688927479728&ev=PageView
 
 <style>
 .img-flag {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
 }
 
 .container_text_button{
@@ -149,6 +149,76 @@ div.desc {
   padding: 4px;
   font-size: 30px;
 }
+
+.size_combo {
+  font-size: 510px;
+  width: 500;
+  height: 100;
+    background-color: #4469D7;
+
+
+}
+.custom-select {
+  /* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+}
 </style>
 
 <!-- select2 css -->
@@ -196,7 +266,7 @@ div.desc {
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <strong><?php echo "Não gostou do Post ou Encarte? Quer ajuda para melhorar?";?></strong> 
   <a  href="<?= base_url() . "encarte/callUrlZap"; ?>">
-  
+
     <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' style='width: 15px; heigth: 15px;'>
     Entre em contato pelo WhatsApp, atendimento Imediato!
     </a>
@@ -282,16 +352,18 @@ if ($publish->footer_text) {
 
 <div class="dropdown">
   <button class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dados
+  <?=lang('data');?>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>">Alterar Textos</a>
+    <a class="dropdown-item" href="<?php echo base_url('encarte/edit/'.$idProductList);?>"><?=lang('change_text');?></a>
     <?php
     if ($publish->id_template != '') { ?>
-    <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Alterar Template</a>
+    <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">
+    <?=lang('change_template');?>
+    </a>
    
                         <?php } else { ?>
-                          <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>">Gerar Encarte</a>
+                          <a class="dropdown-item" href="<?php echo base_url('encarte/index/'.$idProductList);?>"><?=lang('generate');?></a>
                            <?php }?> 
 
                 
@@ -301,7 +373,7 @@ if ($publish->footer_text) {
 
      
                         <td>
-                        <a class="btn btn-primary btn-lg" href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>">Ajustar Logo &nbsp;</a>
+                        <a class="btn btn-primary btn-lg" href="<?php echo base_url('uploadFile/uploadFile/'.$this->ion_auth->user()->row()->id);?>"><?=lang('adjust_logo');?> &nbsp;</a>
 
                        <!--  <a href="<?php echo base_url('encarte/viewFlyerImage/'.$this->ion_auth->user()->row()->id.'/'.$idProductList);?>" class="btn btn-primary btn-sm" role="button" aria-disabled="true"><i class="fa fa-file-picture-o"></i>Visualizar</a> -->
 
@@ -312,7 +384,7 @@ if ($publish->footer_text) {
     <?php if ($this->ion_auth->user()->row()->id == 1) {?>
     <td>
    
-    <a href=" <?= base_url() . "encarte/viewFlyerImage/".$this->ion_auth->user()->row()->id."/".$idProductList."/0"; ?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a href=" <?= base_url() . "encarte/viewFlyerImage/".$this->ion_auth->user()->row()->id."/".$idProductList."/0"; ?>" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton"><?=lang('view');?>&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
     </td>
     <?php }?>
@@ -320,15 +392,17 @@ if ($publish->footer_text) {
     
     
       <?php 
+        $improve_logo = '';
+        $remove_background = '';
       $mensagemFundo = '(24hrs)';
       $mensagemLogo = '(24hrs)';
 
       if ($helpFundo) {
-        $mensagemFundo = '(Em Processamento)';
+        $mensagemFundo = '';//lang('processing')
       }
-      
+    
       if ($helpLogo) {
-        $mensagemLogo = '(Em Processamento)';
+        $mensagemLogo = '';//lang('processing')
 
       }
       
@@ -341,17 +415,17 @@ if ($publish->footer_text) {
 
         <div class="dropdown justify-content-center">
   <button  class="btn btn-primary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Ajuda
+  <?=lang('help');?>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item " href="<?php echo base_url('help/new/1/'.$idProductList);?>">Remover Fundo Produtos <?=$mensagemFundo?> </a>
+    <a class="dropdown-item " href="<?php echo base_url('help/new/1/'.$idProductList);?>"><?=lang('generate');?> <?=$remove_background?> </a>
    
  
-    <a class="dropdown-item" href="<?php echo base_url('help/new/2/'.$idProductList);?>">Melhorar Logo <?=$mensagemFundo?></a>
+    <a class="dropdown-item" href="<?php echo base_url('help/new/2/'.$idProductList);?>"><?=lang('generate');?> <?=$improve_logo?></a>
                 
     <a class="dropdown-item" href="<?= base_url() . "encarte/callUrlZap"; ?>">
     <img src='<?= base_url() . "images/icons/watsapp_icon.png"; ?>' style='width: 15px; heigth: 15px;'>
-    WhatsApp - Atendimento Imediato
+    <?=lang('online_support');?>
     </a>
 
                 
@@ -361,7 +435,7 @@ if ($publish->footer_text) {
 
         </td>
         <td>
-        <a class="btn btn-primary btn-lg" href="<?php echo base_url('product/index/0/1');?>"> Novo Produto</a>
+        <a class="btn btn-primary btn-lg" href="<?php echo base_url('product/index/0/1');?>"><?=lang('new_product');?></a>
 
         </td>
       </tr>
@@ -373,9 +447,9 @@ if ($publish->footer_text) {
    
    <?php 
                       if ($existProductWithoutPrice == 1) { ?>
-                       <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark btn-block">Visualizar &nbsp;&nbsp; &nbsp; &nbsp;</a> 
+                       <a title="Visualizar" href="javascript(void)" data-toggle="modal" data-target="#user-showPictureButton" class="btn btn-warning btn-lg text-dark btn-block"><?=lang('view');?> &nbsp;&nbsp; &nbsp; &nbsp;</a> 
                         <?php } else { ?>
-                          <a href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/0/1"; ?>" class="btn btn-primary btn-lg btn-block" role="button" aria-disabled="true" id="showPictureButton">Visualizar&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                          <a href=" <?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/0/1"; ?>" class="btn btn-primary btn-lg btn-block" role="button" aria-disabled="true" id="showPictureButton"><?=lang('view');?>&nbsp;&nbsp;&nbsp;&nbsp;</a>
                          
                           <?php } 
                      
@@ -398,7 +472,7 @@ if ($publish->footer_text) {
 <?php //}?>
 
 </div>
-
+<!-- size_combo -->
 <select class="product-list form-control">
     <option></option>
 </select>
@@ -409,7 +483,7 @@ if ($publish->footer_text) {
         <table id="product-publish-list" class="table tableFit"  width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Produto</th>
+                    <th><?=lang('product');?></th>
                     <th class="text-right"></th>
                 </tr>
             </thead>
@@ -486,6 +560,8 @@ function filterFunction() {
 <script>
 (function() {
     $(document).ready(function() {
+
+
         var loading = $('.loading');
         var product = $('.product-list');
         var productPublish = $('#product-publish-list');
@@ -494,10 +570,14 @@ function filterFunction() {
         var template = '<?= $template->type_template ?>';
         
         function formatProduct (product) {
+
             if (!product.id) {
                 return product.text;
             }
-            
+           
+            //ENDERECO_IMAGEM
+           // var baseUrlImg = 'http://meusencartes.com.br/fivecart3/images/Products';
+
             var baseUrlImg = '<?= base_url("/images/Products") ?>';
             var $product = $(
                 '<span><img src="' + baseUrlImg + '/' + product.image_link + '" class="img-flag" /> ' + product.text + '</span>'
@@ -509,7 +589,7 @@ function filterFunction() {
         product.select2({
             language: 'pt-BR',
             theme: 'bootstrap',
-            placeholder: 'Incluir Produto no Encarte',
+            placeholder: 'Add Product',
             templateResult: formatProduct,
             delay: 250,
             ajax: {
@@ -533,6 +613,10 @@ function filterFunction() {
                 {
                     data: 'name',
                     render: function(data, type, obj) {
+
+                      //ENDERECO_IMAGEM
+                      //  var urlImg = 'http://meusencartes.com.br/fivecart3/images/Products' + obj.image_link;
+
                         var urlImg = '<?= base_url("/images/Products/") ?>' + obj.image_link;
                         var img = $('<img class="imgProduct">').attr('src', urlImg);
                         
@@ -549,11 +633,11 @@ function filterFunction() {
                         
                         if(template == 2) {
                             var urlAws = '<?= base_url() . "encarte/callUrlAws/".$idProductList."/".$this->ion_auth->user()->row()->id."/" ?>' + obj.id_product_publish + "/1";
-                            table.find('tr').append('<td><a href="' + urlAws + '" role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> Visualizar </a></td>');
+                            table.find('tr').append('<td><a href="' + urlAws + '" role="button" aria-disabled="true" id="showPictureButton" class="btn btn-warning btn-lg text-dark"> <?=lang('view');?> </a></td>');
                             
                             if(idUser == 1) {
                                 var urlFlyerImage = '<?= base_url() . "encarte/viewFlyerImage/".$this->ion_auth->user()->row()->id."/".$idProductList."/" ?>' + obj.id_product_publish;
-                                table.find('tr').append('<td><a href="' + urlFlyerImage + '" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton">Visualizar v&nbsp;&nbsp;&nbsp;&nbsp;</a></td>');
+                                table.find('tr').append('<td><a href="' + urlFlyerImage + '" class="btn btn-primary btn-lg" role="button" aria-disabled="true" id="showPictureButton"><?=lang('view');?> v&nbsp;&nbsp;&nbsp;&nbsp;</a></td>');
                             }
                         }
                         
