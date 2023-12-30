@@ -134,9 +134,12 @@ class Usuario extends CI_Controller  {
     public function index () {
 
         if (!$this->ion_auth->is_admin()) {
+
             $this->session->set_flashdata('error', 'Acesso não permitido');
             redirect('home');
+
         } else {
+
         $data = array (
             'titulo' => 'Usuários Cadastrados',
             'styles' => array ('vendor/datatables/dataTables.bootstrap4.min.css'),

@@ -119,6 +119,13 @@ class Product extends CI_Controller  {
          }
      }
 
+	 public function updateFoto($product_id) { 
+		print($product_id);
+		die();
+	 }
+
+
+
     public function edit($product_id = null) {
 
        /* if ($this->session->userdata('user_id') != $user_id && !$this->ion_auth->is_admin() ) {
@@ -238,6 +245,8 @@ if ($this->form_validation->run()) {
                      'id_owner' => $this->ion_auth->user()->row()->id,
                      'id_cathegory' => $this->input->post('id_cathegory'),
                      'image_link' => '',
+					 'country' =>  $this->input->post('country'),
+					 'image_address' => 'http://meusencartes.com.br/fivecart3/images/Products/',
                      'status' => 1,
                      'shop_type' => $this->input->post('shop_type'),       
                  );

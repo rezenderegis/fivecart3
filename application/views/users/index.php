@@ -69,6 +69,7 @@
 
                                             <th class="text-center">Ativo</th>
                                             <th class="text-right no-sort">Action</th>
+											<th>Logo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -91,7 +92,10 @@
                                                 <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user-<?php echo $user['id']; ?>" class="btn btn-sm btn-danger"><i class="fas fa-user-times"></i></a> 
 
                                             </td>
+											<td>
+																					<img src="<?php echo $user['image_address']; ?>" alt="View Image" style="width: 150px; height: 150px;">
 
+                                          </td>
                                         </tr>
 
 

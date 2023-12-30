@@ -1,3 +1,18 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#product_table').DataTable({
+        "order": [[6, "desc"]], // 6 é o índice da coluna Data Encarte (0-based index)
+        "paging": true, // Habilita a paginação, se necessário
+        "searching": true // Habilita a pesquisa, se necessário
+    });
+});
+</script>
+
+
 <style>
   .imgProductInclude {
 
@@ -179,12 +194,14 @@ align: center;
                                             <td><?=$pub['shop_type_description']?></td>
 
                                             <td>
-                                            <a href="<?php echo base_url('/usuario/adjustLoogo/1/'.$pub['iduserenc']); ?>"><?=$pub['image_link']?></a>
+																						<a href="<?php echo $pub['image_address'] . $pub['image_link']; ?>" download="your_image_filename.jpg">
 
+																						<img src="<?php echo $pub['image_address'] . $pub['image_link']; ?>" alt="View Image" style="max-width: 100px; max-height: 100px; background: blue">
+																				</a>
                                           </td>
 
                                           <td>
-                                          <a title="View" href="<?php echo base_url('encarte/viewFlyerImage/'.$pub['id_user'].'/'.$pub['id_publish']);?>" class="btn btn-primary btn-sm">&nbsp;View</a>
+																					<img src="<?php echo $pub['image_post_url'] . $pub['image_post_name']; ?>" alt="View Image" style="max-width: 100px; max-height: 100px;">
 
                                           </td>
 

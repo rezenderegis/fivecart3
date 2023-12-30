@@ -67,6 +67,42 @@ class Encarte extends CI_Controller {
         $this->load->view('layout/footer');
     }
 
+
+
+    public function viewTemplates($type=0) {
+
+        $title = 'Todos os Encartes';
+        $userProducts =  $this->core_model->get_all('product_customer', array ('id_user' => $this->ion_auth->user()->row()->id));
+
+        //TODO: This is not workink
+        if (count($userProducts) == 0){
+            $title = 'Cadastre produtos para criar seu ENCARTE';
+            
+        }
+  
+        $data = array (
+
+            'titulo' => $title,
+             'templates' => $this->core_model->getTemplates($type), 
+            'user_detail' =>  $this->core_model->getById('user_detail', array ('id_user' => $this->ion_auth->user()->row()->id))
+
+        );
+
+        $this->load->view('layout/header', $data);
+
+        if (count($userProducts) == 0){
+
+            redirect ('product/index/0/1', $data);
+         } else {
+
+         
+
+            $this->load->view('encarte/viewTemplates');
+         
+        }
+        $this->load->view('layout/footer');
+    }
+
     public function productList($idPublish=0) {
 
         if ($idPublish != 0)

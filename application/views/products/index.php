@@ -92,58 +92,52 @@ align: center;
                         </div>
                       </div>
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="product_table" class="table table-based dataTable"  width="100%" cellspacing="0" >
-                                    <thead>
-                                        <tr>
-                                            <th class="text-right ">Id</th>
-                                            <th>Nome</th>
-                                            <th>Preço</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($products as $product) : ?>
+											<form method="POST" name="form_updateFoto"> <!-- Change 'update_products.php' to your actual update endpoint -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="product_table" class="table table-based dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="text-right">Id</th>
+                        <th>Select</th> <!-- Add a column for checkboxes -->
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($products as $product) : ?>
+                        <tr>
+                            <td><?= $product['id'] ?></td>
+                            <td>
+                                <input type="checkbox" name="selected_products[]" value="<?= $product['id'] ?>">
+                            </td>
+                            <td>
+                                <?php if ($product['id_owner'] != $this->ion_auth->user()->row()->id) { ?>
+                                    <a title="Editar" href="<?php echo base_url('/product/editPrice/' . $product['id']); ?>"><?php echo $product['name'] ?></a>
+                                <?php } else { ?>
+                                    <a title="Editar" href="<?php echo base_url('/product/edit/' . $product['id']); ?>"><?php echo $product['name'] ?></a>
+                                <?php } ?>
+                            </td>
+                            <td class="money"><?= $product['price'] ?></td>
+                            <td class="text-right">
+                                <a title="Imagem" href="<?php echo base_url('/upload/index/' . $product['id']); ?>" class="btn btn-sm btn-primary">
+                                    <?php if ($product['image_link'] != null) { ?>
+                                        <img src="<?php echo base_url('/images/Products/' . $product['image_link']); ?>" class="imgProductInclude">
+                                    <?php } else { ?>
+                                        <img src="<?php echo base_url('/images/Products/no_image.png'); ?>" class="imgProductInclude">
+                                    <?php } ?>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Selected Products</button>
+    </div>
+</form>
 
-                                        <tr>
-                                            <td><?=$product['id']?></td>
-
-                                            <td>
-                                            <?php if ($product['id_owner'] != $this->ion_auth->user()->row()->id) {?>
-                                                <a title="Editar" href="<?php echo base_url('/product/editPrice/'.$product['id']); ?>" ><?=$product['name'] ?> </a> 
-                                                
-                                                
-                                                <?php } else {?>
-                                                <a title="Editar" href="<?php echo base_url('/product/edit/'.$product['id']); ?>"  ><?=$product['name'] ?></a> 
-                                               <?php }?>
-                                                </td>       
-                                          
-                                            <td class="money"><?=$product['price'] ?></td>
-
-                                            <td class="text-right">
-                                            <a title="Imagem" href=" <?php echo base_url('/upload/index/'.$product['id']); ?>" class="btn btn-sm btn-primary" >
-                                            <?php if ($product['image_link'] != null) { ?>
-                                            <img src="<?php echo base_url('/images/Products/'.$product['image_link']); ?>" class="imgProductInclude">
-                                            <?php } else { ?>
-                                              <img src="<?php echo base_url('/images/Products/no_image.png'); ?>" class="imgProductInclude">
-
-                                            <?php } ?>
-                                            </td>
-
-                                        </tr>
-
-
-
-
-
-
-
-
-
-
-                                        <?php endforeach;?>
-                                    </tbody>
                                 </table>
                             </div>
                         </div>

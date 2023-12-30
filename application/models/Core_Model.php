@@ -150,6 +150,51 @@ where pp.status =  1 and pp.id = ".$idProduct;
 
     }
 
+    
+    
+    public function getUserProductList2($idPublish=0,$idUser=0,$term=0) {
+        $sql = "select p.name as text,pc.id,pc.price,p.image_link  from product_customer pc inner join products p on p.id = pc.id_product
+        where pc.id_user = ".$idUser."
+        and pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
+        inner join product_customer pc on pc.id = pp.id_product_customer
+        inner join products prod on prod.id = pc.id_product
+        where pp.status = 1 and p.id = ".$idPublish.")". "and p.status = 1 and p.name like '$term%' order by p.name
+        limit 20";
+        
+        $query = $this->db->query ( $sql );	
+        return $query->result_array();
+    }
+
+    public function teste() {
+        echo "teste";
+       
+    }
+    public function getUserProductList1($idPublish=0,$idUser=0,$term=0) {
+        
+        echo "Entrou";
+        die();
+        $sql = "select p.name as text,pc.id,pc.price,p.image_link  from product_customer pc inner join products p on p.id = pc.id_product
+        where pc.id not in (select pc.id from product_publish pp inner join publish p on p.id = pp.id_publish
+        inner join product_customer pc on pc.id = pp.id_product_customer
+        inner join products prod on prod.id = pc.id_product
+        where pp.status = 1 order by p.name
+        limit 20";
+        
+        $query = $this->db->query ( $sql );	
+        return $query->result_array();
+    }
+
+    /*public function getProductPublish($idPublish,$idUser) {
+        $sql = "select pc.id,p.description,pc.id_product,prod.name,pp.product_price price,prod.image_link, pp.id_publish, pp.id as id_product_publish,
+        p.id_user as id_user_publish, p.header2, prod.image_width, prod.image_height
+        from product_publish pp inner join publish p on p.id = pp.id_publish
+        inner join product_customer pc on pc.id = pp.id_product_customer
+        inner join products prod on prod.id = pc.id_product
+        where p.id_user = ".$idUser." and pp.status =  1 and p.id = ".$idPublish. " order by pp.id desc"; 
+        $query = $this->db->query ( $sql );	
+        return $query->result_array ();
+    }*/
+
 
     public function getUserProductsByName($idPublish,$idUser,$name) {
       
@@ -353,9 +398,18 @@ where p.id_user > 32;
     }
 
     public function getUsers() {
-        $sql = "select *,st.description shop_type_description, from_unixtime(created_on  ,'%Y-%m-%d %k:%i') as created_on1,from_unixtime(last_login  ,'%Y-%m-%d') as last_login1 from users u 
-        left join user_detail ud on ud.id_user = u.id 
-        left join shop_type st on st.id = ud.shop_type order by created_on1 desc";
+        $sql = "SELECT *,
+		st.description AS shop_type_description,
+		FROM_UNIXTIME(created_on, '%Y-%m-%d %k:%i') AS created_on1,
+		FROM_UNIXTIME(last_login, '%Y-%m-%d') AS last_login1,
+		CASE 
+			WHEN ud.image_link IS NOT NULL THEN CONCAT(ud.image_address, ud.image_link)
+			ELSE ''
+		END AS image_address
+ FROM users u
+ LEFT JOIN user_detail ud ON ud.id_user = u.id
+ LEFT JOIN shop_type st ON st.id = ud.shop_type
+ ORDER BY created_on1 DESC";
     $query = $this->db->query ( $sql );	
     return $query->result_array ();
 
@@ -400,7 +454,7 @@ where p.id_user > 32;
         
         $filter .= $filter_has_logo .= $filter_has_flyer .= $filter_has_product;
       
-        $sql = "select p.id_user as id_user_post,st.description shop_type_description, ud2.company_name, u2.email ,u2.id as iduserenc, u2.id,from_unixtime(u2.last_login  ,'%Y-%m-%d') as last_login1, 
+        $sql = "select ud2.image_link,ud2.image_address, p.image_post_name as image_post_name,p.image_post_url as image_post_url, p.id_user as id_user_post,st.description shop_type_description, ud2.company_name, u2.email ,u2.id as iduserenc, u2.id,from_unixtime(u2.last_login  ,'%Y-%m-%d') as last_login1, 
         from_unixtime(u2.created_on  ,'%Y-%m-%d %k:%i') as created_on1  ,p.date as date_flyer,p.id id_publish, p.id_user id_user,p.description,
         ud2.mobile_number, p.dateUpdate, ud2.image_link ,       (SELECT COUNT(*) FROM product_publish pp2 LEFT JOIN publish p2  on p2.id = pp2.id_publish
        WHERE p2.id_user  = p.id_user) as qtd_product
